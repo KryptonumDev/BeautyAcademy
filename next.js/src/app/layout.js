@@ -17,6 +17,10 @@ const Oranienbaum = localFont({
   fallback: ['serif']
 })
 
+export const viewport = {
+  themeColor: '#FBF7F6',
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang={locale}>

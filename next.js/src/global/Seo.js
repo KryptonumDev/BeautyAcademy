@@ -3,13 +3,13 @@ import fetchData from "@/utils/fetchData";
 export const domain = 'https://beautyacademy.expert';
 export const locale = "ru";
 
-const Seo = async ({ title, description, url }) => {
-  const { data: { global } } = await getData();
+const Seo = async ({ title, description, path }) => {
+  const { global } = await getData();
 
   const seo = {
     title: title || 'Beauty Academy',
     description: description || '',
-    url: `${domain}${url}` || '',
+    url: `${domain}${path}` || '',
     ogImage: global.seo?.og_Img.asset.url || ''
   }
 
@@ -38,7 +38,6 @@ const Seo = async ({ title, description, url }) => {
       locale: locale,
       type: 'website',
     },
-    themeColor: '#FBF7F6',
   }
 
   return metadata;
@@ -58,5 +57,5 @@ const getData = async () => {
       }
     }
   `)
-  return { data };
+  return data;
 }
