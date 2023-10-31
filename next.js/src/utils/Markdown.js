@@ -1,11 +1,13 @@
-import CustomLink from "@/components/atoms/CustomLink";
 import NextImage from "next/image"
+import Link from "next/link";
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
 const LinkRenderer = ({ href, children }) => {
-  return <CustomLink href={href}>{children}</CustomLink>
+  const isExternal = href && (href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('tel:'));
+  const LinkComponent = isExternal ? 'a' : Link;
+  return <LinkComponent href={href}>{children}</LinkComponent>
 };
 
 const ListRenderer = ({ children }) => (

@@ -10,12 +10,11 @@ const SchemaOrganization = async () => {
     global: {
       instagram,
       facebook,
-      youtube,
       email,
       phone,
     }
   } = await getData();
-
+  
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html:
       JSON.stringify({
@@ -51,7 +50,6 @@ const SchemaOrganization = async () => {
         "sameAs": [
           instagram || '',
           facebook || '',
-          youtube || '',
         ]
       })
     }} />
@@ -60,10 +58,9 @@ const SchemaOrganization = async () => {
 
 export default SchemaOrganization;
 
-
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-   page: IndexPage(id: "indexPage") {
+    page: IndexPage(id: "indexPage") {
         # SEO
       seo {
         title
@@ -71,11 +68,10 @@ const getData = async () => {
       }
     }
     global: Global(id: "global") {
-      instagram
-      facebook
-      youtube
       email
       phone
+      instagram
+      facebook
     }
   `)
   return data;
