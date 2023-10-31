@@ -1,95 +1,133 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Hero from "@/components/sections/homepage/Hero";
+import Clients from "@/components/sections/homepage/Clients";
+import Motivation from "@/components/sections/homepage/Motivation";
+import Services from "@/components/sections/homepage/Services";
+import Seo from "@/global/Seo";
+import fetchData from "@/utils/fetchData";
+import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 
-export default function Home() {
+// export const runtime = 'edge'
+
+const pathname = '';
+
+const IndexPage = async () => {
+  const { page: {
+    hero_Heading,
+    hero_Paragraph,
+    hero_Cta,
+    services_Tag,
+    services_Heading,
+    services_Paragraph,
+    services_Cta,
+    services_List,
+    motivation_Paragraph,
+    clients_Tag,
+    clients_Heading,
+    clients_Paragraph,
+    clients_List,
+    clients_Cta,
+  } } = await getData();
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <>
+      <Hero data={{
+        hero_Heading,
+        hero_Paragraph,
+        hero_Cta,
+      }} />
+      <Services data={{
+        services_Tag,
+        services_Heading,
+        services_Paragraph,
+        services_Cta,
+        services_List,
+      }} />
+      <Motivation data={{
+        motivation_Paragraph
+      }} />
+      <Clients data={{
+        clients_Tag,
+        clients_Heading,
+        clients_Paragraph,
+        clients_List,
+        clients_Cta,
+      }} />
+      <SchemaBreadcrumbs breadcrumbs={[
+        { name: 'Main page', path: pathname },
+      ]} />
+    </>
   )
 }
+
+export async function generateMetadata() {
+  const { page: { seo } } = await getData();
+  return Seo({
+    title: seo?.title,
+    description: seo?.description,
+    url: pathname,
+  })
+}
+
+const getData = async () => {
+  const { body: { data } } = await fetchData(`
+    page: IndexPage(id: "indexPage") {
+        #Hero
+      hero_Heading
+      hero_Paragraph
+      hero_Cta {
+        theme
+        text
+        href
+      }
+        # Services
+      services_Tag
+      services_Heading
+      services_Paragraph
+      services_Cta {
+        theme
+        text
+        href
+      }
+      services_List {
+        title
+        description
+      }
+        # Motivation
+      motivation_Paragraph
+        # Clients
+      clients_Tag
+      clients_Heading
+      clients_Paragraph
+      clients_List {
+        name
+        href
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+      clients_Cta {
+        theme
+        text
+        href
+      }
+        # SEO
+      seo {
+        title
+        description
+      }
+    }
+  `)
+  return data;
+}
+
+export default IndexPage;

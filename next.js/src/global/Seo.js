@@ -1,7 +1,7 @@
 import fetchData from "@/utils/fetchData";
 
 export const domain = 'https://beautyacademy.expert';
-const locale = "ru";
+export const locale = "ru";
 
 const Seo = async ({ title, description, url }) => {
   const { data: { global } } = await getData();
