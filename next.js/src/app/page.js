@@ -7,10 +7,6 @@ import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 const pathname = '';
 
 const IndexPage = async () => {
-  const { page: {
-    hero_Heading,
-  } } = await getData();
-
   return (
     <>
       <h1>Homepage</h1>
