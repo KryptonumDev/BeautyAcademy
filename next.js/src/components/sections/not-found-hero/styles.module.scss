@@ -1,0 +1,18 @@
+.wrapper {
+  text-align: center;
+  max-width: calc(645rem/16);
+  margin: 0 auto;
+  h1 {
+    display: inline-block;
+    font-size: clamp(128px, calc(180vw/7.68), 264px);
+    background: linear-gradient(90deg, #F7C479 0%, #DCA855 26.73%, #C79442 61.32%, #BC7F1D 80.54%, #BA7403 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+  }
+  .paragraph {
+    font-size: clamp(32px, calc(36vw/7.68), 48px);
+    margin: clamp(8px, calc(12vw/7.68), 24px) 0 clamp(28px, calc(36vw/7.68), 36px);
+  }
+}

@@ -134,7 +134,7 @@ body {
   background-color: var(--background-200);
   color: var(--background-800);
   font-size: clamp(1rem, calc(18vw/7.68), calc(20rem/16));
-  line-height: 120%;
+  line-height: 1.2;
 }
 main,
 .max-width {
