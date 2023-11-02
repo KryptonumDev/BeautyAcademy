@@ -28,10 +28,21 @@ export default {
       fieldset: 'social',
     },
     {
-      type: 'string',
-      name: 'youtube',
-      title: 'YouTube',
-      fieldset: 'social',
+      name: 'footer_Slogan',
+      type: 'markdown',
+      title: 'Slogan',
+      fieldset: 'footer',
+    },
+    {
+      name: 'footer_Company',
+      type: 'array',
+      of: [
+        {
+          type: 'footer_Company',
+        }
+      ],
+      title: 'Company',
+      fieldset: 'footer',
     },
     {
       name: 'seo',
@@ -52,11 +63,6 @@ export default {
       title: 'Footer',
       options: { collapsible: true, collapsed: true }
     },
-    {
-      name: 'cookieConsent',
-      title: 'Cookie Consent',
-      options: { collapsible: true, collapsed: true }
-    },
   ]
 }
 
@@ -70,6 +76,28 @@ export const global_Seo = {
       type: 'image',
       title: 'OG Image',
       description: 'An image that is visible when sharing the page on social media. The dimensions of the photo should be 1200x630px'
+    },
+  ]
+}
+export const footer_Company = {
+  name: "footer_Company",
+  title: "Footer Company",
+  type: "object",
+  fields: [
+    {
+      name: 'name',
+      type: 'string',
+      title: 'Name',
+    },
+    {
+      name: 'address',
+      type: 'string',
+      title: 'Address',
+    },
+    {
+      name: 'phone',
+      type: 'string',
+      title: 'Phone number',
     },
   ]
 }
