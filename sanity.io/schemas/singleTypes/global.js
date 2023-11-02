@@ -28,6 +28,24 @@ export default {
       fieldset: 'social',
     },
     {
+      name: 'newsletter_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'newsletter',
+    },
+    {
+      name: 'newsletter_Paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+      fieldset: 'newsletter',
+    },
+    {
+      name: 'newsletter_Img',
+      type: 'image',
+      title: 'Image',
+      fieldset: 'newsletter',
+    },
+    {
       name: 'footer_Slogan',
       type: 'markdown',
       title: 'Slogan',
@@ -54,9 +72,12 @@ export default {
     {
       name: 'social',
       title: 'Social links',
-      options: {
-        collapsible: true
-      }
+      options: { collapsible: true, collapsed: true }
+    },
+    {
+      name: 'newsletter',
+      title: 'Newsletter',
+      options: { collapsible: true, collapsed: true }
     },
     {
       name: 'footer',
