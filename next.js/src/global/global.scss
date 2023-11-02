@@ -50,10 +50,7 @@
   --success-800: #01301C;
   --success-900: #012415;
   
-  --gradients-100: linear-gradient(90deg, #CFFA5B 28%, #EAFFAF);
-  --gradients-200: linear-gradient(270deg, #D2FB67, #00C2B5);
-  --gradients-300: linear-gradient(270deg, #D2FB67 0%, #00C2B5 100%);
-  --gradients-400: linear-gradient(45deg, #F5FE81 0%, #A8C2BE 100%);
+  --gradients-100: linear-gradient(90deg, #F7C479, #DCA855 26.73%, #C79442 61.32%, #BC7F1D 80.54%, #BA7403);
   
   --easing: cubic-bezier(0.65, 0, 0.35, 1);
   
@@ -203,9 +200,9 @@ h1, h2 {
 }
 
 .cta-wrapper {
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 12px 20px;
 }
 
 main {
