@@ -11,6 +11,7 @@
       display: grid;
       gap: clamp(16px, calc(24vw/7.68), 32px);
       max-width: calc(325rem/16);
+      align-items: flex-start;
       .logo {
         display: block;
         width: clamp(92px, calc(158vw/7.68), 226px);
@@ -24,6 +25,9 @@
         flex-wrap: wrap;
         gap: 24px;
         margin-top: clamp(16px, calc(24vw/7.68), 32px);
+        a {
+          display: block;
+        }
       }
     }
     .nav {

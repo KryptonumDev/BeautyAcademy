@@ -55,6 +55,7 @@
   --gradients-300: linear-gradient(270deg, #D2FB67 0%, #00C2B5 100%);
   --gradients-400: linear-gradient(45deg, #F5FE81 0%, #A8C2BE 100%);
   
+  --easing: cubic-bezier(0.65, 0, 0.35, 1);
   
   --pageMargin: clamp(16px, calc(40vw/7.68), 40px);
   @media (max-width: 899px) and (min-width: 649px) {
@@ -120,13 +121,15 @@ img {
   outline: 1px solid var(--background-700);
   outline-offset: 5px;
 }
+html, body {
+  overflow-x: clip;
+}
 body {
   &.scrollLock {
     overflow: hidden;
     touch-action: none;
   }
   min-width: 320px;
-  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
   background-color: var(--background-200);
   color: var(--background-800);

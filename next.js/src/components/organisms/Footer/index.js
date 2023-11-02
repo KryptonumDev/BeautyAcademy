@@ -39,9 +39,9 @@ const Footer = async () => {
                 {socials.map((item, i) => (
                   item.url && (
                     <li key={i}>
-                      <Link href={item.url} aria-label={item.name}>
+                      <a href={item.url} target="_blank" rel="noopener" aria-label={item.name}>
                         {item.icon}
-                      </Link>
+                      </a>
                     </li>
                   )
                 ))}
