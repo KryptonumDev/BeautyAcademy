@@ -17,6 +17,13 @@ const Oranienbaum = localFont({
   fallback: ['serif']
 })
 
+const Kapakana = localFont({
+  src: '../assets/fonts/Kapakana.woff2',
+  display: 'swap',
+  variable: '--kapakana-font',
+  fallback: ["sans-serif"]
+})
+
 export const viewport = {
   themeColor: '#FBF7F6',
 }
@@ -27,7 +34,7 @@ export default function RootLayout({ children }) {
       <head>
         <SchemaOrganization />
       </head>
-      <body className={`${Oranienbaum.className}`}>
+      <body className={`${Oranienbaum.className} ${Kapakana.variable}`}>
         <Nav />
         <SmoothScroll>
           <main id="main">
