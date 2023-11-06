@@ -5,6 +5,7 @@ import Hero from "@/components/sections/homepage-hero";
 import Benefits from "@/components/sections/homepage-benefits";
 import Newsletter from "@/components/sections/newsletter";
 import Reviews from "@/components/sections/reviews";
+import Features from "@/components/sections/homepage-features";
 
 // export const runtime = 'edge'
 
@@ -23,6 +24,10 @@ const IndexPage = async () => {
     benefits_Paragraph2,
     benefits_Cta,
     benefits_Img,
+    features_Heading,
+    features_Paragraph,
+    features_Cta,
+    features_List,
     reviews_Heading,
     reviews_Paragraph,
     reviews_Cta,
@@ -45,6 +50,12 @@ const IndexPage = async () => {
         benefits_Paragraph2,
         benefits_Cta,
         benefits_Img,
+      }} />
+      <Features data={{
+        features_Heading,
+        features_Paragraph,
+        features_Cta,
+        features_List,
       }} />
       <Reviews data={{
         reviews_Heading,
@@ -150,6 +161,32 @@ const getData = async () => {
         name
         content
         rating
+      }
+
+      # Features
+      features_Heading
+      features_Paragraph
+      features_Cta {
+        theme
+        href
+        text
+      }
+      features_List {
+        title
+        description
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
       }
     }
   `)
