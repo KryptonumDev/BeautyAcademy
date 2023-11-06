@@ -1,0 +1,17 @@
+.error {
+  margin-top: 4px;
+  margin-left: 8px;
+  font-size: clamp(calc(14rem/16), calc(14vw/7.68), calc(16rem/16));
+  color: var(--danger-500);
+  display: flex;
+  align-items: flex-start;
+  svg {
+    flex-shrink: 0;
+  }
+  span {
+    margin-top: 4px;
+  }
+  gap: 4px;
+  line-height: inherit;
+  overflow: hidden;
+}

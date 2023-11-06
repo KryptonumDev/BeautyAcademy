@@ -3,6 +3,7 @@ import fetchData from "@/utils/fetchData";
 import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Hero from "@/components/sections/homepage-hero";
 import Benefits from "@/components/sections/homepage-benefits";
+import Newsletter from "@/components/sections/newsletter";
 
 // export const runtime = 'edge'
 
@@ -40,6 +41,7 @@ const IndexPage = async () => {
         benefits_Cta,
         benefits_Img,
       }} />
+      <Newsletter />
       <SchemaBreadcrumbs breadcrumbs={[
         { name: 'Main page', path: pathname },
       ]} />

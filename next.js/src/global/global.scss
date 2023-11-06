@@ -53,6 +53,8 @@
   --gradients-100: linear-gradient(90deg, #F7C479, #DCA855 26.73%, #C79442 61.32%, #BC7F1D 80.54%, #BA7403);
   
   --easing: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --link-color: var(--primary-50);
   
   --pageMargin: clamp(16px, calc(40vw/7.68), 40px);
   @media (max-width: 899px) and (min-width: 649px) {
@@ -161,7 +163,7 @@ h1, h2 {
     position: absolute;
     left: 0;
     bottom: -3px;
-    background-color: var(--primary-50);
+    background-color: var(--link-color);
     transition: transform .4s;
   }
   &:hover::before {
