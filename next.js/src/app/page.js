@@ -4,6 +4,7 @@ import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Hero from "@/components/sections/homepage-hero";
 import Benefits from "@/components/sections/homepage-benefits";
 import Newsletter from "@/components/sections/newsletter";
+import Reviews from "@/components/sections/reviews";
 
 // export const runtime = 'edge'
 
@@ -22,6 +23,10 @@ const IndexPage = async () => {
     benefits_Paragraph2,
     benefits_Cta,
     benefits_Img,
+    reviews_Heading,
+    reviews_Paragraph,
+    reviews_Cta,
+    reviews_List,
   }} = await getData();
 
   return (
@@ -40,6 +45,12 @@ const IndexPage = async () => {
         benefits_Paragraph2,
         benefits_Cta,
         benefits_Img,
+      }} />
+      <Reviews data={{
+        reviews_Heading,
+        reviews_Paragraph,
+        reviews_Cta,
+        reviews_List,
       }} />
       <Newsletter />
       <SchemaBreadcrumbs breadcrumbs={[
@@ -61,7 +72,8 @@ export async function generateMetadata() {
 const getData = async () => {
   const { body: { data } } = await fetchData(`
     page: IndexPage(id: "indexPage") {
-        # Hero
+      
+      # Hero
       hero_Heading
       hero_Paragraph
       hero_Cta {
@@ -88,7 +100,8 @@ const getData = async () => {
           altText
         }
       }
-        # Benefits
+
+      # Benefits
       benefits_Heading
       benefits_Paragraph
       benefits_List
@@ -110,6 +123,33 @@ const getData = async () => {
             }
           }
         }
+      }
+
+      # Reviews
+      reviews_Heading
+      reviews_Paragraph
+      reviews_Cta {
+        theme
+        href
+        text
+      }
+      reviews_List {
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
+        name
+        content
+        rating
       }
     }
   `)

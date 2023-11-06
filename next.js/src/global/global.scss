@@ -217,3 +217,25 @@ main {
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
+.testimonial-swiper .swiper-slide {
+  position: relative;
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    backdrop-filter: blur(1px);
+    transition: opacity .4s;
+    opacity: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  &:not(.swiper-slide-active) {
+    &::before {
+      opacity: 1;
+    }
+  }
+}

@@ -4,12 +4,19 @@
   @media (max-width: 499px){
     width: 100%;
   }
+  transition: background-color .4s var(--easing);
   &[data-theme="primary"]{
     background-color: var(--primary-500);
     color: var(--background-100);
+    &:hover {
+      background-color: var(--primary-600);
+    }
   }
   &[data-theme="secondary"]{
     background-color: var(--background-500);
     color: var(--background-800);
+    &:hover {
+      background-color: var(--background-300);
+    }
   }
 }
