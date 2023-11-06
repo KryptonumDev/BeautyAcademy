@@ -102,6 +102,44 @@ export default {
       validation: Rule => Rule.required(),
     },
     {
+      name: 'features_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'features',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'features_Paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+      fieldset: 'features',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'features_Cta',
+      type: 'array',
+      of: [
+        {
+          type: 'cta'
+        }
+      ],
+      title: 'CTAs',
+      fieldset: 'features',
+      validation: Rule => Rule.min(1).max(2),
+    },
+    {
+      name: 'features_List',
+      type: 'array',
+      of: [
+        {
+          type: 'list_titleDescriptionAndImage'
+        }
+      ],
+      title: 'List',
+      fieldset: 'features',
+      validation: Rule => Rule.min(1).max(3),
+    },
+    {
       name: 'reviews_Heading',
       type: 'markdown',
       title: 'Heading',
@@ -161,6 +199,11 @@ export default {
     {
       name: 'benefits',
       title: 'Benefits',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
+      name: 'features',
+      title: 'Features',
       options: { collapsible: true, collapsed: true }
     },
     {
