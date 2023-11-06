@@ -102,11 +102,48 @@ export default {
       validation: Rule => Rule.required(),
     },
     {
-      name: 'benefits_Img',
-      type: 'image',
-      title: 'Image',
-      fieldset: 'benefits',
+      name: 'reviews_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'reviews',
       validation: Rule => Rule.required(),
+    },
+    {
+      name: 'reviews_Paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+      fieldset: 'reviews',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'reviews_Cta',
+      type: 'array',
+      of: [
+        {
+          type: 'cta'
+        }
+      ],
+      title: 'CTA',
+      fieldset: 'reviews',
+      validation: Rule => Rule.min(1).max(2),
+    },
+    {
+      name: 'reviews_List',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: {
+            type: 'testimonials'
+          },
+          options: {
+            disableNew: true,
+          }
+        },
+      ],
+      title: 'List',
+      fieldset: 'reviews',
+      validation: Rule => Rule.required().unique(),
     },
     {
       name: 'seo',
@@ -119,13 +156,16 @@ export default {
     {
       name: 'hero',
       title: 'Hero',
-      options: {
-        collapsible: true
-      }
+      options: { collapsible: true }
     },
     {
       name: 'benefits',
       title: 'Benefits',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
+      name: 'reviews',
+      title: 'Reviews',
       options: { collapsible: true, collapsed: true }
     },
   ],

@@ -9,9 +9,14 @@ export const singleTypes = [
 ]
 
 // Collection Types
+import blogEntry from './collectionTypes/blogEntry'
+import blogCategory from './collectionTypes/blogCategory'
+import testimonials from './collectionTypes/testimonials'
 
 export const collectionTypes = [
-
+  testimonials,
+  blogEntry,
+  blogCategory,
 ]
 
 // Componenets
