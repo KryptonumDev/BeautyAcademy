@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 import Img from '@/utils/Img';
 import Markdown from '@/utils/Markdown';
+import { useMediaQuery } from 'react-responsive'
 
 const Features = ({
   data: {
@@ -21,6 +22,9 @@ const Features = ({
   })
   const odd = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const even = useTransform(scrollYProgress, [0, 1], [0, -200]);
+
+  const isDesktop = useMediaQuery({ query: '(min-width: 900px)' });
+
   return (
     <section className={styles.wrapper}>
       <header>
@@ -35,7 +39,7 @@ const Features = ({
       <div className={styles.list} ref={wrapper}>
         {features_List.map(({ title, description, img }, i) => (
           <motion.div
-            style={{ y: i % 2 === 0 ? odd : even }}
+            {...isDesktop && { style: { y: i % 2 === 0 ? odd : even } }}
             className={styles.item}
             key={i}
           >
