@@ -1,58 +1,15 @@
 import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
 import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
-import Hero from "@/components/sections/homepage-hero";
-import Benefits from "@/components/sections/homepage-benefits";
-import Newsletter from "@/components/sections/newsletter";
-import Reviews from "@/components/sections/reviews";
 
 // export const runtime = 'edge'
 
 const pathname = '';
 
 const IndexPage = async () => {
-  const { page: {
-    hero_Heading,
-    hero_Paragraph,
-    hero_Cta,
-    hero_Images,
-    hero_Videos,
-    benefits_Heading,
-    benefits_Paragraph,
-    benefits_List,
-    benefits_Paragraph2,
-    benefits_Cta,
-    benefits_Img,
-    reviews_Heading,
-    reviews_Paragraph,
-    reviews_Cta,
-    reviews_List,
-  }} = await getData();
-
   return (
     <>
-      <Hero data={{
-        hero_Heading,
-        hero_Paragraph,
-        hero_Cta,
-        hero_Images,
-        hero_Videos,
-      }} />
-      <Benefits data={{
-        benefits_Heading,
-        benefits_Paragraph,
-        benefits_List,
-        benefits_Paragraph2,
-        benefits_Cta,
-        benefits_Img,
-      }} />
-      <Reviews data={{
-        reviews_Heading,
-        reviews_Paragraph,
-        reviews_Cta,
-        reviews_List,
-      }} />
-      <Newsletter />
+      <h1>Homepage</h1>
       <SchemaBreadcrumbs breadcrumbs={[
         { name: 'Main page', path: pathname },
       ]} />
@@ -72,85 +29,8 @@ export async function generateMetadata() {
 const getData = async () => {
   const { body: { data } } = await fetchData(`
     page: IndexPage(id: "indexPage") {
-      
-      # Hero
+        #Hero
       hero_Heading
-      hero_Paragraph
-      hero_Cta {
-        theme
-        text
-        href
-      }
-      hero_Images {
-        asset {
-          altText
-          url
-          metadata {
-            lqip
-            dimensions {
-              width
-              height
-            }
-          }
-        }
-      }
-      hero_Videos {
-        asset {
-          url
-          altText
-        }
-      }
-
-      # Benefits
-      benefits_Heading
-      benefits_Paragraph
-      benefits_List
-      benefits_Paragraph2
-      benefits_Cta {
-        theme
-        text
-        href
-      }
-      benefits_Img {
-        asset {
-          altText
-          url
-          metadata {
-            lqip
-            dimensions {
-              width
-              height
-            }
-          }
-        }
-      }
-
-      # Reviews
-      reviews_Heading
-      reviews_Paragraph
-      reviews_Cta {
-        theme
-        href
-        text
-      }
-      reviews_List {
-        img {
-          asset {
-            altText
-            url
-            metadata {
-              lqip
-              dimensions {
-                width
-                height
-              }
-            }
-          }
-        }
-        name
-        content
-        rating
-      }
     }
   `)
   return data;
