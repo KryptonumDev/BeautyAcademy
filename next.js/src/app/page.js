@@ -6,6 +6,7 @@ import Benefits from "@/components/sections/homepage-benefits";
 import Newsletter from "@/components/sections/newsletter";
 import Reviews from "@/components/sections/reviews";
 import Features from "@/components/sections/homepage-features";
+import Advantages from "@/components/sections/homepage-advantages";
 
 // export const runtime = 'edge'
 
@@ -24,6 +25,10 @@ const IndexPage = async () => {
     benefits_Paragraph2,
     benefits_Cta,
     benefits_Img,
+    advantages_Heading,
+    advantages_Paragraph,
+    advantages_Cta,
+    advantages_List,
     features_Heading,
     features_Paragraph,
     features_Cta,
@@ -50,6 +55,12 @@ const IndexPage = async () => {
         benefits_Paragraph2,
         benefits_Cta,
         benefits_Img,
+      }} />
+      <Advantages data={{
+        advantages_Heading,
+        advantages_Paragraph,
+        advantages_Cta,
+        advantages_List,
       }} />
       <Features data={{
         features_Heading,
@@ -131,6 +142,32 @@ const getData = async () => {
             dimensions {
               width
               height
+            }
+          }
+        }
+      }
+
+      # Advantages
+      advantages_Heading
+      advantages_Paragraph
+      advantages_Cta {
+        theme
+        href
+        text
+      }
+      advantages_List {
+        title
+        description
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
             }
           }
         }

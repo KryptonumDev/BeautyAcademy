@@ -39,9 +39,10 @@ const Features = ({
       <div className={styles.list} ref={wrapper}>
         {features_List.map(({ title, description, img }, i) => (
           <motion.div
-            {...isDesktop && { style: { y: i % 2 === 0 ? odd : even } }}
             className={styles.item}
             key={i}
+            style={{ transform: 'none' }}
+            {...isDesktop && { style: { y: i % 2 === 0 ? odd : even } }}
           >
             <Img data={img} className={styles.img} />
             <Markdown.h3 className={styles.title}>{title}</Markdown.h3>
