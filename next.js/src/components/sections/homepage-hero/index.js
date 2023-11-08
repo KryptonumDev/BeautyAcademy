@@ -26,12 +26,12 @@ const Hero = ({
       {hero_Images.map((img, i) => (
         <Img data={img} key={i} />
       ))}
-      {hero_Videos.map(({ asset: { url, altText } }, i) => (
+      {/* {hero_Videos.map(({ asset: { url, altText } }, i) => (
         <video autoPlay loop muted controls key={i}>
           <source src={url} />
           <p>{altText}</p>
         </video>
-      ))}
+      ))} */}
     </section>
   );
 };

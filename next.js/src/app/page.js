@@ -7,6 +7,7 @@ import Newsletter from "@/components/sections/newsletter";
 import Reviews from "@/components/sections/reviews";
 import Features from "@/components/sections/homepage-features";
 import Advantages from "@/components/sections/homepage-advantages";
+import Partnership from "@/components/sections/homepage-partnership";
 
 // export const runtime = 'edge'
 
@@ -37,6 +38,10 @@ const IndexPage = async () => {
     reviews_Paragraph,
     reviews_Cta,
     reviews_List,
+    partnership_Heading,
+    partnership_Paragraph,
+    partnership_Cta,
+    partnership_Video,
   }} = await getData();
 
   return (
@@ -73,6 +78,12 @@ const IndexPage = async () => {
         reviews_Paragraph,
         reviews_Cta,
         reviews_List,
+      }} />
+      <Partnership data={{
+        partnership_Heading,
+        partnership_Paragraph,
+        partnership_Cta,
+        partnership_Video,
       }} />
       <Newsletter />
       <SchemaBreadcrumbs breadcrumbs={[
@@ -173,6 +184,32 @@ const getData = async () => {
         }
       }
 
+      # Features
+      features_Heading
+      features_Paragraph
+      features_Cta {
+        theme
+        href
+        text
+      }
+      features_List {
+        title
+        description
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+
       # Reviews
       reviews_Heading
       reviews_Paragraph
@@ -200,29 +237,18 @@ const getData = async () => {
         rating
       }
 
-      # Features
-      features_Heading
-      features_Paragraph
-      features_Cta {
+      # Partnership
+      partnership_Heading
+      partnership_Paragraph
+      partnership_Cta {
         theme
         href
         text
       }
-      features_List {
-        title
-        description
-        img {
-          asset {
-            altText
-            url
-            metadata {
-              lqip
-              dimensions {
-                width
-                height
-              }
-            }
-          }
+      partnership_Video {
+        asset {
+          url
+          altText
         }
       }
     }
