@@ -81,6 +81,7 @@ export default Footer;
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
+  query Global {
     global: Global(id: "global") {
       footer_Slogan
       instagram
@@ -91,6 +92,7 @@ const getData = async () => {
         phone
       }
     }
+  }
   `)
   return data;
 }

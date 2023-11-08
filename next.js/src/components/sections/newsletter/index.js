@@ -25,6 +25,7 @@ const Newsletter = async () => {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
+  query Newsletter {
     global: Global(id: "global") {
       newsletter_Heading
       newsletter_Paragraph
@@ -42,6 +43,7 @@ const getData = async () => {
         }
       }
     }
+  }
   `)
   return data;
 }

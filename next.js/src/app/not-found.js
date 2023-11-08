@@ -30,6 +30,7 @@ export async function generateMetadata() {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
+  query NotFoundPage {
     page: NotFoundPage(id: "notFoundPage") {
         #Hero
       hero_Heading
@@ -40,6 +41,7 @@ const getData = async () => {
         href
       }
     }
+  }
   `)
   return data;
 }

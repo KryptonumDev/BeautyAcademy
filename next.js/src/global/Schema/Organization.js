@@ -60,6 +60,7 @@ export default SchemaOrganization;
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
+  query Organisation {
     page: IndexPage(id: "indexPage") {
         # SEO
       seo {
@@ -73,6 +74,7 @@ const getData = async () => {
       instagram
       facebook
     }
+  }
   `)
   return data;
 }

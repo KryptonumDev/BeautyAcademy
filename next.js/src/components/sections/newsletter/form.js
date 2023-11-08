@@ -9,7 +9,7 @@ import Checkbox from '@/components/moleculas/Checkbox';
 import Link from 'next/link';
 
 const Form = () => {
-  const [status, setStatus] = useState({ sending: false });
+  const [, setStatus] = useState({ sending: false });
   
   const {
     register,

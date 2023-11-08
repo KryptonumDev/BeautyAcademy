@@ -71,6 +71,7 @@ export async function generateMetadata() {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
+  query IndexPage {
     page: IndexPage(id: "indexPage") {
       
       # Hero
@@ -152,6 +153,7 @@ const getData = async () => {
         rating
       }
     }
+  }
   `)
   return data;
 }

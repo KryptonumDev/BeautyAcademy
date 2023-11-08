@@ -47,6 +47,7 @@ export default Seo;
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
+  query SEO {
     global: Global(id: "global") {
       seo {
         og_Img {
@@ -56,6 +57,7 @@ const getData = async () => {
         }
       }
     }
+  }
   `)
   return data;
 }
