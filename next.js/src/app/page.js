@@ -5,6 +5,8 @@ import Hero from "@/components/sections/homepage-hero";
 import Benefits from "@/components/sections/homepage-benefits";
 import Newsletter from "@/components/sections/newsletter";
 import Reviews from "@/components/sections/reviews";
+import Features from "@/components/sections/homepage-features";
+import Advantages from "@/components/sections/homepage-advantages";
 
 // export const runtime = 'edge'
 
@@ -23,6 +25,14 @@ const IndexPage = async () => {
     benefits_Paragraph2,
     benefits_Cta,
     benefits_Img,
+    advantages_Heading,
+    advantages_Paragraph,
+    advantages_Cta,
+    advantages_List,
+    features_Heading,
+    features_Paragraph,
+    features_Cta,
+    features_List,
     reviews_Heading,
     reviews_Paragraph,
     reviews_Cta,
@@ -45,6 +55,18 @@ const IndexPage = async () => {
         benefits_Paragraph2,
         benefits_Cta,
         benefits_Img,
+      }} />
+      <Advantages data={{
+        advantages_Heading,
+        advantages_Paragraph,
+        advantages_Cta,
+        advantages_List,
+      }} />
+      <Features data={{
+        features_Heading,
+        features_Paragraph,
+        features_Cta,
+        features_List,
       }} />
       <Reviews data={{
         reviews_Heading,
@@ -126,6 +148,32 @@ const getData = async () => {
         }
       }
 
+      # Advantages
+      advantages_Heading
+      advantages_Paragraph
+      advantages_Cta {
+        theme
+        href
+        text
+      }
+      advantages_List {
+        title
+        description
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+
       # Reviews
       reviews_Heading
       reviews_Paragraph
@@ -151,6 +199,32 @@ const getData = async () => {
         name
         content
         rating
+      }
+
+      # Features
+      features_Heading
+      features_Paragraph
+      features_Cta {
+        theme
+        href
+        text
+      }
+      features_List {
+        title
+        description
+        img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
       }
     }
   }

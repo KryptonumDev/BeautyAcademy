@@ -16,7 +16,7 @@ const Benefits = ({
   return (
     <section className={`${styles.wrapper} sec-wo-margin`}>
       <header>
-        <Markdown.h1>{benefits_Heading}</Markdown.h1>
+        <Markdown.h2>{benefits_Heading}</Markdown.h2>
         <Markdown className={styles.paragraph}>{benefits_Paragraph}</Markdown>
         <div className={styles.list}>
           {benefits_List.map((item, i) => (

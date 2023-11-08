@@ -9,8 +9,8 @@ import Checkbox from '@/components/moleculas/Checkbox';
 import Link from 'next/link';
 
 const Form = () => {
-  const [, setStatus] = useState({ sending: false });
-  
+  const [status, setStatus] = useState({ sending: false });
+
   const {
     register,
     handleSubmit,
@@ -77,6 +77,11 @@ const Form = () => {
         })}
         errors={errors}
       />
+      {status.success !== undefined && (
+        <div className={styles.state}>
+          
+        </div>
+      )}
     </form>
   );
 };

@@ -48,7 +48,7 @@ const Nav = () => {
       <a href="#main" className={styles.skipToMainContent}>Перейти к основному содержанию</a>
       <header className={styles.wrapper} aria-expanded={navOpened}>
         <div className="max-width">
-          <Link href='/' className={styles.logo}>
+          <Link href='/' className={styles.logo} aria-label="Homepage">
             <Logo />
           </Link>
           <nav>
