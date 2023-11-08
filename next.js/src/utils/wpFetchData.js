@@ -3,17 +3,17 @@ import { read } from "src/app/actions";
 const wpFetchData = async (query, variables) => {
   try {
     const currentUser = await read('user');
-    console.log( currentUser );
+
     const headers = { 'Content-Type': 'application/json' };
-  
-    if( currentUser?.authToken ) {
+
+    if (currentUser?.authToken) {
       headers['Authorization'] = `Bearer ${currentUser.authToken}`;
     }
 
-    if ( currentUser?.wooSessionToken ) {
+    if (currentUser?.wooSessionToken) {
       headers['woocommerce-session'] = `Session ${currentUser.wooSessionToken}`;
     }
-  
+
 
     const response = await fetch(process.env.WP_ENDPOINT, {
       method: 'POST',
@@ -33,7 +33,7 @@ const wpFetchData = async (query, variables) => {
       throw body.errors[0];
     }
 
-    return { body }; 
+    return { body };
   } catch (error) {
     throw {
       status: error.status || 500,

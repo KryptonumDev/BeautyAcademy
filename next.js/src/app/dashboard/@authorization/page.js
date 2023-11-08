@@ -1,6 +1,6 @@
 import Authorization from "@/components/sections/authorization"
 import React from "react"
-import wpFetchData from "@/utils/wpFetchData" 
+import wpFetchData from "@/utils/wpFetchData"
 
 const data = {
   register: {
@@ -14,11 +14,11 @@ const data = {
 }
 
 export default async function AuthorizationProcess() {
-  const {loginClients: providers} = await getData();
+  const { loginClients: providers } = await getData();
 
   return (
     <div>
-      <Authorization data={data} providers={providers}/>
+      <Authorization data={data} providers={providers} />
     </div>
   )
 }

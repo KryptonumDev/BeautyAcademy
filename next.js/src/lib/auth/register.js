@@ -1,18 +1,12 @@
 import wpFetchData from "@/utils/wpFetchData";
 import { v4 } from "uuid";
 
-export async function authenticate(variables) {
+export async function register(variables) {
   const query = `
-    mutation Login($input: LoginInput!) {
-      login(input: $input) {
-        authToken
-        refreshToken
-        authTokenExpiration
-        refreshTokenExpiration
-        sessionToken
-        user{
-          name
-          id
+    mutation Login($input: RegisterCustomerInput!) {
+      registerCustomer(input: $input) {
+        customer {
+          sessionToken
         }
       }
     }
@@ -29,5 +23,5 @@ export async function authenticate(variables) {
     throw new Error(res.errors[0].message);
   }
 
-  return res?.body?.data?.login;
+  return res?.body?.data?.registerCustomer;
 }

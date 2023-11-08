@@ -1,6 +1,15 @@
 .wrapper{
   h1{
     margin-bottom: clamp(20px, calc(28vw/7.68), 36px);
+    @media (max-width: 900px) {
+      text-align: center;
+    }
+  }
+
+  >p{
+    @media (max-width: 900px) {
+      text-align: center;
+    }
   }
 
   .flex{
@@ -10,11 +19,24 @@
     gap: 24px;
 
     >aside{
+      height: fit-content;
       max-width: 590px;
+      @media (max-width: 600px) {
+        max-width: unset;
+      }
     }
 
     >form{
       max-width: 485px;
+      height: fit-content;
+      @media (max-width: 600px) {
+        max-width: unset;
+      }
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 48px;
     }
   }
 }

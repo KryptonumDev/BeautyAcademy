@@ -1,7 +1,8 @@
 import React from "react"
+import { read } from "../actions"
 
-export default function DashboardLayout({ account, authorization }) {
-  const logged = false
+export default async function DashboardLayout({ account, authorization }) {
+  const logged = await read('user')
 
   return (
     <div>

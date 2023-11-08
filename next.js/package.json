@@ -21,7 +21,8 @@
     "react-responsive": "^9.0.2",
     "rehype-raw": "^7.0.0",
     "sass": "^1.69.5",
-    "swiper": "^11.0.3"
+    "swiper": "^11.0.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "eslint": "^8",
