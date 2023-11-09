@@ -32,8 +32,9 @@
       background: linear-gradient(rgba(255,255,255,0), var(--background-200));
       transition: transform .3s var(--easing);
     }
-    &[data-isPlaying="true"]::before {
+    &[data-isplaying="true"]::before {
       transform: translateY(100%);
+      transition: none;
     }
     svg {
       position: absolute;

@@ -39,7 +39,7 @@ const Partnership = ({
       </header>
       <div
         className={`${styles.video}`}
-        data-isPlaying={isPlaying}
+        data-isplaying={isPlaying}
         onClick={() => toggleVideo()}
       >
         {isPlaying ? <Pause /> : <Play />}

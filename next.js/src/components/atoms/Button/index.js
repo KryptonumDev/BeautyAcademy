@@ -1,7 +1,14 @@
 import styles from './styles.module.scss';
 import Link from 'next/link';
 
-const Button = ({ data, theme = 'primary', children, href, className, ...props }) => {
+const Button = ({
+  data,
+  theme = 'primary',
+  variant = 'primary',
+  children, href,
+  className,
+  ...props
+}) => {
   if (data) {
     theme = data.theme;
     href = data.href;
@@ -11,6 +18,7 @@ const Button = ({ data, theme = 'primary', children, href, className, ...props }
   const commonProps = {
     className: `${styles.wrapper} cta${className ? ` ${className}` : ''}`,
     "data-theme": theme,
+    "data-variant": variant,
     ...props,
   };
 
@@ -24,9 +32,33 @@ const Button = ({ data, theme = 'primary', children, href, className, ...props }
       {...commonProps}
       {...isExternal && { target: '_blank', rel: 'noopener' }}
     >
-      {children}
+      {variant === 'secondary' && (
+        <div>
+          <div>
+            <Array />
+          </div>
+        </div>
+      )}
+      <span>{children}</span>
     </Element>
   );
 };
 
 export default Button;
+
+const Array = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='26'
+    height='25'
+    fill='none'
+    viewBox='0 0 26 25'
+  >
+    <path
+      stroke='#53423C'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      d='M8.581 16.919L17.42 8.08m0 0H9.459m7.961 0v7.7'
+    ></path>
+  </svg>
+)

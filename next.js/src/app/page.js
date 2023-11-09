@@ -8,6 +8,7 @@ import Reviews from "@/components/sections/reviews";
 import Features from "@/components/sections/homepage-features";
 import Advantages from "@/components/sections/homepage-advantages";
 import Partnership from "@/components/sections/homepage-partnership";
+import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 
 // export const runtime = 'edge'
 
@@ -86,6 +87,7 @@ const IndexPage = async () => {
         partnership_Video,
       }} />
       <Newsletter />
+      <LatestBlogEntries />
       <SchemaBreadcrumbs breadcrumbs={[
         { name: 'Main page', path: pathname },
       ]} />
