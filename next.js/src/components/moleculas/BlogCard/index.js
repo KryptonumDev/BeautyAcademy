@@ -25,7 +25,7 @@ const BlogCard = ({
       data-without-grid={withoutGrid}
       {...props}
     >
-      <Link className={styles.link} href={`/blog/${slug}`} tabIndex={-1}></Link>
+      <Link className={styles.link} href={`/blog/${slug}`} tabIndex={-1} aria-label={name}></Link>
       <Img data={thumbnail} className={styles.thumbnail} />
       <div>
         <p className={styles.createdAt}>{prettyfyDate(_createdAt)}</p>
