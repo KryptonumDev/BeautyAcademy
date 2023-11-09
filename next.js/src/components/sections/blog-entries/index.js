@@ -23,6 +23,7 @@ const BlogEntries = ({ entries, page, scrollToId, showEntries, allEntries }) => 
           aria-valuemin={0}
           aria-valuenow={showEntries}
           aria-valuemax={allEntries}
+          aria-label='Showing status of all entries'
         >
           <div style={{ width: `${(showEntries / allEntries)*100}%` }}></div>
         </div>
