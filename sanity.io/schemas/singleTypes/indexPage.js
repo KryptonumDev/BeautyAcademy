@@ -222,6 +222,39 @@ export default {
       validation: Rule => Rule.required().unique(),
     },
     {
+      name: 'partnership_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'partnership',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'partnership_Paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+      fieldset: 'partnership',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'partnership_Cta',
+      type: 'array',
+      of: [
+        {
+          type: 'cta'
+        }
+      ],
+      title: 'CTAs',
+      fieldset: 'partnership',
+      validation: Rule => Rule.min(1).max(2).required(),
+    },
+    {
+      name: 'partnership_Video',
+      type: 'file',
+      title: 'Video',
+      fieldset: 'partnership',
+      validation: Rule => Rule.required(),
+    },
+    {
       name: 'seo',
       type: 'seo',
       title: 'SEO',
@@ -252,6 +285,11 @@ export default {
     {
       name: 'reviews',
       title: 'Reviews',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
+      name: 'partnership',
+      title: 'Partnership',
       options: { collapsible: true, collapsed: true }
     },
   ],

@@ -46,6 +46,32 @@ export default {
       fieldset: 'newsletter',
     },
     {
+      name: 'latestBlogEntries_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'latestBlogEntries',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'latestBlogEntries_Paragraph',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'latestBlogEntries',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'latestBlogEntries_Cta',
+      type: 'array',
+      of: [
+        {
+          type: 'cta'
+        }
+      ],
+      title: 'CTAs',
+      fieldset: 'latestBlogEntries',
+      validation: Rule => Rule.min(1).max(2).required(),
+    },
+    {
       name: 'footer_Slogan',
       type: 'markdown',
       title: 'Slogan',
@@ -77,6 +103,11 @@ export default {
     {
       name: 'newsletter',
       title: 'Newsletter',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
+      name: 'latestBlogEntries',
+      title: 'Latest Blog Entries',
       options: { collapsible: true, collapsed: true }
     },
     {
