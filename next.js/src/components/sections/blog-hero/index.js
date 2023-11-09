@@ -18,7 +18,7 @@ const Hero = ({
         <Markdown className={styles.paragraph}>{hero_Paragraph}</Markdown>
       </header>
       <div className={styles.categories}>
-        <h3>{category_Paragraph}</h3>
+        <h2 className='h3'>{category_Paragraph}</h2>
         <div className={styles.wrapper}>
           {categories.map(({ name, slug: { current: slug }}, i) => (
             <Link
