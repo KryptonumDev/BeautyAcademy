@@ -18,7 +18,7 @@ export default {
     },
     {
       name: 'category_Paragraph',
-      type: 'markdown',
+      type: 'string',
       title: 'Paragraph',
       fieldset: 'category',
     },
