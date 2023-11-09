@@ -123,6 +123,9 @@ img {
 html, body {
   overflow-x: clip;
 }
+html {
+  scroll-padding-top: 123px;
+}
 body {
   &.scrollLock {
     overflow: hidden;
@@ -153,6 +156,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1, h2 {
   font-size: clamp(calc(32rem/16), calc(36vw/7.68), calc(64rem/16));
+}
+h3 {
+  font-size: clamp(calc(20rem/16), calc(28vw/7.68), calc(36rem/16));
 }
 
 .link {
@@ -211,12 +217,24 @@ h1, h2 {
 main {
   display: grid;
   grid-template-columns: 1fr;
-  row-gap: clamp(96px, calc(144vw/7.68), 200px);
-  margin: clamp(28px, calc(42vw/7.68), 64px) auto clamp(96px, calc(144vw/7.68), 200px);
+  row-gap: clamp(96px, calc(144vw/7.68), 174px);
+  margin: clamp(28px, calc(42vw/7.68), 64px) auto clamp(96px, calc(144vw/7.68), 174px);
 }
 
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 .testimonial-swiper .swiper-slide {

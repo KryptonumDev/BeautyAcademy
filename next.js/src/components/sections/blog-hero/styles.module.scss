@@ -1,0 +1,27 @@
+.wrapper {
+  header {
+    max-width: calc(486rem/16);
+    margin-bottom: clamp(48px, calc(80vw/7.68), 128px);
+    h1 {
+      margin-bottom: clamp(16px, calc(24vw/7.68), 28px);
+    }
+  }
+  .categories {
+    .wrapper {
+      margin-top: clamp(24px, calc(28vw/7.68), 36px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(8px, calc(12vw/7.68), 12px);
+      a {
+        padding: 16px 20px;
+        border: 1px solid var(--background-500);
+        background-color: var(--background-300);
+        &[aria-current="page"]{
+          border: 1px solid var(--background-800);
+          background-color: var(--background-400);
+          box-shadow: 4px 4px 11px 0px rgba(0, 0, 0, .12);
+        }
+      }
+    }
+  }
+}

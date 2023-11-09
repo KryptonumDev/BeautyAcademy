@@ -7,17 +7,24 @@ import Button from '@/components/atoms/Button';
 const BlogCard = ({
   data: {
     name,
-    slug,
+    slug: { current: slug },
     brief,
     thumbnail,
-    categorySlug,
-    categoryName,
-    _createdAt,
+    category: {
+      name: categoryName,
+      slug: { current: categorySlug }
+    },
+    _createdAt
   },
+  withoutGrid=false,
   ...props
 }) => {
   return (
-    <div className={styles.wrapper} {...props}>
+    <div
+      className={styles.wrapper}
+      data-without-grid={withoutGrid}
+      {...props}
+    >
       <Link className={styles.link} href={`/blog/${slug}`} tabIndex={-1}></Link>
       <Img data={thumbnail} className={styles.thumbnail} />
       <div>

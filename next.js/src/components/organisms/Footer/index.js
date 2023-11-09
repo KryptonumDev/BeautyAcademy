@@ -81,14 +81,16 @@ export default Footer;
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-    global: Global(id: "global") {
-      footer_Slogan
-      instagram
-      facebook
-      footer_Company {
-        name
-        address
-        phone
+    query {
+      global: Global(id: "global") {
+        footer_Slogan
+        instagram
+        facebook
+        footer_Company {
+          name
+          address
+          phone
+        }
       }
     }
   `)

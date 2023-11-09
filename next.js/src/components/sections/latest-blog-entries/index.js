@@ -26,27 +26,9 @@ const LatestBlogEntries = async () => {
         </div>
       </header>
       <div className={styles.entries}>
-        {latestEntries.map(({
-          name,
-          slug: { current: slug },
-          brief,
-          thumbnail,
-          category: {
-            name: categoryName,
-            slug: { current: categorySlug }
-          },
-          _createdAt
-        }, i) => (
+        {latestEntries.map((entry, i) => (
           <BlogCard
-            data={{
-              name,
-              slug,
-              brief,
-              thumbnail,
-              categorySlug,
-              categoryName,
-              _createdAt,
-            }}
+            data={entry}
             key={i}
           />
         ))}
@@ -58,41 +40,43 @@ const LatestBlogEntries = async () => {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-    global: Global(id: "global") {
-      latestBlogEntries_Heading
-      latestBlogEntries_Paragraph
-      latestBlogEntries_Cta {
-        theme
-        text
-        href
+    query {
+      global: Global(id: "global") {
+        latestBlogEntries_Heading
+        latestBlogEntries_Paragraph
+        latestBlogEntries_Cta {
+          theme
+          text
+          href
+        }
       }
-    }
-    latestEntries: allBlogEntry(limit: 3, sort: { _createdAt: DESC }) {
-      name
-      slug {
-        current
-      }
-      brief
-      thumbnail {
-        asset {
-          altText
-          url
-          metadata {
-            lqip
-            dimensions {
-              width
-              height
+      latestEntries: allBlogEntry(limit: 3, sort: { _createdAt: DESC }) {
+        name
+        slug {
+          current
+        }
+        brief
+        thumbnail {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
             }
           }
         }
-      }
-      category {
-        name
-        slug{
-          current
+        category {
+          name
+          slug{
+            current
+          }
         }
+        _createdAt
       }
-      _createdAt
     }
   `)
   return data;
