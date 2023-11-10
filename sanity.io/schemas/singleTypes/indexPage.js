@@ -258,7 +258,7 @@ export default {
       name: 'seo',
       type: 'seo',
       title: 'SEO',
-      group: 'seo'
+      group: 'seo',
     },
   ],
   fieldsets: [
