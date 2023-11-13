@@ -3,8 +3,7 @@ import React from "react"
 
 export default async function Page() {
   const data = await getData();
-  console.log('history')
-
+  console.log(data.customer.orders.nodes)
   return (
     <div>
       children

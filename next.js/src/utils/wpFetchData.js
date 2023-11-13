@@ -1,22 +1,37 @@
-const wpFetchData = async (query, variables, withUser = true) => {
-  try {
-    // let currentUser
+import { read } from "src/app/actions";
 
-    if (withUser) {
-      // currentUser = await fetch('/api/auth/user').then(res => res.json());
-      // const userData = JSON.parse(user.value)
-    }
+const wpFetchData = async (query, variables) => {
+  try {
+    let currentUser = await (async () => {
+      let user = await read('user');
+      let newUser = await fetch('http://localhost:3000/api/auth/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: user.value
+      })
+        .then(async res => res.json())
+        .then(async (res) => {
+          if (res.error) {
+            console.log(res.error)
+            return null
+          }
+          return res.user
+        })
+
+      return newUser
+    })()
 
     const headers = { 'Content-Type': 'application/json' };
 
-    // if (currentUser?.authToken) {
-    //   headers['Authorization'] = `Bearer ${userData.authToken}`;
-    // }
+    if (currentUser?.authToken) {
+      headers['Authorization'] = `Bearer ${currentUser.authToken}`;
+    }
 
-    // if (currentUser?.wooSessionToken) {
-    //   headers['woocommerce-session'] = `Session ${userData.sessionToken}`;
-    // }
-
+    if (currentUser?.sessionToken) {
+      headers['woocommerce-session'] = `Session ${currentUser.sessionToken}`;
+    }
 
     const response = await fetch('https://wp.beautyacademy.expert/graphql', {
       method: 'POST',
@@ -26,12 +41,11 @@ const wpFetchData = async (query, variables, withUser = true) => {
         ...(variables ? { variables } : {}),
       }),
       next: {
-        revalidate: 100,
+        revalidate: 0,
       },
     });
 
     const body = await response.json();
-
     if (body.errors) {
       throw body.errors[0];
     }
