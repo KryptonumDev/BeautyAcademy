@@ -1,13 +1,14 @@
 import ReactMarkdown from 'react-markdown';
-import { renderToString } from "react-dom/server";
+import { renderToPipeableStream } from 'react-dom/server';
+import { Writable } from 'stream';
 
 const SchemaFaq = ({ data }) => {
   const schama = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": data.map(({ question, answer }) => {
-      const questionStream = renderToString(<ReactMarkdown>{question}</ReactMarkdown>);
-      const answerStream = renderToString(<ReactMarkdown>{answer}</ReactMarkdown>);
+      const questionStream = renderToStaticMarkup(<ReactMarkdown>{question}</ReactMarkdown>);
+      const answerStream = renderToStaticMarkup(<ReactMarkdown>{answer}</ReactMarkdown>);
       return {
         "@type": "Question",
         "name": questionStream,
@@ -26,5 +27,22 @@ const SchemaFaq = ({ data }) => {
     />
   );
 };
+
+function renderToStaticMarkup(element) {
+  return new Promise((resolve, reject) => {
+    const { pipe } = renderToPipeableStream(element);
+
+    const writableStream = new Writable({
+      write(chunk, encoding, callback) {
+        resolve(chunk.toString());
+        callback();
+      },
+    });
+
+    writableStream.on('error', reject);
+
+    pipe(writableStream);
+  });
+}
 
 export default SchemaFaq;

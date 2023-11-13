@@ -14,6 +14,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 24px;
         span {
           display: block;
           max-width: calc(822rem/16);
@@ -22,10 +23,10 @@
           span {
             display: block;
             width: 24px;
-            height: 2px;
+            height: 1px;
             background-color: var(--background-800);
             &:last-child {
-              transform: translateY(-2px) rotate(-90deg);
+              transform: translateY(-1px) rotate(-90deg);
               transition: transform .5s var(--easing);
             }
           }
@@ -33,7 +34,7 @@
       }
       &[data-opened="true"]{
         summary .indicator span:last-child {
-          transform: translateY(-2px) rotate(0);
+          transform: translateY(-1px) rotate(0);
         }
       }
       .answer {
