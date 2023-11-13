@@ -37,7 +37,7 @@ export default function Form({ registration, setRegistration }) {
 
           router.fastRefresh();
         })
-        .catch((err) => {
+        .catch(() => {
           // TODO ERROR HANDLING
         })
 
@@ -59,7 +59,7 @@ export default function Form({ registration, setRegistration }) {
 
           router.fastRefresh();
         })
-        .catch((err) => {
+        .catch(() => {
           // TODO ERROR HANDLING
         })
     }

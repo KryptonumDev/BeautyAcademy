@@ -1,9 +1,34 @@
+import wpFetchData from "@/utils/wpFetchData";
 import React from "react"
 
-export default function History () {
+export default async function Page() {
+  const data = await getData();
+  console.log(data)
+
   return (
     <div>
-      ТУТ БУДЕТ ИСТОРИЯ
+      children
     </div>
   )
+}
+
+const getData = async () => {
+  const { body: { data } } = await wpFetchData(`
+    query {
+      customer {
+        id
+        orders {
+          nodes {
+            total(format: FORMATTED)
+            status
+            orderKey
+            orderNumber
+            paymentMethod
+            date
+          }
+        }
+      }
+    }
+  `)
+  return data;
 }

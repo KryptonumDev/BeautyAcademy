@@ -1,4 +1,4 @@
-const fetchData = async (query, variables) => {
+const fetchData = async (query) => {
   try {
     const response = await fetch(process.env.GRAPHQL_ENDPOINT, {
       method: 'POST',

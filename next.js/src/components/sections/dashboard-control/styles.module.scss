@@ -24,4 +24,9 @@
   display: block;
   margin-top: 80px;
   text-transform: capitalize;
+  width: fit-content;
+
+  &::before{
+    background-color:#2B483C ;
+  }
 }

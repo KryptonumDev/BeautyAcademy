@@ -91,7 +91,7 @@ export default function DashboardControl({ chosenSubPage, setSubPage }) {
         Мои данные
       </button>
 
-      <Link className={styles.logout} href="/logout">
+      <Link className={`${styles.logout} link`} href="/logout">
         выйти
       </Link>
     </aside>
