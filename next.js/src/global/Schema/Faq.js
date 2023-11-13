@@ -1,15 +1,13 @@
 import ReactMarkdown from 'react-markdown';
-import { renderToPipeableStream } from 'react-dom/server';
-
+import { renderToString } from "react-dom/server";
 
 const SchemaFaq = ({ data }) => {
   const schama = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": data.map(({ question, answer }) => {
-      const questionStream = renderToPipeableStream(<ReactMarkdown>{question}</ReactMarkdown>).stream;
-      const answerStream = renderToPipeableStream(<ReactMarkdown>{answer}</ReactMarkdown>).stream;
-
+      const questionStream = renderToString(<ReactMarkdown>{question}</ReactMarkdown>);
+      const answerStream = renderToString(<ReactMarkdown>{answer}</ReactMarkdown>);
       return {
         "@type": "Question",
         "name": questionStream,
