@@ -13,7 +13,7 @@ dependencies:
     version: 10.16.4(react-dom@18.2.0)(react@18.2.0)
   iron-session:
     specifier: ^6.3.1
-    version: 6.3.1(next@14.0.1)
+    version: 6.3.1(next@14.0.2)
   jsonwebtoken:
     specifier: ^9.0.2
     version: 9.0.2
@@ -1705,7 +1705,7 @@ packages:
       side-channel: 1.0.4
     dev: true
 
-  /iron-session@6.3.1(next@14.0.1):
+  /iron-session@6.3.1(next@14.0.2):
     resolution: {integrity: sha512-3UJ7y2vk/WomAtEySmPgM6qtYF1cZ3tXuWX5GsVX4PJXAcs5y/sV9HuSfpjKS6HkTL/OhZcTDWJNLZ7w+Erx3A==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -1727,7 +1727,7 @@ packages:
       '@types/node': 17.0.45
       cookie: 0.5.0
       iron-webcrypto: 0.2.8
-      next: 14.0.1(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
+      next: 14.0.2(react-dom@18.2.0)(react@18.2.0)(sass@1.69.5)
     dev: false
 
   /iron-webcrypto@0.2.8:

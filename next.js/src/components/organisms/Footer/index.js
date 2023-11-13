@@ -93,7 +93,6 @@ const getData = async () => {
         }
       }
     }
-  }
   `)
   return data;
 }

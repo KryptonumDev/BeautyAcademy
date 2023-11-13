@@ -75,7 +75,6 @@ const getData = async () => {
         facebook
       }
     }
-  }
   `)
   return data;
 }
