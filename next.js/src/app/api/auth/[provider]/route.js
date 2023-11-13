@@ -50,6 +50,7 @@ async function handler(req, { params }) {
       isLoggedIn: true,
     };
     let newCoockie = await create({ name: 'user', value: JSON.stringify(user), age: user.refreshTokenExpiration })
+    // TODO: add cookie for auth token and refresh token
 
     if (params.provider === 'password') {
       return NextResponse.json({ success: true }, {
@@ -66,6 +67,7 @@ async function handler(req, { params }) {
     }
   } catch (e) {
     console.log(e)
+    //TODO: add error handling
     // Do something with the error
     // NextResponse.status( 401 ).json( { error: e.message } );
 

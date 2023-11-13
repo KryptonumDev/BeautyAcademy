@@ -93,8 +93,8 @@ export default function Form({ registration, setRegistration }) {
         type="password"
         register={register('password', {
           required: { value: true, message: `Введите пароль` },
-          // minLength: { value: 8, message: `Пароль должен содердать минимум 8 символов` },
-          // pattern: { value: regex.password, message: `Пароль должен состоять из латинских символов, содержать минимум одну букву верхнего и нижнего регистра, цифру и специальный символ` },
+          minLength: { value: registration ? 8 : null, message: `Пароль должен содердать минимум 8 символов` },
+          pattern: { value: registration ? regex.password : null, message: `Пароль должен состоять из латинских символов, содержать минимум одну букву верхнего и нижнего регистра, цифру и специальный символ` },
         })}
         errors={errors}
       />

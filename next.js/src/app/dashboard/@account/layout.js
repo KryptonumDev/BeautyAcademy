@@ -1,23 +1,12 @@
 'use client'
+import DashboardControl from "@/components/sections/dashboard-control"
 import React, { useState } from "react"
 
 export default function Account({ downloads, history, courses, data }) {
   let [chosenSubPage, setSubPage] = useState("courses")
-
   return (
-    <div>
-      <button onClick={() => {setSubPage('courses')}}>
-        КУРСЫ
-      </button>
-      <button onClick={() => {setSubPage('downloads')}}>
-        ФАЙЛЫ
-      </button>
-      <button onClick={() => {setSubPage('history')}}>
-        ИСТОРИЯ
-      </button>
-      <button onClick={() => {setSubPage('data')}}>
-        ДАТА
-      </button>
+    <div className="dashboard-layout">
+      <DashboardControl chosenSubPage={chosenSubPage} setSubPage={setSubPage} />
       {(() => {
         switch (chosenSubPage) {
           case 'courses':

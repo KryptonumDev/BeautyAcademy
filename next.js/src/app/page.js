@@ -8,6 +8,7 @@ import Reviews from "@/components/sections/reviews";
 import Features from "@/components/sections/homepage-features";
 import Advantages from "@/components/sections/homepage-advantages";
 import Partnership from "@/components/sections/homepage-partnership";
+import { read } from "./actions";
 
 // export const runtime = 'edge'
 
@@ -42,7 +43,8 @@ const IndexPage = async () => {
     partnership_Paragraph,
     partnership_Cta,
     partnership_Video,
-  }} = await getData();
+  } } = await getData();
+
 
   return (
     <>

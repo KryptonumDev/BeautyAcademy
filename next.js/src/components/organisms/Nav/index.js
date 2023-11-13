@@ -61,7 +61,7 @@ const Nav = () => {
             </ul>
           </nav>
           <div className={styles.actions}>
-            <Link href='/account' aria-label='Account'>
+            <Link href='/dashboard' aria-label='Account'>
               <Icon.User />
             </Link>
             <Link href='/basket' aria-label='Basket'>

@@ -1,17 +1,22 @@
 import { read } from "src/app/actions";
 
-const wpFetchData = async (query, variables) => {
+const wpFetchData = async (query, variables, withUser = true) => {
   try {
-    const currentUser = await read('user');
+    let currentUser
 
+    if (withUser) {
+      currentUser = await fetch('/api/auth/user').then(res => res.json());
+      const userData = JSON.parse(user.value)
+    }
+    
     const headers = { 'Content-Type': 'application/json' };
 
     if (currentUser?.authToken) {
-      headers['Authorization'] = `Bearer ${currentUser.authToken}`;
+      headers['Authorization'] = `Bearer ${userData.authToken}`;
     }
 
     if (currentUser?.wooSessionToken) {
-      headers['woocommerce-session'] = `Session ${currentUser.wooSessionToken}`;
+      headers['woocommerce-session'] = `Session ${userData.sessionToken}`;
     }
 
 

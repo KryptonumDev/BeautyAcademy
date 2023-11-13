@@ -1,0 +1,27 @@
+.wrapper {
+  position: sticky;
+  top: 0;
+
+  .button {
+    border-bottom: 1px solid var(--background-600, #C9BBB7);
+    padding: 36px 28px;
+    display: grid;
+    gap: 10px;
+    align-items: center;
+    grid-template-columns: 28px auto;
+    width: 100%;
+    text-align: left;
+    transition: background-color .4s var(--easing);
+
+    &.active,
+    &:hover {
+      background-color: var(--background-300, #F7EFEC);
+    }
+  }
+}
+
+.logout{
+  display: block;
+  margin-top: 80px;
+  text-transform: capitalize;
+}

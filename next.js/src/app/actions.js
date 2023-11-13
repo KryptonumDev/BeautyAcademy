@@ -21,3 +21,7 @@ export async function read(name) {
 export async function getAll() {
   return cookies().getAll()
 }
+
+export async function deleteCookie(name) {
+  cookies().delete(name)
+}
