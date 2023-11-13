@@ -9,7 +9,7 @@ const Hero = ({
     hero_Paragraph,
     hero_Cta,
     hero_Images,
-    hero_Videos,
+    // hero_Videos,
   }
 }) => {
   return (

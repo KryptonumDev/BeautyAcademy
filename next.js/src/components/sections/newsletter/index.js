@@ -25,19 +25,20 @@ const Newsletter = async () => {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-  query Newsletter {
-    global: Global(id: "global") {
-      newsletter_Heading
-      newsletter_Paragraph
-      newsletter_Img {
-        asset {
-          altText
-          url
-          metadata {
-            lqip
-            dimensions {
-              width
-              height
+    query {
+      global: Global(id: "global") {
+        newsletter_Heading
+        newsletter_Paragraph
+        newsletter_Img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
             }
           }
         }

@@ -8,9 +8,7 @@ import Reviews from "@/components/sections/reviews";
 import Features from "@/components/sections/homepage-features";
 import Advantages from "@/components/sections/homepage-advantages";
 import Partnership from "@/components/sections/homepage-partnership";
-import { read } from "./actions";
-
-// export const runtime = 'edge'
+import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 
 const pathname = '';
 
@@ -88,8 +86,9 @@ const IndexPage = async () => {
         partnership_Video,
       }} />
       <Newsletter />
+      <LatestBlogEntries />
       <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Main page', path: pathname },
+        { name: 'Homepage', path: pathname },
       ]} />
     </>
   )
@@ -106,73 +105,18 @@ export async function generateMetadata() {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-  query IndexPage {
-    page: IndexPage(id: "indexPage") {
-      
-      # Hero
-      hero_Heading
-      hero_Paragraph
-      hero_Cta {
-        theme
-        text
-        href
-      }
-      hero_Images {
-        asset {
-          altText
-          url
-          metadata {
-            lqip
-            dimensions {
-              width
-              height
-            }
-          }
+    query {
+      page: IndexPage(id: "indexPage") {
+        
+        # Hero
+        hero_Heading
+        hero_Paragraph
+        hero_Cta {
+          theme
+          text
+          href
         }
-      }
-      hero_Videos {
-        asset {
-          url
-          altText
-        }
-      }
-
-      # Benefits
-      benefits_Heading
-      benefits_Paragraph
-      benefits_List
-      benefits_Paragraph2
-      benefits_Cta {
-        theme
-        text
-        href
-      }
-      benefits_Img {
-        asset {
-          altText
-          url
-          metadata {
-            lqip
-            dimensions {
-              width
-              height
-            }
-          }
-        }
-      }
-
-      # Advantages
-      advantages_Heading
-      advantages_Paragraph
-      advantages_Cta {
-        theme
-        href
-        text
-      }
-      advantages_List {
-        title
-        description
-        img {
+        hero_Images {
           asset {
             altText
             url
@@ -185,20 +129,24 @@ const getData = async () => {
             }
           }
         }
-      }
-
-      # Features
-      features_Heading
-      features_Paragraph
-      features_Cta {
-        theme
-        href
-        text
-      }
-      features_List {
-        title
-        description
-        img {
+        hero_Videos {
+          asset {
+            url
+            altText
+          }
+        }
+  
+        # Benefits
+        benefits_Heading
+        benefits_Paragraph
+        benefits_List
+        benefits_Paragraph2
+        benefits_Cta {
+          theme
+          text
+          href
+        }
+        benefits_Img {
           asset {
             altText
             url
@@ -211,51 +159,102 @@ const getData = async () => {
             }
           }
         }
-      }
-
-      # Reviews
-      reviews_Heading
-      reviews_Paragraph
-      reviews_Cta {
-        theme
-        href
-        text
-      }
-      reviews_List {
-        img {
-          asset {
-            altText
-            url
-            metadata {
-              lqip
-              dimensions {
-                width
-                height
+  
+        # Advantages
+        advantages_Heading
+        advantages_Paragraph
+        advantages_Cta {
+          theme
+          href
+          text
+        }
+        advantages_List {
+          title
+          description
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
               }
             }
           }
         }
-        name
-        content
-        rating
-      }
-
-      # Partnership
-      partnership_Heading
-      partnership_Paragraph
-      partnership_Cta {
-        theme
-        href
-        text
-      }
-      partnership_Video {
-        asset {
-          url
-          altText
+  
+        # Features
+        features_Heading
+        features_Paragraph
+        features_Cta {
+          theme
+          href
+          text
+        }
+        features_List {
+          title
+          description
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+  
+        # Reviews
+        reviews_Heading
+        reviews_Paragraph
+        reviews_Cta {
+          theme
+          href
+          text
+        }
+        reviews_List {
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          name
+          content
+          rating
+        }
+  
+        # Partnership
+        partnership_Heading
+        partnership_Paragraph
+        partnership_Cta {
+          theme
+          href
+          text
+        }
+        partnership_Video {
+          asset {
+            url
+            altText
+          }
         }
       }
     }
-  }
   `)
   return data;
 }

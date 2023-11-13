@@ -30,15 +30,16 @@ export async function generateMetadata() {
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-  query NotFoundPage {
-    page: NotFoundPage(id: "notFoundPage") {
-        #Hero
-      hero_Heading
-      hero_Paragraph
-      hero_Cta {
-        theme
-        text
-        href
+    query {
+      page: NotFoundPage(id: "notFoundPage") {
+          #Hero
+        hero_Heading
+        hero_Paragraph
+        hero_Cta {
+          theme
+          text
+          href
+        }
       }
     }
   }

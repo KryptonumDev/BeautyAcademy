@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/atoms/Icons';
+import { usePathname } from 'next/navigation';
 
 const links = [
   {
@@ -28,6 +29,7 @@ const links = [
 ]
 
 const Nav = () => {
+  const pathname = usePathname();
   const [ navOpened, setNavOpened ] = useState(false);
 
   useEffect(() => {
@@ -55,7 +57,13 @@ const Nav = () => {
             <ul>
               {links.map(({ name, href }, i) => (
                 <li key={i}>
-                  <Link href={href}>{name}</Link>
+                  <Link
+                    href={href}
+                    aria-current={pathname === href ? 'page' : false}
+                    onClick={() => setNavOpened(false)}
+                  >
+                    {name}
+                  </Link>
                 </li>
               ))}
             </ul>

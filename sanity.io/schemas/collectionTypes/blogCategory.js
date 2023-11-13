@@ -17,5 +17,17 @@ export default {
       },
       title: 'Slug',
     },
+    {
+      name: 'seo',
+      type: 'seo',
+      title: 'SEO',
+      group: 'seo'
+    },
   ],
+  groups: [
+    {
+      title: 'SEO',
+      name: 'seo',
+    },
+  ]
 }

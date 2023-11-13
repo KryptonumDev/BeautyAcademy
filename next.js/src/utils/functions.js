@@ -52,3 +52,12 @@ export const phoneValidation = (e) => {
     e.preventDefault();
   }
 }
+
+export const prettyfyDate = (date) => {
+  const dateFormat = new Date(date);
+  return new Intl.DateTimeFormat('ru-RU', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  }).format(dateFormat);
+}

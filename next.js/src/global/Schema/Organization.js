@@ -60,19 +60,20 @@ export default SchemaOrganization;
 
 const getData = async () => {
   const { body: { data } } = await fetchData(`
-  query Organisation {
-    page: IndexPage(id: "indexPage") {
-        # SEO
-      seo {
-        title
-        description
+    query {
+      page: IndexPage(id: "indexPage") {
+          # SEO
+        seo {
+          title
+          description
+        }
       }
-    }
-    global: Global(id: "global") {
-      email
-      phone
-      instagram
-      facebook
+      global: Global(id: "global") {
+        email
+        phone
+        instagram
+        facebook
+      }
     }
   }
   `)

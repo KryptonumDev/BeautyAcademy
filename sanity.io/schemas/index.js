@@ -1,10 +1,14 @@
 // Single Types
 import global, { global_Seo, footer_Company } from './singleTypes/global'
 import indexPage from './singleTypes/indexPage'
+import contactPage from './singleTypes/contactPage'
+import blogPage from './singleTypes/blogPage'
 import notFoundPage from './singleTypes/notFoundPage'
 
 export const singleTypes = [
   indexPage,
+  blogPage,
+  contactPage,
   notFoundPage,
 ]
 
@@ -23,6 +27,7 @@ export const collectionTypes = [
 import cta from './components/cta'
 import seo from './components/seo'
 import { titleAndDescription, titleDescriptionAndImage } from './components/list'
+import Faq from './components/Faq'
 
 export const components = [
   global_Seo,
@@ -31,6 +36,7 @@ export const components = [
   seo,
   titleAndDescription,
   titleDescriptionAndImage,
+  Faq,
 ]
 
 export const schemaTypes = [
