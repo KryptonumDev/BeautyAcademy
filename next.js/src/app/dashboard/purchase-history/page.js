@@ -1,13 +1,11 @@
+import Orders from "@/components/sections/orders";
 import wpFetchData from "@/utils/wpFetchData";
 import React from "react"
 
 export default async function Page() {
   const data = await getData();
-  console.log(data.customer.orders.nodes)
   return (
-    <div>
-      children
-    </div>
+    <Orders data={data.customer} />
   )
 }
 
