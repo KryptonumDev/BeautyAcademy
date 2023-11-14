@@ -82,7 +82,7 @@ const Form = ({
             key={i}
           >{item}</Chip>
         ))}
-        <Error error={errors['topic']} />
+        <Error error={errors['subject']} />
       </div>
       <Input
         label="Имя"
