@@ -54,7 +54,7 @@
   
   --easing: cubic-bezier(0.65, 0, 0.35, 1);
 
-  --link-color: var(--primary-50);
+  --link-color: var(--primary-500);
   
   --pageMargin: clamp(16px, calc(40vw/7.68), 40px);
   @media (max-width: 899px) and (min-width: 649px) {
@@ -84,6 +84,9 @@ button {
 sup {
   font-size: .6em;
   vertical-align: top;
+}
+textarea {
+  display: block;
 }
 input,
 textarea,
@@ -163,6 +166,7 @@ h3, .h3 {
 
 .link {
   position: relative;
+  text-wrap: nowrap;
   &::before {
     content: '';
     width: 100%;

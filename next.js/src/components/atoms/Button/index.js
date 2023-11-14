@@ -39,7 +39,7 @@ const Button = ({
           </div>
         </div>
       )}
-      <span>{children}</span>
+      {children}
     </Element>
   );
 };

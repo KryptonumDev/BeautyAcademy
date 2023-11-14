@@ -3,8 +3,10 @@ import fetchData from "@/utils/fetchData";
 import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Faq from "@/components/sections/faq";
 import Hero from "@/components/sections/contact-hero";
+import Newsletter from "@/components/sections/newsletter";
+import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 
-const pathname = '/contact';
+const pathname = '/cooperation';
 
 const ContactPage = async () => {
   const { page: {
@@ -42,8 +44,11 @@ const ContactPage = async () => {
         }}
       />
       <Faq data={faq} />
+      <Newsletter />
+      <LatestBlogEntries />
       <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Homepage', path: pathname },
+        { name: 'Homepage', path: '/' },
+        { name: 'Cooperation', path: pathname },
       ]} />
     </>
   )
@@ -61,7 +66,7 @@ export async function generateMetadata() {
 const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
-      page: ContactPage(id: "contactPage") {
+      page: CooperationPage(id: "cooperationPage") {
         # Hero
         hero_Heading
         hero_Paragraph
@@ -80,7 +85,6 @@ const query = async () => {
         }
 
         # Form
-        form_Heading
         form_Subjects
 
         # Form State's

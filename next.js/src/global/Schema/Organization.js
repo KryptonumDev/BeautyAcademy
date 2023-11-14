@@ -13,7 +13,7 @@ const SchemaOrganization = async () => {
       email,
       phone,
     }
-  } = await getData();
+  } = await query();
   
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html:
@@ -58,7 +58,7 @@ const SchemaOrganization = async () => {
 
 export default SchemaOrganization;
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       page: IndexPage(id: "indexPage") {

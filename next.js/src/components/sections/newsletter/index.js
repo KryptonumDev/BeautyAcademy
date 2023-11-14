@@ -9,7 +9,7 @@ const Newsletter = async () => {
     newsletter_Heading,
     newsletter_Paragraph,
     newsletter_Img,
-  }} = await getData();
+  }} = await query();
 
   return (
     <aside className={styles.wrapper}>
@@ -23,7 +23,7 @@ const Newsletter = async () => {
   );
 };
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       global: Global(id: "global") {

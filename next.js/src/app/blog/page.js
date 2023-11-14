@@ -19,7 +19,7 @@ const BlogPage = async ({ searchParams: { page = 1 } }) => {
     categories,
     entries,
     countAllEntries,
-  } = await getData(offset);
+  } = await query(offset);
 
   categories = categories.filter(({ slug: { current: slug }}) =>
     countAllEntries.some(entry => entry.category.slug.current === slug)
@@ -53,7 +53,7 @@ const BlogPage = async ({ searchParams: { page = 1 } }) => {
 }
 
 export async function generateMetadata() {
-  const { page: { seo } } = await getData();
+  const { page: { seo } } = await query();
   return Seo({
     title: seo?.title,
     description: seo?.description,
@@ -61,7 +61,7 @@ export async function generateMetadata() {
   })
 }
 
-const getData = async (offset = limit) => {
+const query = async (offset = limit) => {
   const { body: { data } } = await fetchData(`
     query($limit: Int) {
       page: BlogPage(id: "blogPage") {

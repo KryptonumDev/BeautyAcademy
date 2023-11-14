@@ -6,9 +6,9 @@ const Error = ({ error }) => (
   <AnimatePresence initial='false' mode='wait'>
     {error && (
       <motion.span
-        initial={{ height: 0 }}
-        animate={{ height: 'auto' }}
-        exit={{ height: 0 }}
+        initial={{ height: 0, marginTop: 0 }}
+        animate={{ height: 'auto', marginTop: 4 }}
+        exit={{ height: 0, marginTop: 0 }}
         className={styles.error}
         role="alert"
       >

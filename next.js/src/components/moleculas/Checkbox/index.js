@@ -4,7 +4,6 @@ import styles from './styles.module.scss';
 const Checkbox = ({ register, label, errors, ...props }) => {
   return (
     <label className={styles.label} aria-invalid={Boolean(errors[register.name])}>
-      <Error error={errors[register.name]} />
       <div className={styles.icon}>
         <input
           {...register}
@@ -15,6 +14,7 @@ const Checkbox = ({ register, label, errors, ...props }) => {
         <Check />
       </div>
       <p className="label">{label}</p>
+      <Error error={errors[register.name]} />
     </label>
   );
 };

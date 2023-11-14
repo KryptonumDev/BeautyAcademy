@@ -4,7 +4,7 @@ export const domain = 'https://beautyacademy.expert';
 export const locale = "ru";
 
 const Seo = async ({ title, description, path }) => {
-  const { global } = await getData();
+  const { global } = await query();
 
   const seo = {
     title: title || 'Beauty Academy',
@@ -45,7 +45,7 @@ const Seo = async ({ title, description, path }) => {
 
 export default Seo;
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       global: Global(id: "global") {

@@ -41,7 +41,7 @@ const IndexPage = async () => {
     partnership_Paragraph,
     partnership_Cta,
     partnership_Video,
-  }} = await getData();
+  }} = await query();
 
   return (
     <>
@@ -94,7 +94,7 @@ const IndexPage = async () => {
 }
 
 export async function generateMetadata() {
-  const { page: { seo } } = await getData();
+  const { page: { seo } } = await query();
   return Seo({
     title: seo?.title,
     description: seo?.description,
@@ -102,7 +102,7 @@ export async function generateMetadata() {
   })
 }
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       page: IndexPage(id: "indexPage") {
