@@ -1,8 +1,8 @@
 export default {
-  name: 'contactPage',
-  title: 'Contact',
+  name: 'cooperationPage',
+  title: 'Cooperation',
   type: 'document',
-  icon: () => '✉️',
+  icon: () => '🤝',
   fields: [
     {
       name: 'hero_Heading',
@@ -29,13 +29,6 @@ export default {
       title: 'People avatars',
       fieldset: 'hero',
       validation: Rule => Rule.min(1).max(2).required(),
-    },
-    {
-      name: 'form_Heading',
-      type: 'markdown',
-      title: 'Heading',
-      fieldset: 'form',
-      validation: Rule => Rule.required(),
     },
     {
       name: 'form_Subjects',

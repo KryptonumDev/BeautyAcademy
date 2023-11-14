@@ -28,6 +28,12 @@ export default {
       fieldset: 'social',
     },
     {
+      type: 'string',
+      name: 'telegram',
+      title: 'Telegram',
+      fieldset: 'social',
+    },
+    {
       name: 'newsletter_Heading',
       type: 'markdown',
       title: 'Heading',
