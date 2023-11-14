@@ -35,7 +35,7 @@ const Button = ({
       {variant === 'secondary' && (
         <div>
           <div>
-            <Array />
+            <Arrow />
           </div>
         </div>
       )}
@@ -46,7 +46,7 @@ const Button = ({
 
 export default Button;
 
-const Array = () => (
+const Arrow = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='26'

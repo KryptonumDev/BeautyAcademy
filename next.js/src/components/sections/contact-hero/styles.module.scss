@@ -64,6 +64,11 @@
       flex-wrap: wrap;
       align-items: flex-start;
       gap: 12px;
+      .error {
+        width: 100%;
+        position: relative;
+        top: -12px;
+      }
     }
     display: grid;
     grid-template-columns: 1fr 2.5fr;
