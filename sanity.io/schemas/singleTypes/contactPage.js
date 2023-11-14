@@ -31,58 +31,9 @@ export default {
       validation: Rule => Rule.min(1).max(2).required(),
     },
     {
-      name: 'form_Heading',
-      type: 'markdown',
-      title: 'Heading',
-      fieldset: 'form',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'form_Subjects',
-      type: 'array',
-      of: [
-        {
-          type: 'string'
-        }
-      ],
-      title: 'Subjects',
-      fieldset: 'form',
-      validation: Rule => Rule.min(1).required(),
-    },
-    {
-      name: 'formSuccess_Heading',
-      type: 'markdown',
-      title: 'Heading',
-      fieldset: 'formSuccess',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'formSuccess_Paragraph',
-      type: 'markdown',
-      title: 'Paragraph',
-      fieldset: 'formSuccess',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'formError_Heading',
-      type: 'markdown',
-      title: 'Heading',
-      fieldset: 'formError',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'formError_Paragraph',
-      type: 'markdown',
-      title: 'Paragraph',
-      fieldset: 'formError',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'formError_Cta',
-      type: 'string',
-      title: 'CTA',
-      fieldset: 'formError',
-      validation: Rule => Rule.required(),
+      name: 'ContactForm',
+      type: 'ContactForm',
+      options: { collapsible: true, collapsed: true }
     },
     {
       name: 'faq',
@@ -102,21 +53,6 @@ export default {
       title: 'Hero',
       options: { collapsible: true }
     },
-    {
-      name: 'form',
-      title: 'Form',
-      options: { collapsible: true, collapsed: true }
-    },
-    {
-      name: 'formSuccess',
-      title: 'Form Success Message',
-      options: { collapsible: true, collapsed: true }
-    },
-    {
-      name: 'formError',
-      title: 'Form Error Message',
-      options: { collapsible: true, collapsed: true }
-    }
   ],
   groups: [
     {

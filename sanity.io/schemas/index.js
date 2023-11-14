@@ -32,6 +32,7 @@ import cta from './components/cta'
 import seo from './components/seo'
 import { titleAndDescription, titleDescriptionAndImage } from './components/list'
 import Faq from './components/Faq'
+import ContactForm from './components/ContactForm'
 
 export const components = [
   global_Seo,
@@ -41,6 +42,7 @@ export const components = [
   titleAndDescription,
   titleDescriptionAndImage,
   Faq,
+  ContactForm,
 ]
 
 export const schemaTypes = [
