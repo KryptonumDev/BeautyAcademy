@@ -30,7 +30,7 @@ export const collectionTypes = [
 // Componenets
 import cta from './components/cta'
 import seo from './components/seo'
-import { titleAndDescription, titleDescriptionAndImage } from './components/list'
+import { list_ImageAndLink, list_TitleAndImage, titleAndDescription, titleDescriptionAndImage } from './components/list'
 import Faq from './components/Faq'
 import ContactForm from './components/ContactForm'
 
@@ -40,7 +40,9 @@ export const components = [
   cta,
   seo,
   titleAndDescription,
+  list_TitleAndImage,
   titleDescriptionAndImage,
+  list_ImageAndLink,
   Faq,
   ContactForm,
 ]

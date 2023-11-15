@@ -30,6 +30,78 @@ export const titleAndDescription = {
   }
 }
 
+export const list_TitleAndImage = {
+  name: "list_TitleAndImage",
+  title: "Title & Image",
+  type: "object",
+  fields: [
+    {
+      name: 'title',
+      type: 'markdown',
+      title: 'Title',
+    },
+    {
+      name: 'img',
+      type: 'image',
+      title: 'Image',
+    },
+  ],
+  preview: {
+    select: {
+      title: 'title',
+      media: 'img'
+    },
+    prepare({ title, media }) {
+      return {
+        title: removeMarkdown(title),
+        media
+      }
+    }
+  }
+}
+
+export const list_ImageAndLink = {
+  name: "list_ImageAndLink",
+  title: "Title & Link",
+  type: "object",
+  fields: [
+    {
+      name: 'name',
+      type: 'string',
+      title: 'Name',
+    },
+    {
+      name: 'href',
+      type: 'string',
+      title: 'Link (optional)',
+      description: 'Relative or absolute link (https://)',
+      validation: Rule => Rule.custom(value => {
+        if (value && !value.startsWith('/') && !value.startsWith('https://') && !value.startsWith('#')) {
+          return 'Incorrect URL.';
+        }
+        return true;
+      }),
+    },
+    {
+      name: 'img',
+      type: 'image',
+      title: 'Image',
+    },
+  ],
+  preview: {
+    select: {
+      name: 'name',
+      media: 'img'
+    },
+    prepare({ name, media }) {
+      return {
+        title: name,
+        media
+      }
+    }
+  }
+}
+
 export const titleDescriptionAndImage = {
   name: "list_titleDescriptionAndImage",
   title: "Title, Description & Image",
