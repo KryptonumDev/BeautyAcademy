@@ -6,6 +6,7 @@ import Hero from "@/components/sections/contact-hero";
 import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Discover from "@/components/sections/cooperation-discover";
+import Benefits from "@/components/sections/cooperation-benefits";
 
 const pathname = '/cooperation';
 
@@ -18,6 +19,8 @@ const ContactPage = async () => {
     discover_Heading,
     discover_Paragraph,
     discover_List,
+    benefits_Heading,
+    benefits_List,
     faq,
   }} = await query();
 
@@ -35,6 +38,10 @@ const ContactPage = async () => {
         discover_Heading,
         discover_Paragraph,
         discover_List,
+      }} />
+      <Benefits data={{
+        benefits_Heading,
+        benefits_List,
       }} />
       <Faq data={faq} />
       <Newsletter />
@@ -107,6 +114,10 @@ const query = async () => {
             }
           }
         }
+
+        # Benefits
+        benefits_Heading
+        benefits_List
 
         # Faq
         faq {

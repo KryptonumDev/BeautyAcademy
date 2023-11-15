@@ -22,6 +22,7 @@ const Discover = ({
   const even = useTransform(scrollYProgress, [0, 1], [0, -200]);
 
   const isDesktop = useMediaQuery({ query: '(min-width: 900px)' });
+
   return (
     <section className={styles.wrapper}>
       <header>
@@ -33,6 +34,7 @@ const Discover = ({
           <motion.div
             className={styles.item}
             key={i}
+            style={{ transform: 'none' }}
             {...isDesktop && { style: { y: i % 2 === 0 ? odd : even } }}
           >
             <Img

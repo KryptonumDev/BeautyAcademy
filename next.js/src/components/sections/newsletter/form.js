@@ -64,13 +64,13 @@ const Form = () => {
       <Button type="submit">Подписываюсь</Button>
       <Checkbox
         label={<>
-          I agree to the{' '}
+          Я принимаю{' '}
           <Link
             className='link'
             href="/privacy-policy"
             target="_blank"
             rel="noreferrer"
-          >privacy policy</Link>
+          >политику конфиденциальности</Link>
         </>}
         register={register('legal', {
           required: { value: true, message: `Agreement is required` }

@@ -28,7 +28,7 @@ const Button = ({
 
   return (
     <Element
-      href={href || ''}
+      {...href && { href }}
       {...commonProps}
       {...isExternal && { target: '_blank', rel: 'noopener' }}
     >
