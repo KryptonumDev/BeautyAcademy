@@ -16,15 +16,13 @@ const url = `https://wp.beautyacademy.expert/wp-json/contact-form-7/v1/contact-f
 
 const Form = ({
   data: {
-    form_Heading,
-    form_Subjects,
-    states: {
-      formSuccess_Heading,
-      formSuccess_Paragraph,
-      formError_Heading,
-      formError_Paragraph,
-      formError_Cta,
-    }
+    subjects,
+    heading,
+    success_Heading,
+    success_Paragraph,
+    error_Heading,
+    error_Paragraph,
+    error_Cta,
   }
 }) => {
   const [status, setStatus] = useState({ sending: false });
@@ -67,11 +65,11 @@ const Form = ({
       onSubmit={handleSubmit(onSubmit)}
       className={styles.form}
     >
-      {form_Heading && (
-        <Markdown.h2 className="h3">{form_Heading}</Markdown.h2>
+      {heading && (
+        <Markdown.h2 className="h3">{heading}</Markdown.h2>
       )}
       <div className={styles.chips}>
-        {form_Subjects.map((item, i) => (
+        {subjects.map((item, i) => (
           <Chip
             register={register('subject', {
               required: { value: true, message: `Subject is required` },
@@ -138,13 +136,13 @@ const Form = ({
       {status.success !== undefined && (
         <div className={styles.state} aria-invalid={!status.success}>
           {status.success ? <Icon.Success /> : <Icon.Error />}
-          <Markdown.h3>{status.success ? formSuccess_Heading : formError_Heading}</Markdown.h3>
-          <Markdown className={styles.paragraph}>{status.success ? formSuccess_Paragraph : formError_Paragraph}</Markdown>
+          <Markdown.h3>{status.success ? success_Heading : error_Heading}</Markdown.h3>
+          <Markdown className={styles.paragraph}>{status.success ? success_Paragraph : error_Paragraph}</Markdown>
           {!status.success && (
             <Button
             type="button"
             onClick={() => setStatus({ sending: false, success: undefined })}
-            >{formError_Cta}</Button>
+            >{error_Cta}</Button>
           )}
         </div>
       )}

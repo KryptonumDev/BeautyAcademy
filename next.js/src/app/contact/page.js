@@ -11,13 +11,7 @@ const ContactPage = async () => {
     hero_Heading,
     hero_Paragraph,
     hero_People,
-    form_Heading,
-    form_Subjects,
-    formSuccess_Heading,
-    formSuccess_Paragraph,
-    formError_Heading,
-    formError_Paragraph,
-    formError_Cta,
+    ContactForm,
     faq,
   }} = await query();
 
@@ -29,17 +23,7 @@ const ContactPage = async () => {
           hero_Paragraph,
           hero_People,
         }}
-        form={{
-          form_Heading,
-          form_Subjects,
-          states: {
-            formSuccess_Heading,
-            formSuccess_Paragraph,
-            formError_Heading,
-            formError_Paragraph,
-            formError_Cta,
-          }
-        }}
+        form={ContactForm}
       />
       <Faq data={faq} />
       <SchemaBreadcrumbs breadcrumbs={[
@@ -80,15 +64,15 @@ const query = async () => {
         }
 
         # Form
-        form_Heading
-        form_Subjects
-
-        # Form State's
-        formSuccess_Heading
-        formSuccess_Paragraph
-        formError_Heading
-        formError_Paragraph
-        formError_Cta
+        ContactForm {
+          heading
+          subjects
+          success_Heading
+          success_Paragraph
+          error_Heading
+          error_Paragraph
+          error_Cta
+        }
 
         # Faq
         faq {

@@ -5,6 +5,7 @@ import Faq from "@/components/sections/faq";
 import Hero from "@/components/sections/contact-hero";
 import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
+import Discover from "@/components/sections/cooperation-discover";
 
 const pathname = '/cooperation';
 
@@ -13,13 +14,10 @@ const ContactPage = async () => {
     hero_Heading,
     hero_Paragraph,
     hero_People,
-    form_Heading,
-    form_Subjects,
-    formSuccess_Heading,
-    formSuccess_Paragraph,
-    formError_Heading,
-    formError_Paragraph,
-    formError_Cta,
+    ContactForm,
+    discover_Heading,
+    discover_Paragraph,
+    discover_List,
     faq,
   }} = await query();
 
@@ -31,18 +29,13 @@ const ContactPage = async () => {
           hero_Paragraph,
           hero_People,
         }}
-        form={{
-          form_Heading,
-          form_Subjects,
-          states: {
-            formSuccess_Heading,
-            formSuccess_Paragraph,
-            formError_Heading,
-            formError_Paragraph,
-            formError_Cta,
-          }
-        }}
+        form={ContactForm}
       />
+      <Discover data={{
+        discover_Heading,
+        discover_Paragraph,
+        discover_List,
+      }} />
       <Faq data={faq} />
       <Newsletter />
       <LatestBlogEntries />
@@ -85,14 +78,35 @@ const query = async () => {
         }
 
         # Form
-        form_Subjects
+        ContactForm {
+          heading
+          subjects
+          success_Heading
+          success_Paragraph
+          error_Heading
+          error_Paragraph
+          error_Cta
+        }
 
-        # Form State's
-        formSuccess_Heading
-        formSuccess_Paragraph
-        formError_Heading
-        formError_Paragraph
-        formError_Cta
+        # Discover
+        discover_Heading
+        discover_Paragraph
+        discover_List {
+          title
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
 
         # Faq
         faq {

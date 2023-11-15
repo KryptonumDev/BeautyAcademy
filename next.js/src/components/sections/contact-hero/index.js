@@ -11,11 +11,7 @@ const Hero = async ({
     hero_Paragraph,
     hero_People,
   },
-  form: {
-    form_Heading,
-    form_Subjects,
-    states,
-  }
+  form
 }) => {
   const { socials: {
     instagram,
@@ -67,11 +63,7 @@ const Hero = async ({
           ))}
         </ul>
       </header>
-      <Form data={{
-        form_Heading,
-        form_Subjects,
-        states
-      }} />
+      <Form data={form} />
     </section>
   );
 };
