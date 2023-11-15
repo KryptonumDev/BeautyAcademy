@@ -7,6 +7,7 @@ import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Discover from "@/components/sections/cooperation-discover";
 import Benefits from "@/components/sections/cooperation-benefits";
+import Partners from "@/components/sections/cooperation-partners";
 
 const pathname = '/cooperation';
 
@@ -21,6 +22,10 @@ const ContactPage = async () => {
     discover_List,
     benefits_Heading,
     benefits_List,
+    partners_Heading,
+    partners_Paragraph,
+    partners_Cta,
+    partners_List,
     faq,
   }} = await query();
 
@@ -42,6 +47,12 @@ const ContactPage = async () => {
       <Benefits data={{
         benefits_Heading,
         benefits_List,
+      }} />
+      <Partners data={{
+        partners_Heading,
+        partners_Paragraph,
+        partners_Cta,
+        partners_List,
       }} />
       <Faq data={faq} />
       <Newsletter />
@@ -118,6 +129,32 @@ const query = async () => {
         # Benefits
         benefits_Heading
         benefits_List
+
+        # Partners
+        partners_Heading
+        partners_Paragraph
+        partners_Cta {
+          theme
+          text
+          href
+        }
+        partners_List {
+          name
+          href
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
 
         # Faq
         faq {

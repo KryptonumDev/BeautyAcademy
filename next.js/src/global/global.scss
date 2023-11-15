@@ -216,6 +216,9 @@ h3, .h3 {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 12px 20px;
+  @media (max-width: 499px) {
+    width: 100%;
+  }
 }
 
 main {
