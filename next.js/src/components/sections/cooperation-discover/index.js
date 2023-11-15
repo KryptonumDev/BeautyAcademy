@@ -35,7 +35,10 @@ const Discover = ({
             key={i}
             {...isDesktop && { style: { y: i % 2 === 0 ? odd : even } }}
           >
-            <Img data={img} />
+            <Img
+              data={img}
+              sizes="(max-width: 449px) 100vw, (max-width: 899px) 66.6vw, 33vw"
+            />
             <Markdown className='h3'>{title}</Markdown>
           </motion.div>
         ))}

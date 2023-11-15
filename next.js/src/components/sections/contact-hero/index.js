@@ -46,6 +46,8 @@ const Hero = async ({
           {hero_People.map((img, i) => (
             <Img
               data={img}
+              sizes="104px"
+              priority={true}
               key={i}
               className={styles.img}
             />

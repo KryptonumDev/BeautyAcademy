@@ -116,6 +116,12 @@ const query = async () => {
             answer: description
           }
         }
+
+        # SEO
+        seo {
+          title
+          description
+        }
       }
     }
   `)

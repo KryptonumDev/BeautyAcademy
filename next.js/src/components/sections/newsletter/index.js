@@ -18,7 +18,11 @@ const Newsletter = async () => {
         <Markdown className={styles.paragraph}>{newsletter_Paragraph}</Markdown>
         <Form />
       </div>
-      <Img data={newsletter_Img} className={styles.img} />
+      <Img
+        data={newsletter_Img}
+        sizes='100vw'
+        className={styles.img}
+      />
     </aside>
   );
 };
