@@ -57,7 +57,7 @@
   --link-color: var(--primary-500);
   
   --pageMargin: clamp(16px, calc(40vw/7.68), 40px);
-  @media (max-width: 899px) and (min-width: 649px) {
+  @media (max-width: 899px) and (min-width: 650px) {
     --pageMargin: clamp(40px, calc(80vw/7.68), 80px);
   }
 }

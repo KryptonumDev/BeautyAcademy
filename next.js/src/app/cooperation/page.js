@@ -8,6 +8,7 @@ import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Discover from "@/components/sections/cooperation-discover";
 import Benefits from "@/components/sections/cooperation-benefits";
 import Partners from "@/components/sections/cooperation-partners";
+import Cooperation from "@/components/sections/cooperation-cooperation";
 
 const pathname = '/cooperation';
 
@@ -22,6 +23,10 @@ const ContactPage = async () => {
     discover_List,
     benefits_Heading,
     benefits_List,
+    cooperation_Heading,
+    cooperation_Cta,
+    cooperation_Img,
+    cooperation_List,
     partners_Heading,
     partners_Paragraph,
     partners_Cta,
@@ -47,6 +52,12 @@ const ContactPage = async () => {
       <Benefits data={{
         benefits_Heading,
         benefits_List,
+      }} />
+      <Cooperation data={{
+        cooperation_Heading,
+        cooperation_Cta,
+        cooperation_Img,
+        cooperation_List,
       }} />
       <Partners data={{
         partners_Heading,
@@ -129,6 +140,31 @@ const query = async () => {
         # Benefits
         benefits_Heading
         benefits_List
+
+        # Cooperation
+        cooperation_Heading
+        cooperation_Cta {
+          theme
+          text
+          href
+        }
+        cooperation_Img {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
+        cooperation_List {
+          title
+          description
+        }
 
         # Partners
         partners_Heading

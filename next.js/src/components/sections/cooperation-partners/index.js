@@ -7,6 +7,7 @@ import Markdown from '@/utils/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 import Img from '@/utils/Img';
+import SliderButton from '@/components/atoms/SliderButton';
 
 const Partners = ({
   data: {
@@ -20,6 +21,7 @@ const Partners = ({
   const [swiperEdge, setSwiperEdge] = useState(-1);
   const handlePrev = () => swiper.current.swiper.slidePrev();
   const handleNext = () => swiper.current.swiper.slideNext();
+
   return (
     <section className={styles.wrapper}>
       <header>
@@ -33,18 +35,18 @@ const Partners = ({
           </div>
         </div>
         <div className={styles.controls}>
-          <button
+          <SliderButton.prev
             aria-label='Go to the previous partner'
             className={styles.button}
             disabled={swiperEdge === -1}
             onClick={() => handlePrev()}
-          ><ArrowLeft /></button>
-          <button
+          />
+          <SliderButton.next
             aria-label='Go to the next partner'
             className={styles.button}
             disabled={swiperEdge === 1}
             onClick={() => handleNext()}
-          ><ArrowRight /></button>
+          />
         </div>
       </header>
       <Swiper
@@ -94,37 +96,3 @@ const Partners = ({
 };
 
 export default Partners;
-
-const ArrowLeft = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='25'
-    height='26'
-    fill='none'
-    viewBox='0 0 25 26'
-  >
-    <path
-      stroke='#53423C'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M14.583 9.002l-4.166 4.167 4.166 4.167'
-    ></path>
-  </svg>
-)
-
-const ArrowRight = () => (
-  <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='25'
-    height='26'
-    fill='none'
-    viewBox='0 0 25 26'
-  >
-    <path
-      stroke='#53423C'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M10.417 9.002l4.166 4.167-4.166 4.167'
-    ></path>
-  </svg>
-)
