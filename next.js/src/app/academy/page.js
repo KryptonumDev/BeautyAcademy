@@ -5,16 +5,19 @@ import Hero from "@/components/sections/academy-hero";
 import Faq from "@/components/sections/faq";
 import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
+import Values from "@/components/sections/academy-values";
 
 const pathname = '/academy';
 
-const ContactPage = async () => {
+const AcademyPage = async () => {
   const { page: {
     hero_Heading,
     hero_Paragraph,
     hero_Cta,
     hero_Img,
     hero_Stats,
+    values_Heading,
+    values_List,
     faq,
   } } = await query();
 
@@ -26,6 +29,10 @@ const ContactPage = async () => {
         hero_Cta,
         hero_Img,
         hero_Stats,
+      }} />
+      <Values data={{
+        values_Heading,
+        values_List,
       }} />
       <Faq data={faq} />
       <Newsletter />
@@ -77,6 +84,10 @@ const query = async () => {
           description
         }
 
+        # Our Values
+        values_Heading
+        values_List
+
         # Faq
         faq {
           heading
@@ -97,4 +108,4 @@ const query = async () => {
   return data;
 }
 
-export default ContactPage;
+export default AcademyPage;

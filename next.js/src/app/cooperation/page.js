@@ -12,7 +12,7 @@ import Cooperation from "@/components/sections/cooperation-cooperation";
 
 const pathname = '/cooperation';
 
-const ContactPage = async () => {
+const CooperationPage = async () => {
   const { page: {
     hero_Heading,
     hero_Paragraph,
@@ -212,4 +212,4 @@ const query = async () => {
   return data;
 }
 
-export default ContactPage;
+export default CooperationPage;

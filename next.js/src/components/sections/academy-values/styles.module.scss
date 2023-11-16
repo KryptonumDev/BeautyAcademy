@@ -1,0 +1,27 @@
+.wrapper {
+  max-width: calc(1000rem/16);
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  svg {
+    margin: 0 auto clamp(4px, calc(6vw/7.68), 8px);
+    width: clamp(42px, calc(48vw/7.68), 68px);
+    height: clamp(42px, calc(48vw/7.68), 68px);
+  }
+  h2 {
+    margin-bottom: clamp(36px, calc(48vw/7.68), 64px);
+  }
+  .list {
+    display: grid;
+    gap: clamp(16px, calc(16px/7.68), 20px);
+    .item {
+      border: 1px solid;
+      border-image: var(--gradient-100) 1;
+      background-color: var(--background-300);
+      padding: clamp(20px, calc(28vw/7.68), 32px) clamp(20px, calc(24vw/7.68), 28px);
+      outline: 0.5px solid #F7C479;
+      outline-offset: 4px;
+      margin: 4px;
+    }
+  }
+}
