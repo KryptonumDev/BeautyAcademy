@@ -4,29 +4,7 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/atoms/Icons';
 import { usePathname } from 'next/navigation';
-
-const links = [
-  {
-    name: 'СОТРУДНИЧЕСТВО',
-    href: '/cooperation',
-  },
-  {
-    name: 'О БРЕНДЕ',
-    href: '/about-us',
-  },
-  {
-    name: 'КОНТАКТ',
-    href: '/contact',
-  },
-  {
-    name: 'АКАДЕМИЯ',
-    href: '/academy',
-  },
-  {
-    name: 'БЛОГ',
-    href: '/blog',
-  },
-]
+import { links } from 'src/app/layout';
 
 const Nav = () => {
   const pathname = usePathname();

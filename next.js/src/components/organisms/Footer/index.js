@@ -3,6 +3,7 @@ import styles from './styles.module.scss';
 import { Logo, Social } from '@/components/atoms/Icons';
 import fetchData from '@/utils/fetchData';
 import Markdown from '@/utils/Markdown';
+import { links } from 'src/app/layout';
 
 const Footer = async () => {
   const { global: {
@@ -49,11 +50,14 @@ const Footer = async () => {
             </div>
           </div>
           <nav className={styles.nav}>
-            <Link href="/cooperation">СОТРУДНИЧЕСТВО</Link>
-            <Link href="/about-us">О БРЕНДЕ</Link>
-            <Link href="/contact">КОНТАКТ</Link>
-            <Link href="/academy">АКАДЕМИЯ</Link>
-            <Link href="/blog">БЛОГ</Link>
+            {links.map(({ name, href }, i) => (
+                <Link
+                  key={i}
+                  href={href}
+                >
+                  {name}
+                </Link>
+            ))}
           </nav>
           <div className={styles.company}>
             {footer_Company.map(({ name, address, phone }, i) => (

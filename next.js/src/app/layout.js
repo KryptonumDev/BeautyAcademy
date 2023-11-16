@@ -28,6 +28,33 @@ export const viewport = {
   themeColor: '#FBF7F6',
 }
 
+export const links = [
+  {
+    name: 'СОТРУДНИЧЕСТВО',
+    href: '/cooperation',
+  },
+  {
+    name: 'О БРЕНДЕ',
+    href: '/about-us',
+  },
+  {
+    name: 'КОНТАКТ',
+    href: '/contact',
+  },
+  {
+    name: 'АКАДЕМИЯ',
+    href: '/academy',
+  },
+  {
+    name: 'БЛОГ',
+    href: '/blog',
+  },
+  {
+    name: 'КУРСЫ',
+    href: '/courses',
+  },
+]
+
 // export const runtime = 'edge'
 
 export default function RootLayout({ children }) {

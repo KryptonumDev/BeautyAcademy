@@ -49,7 +49,7 @@
         width: 34px;
         height: 34px;
         border: .5px solid var(--background-800);
-        transition: transform .4s 0s var(--easing);
+        transition: transform .5s 0s var(--easing);
       }
     }
     &:hover,
@@ -59,7 +59,7 @@
       }
       > div > div {
         transform: scale(1.41);
-        transition: transform .4s .5s var(--easing);
+        transition: transform .5s .2s var(--easing);
       }
     }
     @keyframes button {

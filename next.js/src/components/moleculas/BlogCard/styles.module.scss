@@ -36,7 +36,8 @@
     align-items: center;
     min-height: 48px;
     padding: 12px clamp(16px, calc(16vw/7.68), 20px);
-    background: linear-gradient(var(--background-200), var(--background-200)) padding-box, var(--gradient-100) border-box;
+    background: linear-gradient(var(--background-200), var(--background-200)) padding-box,
+    var(--gradient-100) border-box;
     border: 1px solid rgba(255, 255, 255, 0);
   }
 

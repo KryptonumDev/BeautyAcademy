@@ -2,7 +2,8 @@
   padding: clamp(36px, calc(64vw/7.68), 64px) 0;
   > div {
     max-width: clamp(548px, calc(548vw/7.68), 824px);
-    border: 2px solid #F7C479;
+    border: 2px solid;
+    border-image: var(--gradient-100) 2;
     background-color: rgba(255, 255, 255, 0.48);
     backdrop-filter: blur(24px);
     padding: clamp(16px, calc(28vw/7.68), 32px) clamp(12px, calc(20vw/7.68), 36px);
