@@ -28,25 +28,25 @@ const Button = ({
 
   return (
     <Element
-      href={href || ''}
+      {...href && { href }}
       {...commonProps}
       {...isExternal && { target: '_blank', rel: 'noopener' }}
     >
       {variant === 'secondary' && (
         <div>
           <div>
-            <Array />
+            <Arrow />
           </div>
         </div>
       )}
-      <span>{children}</span>
+      {children}
     </Element>
   );
 };
 
 export default Button;
 
-const Array = () => (
+const Arrow = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
     width='26'

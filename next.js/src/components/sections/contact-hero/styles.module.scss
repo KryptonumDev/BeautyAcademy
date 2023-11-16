@@ -1,0 +1,106 @@
+.wrapper {
+  display: grid;
+  gap: clamp(36px, calc(42vw/7.68), 48px) clamp(48px, calc(82vw/7.68), 102px);
+  @media (min-width: 900px){
+    grid-template-columns: 1fr 1.5fr;
+  }
+  @media (min-width: 1024px){
+    grid-template-columns: 1fr 1.3fr;
+  }
+  header {
+    @media (max-width: 899px) {
+      text-align: center;
+      .people {
+        margin: 0 auto;
+      }
+    }
+    .paragraph {
+      margin: clamp(20px, calc(28vw/7.68), 28px) 0 clamp(20px, calc(48vw/7.68), 64px);
+    }
+    .people {
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      .img {
+        border-radius: 50%;
+        width: clamp(92px, calc(104vw/7.68), 104px);
+        height: clamp(92px, calc(104vw/7.68), 104px);
+        filter: drop-shadow(4px 4px 11px rgba(0,0,0,.12));
+        &:not(:first-child){
+          margin-left: -24px;
+        }
+        transition: transform .5s var(--easing);
+      }
+      &:hover .img {
+        &:nth-child(1) {
+          transform: translateX(-12px);
+        }
+        &:nth-child(2) {
+          transform: translateX(12px);
+        }
+      }
+    }
+    .socials {
+      list-style-type: none;
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: clamp(20px, calc(48vw/7.68), 64px);
+      a {
+        display: block;
+        transition: opacity .3s;
+        &:hover {
+          opacity: .6;
+        }
+      }
+    }
+  }
+  .form {
+    &:has(.state) > *:not(.state) {
+      visibility: hidden;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: 12px;
+      .error {
+        width: 100%;
+        position: relative;
+        top: -12px;
+      }
+    }
+    display: grid;
+    grid-template-columns: 1fr 2.5fr;
+    > *:not(label:nth-of-type(1), label:nth-of-type(2)) {
+      grid-column: 3/1;
+    }
+    gap: clamp(36px, calc(36vw/7.68), 64px) 24px;
+    button {
+      width: fit-content;
+    }
+    position: relative;
+    .state {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      top: 0;
+      width: calc(100% + 12px);
+      height: calc(100% + 12px);
+      margin: -6px;
+      background-color: var(--background-300);
+      padding: 16px var(--pageMargin);
+      svg {
+        width: clamp(48px, calc(64vw/7.68), 82px);
+        height: clamp(48px, calc(64vw/7.68), 82px);
+      }
+      h3 {
+        margin: 12px 0 16px;
+      }
+      button {
+        margin-top: 24px;
+      }
+    }
+  }
+}

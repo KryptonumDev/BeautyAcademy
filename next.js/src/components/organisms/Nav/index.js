@@ -10,29 +10,7 @@ import { UPDATE_CART } from 'src/mutations/update-cart';
 import { useQuery } from 'src/hooks/use-query';
 import { useMutation } from 'src/hooks/use-mutation';
 import Button from '@/components/atoms/Button';
-
-const links = [
-  {
-    name: 'СОТРУДНИЧЕСТВО',
-    href: '/cooperation',
-  },
-  {
-    name: 'О БРЕНДЕ',
-    href: '/about-us',
-  },
-  {
-    name: 'КОНТАКТ',
-    href: '/contact',
-  },
-  {
-    name: 'АКАДЕМИЯ',
-    href: '/academy',
-  },
-  {
-    name: 'БЛОГ',
-    href: '/blog',
-  },
-]
+import { links } from 'src/app/layout';
 
 const Nav = () => {
   const pathname = usePathname();

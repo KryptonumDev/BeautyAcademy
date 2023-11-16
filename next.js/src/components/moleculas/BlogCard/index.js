@@ -26,7 +26,11 @@ const BlogCard = ({
       {...props}
     >
       <Link className={styles.link} href={`/blog/${slug}`} tabIndex={-1} aria-label={name}></Link>
-      <Img data={thumbnail} className={styles.thumbnail} />
+      <Img
+        data={thumbnail}
+        sizes="(max-width: 599px) 100vw, (max-width: 899px) 33vw, 50vw"
+        className={styles.thumbnail}
+      />
       <div>
         <p className={styles.createdAt}>{prettyfyDate(_createdAt)}</p>
         <h3 className={styles.name}>{name}</h3>

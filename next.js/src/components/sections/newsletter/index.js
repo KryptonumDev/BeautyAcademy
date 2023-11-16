@@ -9,7 +9,7 @@ const Newsletter = async () => {
     newsletter_Heading,
     newsletter_Paragraph,
     newsletter_Img,
-  }} = await getData();
+  }} = await query();
 
   return (
     <aside className={styles.wrapper}>
@@ -18,12 +18,16 @@ const Newsletter = async () => {
         <Markdown className={styles.paragraph}>{newsletter_Paragraph}</Markdown>
         <Form />
       </div>
-      <Img data={newsletter_Img} className={styles.img} />
+      <Img
+        data={newsletter_Img}
+        sizes='100vw'
+        className={styles.img}
+      />
     </aside>
   );
 };
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       global: Global(id: "global") {

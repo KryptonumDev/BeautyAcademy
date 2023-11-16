@@ -12,7 +12,7 @@ const LatestBlogEntries = async () => {
       latestBlogEntries_Cta,
     },
     latestEntries
-  } = await getData();
+  } = await query();
 
   return (
     <section className={styles.wrapper}>
@@ -38,7 +38,7 @@ const LatestBlogEntries = async () => {
 };
 
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       global: Global(id: "global") {

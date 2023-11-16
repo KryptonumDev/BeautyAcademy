@@ -2,14 +2,14 @@
 import styles from './styles.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const Error = ({ error }) => (
+const Error = ({ error, className }) => (
   <AnimatePresence initial='false' mode='wait'>
     {error && (
       <motion.span
-        initial={{ height: 0 }}
-        animate={{ height: 'auto' }}
-        exit={{ height: 0 }}
-        className={styles.error}
+        initial={{ height: 0, marginTop: 0 }}
+        animate={{ height: 'auto', marginTop: 4 }}
+        exit={{ height: 0, marginTop: 0 }}
+        className={`${styles.error} ${className ? className : ''}`}
         role="alert"
       >
         <Icon />

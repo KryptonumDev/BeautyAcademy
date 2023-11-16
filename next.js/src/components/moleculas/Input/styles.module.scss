@@ -1,14 +1,25 @@
 .wrapper {
   .label {
-    margin: 0 0 12px 8px;
+    margin: 0 0 8px 8px;
   }
   &[aria-invalid="true"]{
     color: var(--danger-500);
-    input {
+    input,
+    textarea {
       border-color: var(--danger-500);
     }
   }
   input {
+    width: 100%;
+    padding: 8px 8px 16px;
+    border-bottom: 1px solid var(--background-800);
+    transition: border-color .4s;
+    &:focus-visible {
+      outline: 0;
+    }
+  }
+  textarea {
+    resize: none;
     width: 100%;
     padding: 8px 8px 16px;
     border-bottom: 1px solid var(--background-800);

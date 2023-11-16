@@ -94,7 +94,7 @@
   }
 
   .mobileNavToggle {
-    @media (min-width: 1000px) {
+    @media (min-width: 1050px){
       display: none;
     }
 
@@ -112,8 +112,7 @@
       transition: transform .6s var(--easing);
     }
   }
-
-  @media (max-width: 999px) {
+  @media (max-width: 1049px){
     .actions {
       margin-left: auto;
       margin-right: clamp(16px, calc(16vw/4.00), 24px);

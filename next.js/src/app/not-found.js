@@ -7,7 +7,7 @@ const NotFoundPage = async () => {
     hero_Heading,
     hero_Paragraph,
     hero_Cta,
-  } } = await getData();
+  } } = await query();
 
   return (
     <>
@@ -21,14 +21,14 @@ const NotFoundPage = async () => {
 }
 
 export async function generateMetadata() {
-  const { page: { seo } } = await getData();
+  const { page: { seo } } = await query();
   return Seo({
     title: seo?.title,
     description: seo?.description,
   })
 }
 
-const getData = async () => {
+const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       page: NotFoundPage(id: "notFoundPage") {

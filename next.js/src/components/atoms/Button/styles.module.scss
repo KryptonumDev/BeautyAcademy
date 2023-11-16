@@ -1,7 +1,15 @@
 .wrapper {
-  display: inline-block;
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   @media (max-width: 499px){
     width: 100%;
+  }
+  &:disabled {
+    opacity: .8;
+    pointer-events: none;
   }
   &[data-variant="primary"]{
     padding: 16px 28px;
@@ -26,8 +34,6 @@
   &[data-variant="secondary"]{
     display: flex;
     width: fit-content;
-    align-items: center;
-    gap: 8px;
     div {
       border-radius: 50%;
       display: flex;
@@ -43,7 +49,7 @@
         width: 34px;
         height: 34px;
         border: .5px solid var(--background-800);
-        transition: transform .4s 0s var(--easing);
+        transition: transform .5s 0s var(--easing);
       }
     }
     &:hover,
@@ -53,7 +59,7 @@
       }
       > div > div {
         transform: scale(1.41);
-        transition: transform .4s .5s var(--easing);
+        transition: transform .5s .2s var(--easing);
       }
     }
     @keyframes button {

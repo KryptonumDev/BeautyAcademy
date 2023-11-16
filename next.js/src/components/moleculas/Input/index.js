@@ -7,6 +7,7 @@ const Input = ({ register, label, errors, textarea=false, ...props }) => {
       <p className={styles.label}>{label}</p>
       {textarea ? (
         <textarea
+          data-lenis-prevent
           {...register}
           name={register.name}
           {...props}
