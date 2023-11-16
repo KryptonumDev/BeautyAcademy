@@ -6,7 +6,7 @@
   border-bottom: 1px solid var(--background-800);
   padding: clamp(28px, calc(28vw/7.68), 36px) 0 12px;
 
-  &[aria-cart="false"] {
+  &[aria-controls="false"] {
     .cart {
       transform: translateX(100%);
     }

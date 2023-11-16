@@ -1,0 +1,24 @@
+.wrapper{
+
+}
+
+.control{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 36px 64px;
+}
+
+.categories{
+  >a{
+    padding: 16px 20px 18px 20px;
+    border: 1px solid var(--background-500, #F1E4E0);
+    background: var(--background-300, #F7EFEC);
+
+    color: var(--background-700, #7A6A65);
+    font-size: 20px;
+    line-height: 110%;
+    letter-spacing: 0.4px;
+  }
+}

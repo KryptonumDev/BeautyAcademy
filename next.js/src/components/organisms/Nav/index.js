@@ -103,7 +103,7 @@ const Nav = () => {
   return (
     <>
       <a href="#main" className={styles.skipToMainContent}>Перейти к основному содержанию</a>
-      <header className={styles.wrapper} aria-expanded={navOpened} aria-cart={cartOpened}>
+      <header className={styles.wrapper} aria-expanded={navOpened} aria-controls={cartOpened}>
         <div className="max-width">
           <Link href='/' className={styles.logo} aria-label="Homepage">
             <Logo />
@@ -149,7 +149,7 @@ const Nav = () => {
         <div className={styles.cart}>
           <div className={styles.header}>
             <h3>Корзина</h3>
-            <button onClick={() => { setCartOpened(false) }}>Закрыть</button>
+            <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
           </div>
           {cart?.contents?.nodes?.length > 0 ? (
             <>

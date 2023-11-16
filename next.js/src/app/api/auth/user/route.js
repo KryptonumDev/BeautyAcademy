@@ -17,6 +17,7 @@ function isTokenExpired(token) {
 
 // Our refresh token call to WPGraphQL.
 async function refreshAuthToken(refreshToken) {
+  console.log(refreshToken)
   const query = `
     mutation RefreshAuthToken( $refreshToken: String! ) {
       refreshToken( input: {refreshToken: $refreshToken } ) {
@@ -85,7 +86,7 @@ export async function POST(req) {
         }
       })
     } catch (e) {
-      console.log(e)
+      // console.log(e)
       // This means the mutation failed, so the user is not logged in.
       // We don't destroy the session here, because we want to keep the stale data in case the server fixes itself.
       return NextResponse.json({
@@ -93,7 +94,6 @@ export async function POST(req) {
       });
     }
   }
-  console.log('old')
   // If we get here, the user is logged in.
   return NextResponse.json({ user })
 }

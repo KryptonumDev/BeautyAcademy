@@ -4,12 +4,15 @@ const wpFetchData = async (query, variables) => {
   try {
     let currentUser = await (async () => {
       let user = await read('user');
+
+      if (!user) return null
+
       let newUser = await fetch('http://localhost:3000/api/auth/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: user.value
+        body: user?.value
       })
         .then(async res => res.json())
         .then(async (res) => {
