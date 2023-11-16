@@ -6,6 +6,7 @@ import Faq from "@/components/sections/faq";
 import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Values from "@/components/sections/academy-values";
+import Procedures from "@/components/sections/academy-procedures";
 
 const pathname = '/academy';
 
@@ -18,6 +19,8 @@ const AcademyPage = async () => {
     hero_Stats,
     values_Heading,
     values_List,
+    procedures_Heading,
+    procedures_List,
     faq,
   } } = await query();
 
@@ -33,6 +36,10 @@ const AcademyPage = async () => {
       <Values data={{
         values_Heading,
         values_List,
+      }} />
+      <Procedures data={{
+        procedures_Heading,
+        procedures_List,
       }} />
       <Faq data={faq} />
       <Newsletter />
@@ -87,6 +94,26 @@ const query = async () => {
         # Our Values
         values_Heading
         values_List
+
+        # Procedures
+        procedures_Heading
+        procedures_List {
+          title
+          description
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
 
         # Faq
         faq {
