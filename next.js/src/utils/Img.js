@@ -11,7 +11,7 @@ const Img = ({
       alt={data.asset.altText || ''}
       width={data.asset.metadata.dimensions.width}
       height={data.asset.metadata.dimensions.height}
-      {...(data?.asset.metadata.lqip && {
+      {...(data.asset.metadata.lqip && {
         blurDataURL: data.asset.metadata.lqip,
         placeholder: "blur",
       })}

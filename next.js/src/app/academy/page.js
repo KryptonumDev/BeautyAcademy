@@ -7,6 +7,7 @@ import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Values from "@/components/sections/academy-values";
 import Procedures from "@/components/sections/academy-procedures";
+import About from "@/components/sections/academy-about";
 
 const pathname = '/academy';
 
@@ -21,6 +22,10 @@ const AcademyPage = async () => {
     values_List,
     procedures_Heading,
     procedures_List,
+    about_Heading,
+    about_Paragraph,
+    about_Standout,
+    about_Cta,
     faq,
   } } = await query();
 
@@ -40,6 +45,12 @@ const AcademyPage = async () => {
       <Procedures data={{
         procedures_Heading,
         procedures_List,
+      }} />
+      <About data={{
+        about_Heading,
+        about_Paragraph,
+        about_Standout,
+        about_Cta,
       }} />
       <Faq data={faq} />
       <Newsletter />
@@ -114,6 +125,17 @@ const query = async () => {
             }
           }
         }
+
+        # About
+        about_Heading
+        about_Paragraph
+        about_Standout
+        about_Cta {
+          theme
+          text
+          href
+        }
+        # about_Video
 
         # Faq
         faq {
