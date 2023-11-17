@@ -1,7 +1,7 @@
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
-import Img from '@/utils/Img';
+import Img from '@/components/atoms/Img';
 
 const Hero = ({
   data: {

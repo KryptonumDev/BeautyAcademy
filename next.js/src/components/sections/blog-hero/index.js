@@ -1,4 +1,4 @@
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 

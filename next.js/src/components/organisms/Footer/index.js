@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 import { Logo, Social } from '@/components/atoms/Icons';
 import fetchData from '@/utils/fetchData';
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import { links } from 'src/app/layout';
 
 const Footer = async () => {

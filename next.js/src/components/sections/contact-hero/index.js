@@ -1,6 +1,6 @@
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
-import Img from '@/utils/Img';
+import Img from '@/components/atoms/Img';
 import Form from './Form';
 import { Social } from '@/components/atoms/Icons';
 import fetchData from '@/utils/fetchData';

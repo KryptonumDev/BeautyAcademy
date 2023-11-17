@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import styles from './styles.module.scss';
-import Markdown from '@/utils/Markdown';
-import Img from '@/utils/Img';
+import Markdown from '@/components/atoms/Markdown';
+import Img from '@/components/atoms/Img';
 import 'swiper/css';
 
 const Slider = ({ list }) => {

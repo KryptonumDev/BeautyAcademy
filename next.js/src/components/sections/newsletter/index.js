@@ -1,7 +1,7 @@
 import fetchData from '@/utils/fetchData';
 import styles from './styles.module.scss';
-import Markdown from '@/utils/Markdown';
-import Img from '@/utils/Img';
+import Markdown from '@/components/atoms/Markdown';
+import Img from '@/components/atoms/Img';
 import Form from './form';
 
 const Newsletter = async () => {

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 
 const Faq = ({

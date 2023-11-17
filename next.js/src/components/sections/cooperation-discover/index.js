@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import styles from './styles.module.scss';
-import Markdown from '@/utils/Markdown';
-import Img from '@/utils/Img';
+import Markdown from '@/components/atoms/Markdown';
+import Img from '@/components/atoms/Img';
 
 const Discover = ({
   data: {
