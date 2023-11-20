@@ -1,0 +1,48 @@
+.wrapper {
+  display: grid;
+  align-items: stretch;
+  gap: 16px clamp(16px, calc(20vw/7.68), 32px);
+  .img {
+    object-fit: cover;
+    box-shadow: 4px 4px 11px 0px rgba(0,0,0,.12);
+  }
+  > div {
+    background-color: var(--background-400);
+    padding: clamp(24px, calc(32vw/7.68), 54px) clamp(16px, calc(32vw/7.68), 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+  header {
+    margin-bottom: clamp(28px, calc(36vw/7.68), 42px);
+    h2 {
+      margin-bottom: clamp(28px, calc(36vw/7.68), 42px);
+    }
+  }
+  .swiper {
+    margin: 0 calc(clamp(16px, calc(32vw/7.68), 48px) * -1);
+    padding: 0 clamp(16px, calc(32vw/7.68), 48px);
+    > div {
+      align-items: flex-end;
+    }
+    .title {
+      margin-bottom: clamp(16px, calc(28vw/7.68), 36px);
+    }
+  }
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 48px;
+    margin-top: clamp(28px, calc(36vw/7.68), 48px);
+  }
+  @media (min-width: 650px){
+    grid-template-columns: 1fr 1.4fr;
+    .controls {
+      justify-content: flex-end;
+    }
+  }
+  @media (max-width: 899px) and (min-width: 650px) {
+    margin: 0 calc(var(--pageMargin) * -1);
+  }
+}

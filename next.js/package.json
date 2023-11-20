@@ -9,16 +9,24 @@
     "lint": "next lint --fix --dir src"
   },
   "dependencies": {
+    "@manifoldco/react-select-zero": "^0.0.1",
     "@studio-freight/lenis": "^1.0.27",
-    "next": "14.0.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "framer-motion": "^10.16.4",
+    "iron-session": "^6.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.47.0",
     "react-markdown": "^9.0.0",
+    "react-responsive": "^9.0.2",
     "rehype-raw": "^7.0.0",
-    "sass": "^1.69.5"
+    "sass": "^1.69.5",
+    "swiper": "^11.0.3",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "14.0.1"
+    "eslint-config-next": "14.0.3"
   }
 }

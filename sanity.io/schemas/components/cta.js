@@ -19,16 +19,16 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Text',
-      name: 'text',
       type: 'string',
+      name: 'text',
+      title: 'Text',
       description: 'The text that will appear on the button',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Link',
       name: 'href',
       type: 'string',
+      title: 'Link',
       description: 'Relative or absolute link (https://)',
       validation: Rule => Rule.custom(value => {
         if (value && !value.startsWith('/') && !value.startsWith('https://') && !value.startsWith('#')) {

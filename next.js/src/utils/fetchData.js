@@ -1,16 +1,13 @@
 const fetchData = async (query) => {
-  query = `query { ${query} }`
   try {
     const response = await fetch(process.env.GRAPHQL_ENDPOINT, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         ...{ query },
       }),
       next: {
-        revalidate: 0,
+        revalidate: 3600,
       },
     });
 
@@ -21,6 +18,7 @@ const fetchData = async (query) => {
     }
 
     return { body };
+
   } catch (error) {
     throw {
       status: error.status || 500,

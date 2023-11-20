@@ -1,0 +1,16 @@
+.wrapper{
+  display: grid;
+  gap: 16px;
+
+  a{
+    display: block;
+    padding: 20px 28px 22px 28px;
+    display: grid;
+    grid-template-columns: 24px auto;
+    gap: 8px;
+    align-items: center;
+
+    border: 1px solid var(--background-400, #F4E9E6);
+    background: var(--background-300, #F7EFEC);
+  }
+}

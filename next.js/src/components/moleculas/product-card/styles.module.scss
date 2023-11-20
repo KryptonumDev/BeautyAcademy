@@ -1,0 +1,144 @@
+.item {
+  border: 1px solid;
+  border-image: var(--gradient-100) 1;
+  background: var(--background-300, #F7EFEC);
+  padding: 24px 24px 28px 24px;
+  display: grid;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+
+  h3 {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .cart{
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: .6s var(--easing);
+  }
+
+  .content{
+    transition: .6s var(--easing);
+  }
+
+  &:hover {
+    .overlay {
+      pointer-events: all;
+    }
+
+    .cart{
+      opacity: 1;
+      bottom: 48px;
+      pointer-events: all;
+    }
+
+    .content{
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+.types {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  gap: 8px;
+
+  color: var(--background-700, #7A6A65);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 110%;
+  letter-spacing: 0.4px;
+
+  margin-bottom: 12px;
+}
+
+.complicity {
+  text-align: center;
+  margin-bottom: 24px;
+
+  color: var(--background-800, #53423C);
+  font-size: 18px;
+  line-height: 122.222%;
+  letter-spacing: 0.36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  .fires {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}
+
+.price {
+  text-align: center;
+  color: var(--background-800, #53423C);
+  font-size: 36px;
+  line-height: 105.556%;
+  letter-spacing: 0.72px;
+}
+
+.smallPrice {
+  color: var(--background-700, #7A6A65);
+  leading-trim: both;
+  text-edge: cap;
+  font-size: 16px;
+  line-height: 175%;
+  letter-spacing: 0.32px;
+  text-decoration-line: line-through;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.plate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid;
+  border-image: var(--gradient-100) 1;
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(6px);
+  position: absolute;
+  right: -1px;
+  top: -1px;
+
+  span {
+    display: block;
+    margin-top: 2px;
+    color: var(--primary-700, #192A23);
+    font-size: 20px;
+    line-height: 110%;
+    letter-spacing: 0.4px;
+  }
+
+  &.new {}
+
+  &.sale {
+    padding: 6px 12px;
+    background: var(--gradient-100);
+    border: none;
+    backdrop-filter: none;
+  }
+}

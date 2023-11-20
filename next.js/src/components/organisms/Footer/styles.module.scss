@@ -1,4 +1,5 @@
 .wrapper {
+  --link-color: var(--primary-50);
   background-color: var(--primary-500);
   color: var(--background-50);
   padding: clamp(28px, calc(64vw/7.68), 64px) 0;
@@ -69,6 +70,11 @@
     gap: 24px 48px;
     > div {
       gap: 12px 24px;
+    }
+    svg {
+      display: inline;
+      height: 1em;
+      vertical-align: middle;
     }
   }
   @media (max-width: 899px){
