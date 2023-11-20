@@ -1,11 +1,11 @@
-import { read } from "src/app/actions";
+import { create, read } from "src/app/actions";
 
 const wpFetchData = async (query, variables) => {
   try {
     let currentUser = await (async () => {
       let user = await read('user');
 
-      if (!user) return null
+      if (!user) return {}
 
       let newUser = await fetch('http://localhost:3000/api/auth/user', {
         method: 'POST',
@@ -18,7 +18,7 @@ const wpFetchData = async (query, variables) => {
         .then(async (res) => {
           if (res.error) {
             console.log(res.error)
-            return null
+            return {}
           }
           return res.user
         })
@@ -47,6 +47,13 @@ const wpFetchData = async (query, variables) => {
         revalidate: 0,
       },
     });
+
+    const sessionToken = response.headers?.get('woocommerce-session')
+
+    if (sessionToken) {
+      currentUser.sessionToken = sessionToken
+      await create('user', currentUser)
+    }
 
     const body = await response.json();
     if (body.errors) {

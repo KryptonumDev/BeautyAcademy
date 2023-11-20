@@ -1,5 +1,5 @@
 import { decode } from 'jsonwebtoken';
-import { create, deleteCookie, read } from 'src/app/actions';
+import { create, deleteCookie } from 'src/app/actions';
 import { NextResponse } from 'next/server';
 
 function isTokenExpired(token) {
@@ -17,7 +17,6 @@ function isTokenExpired(token) {
 
 // Our refresh token call to WPGraphQL.
 async function refreshAuthToken(refreshToken) {
-  console.log(refreshToken)
   const query = `
     mutation RefreshAuthToken( $refreshToken: String! ) {
       refreshToken( input: {refreshToken: $refreshToken } ) {

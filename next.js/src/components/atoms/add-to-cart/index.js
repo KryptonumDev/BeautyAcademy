@@ -3,11 +3,11 @@ import { useState, useContext } from "react";
 import { v4 } from 'uuid';
 
 import { AppContext } from "src/context/app-context";
-import ADD_TO_CART from "../../../mutations/add-to-cart";
-import { useMutation } from "@apollo/client";
 import Button from "../Button";
+import { useMutation } from "src/hooks/use-mutation";
+import { ADD_TO_CART } from "src/mutations/add-to-cart";
 
-export default function AddToCart({ children, chosenAddon, variationId, quantity, product }) {
+export default function AddToCart({ children, quantity, product }) {
 
   const productQryInput = {
     clientMutationId: v4(),
@@ -15,11 +15,11 @@ export default function AddToCart({ children, chosenAddon, variationId, quantity
     quantity: Number(quantity) || 1,
   };
 
-  const [cart, setCart] = useContext(AppContext);
+  const [, setCart] = useContext(AppContext);
   const [showViewCart, setShowViewCart] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const { request, data } = useMutation(ADD_TO_CART, {
+  const { request } = useMutation(ADD_TO_CART, {
     variables: {
       input: productQryInput,
     },
@@ -43,17 +43,16 @@ export default function AddToCart({ children, chosenAddon, variationId, quantity
   return (
     <>
       {showViewCart ? (
-        <Button style={{ position: "relative", zIndex: 3 }} className="link" href="/koszyk">
-          Pokaż koszyk
+        <Button style={{ position: "relative", zIndex: 3 }} href="/koszyk">
+          Посмотреть корзину
         </Button>
       ) : (
         <Button
-          className="link"
-          disabled={addToCartLoading}
+          disabled={loading}
           onClick={handleAddToCartClick}
           style={{ position: "relative", zIndex: 3 }}
         >
-          {addToCartLoading ? 'Dodaje do koszyka...' : children ? children : 'Dodaj do koszyka'}
+          {children}
         </Button>
       )}
     </>

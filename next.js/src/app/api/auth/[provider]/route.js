@@ -49,7 +49,7 @@ async function handler(req, { params }) {
       ...data,
       isLoggedIn: true,
     };
-    let newCoockie = await create({ name: 'user', value: JSON.stringify(user), age: user.refreshTokenExpiration })
+    let newCoockie = await create({ name: 'user', value: user, age: user.refreshTokenExpiration })
     // TODO: add cookie for auth token and refresh token
 
     if (params.provider === 'password') {

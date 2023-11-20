@@ -42,23 +42,40 @@ const getProducts = async () => {
     products(where: {categoryIn: "онлайн-курс"}, first: 6) {
       nodes {
         ... on SimpleProduct {
+          productId: databaseId
           id
+          slug
           name
+          date
+          onSale
           price(format: FORMATTED)
-          terms {
+          regularPrice(format: FORMATTED)
+          salePrice(format: FORMATTED)
+          productTags {
             nodes {
               name
+              id
               slug
-              taxonomyName
-              ... on ProductCategory {
-                id
-                name
+            }
+          }
+          productCategories {
+            nodes {
+              name
+              children {
+                nodes {
+                  name
+                }
               }
             }
           }
           featuredImage {
-            node {
-              mediaItemUrl
+            asset : node {
+              altText
+              url : mediaItemUrl
+              metadata : mediaDetails {
+                width
+                height
+              }
             }
           }
         }

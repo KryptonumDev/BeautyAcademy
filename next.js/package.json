@@ -9,6 +9,7 @@
     "lint": "next lint --fix --dir src"
   },
   "dependencies": {
+    "@manifoldco/react-select-zero": "^0.0.1",
     "@studio-freight/lenis": "^1.0.27",
     "framer-motion": "^10.16.4",
     "iron-session": "^6.3.1",

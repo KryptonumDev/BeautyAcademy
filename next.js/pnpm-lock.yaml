@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@manifoldco/react-select-zero':
+    specifier: ^0.0.1
+    version: 0.0.1(react-dom@18.2.0)(react@18.2.0)
   '@studio-freight/lenis':
     specifier: ^1.0.27
     version: 1.0.27
@@ -140,6 +143,16 @@ packages:
   /@humanwhocodes/object-schema@2.0.1:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
+
+  /@manifoldco/react-select-zero@0.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-+7JFcaD9fTeSsvIIHI+K2w7ksTJsMDwTPGo2st+fbt4pvm2euLiOTIX7Xp4wbmpEbK7EQ7XQ4dtCWDPqiMKDtw==}
+    peerDependencies:
+      react: ^16.6.0
+      react-dom: ^16.6.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@next/env@14.0.2:
     resolution: {integrity: sha512-HAW1sljizEaduEOes/m84oUqeIDAUYBR1CDwu2tobNlNDFP3cSm9d6QsOsGeNlIppU1p/p1+bWbYCbvwjFiceA==}
