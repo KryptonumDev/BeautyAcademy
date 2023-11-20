@@ -83,41 +83,9 @@ export default {
       validation: Rule => Rule.required(),
     },
     {
-      name: 'about_Heading',
-      type: 'markdown',
-      title: 'Heading',
-      fieldset: 'about',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'about_Paragraph',
-      type: 'markdown',
-      title: 'Paragraph',
-      fieldset: 'about',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'about_Standout',
-      type: 'markdown',
-      title: 'Standout (optional)',
-      fieldset: 'about',
-    },
-    {
-      name: 'about_Cta',
-      type: 'array',
-      of: [
-        { type: 'cta' }
-      ],
-      title: 'CTAs',
-      fieldset: 'about',
-      validation: Rule => Rule.min(1).max(2).required(),
-    },
-    {
-      name: 'about_Video',
-      type: 'file',
-      title: 'Video',
-      fieldset: 'about',
-      // validation: Rule => Rule.required(),
+      name: 'textSection',
+      type: 'TextSection',
+      options: { collapsible: true, collapsed: true }
     },
     {
       name: 'HorizontalShowcase',
