@@ -1,6 +1,5 @@
 import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
-import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Faq from "@/components/sections/faq";
 import Hero from "@/components/sections/contact-hero";
 import Newsletter from "@/components/sections/newsletter";
@@ -8,7 +7,8 @@ import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Discover from "@/components/sections/cooperation-discover";
 import Benefits from "@/components/sections/cooperation-benefits";
 import Partners from "@/components/sections/cooperation-partners";
-import Cooperation from "@/components/sections/cooperation-cooperation";
+import Cooperation from "@/components/sections/cooperation";
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 
 const pathname = '/cooperation';
 
@@ -36,6 +36,10 @@ const CooperationPage = async () => {
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Homepage', path: '/' },
+        { name: 'Cooperation', path: pathname },
+      ]} />
       <Hero
         hero={{
           hero_Heading,
@@ -68,10 +72,6 @@ const CooperationPage = async () => {
       <Faq data={faq} />
       <Newsletter />
       <LatestBlogEntries />
-      <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Cooperation', path: pathname },
-      ]} />
     </>
   )
 }

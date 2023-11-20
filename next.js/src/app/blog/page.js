@@ -1,8 +1,8 @@
 import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
-import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Hero from "@/components/sections/blog-hero";
 import BlogEntries from "@/components/sections/blog-entries";
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 
 const pathname = '/blog';
 export const limit = 2;
@@ -29,6 +29,10 @@ const BlogPage = async ({ searchParams: { page = 1 } }) => {
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Homepage', path: '/' },
+        { name: 'Blog', path: pathname },
+      ]} />
       <Hero
         data={{
           hero_Heading,
@@ -44,10 +48,6 @@ const BlogPage = async ({ searchParams: { page = 1 } }) => {
         scrollToId={showEntries - limit}
         allEntries={countAllEntries.length}
       />
-      <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Homepage', path: '' },
-        { name: 'Blog', path: pathname },
-      ]} />
     </>
   )
 }

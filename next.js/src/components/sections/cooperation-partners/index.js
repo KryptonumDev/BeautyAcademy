@@ -3,10 +3,10 @@ import { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import 'swiper/css';
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
-import Img from '@/utils/Img';
+import Img from '@/components/atoms/Img';
 import SliderButton from '@/components/atoms/SliderButton';
 
 const Partners = ({

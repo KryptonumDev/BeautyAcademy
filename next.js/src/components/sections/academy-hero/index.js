@@ -1,6 +1,6 @@
-import Img from '@/utils/Img';
+import Img from '@/components/atoms/Img';
 import styles from './styles.module.scss';
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import Button from '@/components/atoms/Button';
 import Counter from '@/components/atoms/Counter';
 

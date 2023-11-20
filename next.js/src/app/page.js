@@ -1,6 +1,5 @@
 import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
-import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Hero from "@/components/sections/homepage-hero";
 import Benefits from "@/components/sections/homepage-benefits";
 import Newsletter from "@/components/sections/newsletter";
@@ -9,6 +8,7 @@ import Features from "@/components/sections/homepage-features";
 import Advantages from "@/components/sections/homepage-advantages";
 import Partnership from "@/components/sections/homepage-partnership";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 
 const pathname = '';
 
@@ -45,6 +45,9 @@ const IndexPage = async () => {
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Homepage', path: pathname },
+      ]} visible={false} />
       <Hero data={{
         hero_Heading,
         hero_Paragraph,
@@ -86,9 +89,6 @@ const IndexPage = async () => {
       }} />
       <Newsletter />
       <LatestBlogEntries />
-      <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Homepage', path: pathname },
-      ]} />
     </>
   )
 }

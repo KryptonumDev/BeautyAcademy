@@ -3,8 +3,8 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
-import Img from '@/utils/Img';
-import Markdown from '@/utils/Markdown';
+import Img from '@/components/atoms/Img';
+import Markdown from '@/components/atoms/Markdown';
 import { useMediaQuery } from 'react-responsive'
 
 const Features = ({

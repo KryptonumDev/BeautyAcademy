@@ -1,6 +1,6 @@
 'use client'
 import { useRef, useState } from 'react';
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 

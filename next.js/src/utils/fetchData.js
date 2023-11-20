@@ -7,7 +7,7 @@ const fetchData = async (query) => {
         ...{ query },
       }),
       next: {
-        revalidate: 0,
+        revalidate: 3600,
       },
     });
 

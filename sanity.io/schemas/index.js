@@ -4,6 +4,7 @@ import indexPage from './singleTypes/indexPage'
 import blogPage from './singleTypes/blogPage'
 import cooperationPage from './singleTypes/cooperationPage'
 import contactPage from './singleTypes/contactPage'
+import academyPage from './singleTypes/academyPage'
 import coursesPage from './singleTypes/coursesPage'
 import notFoundPage from './singleTypes/notFoundPage'
 
@@ -12,6 +13,7 @@ export const singleTypes = [
   blogPage,
   cooperationPage,
   contactPage,
+  academyPage,
   coursesPage,
   notFoundPage,
 ]
@@ -33,6 +35,8 @@ import seo from './components/seo'
 import { list_ImageAndLink, list_TitleAndImage, titleAndDescription, titleDescriptionAndImage } from './components/list'
 import Faq from './components/Faq'
 import ContactForm from './components/ContactForm'
+import stats from './components/stats'
+import HorizontalShowcase from './components/HorizontalShowcase'
 
 export const components = [
   global_Seo,
@@ -45,6 +49,8 @@ export const components = [
   list_ImageAndLink,
   Faq,
   ContactForm,
+  stats,
+  HorizontalShowcase,
 ]
 
 export const schemaTypes = [

@@ -1,6 +1,6 @@
 import fetchData from '@/utils/fetchData';
 import styles from './styles.module.scss';
-import Markdown from '@/utils/Markdown';
+import Markdown from '@/components/atoms/Markdown';
 import Button from '@/components/atoms/Button';
 import BlogCard from '@/components/moleculas/BlogCard';
 

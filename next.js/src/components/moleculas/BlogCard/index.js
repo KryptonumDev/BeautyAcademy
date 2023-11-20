@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import Img from '@/utils/Img';
+import Img from '@/components/atoms/Img';
 import { prettyfyDate } from '@/utils/functions';
 import Button from '@/components/atoms/Button';
 

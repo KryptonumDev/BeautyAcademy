@@ -1,8 +1,8 @@
 import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
-import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import Faq from "@/components/sections/faq";
 import Hero from "@/components/sections/contact-hero";
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 
 const pathname = '/contact';
 
@@ -17,6 +17,10 @@ const ContactPage = async () => {
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Homepage', path: '/' },
+        { name: 'Contact', path: pathname },
+      ]} />
       <Hero
         hero={{
           hero_Heading,
@@ -26,9 +30,6 @@ const ContactPage = async () => {
         form={ContactForm}
       />
       <Faq data={faq} />
-      <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Homepage', path: pathname },
-      ]} />
     </>
   )
 }
