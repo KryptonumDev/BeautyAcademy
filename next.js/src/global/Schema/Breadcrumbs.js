@@ -2,14 +2,14 @@
 import React from 'react';
 import { domain } from '../Seo';
 
-const SchemaBreadcrumbs = ({ breadcrumbs }) => {
+const SchemaBreadcrumbs = ({ data }) => {
   return (
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html:
       JSON.stringify({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-          breadcrumbs.map(({ name, path = '' }, i) => (
+          data.map(({ name, path = '' }, i) => (
             {
               "@type": "ListItem",
               "position": ++i,

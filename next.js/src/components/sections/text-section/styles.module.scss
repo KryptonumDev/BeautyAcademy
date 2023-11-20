@@ -4,6 +4,11 @@
   @media (min-width: 900px){
     grid-template-columns: 1.75fr 1fr;
   }
+  &[data-reversed="true"]{
+    header {
+      order: 2;
+    }
+  }
   .paragraph {
     margin-top: clamp(28px, calc(36vw/7.68), 36px);
     > *:not(:last-child){

@@ -3,8 +3,8 @@ import fetchData from "@/utils/fetchData";
 import Seo from "@/global/Seo";
 import Hero from "@/components/sections/blog-hero";
 import BlogEntries from "@/components/sections/blog-entries";
-import SchemaBreadcrumbs from "@/global/Schema/Breadcrumbs";
 import { limit } from "../../page";
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 
 const BlogCategoryPage = async ({
   params: { slug },
@@ -36,6 +36,11 @@ const BlogCategoryPage = async ({
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Homepage', path: '/' },
+        { name: 'Blog', path: '/blog' },
+        { name: categoryName, path: `/blog/${slug}` },
+      ]} />
       <Hero
         data={{
           hero_Heading: categoryName,
@@ -52,11 +57,6 @@ const BlogCategoryPage = async ({
         scrollToId={showEntries - limit}
         allEntries={countAllEntries.length}
       />
-      <SchemaBreadcrumbs breadcrumbs={[
-        { name: 'Homepage', path: '' },
-        { name: 'Blog', path: '/blog' },
-        { name: categoryName, path: `/blog/${slug}` },
-      ]} />
     </>
   )
 }
