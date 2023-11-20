@@ -5,6 +5,7 @@ import Footer from '@/components/organisms/Footer'
 import SmoothScroll from '@/utils/SmoothScroll'
 import SchemaOrganization from '@/global/Schema/Organization'
 import { locale } from '@/global/Seo'
+import { AppProvider } from 'src/context/app-context'
 
 const Oranienbaum = localFont({
   src: [
@@ -63,15 +64,17 @@ export default function RootLayout({ children }) {
       <head>
         <SchemaOrganization />
       </head>
-      <body className={`${Oranienbaum.className} ${Kapakana.variable}`}>
-        <Nav />
-        <SmoothScroll>
-          <main id="main">
-            {children}
-          </main>
-        </SmoothScroll>
-        <Footer />
-      </body>
+      <AppProvider>
+        <body className={`${Oranienbaum.className} ${Kapakana.variable}`}>
+          <Nav />
+          <SmoothScroll>
+            <main id="main">
+              {children}
+            </main>
+          </SmoothScroll>
+          <Footer />
+        </body>
+      </AppProvider>
     </html>
   )
 }

@@ -106,7 +106,6 @@ const query = async () => {
   const { body: { data } } = await fetchData(`
     query {
       page: IndexPage(id: "indexPage") {
-        
         # Hero
         hero_Heading
         hero_Paragraph
