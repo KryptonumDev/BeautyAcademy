@@ -19,9 +19,6 @@ mutation UPDATE_CART($input: UpdateItemQuantitiesInput!) {
           }
           product {
             node {
-              product {
-                level
-              }
               productCategories {
                 nodes {
                   slug
@@ -36,10 +33,11 @@ mutation UPDATE_CART($input: UpdateItemQuantitiesInput!) {
               slug
               averageRating
               reviewCount
-              image {
+              asset :  image {
+                id
                 altText
-                mediaItemUrl
-                mediaDetails {
+                url : mediaItemUrl
+                metadata : mediaDetails {
                   height
                   width
                 }
@@ -75,15 +73,14 @@ mutation UPDATE_CART($input: UpdateItemQuantitiesInput!) {
               price
               regularPrice
               salePrice
-              image {
+              asset :  image {
                 id
                 altText
-                mediaItemUrl
-                mediaDetails {
+                url : mediaItemUrl
+                metadata : mediaDetails {
                   height
                   width
                 }
-                title
               }
             }
           }
@@ -102,7 +99,7 @@ mutation UPDATE_CART($input: UpdateItemQuantitiesInput!) {
       subtotalTax
       shippingTax
       shippingTotal
-      total(format: RAW)
+      total
       totalTax
       feeTax
       feeTotal

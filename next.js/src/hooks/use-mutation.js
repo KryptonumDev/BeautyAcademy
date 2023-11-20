@@ -8,6 +8,7 @@ export const useMutation = (query, { variables, onCompleted = () => { }, onError
     setLoading(true)
     wpFetchData(query, (variables || props?.variables || undefined))
       .then(({ status, body }) => {
+        debugger
         setLoading(false)
         onCompleted({
           status,
@@ -22,6 +23,7 @@ export const useMutation = (query, { variables, onCompleted = () => { }, onError
         });
       })
       .catch(error => {
+        debugger
         onError(error)
         setLoading(false)
         if (response.body !== null || response.error !== null) setPreviousResponse(response)

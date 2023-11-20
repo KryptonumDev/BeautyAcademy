@@ -1,10 +1,5 @@
 export const GET_CART = `
 query GET_CART {
-  viewer {
-    email
-    firstName
-    lastName
-  }
   cart {
     contents {
       itemCount
@@ -17,9 +12,6 @@ query GET_CART {
         }
         product {
           node {
-            product {
-              level
-            }
             productCategories {
               nodes {
                 slug
@@ -34,10 +26,11 @@ query GET_CART {
             slug
             averageRating
             reviewCount
-            image {
+            asset :  image {
+              id
               altText
-              mediaItemUrl
-              mediaDetails {
+              url : mediaItemUrl
+              metadata : mediaDetails {
                 height
                 width
               }
@@ -73,15 +66,14 @@ query GET_CART {
             price
             regularPrice
             salePrice
-            image {
+            asset :  image {
               id
               altText
-              mediaItemUrl
-              mediaDetails {
+              url : mediaItemUrl
+              metadata : mediaDetails {
                 height
                 width
               }
-              title
             }
           }
         }
@@ -100,7 +92,7 @@ query GET_CART {
     subtotalTax
     shippingTax
     shippingTotal
-    total(format: RAW)
+    total
     totalTax
     feeTax
     feeTotal

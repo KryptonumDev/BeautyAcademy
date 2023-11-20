@@ -43,8 +43,8 @@ export default function AddToCart({ children, quantity, product }) {
   return (
     <>
       {showViewCart ? (
-        <Button style={{ position: "relative", zIndex: 3 }} href="/koszyk">
-          Посмотреть корзину
+        <Button style={{ position: "relative", zIndex: 3 }} href="/checkout">
+          Заказываю
         </Button>
       ) : (
         <Button

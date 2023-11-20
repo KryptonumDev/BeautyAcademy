@@ -1,9 +1,9 @@
 import React, { useMemo } from "react"
 import styles from './styles.module.scss'
-import Img from "@/utils/Img"
 import { Discount, EmptyFire, Fire } from "@/components/atoms/Icons"
 import Link from "next/link"
 import AddToCart from "@/components/atoms/add-to-cart"
+import Img from "@/components/atoms/Img"
 
 export default function Card({ data }) {
 

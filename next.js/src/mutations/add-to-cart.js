@@ -25,10 +25,11 @@ export const ADD_TO_CART = `
                 slug
                 averageRating
                 reviewCount
-                image {
+                asset :  image {
+                  id
                   altText
-                  mediaItemUrl
-                  mediaDetails {
+                  url : mediaItemUrl
+                  metadata : mediaDetails {
                     height
                     width
                   }
@@ -64,15 +65,14 @@ export const ADD_TO_CART = `
                 price
                 regularPrice
                 salePrice
-                image {
+                asset :  image {
                   id
                   altText
-                  mediaItemUrl
-                  mediaDetails {
+                  url : mediaItemUrl
+                  metadata : mediaDetails {
                     height
                     width
                   }
-                  title
                 }
               }
             }
@@ -91,7 +91,7 @@ export const ADD_TO_CART = `
         subtotalTax
         shippingTax
         shippingTotal
-        total(format: RAW)
+        total
         totalTax
         feeTax
         feeTotal

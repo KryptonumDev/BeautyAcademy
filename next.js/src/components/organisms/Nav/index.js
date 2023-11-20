@@ -11,6 +11,9 @@ import { useQuery } from 'src/hooks/use-query';
 import { useMutation } from 'src/hooks/use-mutation';
 import Button from '@/components/atoms/Button';
 import { links } from 'src/app/layout';
+import CartItem from '@/components/moleculas/cart-item';
+import { getUpdatedItems } from '@/utils/getUpdatedItems';
+import { v4 } from 'uuid';
 
 const Nav = () => {
   const pathname = usePathname();
@@ -35,16 +38,19 @@ const Nav = () => {
   const { revalidate, data } = useQuery(GET_CART, {
     variables: {},
     onCompleted: ({ body, status }) => {
+      debugger
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.cart))
       setCart(body.data.cart)
     },
     onError: (error) => {
+      debugger
       console.log(error.message)
     }
   })
 
   const { request: updateCart } = useMutation(UPDATE_CART, {
     onCompleted: ({ body }) => {
+      debugger
       // Update cart in the localStorage.
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.updateItemQuantities.cart));
       // Update cart data in React Context.
@@ -53,6 +59,7 @@ const Nav = () => {
       setLoading(false)
     },
     onError: (error) => {
+      debugger
       setLoading(false)
       console.log(error.message);
     }
@@ -131,11 +138,20 @@ const Nav = () => {
           </div>
           {cart?.contents?.nodes?.length > 0 ? (
             <>
-              <div className="cart">
-                {cart?.contents?.nodes.map(el => (
-                  <div></div>
-                  // <CartItem products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
+              <div className={styles.items}>
+                {cart?.contents?.nodes.map((el, index) => (
+                  <CartItem updateCart={updateCart} key={index} index={index} products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
                 ))}
+              </div>
+              <div className={styles.footer}>
+                <label>
+                  {/* discount label */}
+                </label>
+                <div className={styles.total}>
+                  <p><span>Сумма</span><span dangerouslySetInnerHTML={{ __html: cart?.total }} /></p>
+                  {/* <p><span>Скидка</span><span>{cart?.discountTotal}</span></p> */}
+                  <Button href='/checkout'>Оформить заказ</Button>
+                </div>
               </div>
             </>
           ) : (

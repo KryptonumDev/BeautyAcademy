@@ -14,7 +14,7 @@ export const useQuery = (query, obj) => {
 
   const makeRequest = () => {
     setLoading(true)
-    wpFetchData({ query, variables })
+    wpFetchData(query, variables)
       .then(({ status, body }) => {
         setLoading(false)
         onCompleted({
