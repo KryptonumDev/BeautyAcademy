@@ -36,6 +36,7 @@ export default function Grid({ products, productCategories }) {
           <Card data={product} key={index} />
         ))}
       </div>
+      {/* TODO: ADD INFINITE SCROLL */}
     </section>
   )
 }

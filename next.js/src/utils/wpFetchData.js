@@ -1,4 +1,14 @@
-import { create, read } from "src/app/actions";
+import { read } from "src/app/actions";
+
+function setCookie(name, value, days) {
+  var expires = "";
+  if (days) {
+    var date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    expires = "; expires=" + date.toUTCString();
+  }
+  document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 
 const wpFetchData = async (query, variables) => {
   try {
@@ -25,6 +35,8 @@ const wpFetchData = async (query, variables) => {
 
       return newUser
     })()
+    let session = await read('woocommerce-session') || currentUser?.sessionToken //TODO: rework
+    session = session?.value || session
 
     const headers = { 'Content-Type': 'application/json' };
 
@@ -32,8 +44,8 @@ const wpFetchData = async (query, variables) => {
       headers['Authorization'] = `Bearer ${currentUser.authToken}`;
     }
 
-    if (currentUser?.sessionToken) {
-      headers['woocommerce-session'] = `Session ${currentUser.sessionToken}`;
+    if (session) {
+      headers['woocommerce-session'] = `Session ${session}`;
     }
 
     const response = await fetch('https://wp.beautyacademy.expert/graphql', {
@@ -52,7 +64,8 @@ const wpFetchData = async (query, variables) => {
 
     if (sessionToken) {
       currentUser.sessionToken = sessionToken
-      await create('user', currentUser)
+      if (typeof document !== 'undefined')
+        setCookie('woocommerce-session', sessionToken, 30)
     }
 
     const body = await response.json();

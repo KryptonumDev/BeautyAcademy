@@ -16,9 +16,6 @@ export const ADD_TO_CART = `
             }
             product {
               node {
-                product {
-                  level
-                }
                 id
                 productId: databaseId
                 name

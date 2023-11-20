@@ -6,7 +6,7 @@ export const useMutation = (query, { variables, onCompleted = () => { }, onError
 
   const makeRequest = (props = {}) => {
     setLoading(true)
-    wpFetchData({ query, variables: variables || props?.variables || undefined })
+    wpFetchData(query, (variables || props?.variables || undefined))
       .then(({ status, body }) => {
         setLoading(false)
         onCompleted({

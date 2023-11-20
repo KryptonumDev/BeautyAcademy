@@ -133,21 +133,9 @@ const Nav = () => {
             <>
               <div className="cart">
                 {cart?.contents?.nodes.map(el => (
-                  <CartItem products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
+                  <div></div>
+                  // <CartItem products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
                 ))}
-              </div>
-              <div>
-                <hr />
-                <div className="info">
-                  <Flex>
-                    <p>Podsumowanie</p>
-                    <p dangerouslySetInnerHTML={{ __html: cart.subtotal }}></p>
-                  </Flex>
-                  <p><small>Koszt wysyłki jest podliczany podczas płatności</small></p>
-                </div>
-                <Link onClick={() => { setCartOpened(false) }} href="/zamowienie">
-                  Przejdź do zamówienia
-                </Link>
               </div>
             </>
           ) : (
