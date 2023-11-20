@@ -14,9 +14,9 @@ const Newsletter = async () => {
   return (
     <aside className={styles.wrapper}>
       <div>
-        <Markdown.h1>{newsletter_Heading}</Markdown.h1>
+        <Markdown.h2>{newsletter_Heading}</Markdown.h2>
         <Markdown className={styles.paragraph}>{newsletter_Paragraph}</Markdown>
-        <Form />
+        <Form groupID={process.env.NEWSLETTER_RU_ID} />
       </div>
       <Img
         data={newsletter_Img}
