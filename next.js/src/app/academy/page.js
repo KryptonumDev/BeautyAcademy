@@ -8,6 +8,7 @@ import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Values from "@/components/sections/academy-values";
 import Procedures from "@/components/sections/academy-procedures";
 import About from "@/components/sections/academy-about";
+import `HorizontalShowcaseComponent` from "@/components/sections/horizontal-showcase";
 
 const pathname = '/academy';
 
@@ -26,6 +27,7 @@ const AcademyPage = async () => {
     about_Paragraph,
     about_Standout,
     about_Cta,
+    HorizontalShowcase,
     faq,
   } } = await query();
 
@@ -52,6 +54,7 @@ const AcademyPage = async () => {
         about_Standout,
         about_Cta,
       }} />
+      <HorizontalShowcaseComponent data={HorizontalShowcase} />
       <Faq data={faq} />
       <Newsletter />
       <LatestBlogEntries />
@@ -136,6 +139,29 @@ const query = async () => {
           href
         }
         # about_Video
+
+        # HorizontalShowcase
+        HorizontalShowcase {
+          heading
+          cta {
+            theme
+            text
+            href
+          }
+          list {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
 
         # Faq
         faq {
