@@ -1,5 +1,5 @@
+import { useState, useEffect, useCallback } from 'react';
 import wpFetchData from '@/utils/wpFetchData';
-import { useState, useEffect } from 'react';
 
 export const useQuery = (query, obj) => {
   const { variables, onCompleted = () => { }, onError = () => { } } = obj || {}
@@ -12,7 +12,7 @@ export const useQuery = (query, obj) => {
     error: null
   });
 
-  const makeRequest = () => {
+  const makeRequest = useCallback(() => {
     setLoading(true)
     wpFetchData({ query, variables })
       .then(({ status, body }) => {
@@ -39,11 +39,11 @@ export const useQuery = (query, obj) => {
           error
         });
       });
-  }
+  }, [onCompleted, onError, query, response, variables])
 
   useEffect(() => {
     makeRequest()
-  }, []);
+  }, [makeRequest]);
 
   return { revalidate: makeRequest, data: response, loading, previousResponse };
 };
