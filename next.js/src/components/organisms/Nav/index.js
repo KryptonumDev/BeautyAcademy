@@ -1,14 +1,9 @@
 'use client';
-import { useContext, useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import { Logo, Sygn } from '@/components/atoms/Icons';
-import { usePathname } from 'next/navigation';
-import { AppContext } from 'src/context/app-context';
-import { GET_CART } from 'src/queries/get-cart';
-import { UPDATE_CART } from 'src/mutations/update-cart';
-import { useQuery } from 'src/hooks/use-query';
-import { useMutation } from 'src/hooks/use-mutation';
 import Button from '@/components/atoms/Button';
 import { links } from 'src/app/layout';
 
@@ -16,8 +11,6 @@ const Nav = () => {
   const pathname = usePathname();
   const [navOpened, setNavOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
-  const [cart, setCart] = useContext(AppContext)
-  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -31,52 +24,6 @@ const Nav = () => {
       setNavOpened(false);
     }
   }
-
-  const { revalidate, data } = useQuery(GET_CART, {
-    variables: {},
-    onCompleted: ({ body, status }) => {
-      localStorage.setItem('woo-next-cart', JSON.stringify(body.data.cart))
-      setCart(body.data.cart)
-    },
-    onError: (error) => {
-      console.log(error.message)
-    }
-  })
-
-  const { request: updateCart } = useMutation(UPDATE_CART, {
-    onCompleted: ({ body }) => {
-      // Update cart in the localStorage.
-      localStorage.setItem('woo-next-cart', JSON.stringify(body.data.updateItemQuantities.cart));
-      // Update cart data in React Context.
-
-      setCart(body.data.updateItemQuantities.cart);
-      setLoading(false)
-    },
-    onError: (error) => {
-      setLoading(false)
-      console.log(error.message);
-    }
-  });
-
-  const handleRemoveProductClick = (event, key, products) => {
-    event.stopPropagation();
-    if (products.length) {
-      setLoading(true)
-
-      // By passing the newQty to 0 in updateCart Mutation, it will remove the item.
-      const newQty = 0;
-      const updatedItems = getUpdatedItems(products, newQty, key);
-      // setInnerLoading(true)
-      updateCart({
-        variables: {
-          input: {
-            clientMutationId: v4(),
-            items: updatedItems
-          }
-        },
-      });
-    }
-  };
 
   return (
     <>
@@ -129,24 +76,13 @@ const Nav = () => {
             <h3>Корзина</h3>
             <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
           </div>
-          {cart?.contents?.nodes?.length > 0 ? (
-            <>
-              <div className="cart">
-                {cart?.contents?.nodes.map(el => (
-                  <div></div>
-                  // <CartItem products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
-                ))}
-              </div>
-            </>
-          ) : (
-            <div className={styles.empty}>
-              <Sygn />
-              <h2>Ваша корзина пуста</h2>
-              <Button onClick={() => { setCartOpened(false) }} href="/courses">
-                Наши курсы
-              </Button>
-            </div>
-          )}
+          <div className={styles.empty}>
+            <Sygn />
+            <h2>Ваша корзина пуста</h2>
+            <Button onClick={() => { setCartOpened(false) }} href="/courses">
+              Наши курсы
+            </Button>
+          </div>
         </div>
       </header>
     </>
