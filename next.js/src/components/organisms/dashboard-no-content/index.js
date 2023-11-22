@@ -1,7 +1,5 @@
 import React from "react"
 import styles from "./styles.module.scss"
-import Button from "@/components/atoms/Button"
-import { Sygn } from "@/components/atoms/Icons"
 
 export default function NoContent({ text, link }) {
   return (

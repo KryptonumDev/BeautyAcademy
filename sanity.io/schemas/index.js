@@ -1,7 +1,6 @@
 // Single Types
 import global, { global_Seo, footer_Company } from './singleTypes/global'
 import indexPage from './singleTypes/indexPage'
-import AboutUsPage from './singleTypes/AboutUsPage'
 import blogPage from './singleTypes/blogPage'
 import cooperationPage from './singleTypes/cooperationPage'
 import contactPage from './singleTypes/contactPage'
@@ -11,7 +10,6 @@ import notFoundPage from './singleTypes/notFoundPage'
 
 export const singleTypes = [
   indexPage,
-  AboutUsPage,
   blogPage,
   cooperationPage,
   contactPage,
@@ -39,7 +37,6 @@ import Faq from './components/Faq'
 import ContactForm from './components/ContactForm'
 import stats from './components/stats'
 import HorizontalShowcase from './components/HorizontalShowcase'
-import TextSection from './components/TextSection'
 
 export const components = [
   global_Seo,
@@ -54,7 +51,6 @@ export const components = [
   ContactForm,
   stats,
   HorizontalShowcase,
-  TextSection,
 ]
 
 export const schemaTypes = [

@@ -1,9 +1,14 @@
 'use client';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import { Logo, Sygn } from '@/components/atoms/Icons';
+import { usePathname } from 'next/navigation';
+import { AppContext } from 'src/context/app-context';
+import { GET_CART } from 'src/queries/get-cart';
+import { UPDATE_CART } from 'src/mutations/update-cart';
+import { useQuery } from 'src/hooks/use-query';
+import { useMutation } from 'src/hooks/use-mutation';
 import Button from '@/components/atoms/Button';
 import { links } from 'src/app/layout';
 import CartItem from '@/components/moleculas/cart-item';
@@ -14,6 +19,8 @@ const Nav = () => {
   const pathname = usePathname();
   const [navOpened, setNavOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
+  const [cart, setCart] = useContext(AppContext)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -92,7 +99,7 @@ const Nav = () => {
                 <li key={i}>
                   <Link
                     href={href}
-                    aria-current={pathname.startsWith(href) ? 'page' : false}
+                    aria-current={pathname === href ? 'page' : false}
                     onClick={() => setNavOpened(false)}
                   >
                     {name}
