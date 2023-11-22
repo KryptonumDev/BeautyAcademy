@@ -38,19 +38,19 @@ const Nav = () => {
   const { revalidate, data } = useQuery(GET_CART, {
     variables: {},
     onCompleted: ({ body, status }) => {
-      debugger
+      
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.cart))
       setCart(body.data.cart)
     },
     onError: (error) => {
-      debugger
+      
       console.log(error.message)
     }
   })
 
   const { request: updateCart } = useMutation(UPDATE_CART, {
     onCompleted: ({ body }) => {
-      debugger
+      
       // Update cart in the localStorage.
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.updateItemQuantities.cart));
       // Update cart data in React Context.
@@ -59,7 +59,7 @@ const Nav = () => {
       setLoading(false)
     },
     onError: (error) => {
-      debugger
+      
       setLoading(false)
       console.log(error.message);
     }

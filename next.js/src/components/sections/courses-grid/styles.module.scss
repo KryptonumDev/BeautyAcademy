@@ -37,3 +37,46 @@
   gap: 28px 24px;
   margin-top: 128px;
 }
+
+.complexity{
+  display: grid;
+  gap: 4px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.pagination{
+  max-width: 384px;
+  width: 100%;
+  margin: 64px auto 0;
+
+  p{
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .line{
+    display: block;
+    height: 6px;
+    background: var(--background-500, #F1E4E0);
+    margin-bottom: 36px;
+    position: relative;
+
+    &::after{
+      content: '';
+      display: block;
+      width: var(--percent);
+      background: var(--background-800, #7A6A65);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      transition: width .3s var(--easing);
+    }
+  }
+
+  button{
+    margin: 0 auto;
+    display: block;
+  }
+}

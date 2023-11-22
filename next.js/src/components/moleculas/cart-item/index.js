@@ -22,7 +22,7 @@ export default function CartItem({ updateCart, products, remove, data, index }) 
 
       if (products.length) {
         const updatedItems = getUpdatedItems(products, newQty, cartKey);
-        debugger
+        
         updateCart({
           variables: {
             input: {

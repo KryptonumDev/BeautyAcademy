@@ -81,6 +81,7 @@ const getProducts = async () => {
         }
       }
       pageInfo {
+        total
         endCursor
         hasNextPage
         hasPreviousPage
