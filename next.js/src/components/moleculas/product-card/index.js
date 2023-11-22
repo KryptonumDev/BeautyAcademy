@@ -8,13 +8,13 @@ import Img from "@/components/atoms/Img"
 export default function Card({ data }) {
 
   const complicity = useMemo(() => data.productTags.nodes[0].slug, [data])
-  const categories = useMemo(() => data.productCategories.nodes.filter(el => el.children.nodes.length === 0), [data])
+  // const categories = useMemo(() => data.productCategories.nodes.filter(el => el.children.nodes.length === 0), [data])
   const types = useMemo(() => data.productCategories.nodes.filter(el => el.children.nodes.length > 0), [data])
   const isNew = useMemo(() => {
     const date = new Date(data.date)
     const now = new Date()
     return now - date < 1000 * 60 * 60 * 24 * 14
-  })
+  }, [data.date])
 
   return (
     <div className={styles.item}>
