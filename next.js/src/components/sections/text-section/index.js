@@ -1,6 +1,7 @@
 import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
+import Img from '@/components/atoms/Img';
 
 const TextSection = ({
   data: {
@@ -9,6 +10,7 @@ const TextSection = ({
     paragraph,
     standout,
     cta,
+    img,
     // video
   }
 }) => {
@@ -26,6 +28,7 @@ const TextSection = ({
           ))}
         </div>
       </header>
+      <Img data={img} className={styles.img} />
     </section>
   );
 };

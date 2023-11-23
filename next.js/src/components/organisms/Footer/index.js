@@ -72,7 +72,7 @@ const Footer = async () => {
         <div className={styles.legal}>
           <div>
             <Link href='/privacy-policy' className='link'>политика конфиденциальности</Link>
-            <Link href='/terms-of-use' className='link'>Печенье</Link>
+            <Link href='/terms-and-conditions' className='link'>Печенье</Link>
           </div>
           <p>Ⓒ Дизайн и реализация: <a href="https://kryptonum.eu/pl" className='link' aria-label="Kryptonum"><Kryptonum /></a></p>
         </div>
