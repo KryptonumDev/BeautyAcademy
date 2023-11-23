@@ -1,10 +1,7 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 104px 109fr 152fr 92fr 99fr;
+  grid-template-columns: 104px 149fr 152fr 92fr 99fr;
   gap: 48px;
-  margin-top: 24px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid var(--grey, #E0E0E0);
 
   small {
     color: var(--grey-1, #808080);
@@ -20,21 +17,34 @@
   }
 
   .row {
-    display: grid;
+    display: grid !important;
     grid-template-rows: auto 1fr;
     gap: 16px;
     text-align: center;
+    margin: 0 !important;
   }
 
   .price {}
 
   .quantity {
+    
+    margin: auto 0;
     .calculator {
-
       display: grid;
       align-items: center;
       text-align: center;
       grid-template-columns: 1fr 50px 1fr;
+
+      input{
+        text-align: center;
+      }
+    }
+
+    button{
+      color: var(--background-800, #53423C);
+      font-size: 36px;
+      line-height: 105.556%;
+      letter-spacing: 0.72px;
     }
   }
 
@@ -70,7 +80,7 @@
   }
 
   .price {
-
+    margin: auto;
     p {
       overflow: hidden;
       text-overflow: ellipsis;
