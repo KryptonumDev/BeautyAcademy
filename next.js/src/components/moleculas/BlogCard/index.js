@@ -17,6 +17,7 @@ const BlogCard = ({
     _createdAt
   },
   withoutGrid=false,
+  aboveTheFold=false,
   ...props
 }) => {
   return (
@@ -30,6 +31,7 @@ const BlogCard = ({
         data={thumbnail}
         sizes="(max-width: 599px) 100vw, (max-width: 899px) 33vw, 50vw"
         className={styles.thumbnail}
+        priority={aboveTheFold}
       />
       <div>
         <p className={styles.createdAt}>{prettyfyDate(_createdAt)}</p>

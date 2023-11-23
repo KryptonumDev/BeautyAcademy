@@ -11,6 +11,7 @@ const BlogEntries = ({ entries, page, scrollToId, showEntries, allEntries }) => 
             data={entry}
             withoutGrid={true}
             id={scrollToId === i ? 'pagination' : ''}
+            aboveTheFold={i === 0 ? true : false}
             key={i}
           />
         ))}
