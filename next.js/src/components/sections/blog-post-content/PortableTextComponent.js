@@ -1,4 +1,3 @@
-'use server'
 import styles from './styles.module.scss';
 import Link from "next/link";
 import Img from "@/components/atoms/Img";
@@ -12,7 +11,7 @@ import { slugify } from '@/utils/functions';
 import HighlightedList from '@/components/organisms/HighlightedList';
 import ShareArticle from './ShareArticle';
 
-export const ImageRenderer = ({ value: { asset: { _ref }, altText }}) => {
+export const ImageRenderer = ({ value: { asset: { _ref }, altText }, sizes }) => {
   const builder = imageUrlBuilder({
     projectId: "zm0qqcml",
     dataset: "production",
@@ -24,13 +23,19 @@ export const ImageRenderer = ({ value: { asset: { _ref }, altText }}) => {
       width={getImageDimensions(_ref).width}
       height={getImageDimensions(_ref).height}
       alt={altText || ''}
+      {...sizes && ({ sizes })}
     />
   )
 }
 
 const components = {
   types: {
-    image: ImageRenderer,
+    image: (data) => (
+      <ImageRenderer
+        {...data}
+        sizes="(max-width: 1099px) 66vw, 100vw"
+      />
+    ),
     ImageColumn: ({ value: { list } }) => <ImageColumn list={list} />,
     TextAndImageColumn: ({ value: { img, text } }) => <TextAndImageColumn {...{img, text}} />,
     QuickContact: ({ value: { heading, paragraph, img } }) => <QuickContact {...{heading, paragraph, img}} />,

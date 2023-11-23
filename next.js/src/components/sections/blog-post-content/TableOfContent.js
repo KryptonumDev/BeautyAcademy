@@ -39,7 +39,12 @@ const TableOfContent = ({
 
   return (
     <>
-      <button className={styles.toggleNav} data-open onClick={() => setOpen(true)}>
+      <button
+        className={styles.toggleNav}
+        data-open
+        onClick={() => setOpen(true)}
+        aria-label="Open Navigation"
+      >
         <Menu.Open />
       </button>
       <motion.div
@@ -67,6 +72,7 @@ const TableOfContent = ({
           duration: open ? .5 : .3,
           ease: [0.65, 0, 0.35, 1]
         }}
+        aria-label="Close Navigation"
       >
         <Menu.Close />
       </motion.button>
@@ -89,7 +95,7 @@ const TableOfContent = ({
           />
           <div>
             <p className={styles.title}>автор статьи</p>
-            <h3 className={styles.name}>{name}</h3>
+            <p className={styles.name}>{name}</p>
             <p className={styles.specialization}>{specialization}</p>
             {socials.length > 0 && (
               <ul className={styles.socials}>

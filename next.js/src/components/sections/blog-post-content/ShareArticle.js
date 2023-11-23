@@ -21,10 +21,10 @@ const ShareArticle = ({ title, slug }) => {
       <p>Поделитесь статьей</p>
       <div>
         <ShareLink title={title} url={url} />
-        <a href={shareLink('telegram')} target='_blank' rel="noopener">
+        <a href={shareLink('telegram')} target='_blank' rel="noopener" aria-label='Share on Telegram'>
           <Social.Telegram />
         </a>
-        <a href={shareLink('facebook')} target='_blank' rel="noopener">
+        <a href={shareLink('facebook')} target='_blank' rel="noopener" aria-label='Share on Facebook'>
           <Social.Facebook />
         </a>
       </div>

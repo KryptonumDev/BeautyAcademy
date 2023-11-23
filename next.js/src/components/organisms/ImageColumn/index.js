@@ -5,7 +5,11 @@ const ImageColumn = ({ list }) => {
   return (
     <div className={styles.wrapper}>
       {list.map((img, i) => (
-        <ImageRenderer value={img} key={i} />
+        <ImageRenderer
+          value={img}
+          key={i}
+          sizes="(max-width: 1099px) 50vw, 33vw"
+        />
       ))}
     </div>
   );

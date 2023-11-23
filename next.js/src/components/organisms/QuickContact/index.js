@@ -6,7 +6,10 @@ import Form from './Form';
 const QuickContact = ({ heading, paragraph, img }) => {
   return (
     <aside className={styles.wrapper}>
-      <ImageRenderer value={img} />
+      <ImageRenderer
+        value={img}
+        sizes="(max-width: 699px) 100vw, (max-width: 1099px) 25vw, 15vw"
+      />
       <div>
         <header>
           <Markdown.h3>{heading}</Markdown.h3>
