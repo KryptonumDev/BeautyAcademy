@@ -148,7 +148,7 @@
   }
 }
 .portableText {
-  > :last-child {
+  > :nth-last-child(2) {
     margin-bottom: 0;
   }
   > :first-child {
@@ -166,5 +166,38 @@
   }
   > img {
     margin: clamp(28px, calc(36vw/7.68), 36px) 0;
+  }
+  > blockquote {
+    margin: clamp(28px, calc(36vw/7.68), 36px) 0;
+  }
+}
+.shareArticle {
+  margin-top: clamp(48px, calc(64vw/7.68), 96px);
+  padding-top: 8px;
+  border-top: 1px solid var(--background-600);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px 24px;
+  > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  a, button {
+    display: block;
+    border: 1px solid var(--background-600);
+    background-color: var(--background-300);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+  }
+  button {
+    padding: 0 12px;
+    width: auto;
   }
 }

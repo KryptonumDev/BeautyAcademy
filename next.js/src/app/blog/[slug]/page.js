@@ -33,7 +33,7 @@ const BlogEntryPage = async ({ params: { slug: paramsSlug } }) => {
         category,
         contentRaw,
       }} />
-      <Content data={contentRaw} author={author} />
+      <Content data={contentRaw} author={author} title={name} slug={slug} />
       <Newsletter />
     </>
   )
