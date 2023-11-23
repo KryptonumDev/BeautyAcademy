@@ -10,7 +10,7 @@ const countWords = (text) => {
 };
 
 const readingTime = (text) => {
-  const plainText = toPlainText(text);
+  const plainText = toPlainText(text || '');
   const words = countWords(plainText);
   const averageReadingSpeedWordsPerMinute = 200;
   const readingTime = Math.ceil(words / averageReadingSpeedWordsPerMinute);

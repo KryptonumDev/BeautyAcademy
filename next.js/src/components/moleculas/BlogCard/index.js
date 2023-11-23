@@ -34,7 +34,7 @@ const BlogCard = ({
       <div>
         <p className={styles.createdAt}>{prettyfyDate(_createdAt)}</p>
         <h3 className={styles.name}>{name}</h3>
-        <p className={styles.breif}>{brief}</p>
+        <p className={styles.brief}>{brief}</p>
         <Button href={`/blog/${slug}`} variant='secondary' className={styles.readMore}>читать далее</Button>
       </div>
       <Link className={styles.category} href={`/blog/category/${categorySlug}`}>{categoryName}</Link>

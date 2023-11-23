@@ -14,7 +14,7 @@
     position: relative;
   }
   display: grid;
-  align-items: stretch;
+  grid-template-rows: auto 1fr;
   gap: 20px clamp(16px, calc(20vw/7.68), 28px);
   .thumbnail {
     object-fit: cover;
@@ -27,6 +27,12 @@
   }
   .name {
     margin: clamp(16px, calc(28vw/7.68), 28px) 0 clamp(20px, calc(28vw/7.68), 28px);
+  }
+  .brief {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .readMore {
     margin: clamp(24px, calc(32vw/7.68), 48px) 0 0 auto;
