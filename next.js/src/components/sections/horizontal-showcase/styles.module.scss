@@ -12,9 +12,9 @@
     .list {
       position: sticky;
       top: calc(5vh + 109px);
-      top: calc(5dvh + 109px);
+      top: calc(5lvh + 109px);
       height: calc(90vh - 109px);
-      height: calc(90dvh - 109px);
+      height: calc(90lvh - 109px);
       display: flex;
       justify-content: space-between;
       flex-wrap: nowrap;

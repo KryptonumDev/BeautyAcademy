@@ -8,7 +8,7 @@ const Breadcrumbs = ({ data, visible=true }) => {
     <Fragment>
       <SchemaBreadcrumbs data={data} />
       {visible && (
-        <div className={styles.wrapper}>
+        <nav className={styles.wrapper}>
           {data.map(({ name, path }, i) => {
             const Item = i !== data.length - 1 ? Link : 'span';
             return (
@@ -27,7 +27,7 @@ const Breadcrumbs = ({ data, visible=true }) => {
               </Fragment>
             )
           })}
-        </div>
+        </nav>
       )}
     </Fragment>
   );

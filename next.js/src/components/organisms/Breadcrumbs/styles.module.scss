@@ -3,7 +3,9 @@
   align-items: center;
   gap: 4px;
   overflow: hidden;
-  margin-bottom: clamp(16px, calc(28vw/7.68), 36px);
+  padding: 6px;
+  margin: -6px;
+  margin-bottom: clamp(10px, calc(22vw/7.68), 30px);
   + * {
     margin-top: calc(clamp(96px, calc(144vw/7.68), 174px) * -1);
   }

@@ -1,0 +1,15 @@
+.wrapper {
+  display: grid;
+  gap: clamp(16px, calc(22vw/7.68), 28px) clamp(16px, calc(28vw/7.68), 28px);
+  @media (min-width: 500px){
+    grid-template-columns: 1fr 1.33fr;
+  }
+  img {
+    box-shadow: var(--shadow);
+  }
+  .text {
+    > *:not(:last-child){
+      margin-bottom: 16px;
+    }
+  }
+}

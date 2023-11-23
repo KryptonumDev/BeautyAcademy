@@ -20,7 +20,7 @@
     border: 1px solid;
     border-image: var(--gradient-100) 1;
     background-color: var(--background-400);
-    box-shadow: 4px 4px 11px 0px rgba(0,0,0,.12);
+    box-shadow: var(--shadow);
     padding: clamp(20px, calc(28vw/7.68), 28px);
   }
   .cta {

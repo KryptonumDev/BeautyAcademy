@@ -18,6 +18,9 @@
   gap: 20px clamp(16px, calc(20vw/7.68), 28px);
   .thumbnail {
     object-fit: cover;
+    object-position: 100%;
+    aspect-ratio: 2/1;
+    transform: rotateY(180deg);
   }
   .createdAt {
     color: var(--background-700);
