@@ -24,11 +24,13 @@ export const singleTypes = [
 import blogEntry from './collectionTypes/blogEntry'
 import blogCategory from './collectionTypes/blogCategory'
 import testimonials from './collectionTypes/testimonials'
+import author from './collectionTypes/author'
 
 export const collectionTypes = [
   testimonials,
   blogEntry,
   blogCategory,
+  author,
 ]
 
 // Componenets
@@ -40,6 +42,11 @@ import ContactForm from './components/ContactForm'
 import stats from './components/stats'
 import HorizontalShowcase from './components/HorizontalShowcase'
 import TextSection from './components/TextSection'
+import PortableText from '../components/PortableText'
+import ImageColumn from './components/ImageColumn'
+import TextAndImageColumn from './components/TextAndImageColumn'
+import QuickContact from './components/QuickContact'
+import HighlightedList from './components/HighlightedList'
 
 export const components = [
   global_Seo,
@@ -55,6 +62,11 @@ export const components = [
   stats,
   HorizontalShowcase,
   TextSection,
+  PortableText,
+  ImageColumn,
+  TextAndImageColumn,
+  QuickContact,
+  HighlightedList,
 ]
 
 export const schemaTypes = [

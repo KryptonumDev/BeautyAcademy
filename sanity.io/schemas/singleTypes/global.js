@@ -112,6 +112,16 @@ export default {
       options: { collapsible: true, collapsed: true }
     },
     {
+      name: 'formSuccess',
+      title: 'Success Message',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
+      name: 'formError',
+      title: 'Error Message',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
       name: 'latestBlogEntries',
       title: 'Latest Blog Entries',
       options: { collapsible: true, collapsed: true }
