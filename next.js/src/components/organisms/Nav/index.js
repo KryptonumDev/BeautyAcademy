@@ -32,6 +32,7 @@ const Nav = () => {
   const handleEscapeKey = (e) => {
     if (e.key === "Escape") {
       setNavOpened(false);
+      setCartOpened(false);
     }
   }
 
@@ -150,7 +151,7 @@ const Nav = () => {
                 <div className={styles.total}>
                   <p><span>Сумма</span><span dangerouslySetInnerHTML={{ __html: cart?.total }} /></p>
                   {/* <p><span>Скидка</span><span>{cart?.discountTotal}</span></p> */}
-                  <Button href='/checkout'>Оформить заказ</Button>
+                  <Button onClick={() => { setCartOpened(false) }} href='/checkout'>Оформить заказ</Button>
                 </div>
               </div>
             </>

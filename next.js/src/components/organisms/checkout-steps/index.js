@@ -15,7 +15,7 @@ export default function Steps({ step, delivery, registration }) {
   return (
     <aside style={{ '--count': steps.length }} className={styles.wrapper}>
       {steps.map((item, index) => (
-        <div className={`${styles.item} ${step >= index ? styles.active : ''}`}>
+        <div key={index} className={`${styles.item} ${step >= index ? styles.active : ''}`}>
           <span className={styles.number}><span className={styles.numberInner}>{index + 1}</span></span>
           <p>{item}</p>
         </div>

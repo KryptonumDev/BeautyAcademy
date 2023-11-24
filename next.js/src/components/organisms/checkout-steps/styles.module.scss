@@ -3,10 +3,9 @@
   grid-template-columns: repeat(var(--count), 1fr);
   position: relative;
   gap: 24px;
-
+  margin-bottom: 144px;
 
   .item {
-
     .number {
       border-radius: 500px;
       padding: 6px;

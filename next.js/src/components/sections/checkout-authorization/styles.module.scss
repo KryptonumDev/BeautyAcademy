@@ -1,0 +1,34 @@
+.wrapper{
+  h2{
+    margin-bottom: clamp(20px, calc(28vw/7.68), 36px);
+    max-width: 600px;
+  }
+
+  .flex{
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+
+    >aside{
+      height: fit-content;
+      max-width: 590px;
+      @media (max-width: 600px) {
+        max-width: unset;
+      }
+    }
+
+    >form{
+      max-width: 485px;
+      height: fit-content;
+      @media (max-width: 600px) {
+        max-width: unset;
+      }
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+}

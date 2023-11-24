@@ -1,0 +1,59 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 38px auto;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--background-600, #C9BBB7);
+  background: var(--background-300, #F7EFEC);
+  padding: 18px 36px 18px 24px;
+  position: relative;
+  cursor: pointer;
+
+  .label {
+    color: var(--background-800, #53423C);
+    font-size: 20px;
+    line-height: 110%;
+    letter-spacing: 0.4px;
+  }
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    left: 0;
+    top: 0;
+    position: absolute;
+  }
+
+  .checkmark{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--background-700, #7A6A65);
+    position: relative;
+
+    &::after{
+      content: "";
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--background-800, #53423C);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0;
+      transition: all .3s var(--easing);
+    }
+  }
+
+  input:checked ~ .checkmark::after{
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+
+  &[aria-invalid="true"]{
+    color: var(--danger-500);
+  }
+}

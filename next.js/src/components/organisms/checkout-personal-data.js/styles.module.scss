@@ -6,4 +6,28 @@
   .chose{
     
   }
+
+  .buttons{
+    margin-top: 48px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+  }
+
+  .form{
+    max-width: 485px;
+    width: 100%;
+    display: grid;
+    gap: 48px;
+
+    .flex{
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 177fr 280fr;
+    }
+
+    .semi{
+      max-width: 280px;
+    }
+  }
 }

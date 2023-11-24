@@ -1,4 +1,3 @@
-'use client'
 import React, { useState } from "react"
 import styles from "./styles.module.scss"
 import OAuthMethods from "@/components/organisms/oAuth-methods"
@@ -9,12 +8,10 @@ export default function Authorization({ providers }) {
 
   let data = {
     register: {
-      title: 'Регистрация',
-      text: 'Зарегистрируйтесь, чтобы получить доступ к курсам Академии Красоты'
+      text: 'Создайте аккаунт для просмотра курсов'
     },
     login: {
-      title: 'Авторизация',
-      text: 'Войдите в свой аккаунт, чтобы продолжить обучение'
+      text: 'Войдите в свой аккаунт'
     }
   }
 
@@ -22,8 +19,7 @@ export default function Authorization({ providers }) {
 
   return (
     <section className={styles.wrapper}>
-      <h1>{data.title}</h1>
-      <p>{data.text}</p>
+      <h2>{data.text}</h2>
       <div className={styles.flex}>
         <OAuthMethods providers={providers} />
         <Form registration={registration} setRegistration={setRegistration} />
