@@ -7,6 +7,7 @@ import cooperationPage from './singleTypes/cooperationPage'
 import contactPage from './singleTypes/contactPage'
 import academyPage from './singleTypes/academyPage'
 import coursesPage from './singleTypes/coursesPage'
+import TermsAndConditionsPage from './singleTypes/TermsAndConditionsPage'
 import notFoundPage from './singleTypes/notFoundPage'
 
 export const singleTypes = [
@@ -17,6 +18,7 @@ export const singleTypes = [
   contactPage,
   academyPage,
   coursesPage,
+  TermsAndConditionsPage,
   notFoundPage,
 ]
 

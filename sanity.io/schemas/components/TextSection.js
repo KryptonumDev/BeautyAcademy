@@ -37,9 +37,15 @@ export default {
       validation: Rule => Rule.min(1).max(2).required(),
     },
     {
+      name: 'img',
+      type: 'image',
+      title: 'Image',
+      validation: Rule => Rule.required(),
+    },
+    {
       name: 'video',
       type: 'file',
-      title: 'Video',
+      title: 'Video (optional)',
     },
   ],
   preview: {
@@ -49,7 +55,7 @@ export default {
     },
     prepare({ number, subtitle }) {
       return {
-        title: `[Stats] ${number} ${subtitle}`,
+        title: `[Text Section] ${number} ${subtitle}`,
       }
     }
   }
