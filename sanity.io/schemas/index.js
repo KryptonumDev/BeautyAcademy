@@ -7,6 +7,7 @@ import cooperationPage from './singleTypes/cooperationPage'
 import contactPage from './singleTypes/contactPage'
 import academyPage from './singleTypes/academyPage'
 import coursesPage from './singleTypes/coursesPage'
+import PrivacyPolicyPage from './singleTypes/PrivacyPolicyPage'
 import TermsAndConditionsPage from './singleTypes/TermsAndConditionsPage'
 import notFoundPage from './singleTypes/notFoundPage'
 
@@ -18,6 +19,7 @@ export const singleTypes = [
   contactPage,
   academyPage,
   coursesPage,
+  PrivacyPolicyPage,
   TermsAndConditionsPage,
   notFoundPage,
 ]
@@ -49,6 +51,7 @@ import ImageColumn from './components/ImageColumn'
 import TextAndImageColumn from './components/TextAndImageColumn'
 import QuickContact from './components/QuickContact'
 import HighlightedList from './components/HighlightedList'
+import { PrivacyPolicyContent } from './singleTypes/PrivacyPolicyPage'
 
 export const components = [
   global_Seo,
@@ -69,6 +72,7 @@ export const components = [
   TextAndImageColumn,
   QuickContact,
   HighlightedList,
+  PrivacyPolicyContent,
 ]
 
 export const schemaTypes = [
