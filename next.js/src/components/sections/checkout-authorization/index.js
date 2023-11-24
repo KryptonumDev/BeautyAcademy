@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import styles from "./styles.module.scss"
 import OAuthMethods from "@/components/organisms/oAuth-methods"
-import Form from "@/components/organisms/authorization-form.js"
+import Form from "@/components/organisms/authorization-form/index.js"
 
 export default function Authorization({ providers }) {
   const [registration, setRegistration] = useState(false)
