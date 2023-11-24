@@ -21,6 +21,7 @@
     object-position: 100%;
     aspect-ratio: 2/1;
     transform: rotateY(180deg);
+    align-self: stretch;
   }
   .createdAt {
     color: var(--background-700);

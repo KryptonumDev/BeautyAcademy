@@ -64,7 +64,11 @@ const Services = ({
       >
         {services_List.map(({ title, description, img }, i) => (
           <SwiperSlide key={i} className={styles.item}>
-            <Img data={img} className={styles.img} />
+            <Img
+              data={img}
+              className={styles.img}
+              sizes="100vw"
+            />
             <div>
               <Markdown className={styles.title}>{title}</Markdown>
               <Markdown>{description}</Markdown>

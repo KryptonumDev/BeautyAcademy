@@ -7,7 +7,7 @@ import rehypeRaw from "rehype-raw";
 const LinkRenderer = ({ href, children }) => {
   const isExternal = href && (href.startsWith('https://') || href.startsWith('mailto:') || href.startsWith('tel:'));
   const LinkComponent = isExternal ? 'a' : Link;
-  return <LinkComponent href={href}>{children}</LinkComponent>
+  return <LinkComponent className="link" href={href}>{children}</LinkComponent>
 };
 
 const Markdown = ({ level, children, components, ...props }) => {

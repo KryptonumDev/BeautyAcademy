@@ -3,7 +3,7 @@ import fetchData from "@/utils/fetchData";
 export const domain = 'https://beautyacademy.expert';
 export const locale = "ru";
 
-const Seo = async ({ title, description, path }) => {
+const Seo = async ({ title, description, path, ...props }) => {
   const { global } = await query();
 
   const seo = {
@@ -38,6 +38,7 @@ const Seo = async ({ title, description, path }) => {
       locale: locale,
       type: 'website',
     },
+    ...props
   }
 
   return metadata;
