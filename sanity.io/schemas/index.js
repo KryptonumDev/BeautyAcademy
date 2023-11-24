@@ -10,6 +10,8 @@ import coursesPage from './singleTypes/coursesPage'
 import PrivacyPolicyPage from './singleTypes/PrivacyPolicyPage'
 import TermsAndConditionsPage from './singleTypes/TermsAndConditionsPage'
 import notFoundPage from './singleTypes/notFoundPage'
+import PaymentSuccessfulPage from './singleTypes/PaymentSuccessfulPage'
+import PaymentFailedPage from './singleTypes/PaymentFailedPage'
 
 export const singleTypes = [
   indexPage,
@@ -22,6 +24,8 @@ export const singleTypes = [
   PrivacyPolicyPage,
   TermsAndConditionsPage,
   notFoundPage,
+  PaymentSuccessfulPage,
+  PaymentFailedPage,
 ]
 
 // Collection Types

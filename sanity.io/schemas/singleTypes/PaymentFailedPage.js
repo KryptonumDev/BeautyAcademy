@@ -1,8 +1,8 @@
 export default {
-  name: 'paymentSuccessfulPage',
-  title: 'Payment Successful',
+  name: 'paymentFailedPage',
+  title: 'Payment Failed',
   type: 'document',
-  icon: () => '✅',
+  icon: () => '❌',
   fields: [
     {
       name: 'hero_Heading',
