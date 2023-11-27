@@ -7,7 +7,7 @@
 }
 
 .categories {
-  >a {
+  > a {
     display: block;
     padding: 16px 20px 18px 20px;
     border: 1px solid var(--background-500, #F1E4E0);
@@ -31,9 +31,14 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 28px 24px;
-  margin-top: 128px;
+  @media (min-width: 600px){
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (min-width: 1000px){
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  gap: clamp(16px, calc(20vw/7.68), 24px) clamp(16px, calc(20vw/7.68), 24px);
+  margin-top: clamp(64px, calc(80vw/7.68), 128px);
 }
 
 .complexity{

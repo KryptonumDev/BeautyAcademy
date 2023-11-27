@@ -23,7 +23,7 @@ export default function Grid({ slug, products, productCategories }) {
 
   const { request } = useMutation(`
     query newProducts($endCursor: String) {
-      products(where: {categoryIn: "онлайн-курс"}, first: 1, after: $endCursor) {
+      products(where: {categoryIn: "онлайн-курс"}, first: 6, after: $endCursor) {
         nodes {
           ... on SimpleProduct {
             productId: databaseId
