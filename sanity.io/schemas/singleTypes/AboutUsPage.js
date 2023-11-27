@@ -1,3 +1,5 @@
+import { removeMarkdown } from "../../utils/functions"
+
 export default {
   name: 'aboutUsPage',
   title: 'About Us',
@@ -46,6 +48,39 @@ export default {
       options: { collapsible: true, collapsed: true }
     },
     {
+      name: 'team_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'team',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'team_List',
+      type: 'array',
+      of: [
+        {
+          type: 'team_List'
+        }
+      ],
+      title: 'List',
+      fieldset: 'team',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'team_Paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+      fieldset: 'team',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'team_Cta',
+      type: 'cta',
+      title: 'CTA',
+      fieldset: 'team',
+      validation: Rule => Rule.required(),
+    },
+    {
       name: 'cooperation_Heading',
       type: 'markdown',
       title: 'Heading',
@@ -92,6 +127,11 @@ export default {
       options: { collapsible: true }
     },
     {
+      name: 'team',
+      title: 'Team',
+      options: { collapsible: true, collapsed: true }
+    },
+    {
       name: 'cooperation',
       title: 'Cooperation',
       options: { collapsible: true, collapsed: true }
@@ -103,4 +143,56 @@ export default {
       name: 'seo',
     },
   ]
+}
+
+export const team_List = {
+  name: "team_List",
+  title: "Team List",
+  type: "object",
+  fields: [
+    {
+      name: 'img',
+      type: 'image',
+      title: 'Image',
+    },
+    {
+      name: 'name',
+      type: 'string',
+      title: 'Name',
+    },
+    {
+      name: 'paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+    },
+    {
+      name: 'partnership_Title',
+      type: 'string',
+      title: 'Partnership Title',
+    },
+    {
+      name: 'partnership_List',
+      type: 'array',
+      of: [
+        {
+          type: 'list_TitleAndImage'
+        }
+      ],
+      title: 'Partnership List',
+    },
+  ],
+  preview: {
+    select: {
+      name: 'name',
+      paragraph: 'paragraph',
+      media: 'img'
+    },
+    prepare({ name, paragraph, media }) {
+      return {
+        title: name,
+        subtitle: removeMarkdown(paragraph),
+        media
+      }
+    }
+  }
 }

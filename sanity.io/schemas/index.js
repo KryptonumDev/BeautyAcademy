@@ -1,7 +1,7 @@
 // Single Types
 import global, { global_Seo, footer_Company } from './singleTypes/global'
 import indexPage from './singleTypes/indexPage'
-import AboutUsPage from './singleTypes/AboutUsPage'
+import AboutUsPage, { team_List } from './singleTypes/AboutUsPage'
 import blogPage from './singleTypes/blogPage'
 import cooperationPage from './singleTypes/cooperationPage'
 import contactPage from './singleTypes/contactPage'
@@ -77,6 +77,7 @@ export const components = [
   QuickContact,
   HighlightedList,
   PrivacyPolicyContent,
+  team_List,
 ]
 
 export const schemaTypes = [
