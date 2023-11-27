@@ -1,9 +1,7 @@
 'use server'
-
 import { cookies } from 'next/headers'
 
 export async function create(data) {
-
   const params = {
     secure: true,
     httpOnly: true,

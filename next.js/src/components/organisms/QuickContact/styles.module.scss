@@ -1,0 +1,45 @@
+.wrapper {
+  margin: clamp(36px, calc(48vw/7.68), 48px) 0;
+  border: 1px solid var(--background-600);
+  padding: clamp(20px, calc(24vw/7.68), 24px) clamp(16px, calc(20vw/7.68), 20px);
+  header {
+    margin-bottom: clamp(28px, calc(36vw/7.68), 48px);
+  }
+  display: grid;
+  align-items: flex-start;
+  gap: clamp(16px, calc(20vw/7.68), 24px);
+  @media (min-width: 700px){
+    grid-template-columns: 1fr 2fr;
+  }
+  position: relative;
+  .form {
+    &:has(.state) > *:not(.state) {
+      visibility: hidden;
+    }
+    display: grid;
+    gap: clamp(28px, calc(36vw/7.68), 48px);
+    .state {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      left: 0;
+      top: 0;
+      width: calc(100% + 12px);
+      height: calc(100% + 12px);
+      margin: -6px;
+      background-color: var(--background-300);
+      padding: 16px var(--pageMargin);
+      svg {
+        width: clamp(48px, calc(64vw/7.68), 82px);
+        height: clamp(48px, calc(64vw/7.68), 82px);
+      }
+      h3 {
+        margin: 12px 0 16px;
+      }
+      button {
+        margin-top: 24px;
+      }
+    }
+  }
+}

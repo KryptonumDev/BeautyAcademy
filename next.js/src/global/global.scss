@@ -52,7 +52,8 @@
   --success-900: #012415;
 
   --gradient-100: linear-gradient(90deg, #F7C479, #DCA855 26.73%, #C79442 61.32%, #BC7F1D 80.54%, #BA7403);
-
+  --shadow: 4px 4px 11px 0px rgba(0,0,0,.12);
+  
   --easing: cubic-bezier(0.65, 0, 0.35, 1);
 
   --link-color: var(--primary-500);
@@ -320,50 +321,40 @@ html.lenis {
   gap: 28px;
 }
 
-.react-select__control {
-  height: 60px;
-  border-radius: 0 !important;
-  border: none !important;
-  background-color: transparent !important;
-  border-bottom: 1px solid var(--primary-700, #192A23) !important;
-  box-shadow: unset !important;
-
-  .react-select__indicator-separator {
-    display: none;
+.unorderedList {
+  display: grid;
+  gap: clamp(8px, calc(12vw/7.68), 16px);
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 8px;
+    svg {
+      width: clamp(24px, calc(28vw/7.68), 30px);
+      height: clamp(24px, calc(28vw/7.68), 30px);
+    }
+    span {
+      margin-top: .15em;
+    }
   }
 }
 
-.react-select__menu {
-  background: rgba(255, 255, 255, 0.60) !important;
-  backdrop-filter: blur(24px) !important;
-  margin: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: unset !important;
-
-  .react-select__menu-list {
-    padding: 0 !important;
-
-    .react-select__option {
-      padding: 16px 12px !important;
-      color: var(--primary-700, #192A23);
-      font-size: 20px;
-      line-height: 110%;
-      letter-spacing: 0.4px;
-      border-bottom: 1px solid transparent;
-      transition: all .3s var(--easing);
-    }
-
-    .react-select__option--is-focused {
-      background-color: transparent !important;
-      border-bottom: 1px solid var(--0001, #F7C479);
-      cursor: pointer;
-    }
-
-    .react-select__option--is-selected {
-      background: var(--background-300, #F7EFEC) !important;
-      border-bottom: 1px solid var(--0001, #F7C479) !important;
-      cursor: default;
+blockquote {
+  font-size: clamp(calc(20rem/16), calc(24vw/7.68), calc(24rem/16));
+  border: 1px solid var(--background-600);
+  padding: 5px;
+  margin-top: 25px;
+  div {
+    padding: clamp(20px, calc(24vw/7.68), 24px) clamp(16px, calc(20vw/7.68), 20px);
+    border: 1px solid var(--background-50);
+    background-color: rgba(255,255,255,.40);
+    position: relative;
+    svg {
+      right: clamp(16px, calc(20vw/7.68), 20px);
+      top: -5px;
+      transform: translateY(-50%);
+      position: absolute;
+      width: clamp(36px, calc(48vw/7.68), 48px);
+      height: auto;
     }
   }
 }

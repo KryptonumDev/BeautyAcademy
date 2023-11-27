@@ -1,23 +1,25 @@
 import React from "react"
 import NextImage from "next/image"
 
+const defaultPlaceholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/v7NfwAJigPTkfv+7gAAAABJRU5ErkJggg==";
+
 const Img = ({
   data,
+  src,
+  alt='',
+  width,
+  height,
   ...props
 }) => (
-  data?.asset.url && (
-    <NextImage
-      src={data.asset.url}
-      alt={data.asset.altText || ''}
-      width={data.asset.metadata.dimensions?.width || data.asset.metadata.width}
-      height={data.asset.metadata.dimensions?.height || data.asset.metadata.height}
-      {...(data?.asset.metadata.lqip && {
-        blurDataURL: data.asset.metadata.lqip,
-        placeholder: "blur",
-      })}
-      {...props}
-    />
-  )
+  <NextImage
+    src={data?.asset.url || src}
+    alt={data?.asset.altText || alt}
+    width={data?.asset.metadata.dimensions.width || width}
+    height={data?.asset.metadata.dimensions.height || height}
+    blurDataURL={data?.asset.metadata.lqip || defaultPlaceholder}
+    placeholder="blur"
+    {...props}
+  />
 )
 
 export default Img;

@@ -1,0 +1,15 @@
+.wrapper {
+  header {
+    max-width: calc(652rem/16);
+    .paragraph {
+      margin: clamp(20px, calc(28vw/7.68), 36px) 0 clamp(28px, calc(28vw/7.68), 36px);
+    }
+    .document {
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: clamp(28px, calc(36vw/7.68), 36px);
+    }
+  }
+}

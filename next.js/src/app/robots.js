@@ -5,6 +5,10 @@ export default function robots() {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: [
+        '/payment-successful',
+        '/payment-failed'
+      ],
     },
     sitemap: `${domain}/sitemap.xml`,
   }

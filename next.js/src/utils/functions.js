@@ -20,12 +20,93 @@ export const portableTextToMarkdown = (node) => {
   return '';
 };
 
-export const slugify = (text) => {
-  const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;',
-    b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------',
-    p = new RegExp(a.split('').join('|'), 'g');
-  return text.toString().toLowerCase().replace(/\s+/g, '-').replace(p, c => b.charAt(a.indexOf(c))).replace(/&/g, '-i-').replace(/[^\w-]+/g, '').replace(/--+/g, '-').replace(/^-+/, '').replace(/-+$/, '');
-};
+export const slugify = text => {
+  text = text.toString().toLowerCase().trim();
+  const sets = [
+    {to: 'a', from: '[ÀÁÂÃÄÅÆĀĂĄẠẢẤẦẨẪẬẮẰẲẴẶἀ]'},
+    {to: 'c', from: '[ÇĆĈČ]'},
+    {to: 'd', from: '[ÐĎĐÞ]'},
+    {to: 'e', from: '[ÈÉÊËĒĔĖĘĚẸẺẼẾỀỂỄỆ]'},
+    {to: 'g', from: '[ĜĞĢǴ]'},
+    {to: 'h', from: '[ĤḦ]'},
+    {to: 'i', from: '[ÌÍÎÏĨĪĮİỈỊ]'},
+    {to: 'j', from: '[Ĵ]'},
+    {to: 'ij', from: '[Ĳ]'},
+    {to: 'k', from: '[Ķ]'},
+    {to: 'l', from: '[ĹĻĽŁ]'},
+    {to: 'm', from: '[Ḿ]'},
+    {to: 'n', from: '[ÑŃŅŇ]'},
+    {to: 'o', from: '[ÒÓÔÕÖØŌŎŐỌỎỐỒỔỖỘỚỜỞỠỢǪǬƠ]'},
+    {to: 'oe', from: '[Œ]'},
+    {to: 'p', from: '[ṕ]'},
+    {to: 'r', from: '[ŔŖŘ]'},
+    {to: 's', from: '[ßŚŜŞŠȘ]'},
+    {to: 't', from: '[ŢŤ]'},
+    {to: 'u', from: '[ÙÚÛÜŨŪŬŮŰŲỤỦỨỪỬỮỰƯ]'},
+    {to: 'w', from: '[ẂŴẀẄ]'},
+    {to: 'x', from: '[ẍ]'},
+    {to: 'y', from: '[ÝŶŸỲỴỶỸ]'},
+    {to: 'z', from: '[ŹŻŽ]'},
+    {to: '-', from: '[·/_,:;\']'}
+  ];
+  sets.forEach(({ from, to }) => {
+    text = text.replace(new RegExp(from,'gi'), to)
+  });
+  return text
+    .replace(/\s+/g, '-')
+    .replace(/[^-a-zа-я\u0370-\u03ff\u1f00-\u1fff]+/g, '')
+    .replace(/--+/g, '-')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '')
+}
+
+export const generateTableOfContent = (ast) => {
+  const filter = (ast, match) =>
+    ast.reduce((acc, node) => {
+      if (match(node)) acc.push(node)
+      if (node.children) acc.push(...filter(node.children, match))
+      return acc
+    }, [])
+  
+  const getChildrenText = ({ children }) =>
+    children
+    .map(node => (typeof node === 'string' ? node : node.text || ''))
+    .join('')
+  
+  const findHeadings = ast =>
+    filter(ast, node => /h\d/.test(node.style)).map(node => {
+      const text = getChildrenText(node)
+      const slug = slugify(text)
+  
+      return { ...node, text, slug }
+    })
+  
+  const get = (object, path) => path.reduce((prev, curr) => prev[curr], object);
+  
+  const getObjectPath = path => {
+    return path.length === 0
+      ? path
+      : ['subheadings'].concat(path.join('.subheadings.').split('.'));
+  };
+
+  const outline = { subheadings: [] }
+  const headings = findHeadings(ast)
+  const path = []
+  let lastLevel = 0
+  headings.forEach(heading => {
+    const level = Number(heading.style.slice(1))
+    heading.subheadings = []
+
+    if (level < lastLevel) for (let i = lastLevel; i >= level; i--) path.pop()
+    else if (level === lastLevel) path.pop()
+
+    const prop = get(outline, getObjectPath(path))
+    prop.subheadings.push(heading)
+    path.push(prop.subheadings.length - 1)
+    lastLevel = level
+  })
+  return outline.subheadings
+}
 
 export const phoneValidation = (e) => {
   if (

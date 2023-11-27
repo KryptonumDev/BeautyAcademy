@@ -17,6 +17,7 @@ const BlogCard = ({
     _createdAt
   },
   withoutGrid=false,
+  aboveTheFold=false,
   ...props
 }) => {
   return (
@@ -30,11 +31,12 @@ const BlogCard = ({
         data={thumbnail}
         sizes="(max-width: 599px) 100vw, (max-width: 899px) 33vw, 50vw"
         className={styles.thumbnail}
+        priority={aboveTheFold}
       />
       <div>
         <p className={styles.createdAt}>{prettyfyDate(_createdAt)}</p>
         <h3 className={styles.name}>{name}</h3>
-        <p className={styles.breif}>{brief}</p>
+        <p className={styles.brief}>{brief}</p>
         <Button href={`/blog/${slug}`} variant='secondary' className={styles.readMore}>читать далее</Button>
       </div>
       <Link className={styles.category} href={`/blog/category/${categorySlug}`}>{categoryName}</Link>

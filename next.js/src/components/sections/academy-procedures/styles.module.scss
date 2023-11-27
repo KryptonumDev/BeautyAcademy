@@ -31,7 +31,7 @@
         grid-template-columns: 1fr 1.3fr;
       }
       .img {
-        box-shadow: 4px 4px 11px 0px rgba(0,0,0,.12);
+        box-shadow: var(--shadow);
       }
       .title {
         margin-bottom: clamp(20px, calc(28vw/7.68), 36px);
@@ -39,7 +39,7 @@
     }
   }
   .indicator {
-    margin-top: clamp(36px, calc(24vw/7.68), 36px);
+    margin-top: clamp(16px, calc(28vw/7.68), 36px);
     width: 100%;
     background-color: var(--background-500);
     div {
