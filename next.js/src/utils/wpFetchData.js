@@ -10,9 +10,11 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
-const wpFetchData = async (query, variables) => {
+const wpFetchData = async (query, variables, needAuthorization = false) => {
   try {
     let currentUser = await (async () => {
+      if(!needAuthorization) return {}
+      
       let user = await read('user');
 
       if (!user) return {}

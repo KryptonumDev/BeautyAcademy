@@ -79,7 +79,8 @@ export default function Grid({ products, productCategories }) {
     },
     onError: (error) => {
       console.log(error.message)
-    }
+    },
+    needAuth: false
   })
 
   const loadMore = () => {

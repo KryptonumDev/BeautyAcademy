@@ -10,6 +10,7 @@ export const limit = 2;
 const BlogPage = async ({ searchParams: { page = 1 } }) => {
   const pageNumber = Number(page) > 1 ? Number(page) : 1;
   const offset = Number(pageNumber) ? Number(pageNumber) * limit : limit;
+
   let {
     page: {
       hero_Heading,
@@ -121,6 +122,7 @@ const query = async (offset = limit) => {
   `, {
     limit: offset
   })
+
   return data;
 }
 

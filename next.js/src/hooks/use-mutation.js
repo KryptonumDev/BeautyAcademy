@@ -1,14 +1,14 @@
 import wpFetchData from "@/utils/wpFetchData";
 import { useState } from "react";
 
-export const useMutation = (query, { variables, onCompleted = () => { }, onError = () => { } }) => {
+export const useMutation = (query, { variables, onCompleted = () => { }, onError = () => { }, needAuth = false }) => {
   if (!query) throw new Error('Query is required')
 
   const makeRequest = (props = {}) => {
     setLoading(true)
-    wpFetchData(query, (props?.variables || variables || undefined))
+    wpFetchData(query, (props?.variables || variables || undefined), needAuth)
       .then(({ status, body }) => {
-        
+
         setLoading(false)
         onCompleted({
           status,
@@ -23,7 +23,7 @@ export const useMutation = (query, { variables, onCompleted = () => { }, onError
         });
       })
       .catch(error => {
-        
+
         onError(error)
         setLoading(false)
         if (response.body !== null || response.error !== null) setPreviousResponse(response)

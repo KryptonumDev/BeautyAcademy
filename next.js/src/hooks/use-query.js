@@ -43,7 +43,7 @@ export const useQuery = (query, obj) => {
 
   useEffect(() => {
     makeRequest()
-  }, []);
+  }, [makeRequest]);
 
   return { revalidate: makeRequest, data: response, loading, previousResponse };
 };

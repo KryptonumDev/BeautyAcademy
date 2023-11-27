@@ -39,7 +39,7 @@ export default function Orders({ data }) {
           })}
         </ul>
       ) : (
-        <NoContent text='Покупок не совершено' li nk={{ url: '/courses', title: 'Академия' }} />
+        <NoContent text='Покупок не совершено' link={{ url: '/courses', title: 'Академия' }} />
       )}
     </section>
   )

@@ -96,6 +96,6 @@ const getProducts = async () => {
       }
     }
   }
-`)
+`, {}, false)
   return data;
 }

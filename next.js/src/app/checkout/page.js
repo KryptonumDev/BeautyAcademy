@@ -1,6 +1,8 @@
 import Content from "@/components/sections/checkout-content";
 import wpFetchData from "@/utils/wpFetchData";
 
+export const dynamic = "force-dynamic"
+
 export default async function Checkout() {
   const { loginClients: providers } = await getData();
 
