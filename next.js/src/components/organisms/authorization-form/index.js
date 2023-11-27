@@ -18,7 +18,6 @@ export default function Form({ registration, setRegistration }) {
   } = useForm({ mode: 'all' })
 
   const onSubmit = (data) => {
-
     if (registration) { //SIGN UP
       fetch('/api/auth/register', {
         method: 'POST',
@@ -34,8 +33,7 @@ export default function Form({ registration, setRegistration }) {
         .then(response => response.json())
         .then(async response => {
           if (response.error) throw new Error(response.error)
-
-          router.fastRefresh();
+          nextStep()
         })
         .catch(() => {
           // TODO ERROR HANDLING
@@ -51,13 +49,14 @@ export default function Form({ registration, setRegistration }) {
         body: JSON.stringify({
           username: data.email,
           password: data.password,
+          type: 'local'
         })
       })
         .then(response => response.json())
         .then(async response => {
+          debugger
           if (response.error) throw new Error(response.error)
-
-          router.fastRefresh();
+          nextStep()
         })
         .catch(() => {
           // TODO ERROR HANDLING

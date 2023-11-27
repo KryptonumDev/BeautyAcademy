@@ -3,11 +3,10 @@ import { authenticate } from '@/lib/auth/authenticate';
 import { v4 } from "uuid";
 import { create } from "src/app/actions";
 
-async function getProviderInput(provider, req) {
+async function getProviderInput(provider, searchParams, username, password) {
   const providerEnum = provider.toUpperCase()
   switch (providerEnum) {
     case 'PASSWORD': {
-      const { username, password } = await req.json()
       return {
         clientMutationId: v4(),
         provider: providerEnum,
@@ -18,7 +17,6 @@ async function getProviderInput(provider, req) {
       };
     }
     default: {
-      const { searchParams } = new URL(req.url)
       const code = searchParams.get('code')
       const state = searchParams.get('state')
 
@@ -40,7 +38,9 @@ async function getProviderInput(provider, req) {
 }
 
 async function handler(req, { params }) {
-  const input = await getProviderInput(params.provider, req);
+  const { type, username, password } = await req.json()
+  const { searchParams } = new URL(req.url)
+  const input = await getProviderInput(params.provider, searchParams, username, password);
 
   try {
     const data = await authenticate(input);
@@ -52,8 +52,14 @@ async function handler(req, { params }) {
     let newCoockie = await create({ name: 'user', value: user, age: user.refreshTokenExpiration })
     // TODO: add cookie for auth token and refresh token
 
-    if (params.provider === 'password') {
-      return NextResponse.json({ success: true }, {
+    if (type === 'local' && params.provider === 'password') {
+      return NextResponse.json('/success', {
+        headers: {
+          'Set-Cookie': newCoockie
+        }
+      })
+    } else if (type === 'local') {
+      return NextResponse.redirect('/checkout', { // TODO: add data coockies saving, and then put it to checkout
         headers: {
           'Set-Cookie': newCoockie
         }

@@ -1,14 +1,13 @@
 'use client'
-import React, { useContext, useEffect, useMemo, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styles from './styles.module.scss'
 import Steps from "@/components/organisms/checkout-steps"
 import PersonalData from "@/components/organisms/checkout-personal-data/index.js"
 import { AppContext } from "src/context/app-context"
-import Authorization from "../checkout-authorization"
-import { Elements } from "@stripe/react-stripe-js"
-import { PaymentElement } from "@stripe/react-stripe-js"
-import { loadStripe } from "@stripe/stripe-js"
-import PaymentForm from "@/components/organisms/payment-form"
+import Authorization from "../../organisms/checkout-authorization"
+import { read } from "src/app/actions"
+import Payment from "../../organisms/checkout-payment"
+import Summary from "../../organisms/checkout-summary"
 
 const stepNames = {
   1: 'Ваши данные',
@@ -20,74 +19,70 @@ const stepNames = {
 
 const stepContent = (props) => ({
   1: <PersonalData {...props} />,
-  2: <Authorization {...props} />,
-  3: null,
-  4: null,
-  5: null,
+  2: null,
+  3: <Authorization {...props} />,
+  4: <Payment {...props} />,
+  5: <Summary {...props} />,
 })
 
 export default function Content({ providers }) {
+  const register = true
+  const delivery = false
 
   const [cart, setCart] = useContext(AppContext);
-  const [step, setStep] = useState(2)
-  const [input, setInput] = useState({});
+  const [step, setStep] = useState(5)
+  const [input, setInput] = useState({
+    "firmOrder": false,
+    "billingDifferentThanShipping": true,
+    "shipping": {
+        "firstName": "Tets ",
+        "address1": "test",
+        "city": "test",
+        "country": "PL",
+        "postcode": "12-123",
+        "email": "test@test.tes",
+        "phone": "123123123",
+        "company": ""
+    },
+    "billing": {
+        "firstName": "Tets ",
+        "address1": "test",
+        "city": "test",
+        "country": "PL",
+        "postcode": "12-123",
+        "email": "test@test.tes",
+        "phone": "123123123",
+        "company": ""
+    },
+    "paymentMethod": { name: 'card', title: 'Кредитная карта' }
+  });
   const [orderData, setOrderData] = useState(null);
-  // const [secretKey, setSecretKey] = useState(null);
 
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/api/payment/create-intent', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({ amount: 1000 })
-  //   })
-  //     .then(res => res.json())
-  //     .then(({ clientSecret, id }) => {
-  //       setSecretKey(clientSecret)
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // }, [])
+  const steps = [
+    { id: 0, name: 'Корзина' },
+    { id: 1, name: 'Ваши данные' },
+    delivery && { id: 2, name: 'Доставка' },
+    register && { id: 3, name: 'Авторизация' },
+    { id: 4, name: 'Способ оплаты' },
+    { id: 5, name: 'Подтверждение заказа' }
+  ].filter(Boolean)
 
-  const nextStep = () => {
-    let next = step
+  const nextStep = async () => {
+    const user = await read('user')
 
-    if (step === 1 && 'delivery')
-      next += 1
-    else if (step === 1 && 'registration')
-      next += 2
-    else
-      next += 3
+    let nextStep = step + 1
 
-    if (step === 2 && 'registration')
-      next += 1
-    else
-      next += 2
+    if (nextStep === 2 && !delivery) nextStep++
+    if (nextStep === 3 && (!register || user)) nextStep++
 
-    if (step === 3)
-      next += 1
-
-    if (step === 4)
-      next += 1
-
-    setStep(next)
+    setStep(nextStep)
   }
-
-  // const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
   return (
     <section className={styles.wrapper}>
       <h1>{stepNames[step]}</h1>
-      <Steps step={step} delivery={false} registration={true} />
-      {stepContent({ nextStep, input, setInput, providers })[step]}
-
-      {/* {secretKey && (
-        <Elements options={{ clientSecret: secretKey }} stripe={stripePromise} >
-          <PaymentForm />
-        </Elements>
-      )} */}
+      <Steps steps={steps} step={step} />
+      {stepContent({ nextStep, setStep, input, setInput, providers })[step]}
     </section>
   )
 }

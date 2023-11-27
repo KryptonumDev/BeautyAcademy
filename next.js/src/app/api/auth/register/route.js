@@ -15,8 +15,10 @@ export async function POST(req) {
   try {
     const data = await register(input);
     console.log(data)
-    // add login..?
+    // TODO: add login..?
     // or maybe redirect to thanks for registration
+
+    // TODO: add handler for checkout registration
 
     // const user = {
     //   ...data,

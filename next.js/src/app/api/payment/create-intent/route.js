@@ -1,16 +1,5 @@
 import { NextResponse } from "next/server";
 
-const paymentMethods = [
-  {
-    name: 'Przelewy 24',
-    type: 'p24'
-  },
-  {
-    name: 'BLIK',
-    type: 'blik'
-  }
-]
-
 const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export async function POST(req) {
@@ -18,8 +7,8 @@ export async function POST(req) {
   try {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: amount,
-      currency: "eur",
-      payment_method_types: ['p24', 'card', 'paypal'],
+      currency: "pln",
+      payment_method_types: ['blik'],
     });
 
     return NextResponse.json({

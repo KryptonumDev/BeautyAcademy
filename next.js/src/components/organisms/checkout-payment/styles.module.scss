@@ -1,0 +1,13 @@
+.grid{
+  display: grid;
+  margin-top: 48px;
+  gap: 28px;
+  max-width: 822px;
+  width: 100%;
+}
+
+.flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}

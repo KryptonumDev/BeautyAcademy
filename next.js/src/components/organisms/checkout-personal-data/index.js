@@ -9,7 +9,7 @@ import Button from "@/components/atoms/Button"
 
 export default function PersonalData({ input, nextStep, setInput }) {
   const { register, watch, handleSubmit, formState: { errors } } = useForm({
-    mode: "onBlur",
+    mode: "all",
     defaultValues: generateDefaults(input)
   })
 
@@ -42,8 +42,8 @@ export default function PersonalData({ input, nextStep, setInput }) {
             label="Название фирмы"
             type="text"
             register={register('firm', {
-              required: { value: true, message: `Name is required` },
-              minLength: { value: 2, message: `Name should have at least 2 characters` }
+              required: { value: true, message: `Введите название компании` },
+              minLength: { value: 2, message: `Название компании должно состоять минимум из 2-х символов` }
             })}
             errors={errors}
           />
@@ -52,8 +52,8 @@ export default function PersonalData({ input, nextStep, setInput }) {
             label="Имя и фамилия"
             type="text"
             register={register('name', {
-              required: { value: true, message: `Name is required` },
-              minLength: { value: 2, message: `Name should have at least 2 characters` }
+              required: { value: true, message: `Введите имя` },
+              minLength: { value: 2, message: `Имя должно состоять минимум из 2-х символов` }
             })}
             errors={errors}
           />
@@ -62,8 +62,8 @@ export default function PersonalData({ input, nextStep, setInput }) {
           label="Электронная почта"
           type="text"
           register={register('email', {
-            required: { value: true, message: `Email is required` },
-            pattern: { value: regex.email, message: `regex` }
+            required: { value: true, message: `Введите E-mail` },
+            pattern: { value: regex.email, message: `Введите правильный E-mail` }
           })}
           errors={errors}
         />
@@ -71,7 +71,7 @@ export default function PersonalData({ input, nextStep, setInput }) {
           label="Адрес"
           type="text"
           register={register('address', {
-            required: { value: true, message: `Adres is required` },
+            required: { value: true, message: `Введите адрес` },
           })}
           errors={errors}
         />
@@ -80,7 +80,7 @@ export default function PersonalData({ input, nextStep, setInput }) {
             label="Почтовый индекс"
             type="text"
             register={register('postcode', {
-              required: { value: true, message: `Postcode is required` },
+              required: { value: true, message: `Введите почтовый индекс` },
             })}
             errors={errors}
           />
@@ -88,7 +88,7 @@ export default function PersonalData({ input, nextStep, setInput }) {
             label="Город"
             type="text"
             register={register('city', {
-              required: { value: true, message: `City is required` },
+              required: { value: true, message: `Введите город` },
             })}
             errors={errors}
           />
@@ -98,8 +98,8 @@ export default function PersonalData({ input, nextStep, setInput }) {
             label="Номер телефона"
             type="text"
             register={register('phone', {
-              required: { value: true, message: `City is required` },
-              pattern: { value: regex.phone, message: `regex` }
+              required: { value: true, message: `Введите телефон` },
+              pattern: { value: regex.phone, message: `Введите телефон в формате +1234567890` }
             })}
             errors={errors}
           />
@@ -118,13 +118,13 @@ export default function PersonalData({ input, nextStep, setInput }) {
 const generateDefaults = (input) => {
   return {
     type: input?.firmOrder ? 'firm' : 'person',
-    name: input?.name || '',
-    firm: input?.firm || '',
-    email: input?.email || '',
-    address: input?.address || '',
-    postcode: input?.postcode || '',
-    city: input?.city || '',
-    phone: input?.phone || '',
+    name: input?.billing?.firstName || '',
+    firm: input?.billing?.firm || '',
+    email: input?.billing?.email || '',
+    address: input?.billing?.address1 || '',
+    postcode: input?.billing?.postcode || '',
+    city: input?.billing?.city || '',
+    phone: input?.billing?.phone || '',
   }
 }
 

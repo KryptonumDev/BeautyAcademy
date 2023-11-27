@@ -1,0 +1,69 @@
+.summary {
+  columns: 2;
+  column-gap: 100px;
+
+  .title {
+    margin-bottom: 48px;
+
+    &.flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+    }
+  }
+
+  .part {
+    break-inside: avoid;
+    margin-bottom: 48px;
+
+    .partData {
+      margin-top: 48px;
+      border: 1px solid var(--background-600, #C9BBB7);
+      background: var(--background-300, #F7EFEC);
+      padding: 48px 52px 48px 24px;
+      display: grid;
+      gap: 64px;
+
+      .flex {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: 177fr 280fr;
+      }
+    }
+
+    input,
+    label {
+      cursor: default;
+    }
+
+    .semi {
+      max-width: 280px;
+    }
+  }
+}
+
+.ending {
+  margin-top: 192px;
+
+  textarea{
+    max-width: 590px;
+    margin-bottom: 64px;
+  }
+
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+  }
+
+  button {
+    width: fit-content;
+    margin: 0;
+  }
+
+  h2 {
+    margin-bottom: 0 !important;
+  }
+}

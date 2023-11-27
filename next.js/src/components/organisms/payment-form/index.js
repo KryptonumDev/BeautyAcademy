@@ -1,8 +1,9 @@
 "use client";
-
+import Button from "@/components/atoms/Button";
 import { PaymentElement } from "@stripe/react-stripe-js";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { useElements, useStripe } from "@stripe/react-stripe-js";
 import React from "react";
+import styles from "./styles.module.scss";
 
 export default function PaymentForm() {
   const stripe = useStripe();
@@ -10,32 +11,33 @@ export default function PaymentForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const cardElement = elements?.getElement("card");
+    if (!stripe || !elements) return;
 
-    try {
-      if (!stripe || !cardElement) return null;
-      const { data } = await fetch("/api/payment/create-payment-intent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ amount: 89 }),
-      }).then((res) => res.json());
-      const clientSecret = data;
+    const { error, paymentIntent } = await stripe.confirmPayment({ // TODO: webhook for payment result
+        elements,
+        redirect: 'if_required',
+        confirmParams: {
+            return_url: `http://localhost:3000/api/payment/complete-payment`
+        }
+    })
+    debugger
+    // if (error) {
+    //     toast.error(error.message)
+    // }
 
-      await stripe?.confirmCardPayment(clientSecret, {
-        payment_method: { card: cardElement },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // if (paymentIntent?.status === 'succeeded' && typeof window !== 'undefined') {
+    //     window.location.href = `https://auto-welt.info/api/complete-payment?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}`
+    // }
+
+    // if (paymentIntent?.last_payment_error) {
+    //     toast.error('Wystąpił błąd podczas płatności. Spróbuj ponownie.')
+    // }
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <CardElement />
-      <PaymentElement/>
-      <button type="submit">Submit</button>
+    <form className={styles.form} onSubmit={onSubmit}>
+      <PaymentElement />
+      <Button type="submit">Оплачиваю</Button>
     </form>
   );
 }
