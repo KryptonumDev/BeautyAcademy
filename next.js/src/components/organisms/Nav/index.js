@@ -39,12 +39,10 @@ const Nav = () => {
   useQuery(GET_CART, {
     variables: {},
     onCompleted: ({ body }) => {
-
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.cart))
       setCart(body.data.cart)
     },
     onError: (error) => {
-
       console.log(error.message)
     }
   })

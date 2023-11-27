@@ -1,19 +1,5 @@
-import { decode } from 'jsonwebtoken';
-import { create, deleteCookie } from 'src/app/actions';
+import { isTokenExpired } from '@/utils/isTokenExpired';
 import { NextResponse } from 'next/server';
-
-function isTokenExpired(token) {
-  const decodedToken = decode(token);
-
-  if (!decodedToken?.exp) {
-    return false;
-  }
-
-  // Expiry time is in seconds, but we need milliseconds so we do *1000
-  const expiresAt = new Date((decodedToken.exp) * 1000);
-  const now = new Date();
-  return now.getTime() > expiresAt.getTime();
-}
 
 // Our refresh token call to WPGraphQL.
 async function refreshAuthToken(refreshToken) {
@@ -51,48 +37,42 @@ async function refreshAuthToken(refreshToken) {
 }
 
 export async function POST(req) {
-  let user = await req.json()
-  // If the user doesn't have a refrsh token, they're not logged in.
-  if (!user?.refreshToken) {
-    await deleteCookie('user')
+  let { authToken, refreshToken } = await req.json()
 
-    return NextResponse.json({
+  // If the user doesn't have a refrsh token, they're not logged in.
+  if (!refreshToken) {
+    let response = NextResponse.json({
       error: 'User is not logged in. 1'
-    });
+    })
+    response.cookies.set('user', null)
+    return response
   }
 
-  if (!user?.authToken || isTokenExpired(user.authToken)) {
+  if (!authToken || isTokenExpired(authToken)) {
     try {
-      const { authToken } = await refreshAuthToken(
-        user.refreshToken
-      );
+      const { authToken } = await refreshAuthToken(refreshToken);
 
       // If the auth token is empty, log the user out.
       if (!authToken) {
-        return NextResponse.json({
-          error: 'User is not logged in. 2'
-        });
+        let response = NextResponse.json({
+          error: 'Auth token is empty.'
+        })
+        response.cookies.set('user', null)
+        return response
       }
 
-      user.authToken = authToken;
-      user.isLoggedIn = true;
+      let response = NextResponse.json({ authToken: authToken })
+      response.cookies.set('authToken', authToken, { expires: new Date(5 * 60 * 1000), sameSite: 'strict' })
+      return response
 
-      const newUser = await create({ name: 'user', value: user, age: user.refreshTokenExpiration });
-
-      return NextResponse.json({ user }, {
-        headers: {
-          'Set-Cookie': newUser
-        }
-      })
     } catch (e) {
-      // console.log(e)
       // This means the mutation failed, so the user is not logged in.
       // We don't destroy the session here, because we want to keep the stale data in case the server fixes itself.
       return NextResponse.json({
-        error: 'User is not logged in. 3'
+        error: 'Mutation failed.'
       });
     }
   }
-  // If we get here, the user is logged in.
-  return NextResponse.json({ user })
+
+  return NextResponse.json({ authToken: authToken })
 }

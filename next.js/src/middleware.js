@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import wpFetchData from './utils/wpFetchData'
 
 export async function middleware(request) {
-  let logged = request.cookies.get('user')
+  let logged = request.cookies.get('refreshToken')
 
   if (request.nextUrl.pathname.startsWith('/dashboard') && !logged)
     return NextResponse.redirect(new URL('/authorization', request.url))

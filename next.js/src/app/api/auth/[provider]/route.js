@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { authenticate } from '@/lib/auth/authenticate';
 import { v4 } from "uuid";
-import { create } from "src/app/actions";
 
 async function getProviderInput(provider, searchParams, username, password) {
   const providerEnum = provider.toUpperCase()
@@ -45,40 +44,32 @@ async function handler(req, { params }) {
   try {
     const data = await authenticate(input);
 
-    const user = {
-      ...data,
-      isLoggedIn: true,
-    };
-    let newCoockie = await create({ name: 'user', value: user, age: user.refreshTokenExpiration })
-    // TODO: add cookie for auth token and refresh token
+    const setCookie = (response) => {
+      response.cookies.set('user', JSON.stringify(data.user), { expires: new Date(data.refreshTokenExpiration * 1000), secure: true, httpOnly: true, sameSite: 'strict' })
+      response.cookies.set('woocommerce-session', data.sessionToken)
+      response.cookies.set('authToken', data.authToken, { expires: new Date(data.authTokenExpiration * 1000), sameSite: 'strict' })
+      response.cookies.set('refreshToken', data.refreshToken, { expires: new Date(data.refreshTokenExpiration * 1000), secure: true, httpOnly: true, sameSite: 'strict' })
 
-    if (type === 'local' && params.provider === 'password') {
-      return NextResponse.json('/success', {
-        headers: {
-          'Set-Cookie': newCoockie
-        }
-      })
-    } else if (type === 'local') {
-      return NextResponse.redirect('/checkout', { // TODO: add data coockies saving, and then put it to checkout
-        headers: {
-          'Set-Cookie': newCoockie
-        }
-      })
-    } else {
-      return NextResponse.redirect('/dashboard', {
-        headers: {
-          'Set-Cookie': newCoockie
-        }
-      })
+      return response
+    }
+
+    if (type === 'local' && params.provider === 'password') { // login in checkout by password
+
+      let response = NextResponse.json({ success: true })
+      return setCookie(response)
+
+    } else if (type === 'local') { // login in checkout page by external provider
+
+      let response = NextResponse.redirect('/checkout') // TODO: add prev data to checkout
+      return setCookie(response)
+    } else { // login in authorize page
+
+      let response = NextResponse.redirect('/dashboard')
+      return setCookie(response)
     }
   } catch (e) {
     console.log(e)
     //TODO: add error handling
-    // Do something with the error
-    // NextResponse.status( 401 ).json( { error: e.message } );
-
-    // Or redirect them to the login page.
-    // return NextResponse.redirect('http://localhost:3000/dashboard/test')
   }
 }
 

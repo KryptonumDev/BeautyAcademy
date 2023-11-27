@@ -1,29 +1,27 @@
 import wpFetchData from "@/utils/wpFetchData";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-export const useMutation = (query, { variables, onCompleted = () => { }, onError = () => { }, needAuth = false }) => {
+export const useMutation = (query, { variables, onCompleted = () => { }, onError = () => { }}) => {
   if (!query) throw new Error('Query is required')
 
-  const makeRequest = (props = {}) => {
+  const makeRequest = useCallback((props) => {
     setLoading(true)
-    wpFetchData(query, (props?.variables || variables || undefined), needAuth)
-      .then(({ status, body }) => {
-
+    wpFetchData(query, (props?.variables || variables || undefined))
+      .then(({ body }) => {
         setLoading(false)
         onCompleted({
-          status,
+          status: 'success',
           body,
           error: null
         })
         if (response.body !== null || response.error !== null) setPreviousResponse(response)
         setResponse({
-          status,
+          status: 'success',
           body,
           error: null
         });
       })
       .catch(error => {
-
         onError(error)
         setLoading(false)
         if (response.body !== null || response.error !== null) setPreviousResponse(response)
@@ -33,7 +31,7 @@ export const useMutation = (query, { variables, onCompleted = () => { }, onError
           error
         });
       });
-  }
+  }, [])
 
   const [loading, setLoading] = useState(false);
   const [previousResponse, setPreviousResponse] = useState(null);

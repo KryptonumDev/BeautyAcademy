@@ -4,6 +4,8 @@ import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import fetchData from "@/utils/fetchData";
 import wpFetchData from "@/utils/wpFetchData";
 
+export const dynamic = "force-dynamic"
+
 export default async function Courses() {
   const { page } = await getData();
   const { products, productCategories } = await getProducts();

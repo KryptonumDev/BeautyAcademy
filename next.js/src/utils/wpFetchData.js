@@ -10,44 +10,47 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
-const wpFetchData = async (query, variables, needAuthorization = false) => {
+const wpFetchData = async (query, variables, revalidate = 0) => {
   try {
-    let currentUser = await (async () => {
-      if(!needAuthorization) return {}
-      
-      let user = await read('user');
+    const headers = { 'Content-Type': 'application/json' };
 
-      if (!user) return {}
+    const authToken = await (async () => {
+      // TODO: check if auth needed
+      let authToken = await read('authToken');
+      let refreshToken = await read('refreshToken');
 
-      let newUser = await fetch('http://localhost:3000/api/auth/user', {
+      if (!authToken && !refreshToken) return null
+
+      let newToken = await fetch('http://localhost:3000/api/auth/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: user?.value
+        body: JSON.stringify({
+          authToken: authToken?.value,
+          refreshToken: refreshToken?.value,
+        })
       })
         .then(async res => res.json())
         .then(async (res) => {
           if (res.error) {
             console.log(res.error)
-            return {}
+            return null
           }
-          return res.user
+          return res.authToken
         })
 
-      return newUser
+      return newToken
     })()
-    let session = await read('woocommerce-session') || currentUser?.sessionToken //TODO: rework
-    session = session?.value || session
 
-    const headers = { 'Content-Type': 'application/json' };
+    let sessionToken = await read('woocommerce-session')
 
-    if (currentUser?.authToken) {
-      headers['Authorization'] = `Bearer ${currentUser.authToken}`;
+    if (authToken) {
+      headers['Authorization'] = `Bearer ${authToken}`;
     }
 
-    if (session) {
-      headers['woocommerce-session'] = `Session ${session}`;
+    if (sessionToken) {
+      headers['woocommerce-session'] = `Session ${sessionToken.value}`;
     }
 
     const response = await fetch('https://wp.beautyacademy.expert/graphql', {
@@ -58,14 +61,13 @@ const wpFetchData = async (query, variables, needAuthorization = false) => {
         ...(variables ? { variables } : {}),
       }),
       next: {
-        revalidate: 0,
+        revalidate: revalidate,
       },
     });
 
-    const sessionToken = response.headers?.get('woocommerce-session')
+    if (!sessionToken) {
+      sessionToken = response.headers?.get('woocommerce-session')
 
-    if (sessionToken) {
-      currentUser.sessionToken = sessionToken
       if (typeof document !== 'undefined')
         setCookie('woocommerce-session', sessionToken, 30)
     }
