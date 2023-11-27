@@ -34,7 +34,7 @@ const Slider = ({ list }) => {
         coverflowEffect={{
           depth: 0,
           rotate: 0,
-          stretch: 80,
+          stretch: 200,
           scale: 0.8,
           slideShadows: false,
         }}

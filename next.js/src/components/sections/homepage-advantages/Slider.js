@@ -31,6 +31,7 @@ const Slider = ({ list }) => {
         modules={[A11y]}
         className={styles.swiper}
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
+        onReachEnd={() => setActiveIndex(list.length-1)}
       >
         {list.map(({ title, description, img }, i) => (
           <SwiperSlide className={styles.item} key={i}>
