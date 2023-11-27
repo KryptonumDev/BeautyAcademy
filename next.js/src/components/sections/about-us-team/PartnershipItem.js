@@ -20,10 +20,11 @@ const PartnershipItem = ({ title, img, ...props }) => {
   }
 
   useEffect(() => {
+    const item = wrapper.current;
     const mediaQuery = window.matchMedia('(pointer: fine)');
     if (mediaQuery.matches) {
-      wrapper.current.addEventListener('mousemove', handleMouseMove);
-      return () => wrapper.current.removeEventListener('mousemove', handleMouseMove);
+      item.addEventListener('mousemove', handleMouseMove);
+      return () => item.removeEventListener('mousemove', handleMouseMove);
     }
   }, [])
 
