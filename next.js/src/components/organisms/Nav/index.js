@@ -121,46 +121,45 @@ const Nav = () => {
             <span></span>
             <span></span>
           </button>
+          <div className={`${styles.cart} ${cart?.contents?.nodes?.length > 0 ? '' : styles.emptyCart}`}>
+            <div className={styles.header}>
+              <h3>Корзина</h3>
+              <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
+            </div>
+            {cart?.contents?.nodes?.length > 0 ? (
+              <>
+                <div className={styles.items}>
+                  {cart?.contents?.nodes.map((el, index) => (
+                    <CartItem updateCart={updateCart} key={index} index={index} products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
+                  ))}
+                </div>
+                <div className={styles.footer}>
+                  <label>
+                    {/* discount label */}
+                  </label>
+                  <div className={styles.total}>
+                    <p><span>Сумма</span><span dangerouslySetInnerHTML={{ __html: cart?.total }} /></p>
+                    {/* <p><span>Скидка</span><span>{cart?.discountTotal}</span></p> */}
+                    <Button onClick={() => { setCartOpened(false) }} href='/checkout'>Оформить заказ</Button>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className={styles.empty}>
+                <Sygn />
+                <h2>Ваша корзина пуста</h2>
+                <Button onClick={() => { setCartOpened(false) }} href="/courses">
+                  Наши курсы
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
         <div
           className={styles.overlay}
           aria-hidden="true"
           onClick={() => { setNavOpened(false); setCartOpened(false) }}
         />
-
-        <div className={`${styles.cart} ${cart?.contents?.nodes?.length > 0 ? '' : styles.emptyCart}`}>
-          <div className={styles.header}>
-            <h3>Корзина</h3>
-            <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
-          </div>
-          {cart?.contents?.nodes?.length > 0 ? (
-            <>
-              <div className={styles.items}>
-                {cart?.contents?.nodes.map((el, index) => (
-                  <CartItem updateCart={updateCart} key={index} index={index} products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
-                ))}
-              </div>
-              <div className={styles.footer}>
-                <label>
-                  {/* discount label */}
-                </label>
-                <div className={styles.total}>
-                  <p><span>Сумма</span><span dangerouslySetInnerHTML={{ __html: cart?.total }} /></p>
-                  {/* <p><span>Скидка</span><span>{cart?.discountTotal}</span></p> */}
-                  <Button onClick={() => { setCartOpened(false) }} href='/checkout'>Оформить заказ</Button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <div className={styles.empty}>
-              <Sygn />
-              <h2>Ваша корзина пуста</h2>
-              <Button onClick={() => { setCartOpened(false) }} href="/courses">
-                Наши курсы
-              </Button>
-            </div>
-          )}
-        </div>
       </header>
     </>
   );
