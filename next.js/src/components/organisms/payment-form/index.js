@@ -20,18 +20,18 @@ export default function PaymentForm() {
             return_url: `http://localhost:3000/api/payment/complete-payment`
         }
     })
-    debugger
-    // if (error) {
-    //     toast.error(error.message)
-    // }
 
-    // if (paymentIntent?.status === 'succeeded' && typeof window !== 'undefined') {
-    //     window.location.href = `https://auto-welt.info/api/complete-payment?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}`
-    // }
+    if (error) {
+      // TODO:
+    }
 
-    // if (paymentIntent?.last_payment_error) {
-    //     toast.error('Wystąpił błąd podczas płatności. Spróbuj ponownie.')
-    // }
+    if (paymentIntent?.status === 'succeeded' && typeof window !== 'undefined') {
+        // window.location.href = `https://auto-welt.info/api/complete-payment?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}`
+    }
+
+    if (paymentIntent?.last_payment_error) {
+      // TODO:
+    }
   };
 
   return (

@@ -33,6 +33,7 @@ export default function Payment({ nextStep, setInput, input }) {
         <div className={styles.grid}>
           {methods.map(el => (
             <Radio
+              key={el.name}
               value={el.name}
               label={el.title}
               register={register('type')}

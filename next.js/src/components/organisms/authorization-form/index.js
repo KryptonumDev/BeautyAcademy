@@ -6,10 +6,10 @@ import Checkbox from "@/components/moleculas/Checkbox";
 import { regex } from "@/global/constants";
 import Link from "next/link";
 import Button from "@/components/atoms/Button";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
-export default function Form({ registration, setRegistration }) {
-  const router = useRouter();
+export default function Form({ nextStep, registration, setRegistration }) {
+  // const router = useRouter();
 
   const {
     register,
@@ -54,7 +54,6 @@ export default function Form({ registration, setRegistration }) {
       })
         .then(response => response.json())
         .then(async response => {
-          debugger
           if (response.error) throw new Error(response.error)
           nextStep()
         })

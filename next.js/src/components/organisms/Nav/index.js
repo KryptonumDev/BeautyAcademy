@@ -20,7 +20,7 @@ const Nav = () => {
   const [navOpened, setNavOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
   const [cart, setCart] = useContext(AppContext)
-  const [loading, setLoading] = useState(false)
+  const [, setLoading] = useState(false)
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -36,22 +36,22 @@ const Nav = () => {
     }
   }
 
-  const { revalidate, data } = useQuery(GET_CART, {
+  useQuery(GET_CART, {
     variables: {},
-    onCompleted: ({ body, status }) => {
-      
+    onCompleted: ({ body }) => {
+
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.cart))
       setCart(body.data.cart)
     },
     onError: (error) => {
-      
+
       console.log(error.message)
     }
   })
 
   const { request: updateCart } = useMutation(UPDATE_CART, {
     onCompleted: ({ body }) => {
-      
+
       // Update cart in the localStorage.
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.updateItemQuantities.cart));
       // Update cart data in React Context.
@@ -60,7 +60,7 @@ const Nav = () => {
       setLoading(false)
     },
     onError: (error) => {
-      
+
       setLoading(false)
       console.log(error.message);
     }

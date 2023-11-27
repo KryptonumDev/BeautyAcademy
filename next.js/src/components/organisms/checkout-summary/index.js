@@ -9,7 +9,7 @@ import Checkbox from "@/components/moleculas/Checkbox";
 import Radio from "@/components/moleculas/radio";
 import Input from "@/components/moleculas/Input";
 
-export default function Summary({ input, setInput, setStep }) {
+export default function Summary({ input, setStep }) {
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'all',
     defaultValues: generateDefaults(input)
@@ -27,7 +27,7 @@ export default function Summary({ input, setInput, setStep }) {
       body: JSON.stringify({ amount: 1000 })
     })
       .then(res => res.json())
-      .then(({ clientSecret, id }) => {
+      .then(({ clientSecret }) => {
         setSecretKey(clientSecret)
       })
       .catch(err => {

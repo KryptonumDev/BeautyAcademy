@@ -74,11 +74,10 @@ export default function Grid({ products, productCategories }) {
       }
     }
   `, {
-    onCompleted: ({ body, status }) => {
+    onCompleted: ({ body }) => {
       setNewProducts({ nodes: [...newProducts.nodes, ...body.data.products.nodes], pageInfo: body.data.products.pageInfo })
     },
     onError: (error) => {
-      debugger
       console.log(error.message)
     }
   })

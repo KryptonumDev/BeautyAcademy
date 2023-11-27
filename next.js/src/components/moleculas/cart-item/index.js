@@ -37,7 +37,13 @@ export default function CartItem({ updateCart, products, remove, data, index }) 
 
   return (
     <div className={styles.wrapper}>
-      <Img className={styles['image']} data={{ asset: data.product.node.asset }} />
+      <Img
+        className={styles['image']}
+        height={data.product.node.asset.metadata.height}
+        width={data.product.node.asset.metadata.width}
+        src={data.product.node.asset.url}
+        alt={data.product.node.asset.altText}
+      />
       <div className={styles['title']}>
         <div>
           <p title={data.product.node.name}>{data.product.node.name}</p>
@@ -49,14 +55,14 @@ export default function CartItem({ updateCart, products, remove, data, index }) 
           <span>Количество</span>
         )}
         <div className={styles['calculator']}>
-          <button type="button" className={styles['minus']} onClick={(e) => { handleQtyChange(event, data.key, productCount - 1) }}>-</button>
+          <button type="button" className={styles['minus']} onClick={(event) => { handleQtyChange(event, data.key, productCount - 1) }}>-</button>
           <input
             readOnly={true}
             value={productCount}
             min="1"
-            onChange={(event) => handleQtyChange(event, item.key)}
+            onChange={(event) => handleQtyChange(event, data.key)}
           />
-          <button type="button" className={styles['plus']} onClick={(e) => { handleQtyChange(event, data.key, productCount + 1) }}>+</button>
+          <button type="button" className={styles['plus']} onClick={(event) => { handleQtyChange(event, data.key, productCount + 1) }}>+</button>
         </div>
       </div>
       <div className={`${styles['price']} ${!index ? styles['row'] : ''}`}>

@@ -1,9 +1,9 @@
 'use client'
-import React, { useContext, useEffect, useState } from "react"
+import React, { useState } from "react"
 import styles from './styles.module.scss'
 import Steps from "@/components/organisms/checkout-steps"
 import PersonalData from "@/components/organisms/checkout-personal-data/index.js"
-import { AppContext } from "src/context/app-context"
+// import { AppContext } from "src/context/app-context"
 import Authorization from "../../organisms/checkout-authorization"
 import { read } from "src/app/actions"
 import Payment from "../../organisms/checkout-payment"
@@ -29,7 +29,7 @@ export default function Content({ providers }) {
   const register = true
   const delivery = false
 
-  const [cart, setCart] = useContext(AppContext);
+  // const [cart, setCart] = useContext(AppContext);
   const [step, setStep] = useState(5)
   const [input, setInput] = useState({
     "firmOrder": false,
@@ -56,7 +56,7 @@ export default function Content({ providers }) {
     },
     "paymentMethod": { name: 'card', title: 'Кредитная карта' }
   });
-  const [orderData, setOrderData] = useState(null);
+  // const [orderData, setOrderData] = useState(null);
 
   const steps = [
     { id: 0, name: 'Корзина' },
