@@ -1,10 +1,13 @@
-const fetchData = async (query) => {
+const fetchData = async (query, variables) => {
   try {
     const response = await fetch(process.env.GRAPHQL_ENDPOINT, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({
         ...{ query },
+        ...(variables && { variables })
       }),
       next: {
         revalidate: 3600,

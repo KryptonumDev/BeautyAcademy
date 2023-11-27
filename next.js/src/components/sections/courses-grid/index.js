@@ -17,7 +17,7 @@ const DropdownIndicator = props => {
   )
 }
 
-export default function Grid({ products, productCategories }) {
+export default function Grid({ slug, products, productCategories }) {
 
   const [newProducts, setNewProducts] = useState(products)
 
@@ -92,7 +92,7 @@ export default function Grid({ products, productCategories }) {
       <div className={styles.control}>
         <div className={styles.categories}>
           {productCategories?.nodes?.map((category, index) => (
-            <Link key={index} className={styles.button} href={`/blog/category/${category.slug}`}>
+            <Link key={index} className={`${styles.button} ${slug === category.slug ? styles.active : ''}`} href={`/courses/category/${category.slug}`}>
               {category.name}
             </Link>
           ))}
