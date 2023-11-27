@@ -208,15 +208,22 @@
   max-width: 875px;
   padding: clamp(28px, calc(48vw/7.68), 48px) clamp(16px, calc(32vw/7.68), 80px) clamp(20px, calc(36vw/7.68), 36px) clamp(16px, calc(28vw/7.68), 48px);
   transition: transform .6s var(--easing);
+  align-items: unset !important;
+  justify-content: unset!important;
+
+  &.emptyCart {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+  }
 
   .empty {
-    margin: 0 auto;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100%;
+    width: 100%;
   }
 
   .header {
@@ -245,13 +252,18 @@
 
   h2 {
     margin: clamp(16px, calc(16vw/7.68), 20px) 0 clamp(28px, calc(28vw/7.68), 36px) 0;
+    font-size: clamp(2rem, calc(36vw/7.68), 3rem); 
+  }
+
+  h3{
+    font-size: clamp(2rem, calc(36vw/7.68), 3rem); 
   }
 
   .total {
     max-width: 280px;
     width: 100%;
 
-    >a{
+    >a {
       display: block;
       margin-left: auto;
       margin-top: 20px;

@@ -6,6 +6,7 @@ import Newsletter from "@/components/sections/newsletter";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import TextSection from "@/components/sections/text-section";
 import Breadcrumbs from "@/components/organisms/Breadcrumbs";
+import Team from "@/components/sections/about-us-team";
 
 const pathname = '/about-us';
 
@@ -17,6 +18,10 @@ const AboutUsPage = async () => {
     hero_Img,
     textSection,
     textSection2,
+    team_Heading,
+    team_List,
+    team_Paragraph,
+    team_Cta,
     cooperation_Heading,
     cooperation_Cta,
     cooperation_Img,
@@ -37,6 +42,12 @@ const AboutUsPage = async () => {
       }} />
       <TextSection data={textSection} />
       <TextSection data={textSection2} />
+      <Team {...{
+        team_Heading,
+        team_List,
+        team_Paragraph,
+        team_Cta,
+      }} />
       <Cooperation data={{
         cooperation_Heading,
         cooperation_Cta,
@@ -105,6 +116,49 @@ const query = async () => {
             href
           }
           # about_Video
+        }
+
+        # Team
+        team_Heading
+        team_List {
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          name
+          paragraph
+          partnership_Title
+          partnership_List {
+            title
+            img {
+              asset {
+                altText
+                url
+                metadata {
+                  lqip
+                  dimensions {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+        }
+        team_Paragraph
+        team_Cta {
+          theme
+          text
+          href
         }
 
         # Cooperation

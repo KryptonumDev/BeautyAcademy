@@ -1,0 +1,96 @@
+.wrapper {
+  .header {
+    max-width: calc(794rem/16);
+    margin: 0 auto;
+    text-align: center;
+    .cta {
+      margin-top: clamp(28px, calc(36vw/7.68), 36px);
+    }
+  }
+  .list {
+    margin: clamp(36px, calc(48vw/7.68), 80px) 0;
+    display: grid;
+    gap: clamp(36px, calc(48vw/7.68), 80px);
+    > .item {
+      display: grid;
+      gap: clamp(28px, calc(36vw/7.68), 36px) clamp(48px, calc(64vw/7.68), 82px);
+      align-items: center;
+      @media (min-width: 900px){
+        grid-template-columns: 1fr 1.2fr;
+        &:nth-child(2n) {
+          grid-template-columns: 1.2fr 1fr;
+          .img {
+            order: 2;
+          }
+        }
+      }
+      > .img {
+        border: 2px solid;
+        border-image: var(--gradient-100) 2;
+        padding: 8px;
+        img {
+          box-shadow: var(--shadow);
+        }
+      }
+      h3 {
+        font-size: clamp(calc(32rem/16), calc(36vw/7.68), calc(64rem/16));
+      }
+      .paragraph {
+        margin-top: clamp(24px, calc(36vw/7.68), 36px);
+        > *:not(:last-child) {
+          margin-bottom: 16px;
+        }
+      }
+      .partnership {
+        > p {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: var(--background-700);
+          font-size: 1rem;
+          margin-bottom: 16px;
+        }
+        .wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          align-items: center;
+          .item {
+            cursor: default;
+            &:not(:hover){
+              svg {
+                stroke: var(--background-600);
+              }
+            }
+            svg {
+              width: 1em;
+            }
+            position: relative;
+            .img {
+              position: absolute;
+              z-index: 2;
+              pointer-events: none;
+              width: 86px;
+              height: 86px;
+              img {
+                display: block;
+                width: 86px;
+                height: 86px;
+                transform: scale(0);
+                transition: transform .5s var(--easing);
+              }
+            }
+            &:hover {
+              .img img {
+                transform: scale(1);
+              }
+            }
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+        }
+      }
+    }
+  }
+}

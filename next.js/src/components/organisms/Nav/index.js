@@ -51,7 +51,6 @@ const Nav = () => {
 
   const { request: updateCart } = useMutation(UPDATE_CART, {
     onCompleted: ({ body }) => {
-
       // Update cart in the localStorage.
       localStorage.setItem('woo-next-cart', JSON.stringify(body.data.updateItemQuantities.cart));
       // Update cart data in React Context.
@@ -60,7 +59,6 @@ const Nav = () => {
       setLoading(false)
     },
     onError: (error) => {
-
       setLoading(false)
       console.log(error.message);
     }
@@ -132,7 +130,7 @@ const Nav = () => {
           onClick={() => { setNavOpened(false); setCartOpened(false) }}
         />
 
-        <div className={styles.cart}>
+        <div className={`${styles.cart} ${cart?.contents?.nodes?.length > 0 ? '' : styles.emptyCart}`}>
           <div className={styles.header}>
             <h3>Корзина</h3>
             <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
