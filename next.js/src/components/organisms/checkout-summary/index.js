@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import Checkbox from "@/components/moleculas/Checkbox";
 import Radio from "@/components/moleculas/radio";
 import Input from "@/components/moleculas/Input";
+import Cart from "../checkout-cart";
 
 export default function Summary({ input, setStep }) {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -44,6 +45,7 @@ export default function Summary({ input, setStep }) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} >
+        <Cart />
         <div className={styles.summary}>
           <div className={styles.part}>
             <h2 className={styles.title}>Вы покупаете как</h2>

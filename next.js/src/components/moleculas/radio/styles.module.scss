@@ -5,13 +5,13 @@
   gap: 12px;
   border: 1px solid var(--background-600, #C9BBB7);
   background: var(--background-300, #F7EFEC);
-  padding: 18px 36px 18px 24px;
+  padding: clamp(14px, calc(18vw/7.68), 18px) 36px  clamp(14px, calc(18vw/7.68), 18px)  clamp(20px, calc(24vw/7.68), 24px);
   position: relative;
   cursor: pointer;
 
   .label {
     color: var(--background-800, #53423C);
-    font-size: 20px;
+    font-size: clamp(16px, calc(18vw/7.68 ), 20px);
     line-height: 110%;
     letter-spacing: 0.4px;
   }

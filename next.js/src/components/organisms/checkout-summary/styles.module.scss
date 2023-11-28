@@ -1,6 +1,12 @@
 .summary {
+  margin-top: clamp(96px, calc(144vw/7.68), 192px);
   columns: 2;
-  column-gap: 100px;
+  column-gap: 48px;
+
+  @media (max-width: 899px) {
+    columns: 1;
+
+  }
 
   .title {
     margin-bottom: 48px;
@@ -9,26 +15,40 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 32px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
   }
 
   .part {
     break-inside: avoid;
     margin-bottom: 48px;
+    max-width: 560px;
 
     .partData {
       margin-top: 48px;
       border: 1px solid var(--background-600, #C9BBB7);
       background: var(--background-300, #F7EFEC);
-      padding: 48px 52px 48px 24px;
+      padding: clamp(20px, calc(28vw/7.68), 48px) clamp(16px, calc(24vw/7.68), 52px) clamp(20px, calc(28vw/7.68), 48px) clamp(16px, calc(24vw/7.68), 24px);
       display: grid;
-      gap: 64px;
+      gap: clamp(36px, calc(48vw/7.68), 64px);
 
       .flex {
         display: grid;
+        align-items: flex-end;
         gap: 28px;
         grid-template-columns: 177fr 280fr;
+
+        @media (max-width: 480px) {
+          grid-template-columns: 1fr;
+          gap: clamp(36px, calc(48vw/7.68), 64px);
+
+          label {
+            &:first-child {
+              max-width: 150px;
+            }
+          }
+        }
       }
     }
 
@@ -44,9 +64,9 @@
 }
 
 .ending {
-  margin-top: 192px;
+  margin-top: clamp(96px, calc(144vw/7.68), 192px);
 
-  textarea{
+  textarea {
     max-width: 590px;
     margin-bottom: 64px;
   }
@@ -55,11 +75,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 32px;
+    gap: 28px;
+    flex-wrap: wrap;
   }
 
   button {
-    width: fit-content;
     margin: 0;
   }
 
