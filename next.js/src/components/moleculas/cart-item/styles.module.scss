@@ -2,6 +2,52 @@
   display: grid;
   grid-template-columns: 104px 149fr 152fr 92fr 99fr;
   gap: 48px;
+  height: fit-content;
+
+  @media(max-width: 840px){
+    gap: 16px;
+  }
+
+  @media(max-width: 640px){
+    grid-template-columns: 68px 1fr auto;
+    grid-template-areas: 
+    'image title trash'
+    'calculator calculator price';
+
+    gap: 12px 8px;
+
+    .image{
+      grid-area: image;
+    }
+
+    .title{
+      grid-area: title;
+    }
+
+    .remove{
+      grid-area: trash;
+      align-items: flex-start !important;
+    }
+
+    .quantity{
+      grid-area: calculator;
+      width: fit-content;
+
+      button{
+        width: 50px;
+        height: 64px;
+      }
+
+      input{
+        height: 58px;
+        width: 50px;
+      }
+    }
+
+    .price{
+      grid-area: price;
+    }
+  }
 
   small {
     color: var(--grey-1, #808080);
@@ -14,6 +60,11 @@
     display: flex;
     gap: 12px;
     margin-left: -36px;
+    font-size: clamp(18px, calc(20vw/7.68), 20px);
+
+    @media(max-width: 840px){
+      margin-left: 0;
+    }
   }
 
   .row {
@@ -22,9 +73,22 @@
     gap: 16px;
     text-align: center;
     margin: 0 !important;
-  }
 
-  .price {}
+    span{
+      font-size: 16px;
+
+      @media(max-width: 640px){
+        display: none;
+      }
+    }
+
+    div{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
   .quantity {
     
@@ -37,6 +101,7 @@
 
       input{
         text-align: center;
+        font-size: 20px;
       }
     }
 
@@ -87,7 +152,7 @@
       display: -webkit-box;
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
-      font-size: 20px;
+      font-size: clamp(18px, calc(20vw/7.68), 20px);
       line-height: 175%;
       letter-spacing: 0.32px;
       color: #53423C;

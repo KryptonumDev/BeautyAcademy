@@ -1,26 +1,16 @@
 'use client';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
-import { Logo, Sygn } from '@/components/atoms/Icons';
+import { Logo } from '@/components/atoms/Icons';
 import { usePathname } from 'next/navigation';
-import { AppContext } from 'src/context/app-context';
-import { GET_CART } from 'src/queries/get-cart';
-import { UPDATE_CART } from 'src/mutations/update-cart';
-import { useQuery } from 'src/hooks/use-query';
-import { useMutation } from 'src/hooks/use-mutation';
-import Button from '@/components/atoms/Button';
 import { links } from 'src/app/layout';
-import CartItem from '@/components/moleculas/cart-item';
-import { getUpdatedItems } from '@/utils/getUpdatedItems';
-import { v4 } from 'uuid';
+import Cart from '../cart';
 
 const Nav = () => {
   const pathname = usePathname();
   const [navOpened, setNavOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
-  const [cart, setCart] = useContext(AppContext)
-  const [, setLoading] = useState(false)
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -35,52 +25,6 @@ const Nav = () => {
       setCartOpened(false);
     }
   }
-
-  useQuery(GET_CART, {
-    variables: {},
-    onCompleted: ({ body }) => {
-      localStorage.setItem('woo-next-cart', JSON.stringify(body.data.cart))
-      setCart(body.data.cart)
-    },
-    onError: (error) => {
-      console.log(error.message)
-    }
-  })
-
-  const { request: updateCart } = useMutation(UPDATE_CART, {
-    onCompleted: ({ body }) => {
-      // Update cart in the localStorage.
-      localStorage.setItem('woo-next-cart', JSON.stringify(body.data.updateItemQuantities.cart));
-      // Update cart data in React Context.
-
-      setCart(body.data.updateItemQuantities.cart);
-      setLoading(false)
-    },
-    onError: (error) => {
-      setLoading(false)
-      console.log(error.message);
-    }
-  });
-
-  const handleRemoveProductClick = (event, key, products) => {
-    event.stopPropagation();
-    if (products.length) {
-      setLoading(true)
-
-      // By passing the newQty to 0 in updateCart Mutation, it will remove the item.
-      const newQty = 0;
-      const updatedItems = getUpdatedItems(products, newQty, key);
-      // setInnerLoading(true)
-      updateCart({
-        variables: {
-          input: {
-            clientMutationId: v4(),
-            items: updatedItems
-          }
-        },
-      });
-    }
-  };
 
   return (
     <>
@@ -121,39 +65,7 @@ const Nav = () => {
             <span></span>
             <span></span>
           </button>
-          <div className={`${styles.cart} ${cart?.contents?.nodes?.length > 0 ? '' : styles.emptyCart}`}>
-            <div className={styles.header}>
-              <h3>Корзина</h3>
-              <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
-            </div>
-            {cart?.contents?.nodes?.length > 0 ? (
-              <>
-                <div className={styles.items}>
-                  {cart?.contents?.nodes.map((el, index) => (
-                    <CartItem updateCart={updateCart} key={index} index={index} products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
-                  ))}
-                </div>
-                <div className={styles.footer}>
-                  <label>
-                    {/* discount label */}
-                  </label>
-                  <div className={styles.total}>
-                    <p><span>Сумма</span><span dangerouslySetInnerHTML={{ __html: cart?.total }} /></p>
-                    {/* <p><span>Скидка</span><span>{cart?.discountTotal}</span></p> */}
-                    <Button onClick={() => { setCartOpened(false) }} href='/checkout'>Оформить заказ</Button>
-                  </div>
-                </div>
-              </>
-            ) : (
-              <div className={styles.empty}>
-                <Sygn />
-                <h2>Ваша корзина пуста</h2>
-                <Button onClick={() => { setCartOpened(false) }} href="/courses">
-                  Наши курсы
-                </Button>
-              </div>
-            )}
-          </div>
+          <Cart className={styles.cart} setCartOpened={setCartOpened} />
         </div>
         <div
           className={styles.overlay}
