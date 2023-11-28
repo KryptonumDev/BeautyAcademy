@@ -16,6 +16,7 @@ import PaymentFailedPage from './singleTypes/PaymentFailedPage'
 export const singleTypes = [
   indexPage,
   blogPage,
+  AboutUsPage,
   cooperationPage,
   contactPage,
   academyPage,
