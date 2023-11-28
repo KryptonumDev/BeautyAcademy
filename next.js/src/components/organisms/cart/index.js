@@ -131,7 +131,7 @@ export default function Cart({ className, setCartOpened }) {
     <div className={`${className} ${styles.cart} ${cart?.contents?.nodes?.length > 0 ? styles.containsCart : styles.emptyCart}`}>
       <div className={styles.header}>
         <h3>Корзина</h3>
-        <Button variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
+        <Button close={true} variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
       </div>
       {cart?.contents?.nodes?.length > 0 ? (
         <>

@@ -4,36 +4,45 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  @media (max-width: 499px){
+
+  @media (max-width: 499px) {
     width: 100%;
   }
+
   &:disabled {
     opacity: .8;
     pointer-events: none;
   }
-  &[data-variant="primary"]{
+
+  &[data-variant="primary"] {
     padding: 16px 28px;
     transition: background-color .4s var(--easing);
-    &[data-theme="primary"]{
+
+    &[data-theme="primary"] {
       background-color: var(--primary-500);
       color: var(--background-100);
+
       &:hover,
       &:focus-visible {
         background-color: var(--primary-600);
       }
     }
-    &[data-theme="secondary"]{
+
+    &[data-theme="secondary"] {
       background-color: var(--background-500);
       color: var(--background-800);
+
       &:hover,
       &:focus-visible {
         background-color: var(--background-300);
       }
     }
   }
-  &[data-variant="secondary"]{
+
+  &[data-variant="secondary"] {
     display: flex;
     width: fit-content;
+
     div {
       border-radius: 50%;
       display: flex;
@@ -41,34 +50,61 @@
       justify-content: center;
       overflow: hidden;
     }
-    > div {
+
+    >div {
       width: 48px;
       height: 48px;
       border: 1px solid var(--background-800);
-      > div {
+
+      >div {
         width: 34px;
         height: 34px;
         border: .5px solid var(--background-800);
         transition: transform .5s 0s var(--easing);
       }
     }
+
+    &.close{
+      svg{
+        path{
+          stroke: var(--background-800);
+        
+        }
+      }
+    }
+
     &:hover,
     &:focus-visible {
+
       svg {
         animation: button .5s var(--easing);
       }
-      > div > div {
+
+      >div>div {
         transform: scale(1.41);
         transition: transform .5s .2s var(--easing);
       }
+
+      &.close {
+        svg {
+          animation: unset !important;
+        }
+        >div>div{
+          transition: transform .2s var(--easing) !important;
+        }
+      }
     }
+
     @keyframes button {
       50% {
         transform: translate(17px, -17px);
       }
+
       51% {
         transform: translate(-17px, 17px);
       }
     }
   }
+
+
 }

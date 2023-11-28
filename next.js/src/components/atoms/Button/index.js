@@ -1,3 +1,4 @@
+import { Cross } from '../Icons';
 import styles from './styles.module.scss';
 import Link from 'next/link';
 
@@ -7,6 +8,7 @@ const Button = ({
   variant = 'primary',
   children, href,
   className,
+  close,
   ...props
 }) => {
   if (data) {
@@ -16,7 +18,7 @@ const Button = ({
   }
 
   const commonProps = {
-    className: `${styles.wrapper} cta${className ? ` ${className}` : ''}`,
+    className: `${close ? styles.close : ''} ${styles.wrapper} cta ${className ? className : ''}`,
     "data-theme": theme,
     "data-variant": variant,
     ...props,
@@ -35,7 +37,10 @@ const Button = ({
       {variant === 'secondary' && (
         <div>
           <div>
-            <Arrow />
+            {close
+              ? <Cross />
+              : <Arrow />}
+
           </div>
         </div>
       )}
