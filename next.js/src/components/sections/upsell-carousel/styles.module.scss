@@ -19,6 +19,8 @@
     }
   }
   .swiper {
+    margin: 0 calc(var(--pageMargin) * -1);
+    padding: 0 var(--pageMargin);
     > div {
       align-items: stretch;
     }

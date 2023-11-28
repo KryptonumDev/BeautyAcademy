@@ -37,17 +37,17 @@ const Slider = ({ list, children }) => {
       </header>
       <Swiper
         ref={swiper}
-        spaceBetween={28}
-        slidesPerView={1.5}
+        spaceBetween={24}
+        slidesPerView={1.1}
         breakpoints={{
           0: {
-            slidesPerView: 1.5,
+            slidesPerView: 1.1,
           },
-          900: {
-            slidesPerView: 2.5,
+          600: {
+            slidesPerView: 2.1,
           },
-          1200: {
-            slidesPerView: 3,
+          1000: {
+            slidesPerView: 3.1,
           },
         }}
         grabCursor={true}

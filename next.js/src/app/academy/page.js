@@ -23,7 +23,7 @@ const AcademyPage = async () => {
     values_List,
     procedures_Heading,
     procedures_List,
-    textSection,
+    about,
     HorizontalShowcase,
     faq,
   } } = await query();
@@ -49,7 +49,7 @@ const AcademyPage = async () => {
         procedures_Heading,
         procedures_List,
       }} />
-      <TextSection data={textSection} />
+      <TextSection data={about} />
       <HorizontalShowcaseComponent data={HorizontalShowcase} />
       <Faq data={faq} />
       <Newsletter />
@@ -122,7 +122,7 @@ const query = async () => {
         }
 
         # About
-        textSection {
+        about {
           isReversed
           heading
           paragraph
