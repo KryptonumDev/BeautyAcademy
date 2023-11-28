@@ -3,15 +3,40 @@
   justify-content: space-between;
   gap: 32px;
 
+  @media (max-width: 640px) {
+    display: block;
+  }
+
   .chose{
     
   }
 
   .buttons{
-    margin-top: 48px;
+    margin-top: clamp(28px, calc(36vw/7.68), 48px);
     display: flex;
     flex-wrap: wrap;
-    gap: 28px;
+    gap: 16px 28px;
+
+    @media (max-width: 1240px) {
+      label{
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      label{
+        max-width: calc(50% - 14px);
+        min-width: fit-content;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      label{
+        max-width: unset;
+        min-width: none;
+      }
+    }
   }
 
   .form{
@@ -20,10 +45,26 @@
     display: grid;
     gap: 48px;
 
+    @media (max-width: 899px) {
+      margin-top: 48px;
+    }
+
     .flex{
       display: grid;
+      align-items: flex-end;
       gap: 28px;
       grid-template-columns: 177fr 280fr;
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: clamp(36px, calc(48vw/7.68), 64px);
+
+        label {
+          &:first-child {
+            max-width: 150px;
+          }
+        }
+      }
     }
 
     .semi{

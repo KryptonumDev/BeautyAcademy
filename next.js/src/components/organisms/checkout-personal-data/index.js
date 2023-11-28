@@ -38,15 +38,23 @@ export default function PersonalData({ input, nextStep, setInput }) {
       </div>
       <div className={styles.form}>
         {watch('type') === 'firm' ? (
-          <Input
-            label="Название фирмы"
-            type="text"
-            register={register('firm', {
-              required: { value: true, message: `Введите название компании` },
-              minLength: { value: 2, message: `Название компании должно состоять минимум из 2-х символов` }
-            })}
-            errors={errors}
-          />
+          <>
+            <Input
+              label="Идентификатор налогоплатильщика (если есть)"
+              type="text"
+              register={register('nip')}
+              errors={errors}
+            />
+            <Input
+              label="Название фирмы"
+              type="text"
+              register={register('firm', {
+                required: { value: true, message: `Введите название компании` },
+                minLength: { value: 2, message: `Название компании должно состоять минимум из 2-х символов` }
+              })}
+              errors={errors}
+            />
+          </>
         ) : (
           <Input
             label="Имя и фамилия"
@@ -153,11 +161,11 @@ const generateNewInput = (data, input) => {
       phone: data.phone,
       company: data.firm,
     },
-    // metaData: [ TODO: add NIP..?
-    //   {
-    //     key: '_billing_nip',
-    //     value: data.billing_nip || '',
-    //   }
-    // ]
+    metaData: [
+      {
+        key: '_billing_nip',
+        value: data.nip || '',
+      }
+    ]
   }
 }

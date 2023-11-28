@@ -26,31 +26,31 @@ const stepContent = (props) => ({
 
 export default function Content({ providers }) {
   const register = true
-  const delivery = true
+  const delivery = false
 
-  const [step, setStep] = useState(4)
+  const [step, setStep] = useState(1)
   const [input, setInput] = useState({
     "firmOrder": false,
     "billingDifferentThanShipping": true,
     "shipping": {
-        "firstName": "Tets ",
-        "address1": "test",
-        "city": "test",
-        "country": "PL",
-        "postcode": "12-123",
-        "email": "test@test.tes",
-        "phone": "123123123",
-        "company": ""
+      "firstName": "Tets ",
+      "address1": "test",
+      "city": "test",
+      "country": "PL",
+      "postcode": "12-123",
+      "email": "test@test.tes",
+      "phone": "123123123",
+      "company": ""
     },
     "billing": {
-        "firstName": "Tets ",
-        "address1": "test",
-        "city": "test",
-        "country": "PL",
-        "postcode": "12-123",
-        "email": "test@test.tes",
-        "phone": "123123123",
-        "company": ""
+      "firstName": "Tets ",
+      "address1": "test",
+      "city": "test",
+      "country": "PL",
+      "postcode": "12-123",
+      "email": "test@test.tes",
+      "phone": "123123123",
+      "company": ""
     },
     "paymentMethod": { name: 'card', title: 'Кредитная карта' }
   });
@@ -66,7 +66,7 @@ export default function Content({ providers }) {
   ].filter(Boolean)
 
   const nextStep = async () => {
-    const user = await read('user')
+    const user = await read('refreshToken')
 
     let nextStep = step + 1
 
