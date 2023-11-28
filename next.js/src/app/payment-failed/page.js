@@ -2,6 +2,7 @@ import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
 import Newsletter from "@/components/sections/newsletter";
 import Hero from "@/components/sections/payment-status-hero";
+import UpsellCarousel from "@/components/sections/upsell-carousel";
 
 const pathname = '/payment-successful';
 
@@ -19,6 +20,7 @@ const PaymentFailedPage = async () => {
         hero_Paragraph,
         hero_Cta,
       }} />
+      <UpsellCarousel />
       <Newsletter />
     </>
   )
