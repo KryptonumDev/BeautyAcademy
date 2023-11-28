@@ -3,9 +3,25 @@
   grid-template-columns: repeat(var(--count), 1fr);
   position: relative;
   gap: 24px;
-  margin-bottom: 144px;
+  margin-bottom: clamp(36px, calc(64vw/7.68), 144px);
+
+  @media (max-width: 899px) {
+    display: block;
+  }
+
+  small {
+    display: none;
+
+    @media (max-width: 899px) {
+      display: inline;
+    }
+  }
 
   .item {
+    @media (max-width: 899px) {
+      display: none;
+    }
+
     .number {
       border-radius: 500px;
       padding: 6px;
@@ -28,7 +44,12 @@
         border-radius: 500px;
 
         width: 52px;
-        height: 60px;
+        height: 52px;
+
+        span {
+          display: block;
+          margin-top: 2px;
+        }
       }
     }
 
@@ -55,6 +76,73 @@
 
       p {
         color: var(--background-800, #53423C);
+      }
+    }
+
+    &.current {
+      @media (max-width: 899px) {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 8px;
+
+        p {
+          width: fit-content;
+        }
+      }
+
+      .number {
+        position: relative;
+        background: linear-gradient(var(--background-200), var(--background-200)) padding-box,
+          var(--gradient-100) border-box;
+        border: 0.75px solid rgba(255, 255, 255, 0);
+
+        @media (max-width: 899px) {
+          &::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            z-index: -1;
+            border-radius: 50%;
+            background:
+              conic-gradient(#BA7403 var(--radial), var(--background-200) 0);
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            z-index: -1;
+            border-radius: 50%;
+            background: var(--background-200);
+          }
+        }
+
+        .numberInner {
+          background: linear-gradient(var(--background-200), var(--background-200)) padding-box,
+            var(--gradient-100) border-box;
+          border: 0.4px solid rgba(255, 255, 255, 0);
+
+          @media (max-width: 899px) {
+            background: rgba(255, 255, 255, 0.60);
+          }
+
+          span {
+            background: var(--0001, linear-gradient(90deg, #F7C479 0%, #DCA855 26.73%, #C79442 61.32%, #BC7F1D 80.54%, #BA7403 105.44%));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            @media (max-width: 899px) {
+              background: transparent;
+              background-clip: unset;
+              -webkit-background-clip: unset;
+              -webkit-text-fill-color: unset;
+
+            }
+          }
+        }
       }
     }
   }

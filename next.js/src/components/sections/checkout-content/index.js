@@ -26,9 +26,9 @@ const stepContent = (props) => ({
 
 export default function Content({ providers }) {
   const register = true
-  const delivery = false
+  const delivery = true
 
-  const [step, setStep] = useState(5)
+  const [step, setStep] = useState(4)
   const [input, setInput] = useState({
     "firmOrder": false,
     "billingDifferentThanShipping": true,
@@ -79,7 +79,7 @@ export default function Content({ providers }) {
   return (
     <section className={styles.wrapper}>
       <h1>{stepNames[step]}</h1>
-      {/* <Steps steps={steps} step={step} /> */}
+      <Steps steps={steps} step={step} />
       {stepContent({ nextStep, setStep, input, setInput, providers })[step]}
     </section>
   )
