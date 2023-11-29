@@ -12,16 +12,16 @@ const stepNames = {
   1: 'Ваши данные',
   2: 'Доставка',
   3: 'Авторизация',
-  4: 'Способ оплаты',
-  5: 'Подтверждение заказа'
+  4: 'Подтверждение заказа',
+  5: 'Оплата',
 }
 
 const stepContent = (props) => ({
   1: <PersonalData {...props} />,
   2: null,
   3: <Authorization {...props} />,
-  4: <Payment {...props} />,
-  5: <Summary {...props} />,
+  4: <Summary {...props} />,
+  5: <Payment {...props} />,
 })
 
 export default function Content({ providers }) {
@@ -61,8 +61,8 @@ export default function Content({ providers }) {
     { id: 1, name: 'Ваши данные' },
     delivery && { id: 2, name: 'Доставка' },
     register && { id: 3, name: 'Авторизация' },
-    { id: 4, name: 'Способ оплаты' },
-    { id: 5, name: 'Подтверждение заказа' }
+    { id: 4, name: 'Подтверждение заказа' },
+    { id: 5, name: 'Способ оплаты' }
   ].filter(Boolean)
 
   const nextStep = async () => {

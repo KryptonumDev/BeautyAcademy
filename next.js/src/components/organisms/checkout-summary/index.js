@@ -42,6 +42,19 @@ export default function Summary({ input, setStep }) {
     setOpenPayment(true)
   }
 
+  const paymentOptions = {
+    clientSecret: secretKey,
+    locale: 'ru',
+    // currency: 'rub',
+    // fonts: null,
+    layout: {
+      type: 'accordion',
+      defaultCollapsed: false,
+      radios: true,
+      spacedAccordionItems: false,
+    }
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} >
@@ -124,7 +137,7 @@ export default function Summary({ input, setStep }) {
 
             </div>
           </div> */}
-          <div className={styles.part}>
+          {/* <div className={styles.part}>
             <div className={`${styles.flex} ${styles.title}`}>
               <h2>Оплата</h2>
               <Button variant="secondary" type='button' onClick={() => { setStep(2) }}>Изменить</Button>
@@ -134,7 +147,7 @@ export default function Summary({ input, setStep }) {
               label={input.paymentMethod.title}
               register={register('paymentMethod')}
               errors={errors} />
-          </div>
+          </div> */}
         </div>
         <div className={styles.ending}>
           <Input
@@ -154,7 +167,7 @@ export default function Summary({ input, setStep }) {
         </div>
       </form>
       {(secretKey && openPayment) && (
-        <Elements options={{ clientSecret: secretKey }} stripe={stripePromise} >
+        <Elements options={paymentOptions} stripe={stripePromise} >
           <PaymentForm />
         </Elements>
       )}

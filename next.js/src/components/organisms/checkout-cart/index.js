@@ -6,7 +6,6 @@ import { GET_CART } from 'src/queries/get-cart';
 import { UPDATE_CART } from 'src/mutations/update-cart';
 import { useQuery } from 'src/hooks/use-query';
 import { useMutation } from 'src/hooks/use-mutation';
-import Button from '@/components/atoms/Button';
 import CartItem from '@/components/moleculas/cart-item';
 import { getUpdatedItems } from '@/utils/getUpdatedItems';
 import { v4 } from 'uuid';

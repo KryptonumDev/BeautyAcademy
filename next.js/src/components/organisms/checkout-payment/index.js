@@ -40,7 +40,7 @@ export default function Payment({ nextStep, setInput, input }) {
               errors={errors} />
           ))}
         </div>
-        <Button>Итог</Button>
+        <Button>Оплачиваю</Button>
       </div>
     </form>
   )
