@@ -102,8 +102,24 @@ const query = async () => {
             text
             href
           }
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
           video {
-            
+            asset {
+              url
+              altText
+            }
           }
         }
         # TextSection 1
@@ -117,8 +133,24 @@ const query = async () => {
             text
             href
           }
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
           video {
-
+            asset {
+              url
+              altText
+            }
           }
         }
 
