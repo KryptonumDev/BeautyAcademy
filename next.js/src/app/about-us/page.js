@@ -102,7 +102,9 @@ const query = async () => {
             text
             href
           }
-          # about_Video
+          video {
+            
+          }
         }
         # TextSection 1
         textSection2 {
@@ -115,7 +117,9 @@ const query = async () => {
             text
             href
           }
-          # about_Video
+          video {
+
+          }
         }
 
         # Team

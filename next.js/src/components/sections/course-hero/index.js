@@ -5,16 +5,16 @@ import AddToCart from '@/components/atoms/add-to-cart';
 
 const Hero = ({
   productId,
-  id,
-  slug,
-  name,
-  date,
-  onSale,
+  // id,
+  // slug,
+  // name,
+  // date,
+  // onSale,
   price,
   regularPrice,
-  salePrice,
-  productTags,
-  productCategories,
+  // salePrice,
+  // productTags,
+  // productCategories,
   img,
   rating
 }) => {
@@ -63,26 +63,26 @@ const Heart = () => (
   </svg>
 )
 
-const ArrowLeft = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' width='51' height='51' viewBox='0 0 51 51' fill='none'>
-    <path
-      stroke='#53423C'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      strokeWidth='2'
-      d='M29.666 16.963l-8.333 8.334 8.333 8.333'
-    ></path>
-  </svg>
-)
+// const ArrowLeft = () => (
+//   <svg xmlns='http://www.w3.org/2000/svg' width='51' height='51' viewBox='0 0 51 51' fill='none'>
+//     <path
+//       stroke='#53423C'
+//       strokeLinecap='round'
+//       strokeLinejoin='round'
+//       strokeWidth='2'
+//       d='M29.666 16.963l-8.333 8.334 8.333 8.333'
+//     ></path>
+//   </svg>
+// )
 
-const ArrowRight = () => (
-  <svg xmlns='http://www.w3.org/2000/svg' width='51' height='51' viewBox='0 0 51 51' fill='none'>
-    <path
-      stroke='#53423C'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      strokeWidth='2'
-      d='M21.334 16.963l8.333 8.334-8.333 8.333'
-    ></path>
-  </svg>
-)
+// const ArrowRight = () => (
+//   <svg xmlns='http://www.w3.org/2000/svg' width='51' height='51' viewBox='0 0 51 51' fill='none'>
+//     <path
+//       stroke='#53423C'
+//       strokeLinecap='round'
+//       strokeLinejoin='round'
+//       strokeWidth='2'
+//       d='M21.334 16.963l8.333 8.334-8.333 8.333'
+//     ></path>
+//   </svg>
+// )

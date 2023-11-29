@@ -2,6 +2,7 @@ import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 import Img from '@/components/atoms/Img';
+import VideoPhoneFrame from '@/components/organisms/VideoPhoneFrame';
 
 const TextSection = ({
   data: {
@@ -11,7 +12,7 @@ const TextSection = ({
     standout,
     cta,
     img,
-    // video
+    video
   }
 }) => {
   return (
@@ -28,7 +29,11 @@ const TextSection = ({
           ))}
         </div>
       </header>
-      <Img data={img} className={styles.img} />
+      {img ? (
+        <Img data={img} className={styles.img} />
+      ) : (
+        <VideoPhoneFrame asset={video.asset} />
+      )}
     </section>
   );
 };
