@@ -40,64 +40,64 @@ const getData = async () => {
 
 const getProducts = async () => {
   const { body: { data } } = await wpFetchData(`
-  query {
-    products(where: {categoryIn: "онлайн-курс"}, first: 6) {
-      nodes {
-        ... on SimpleProduct {
-          productId: databaseId
-          id
-          slug
-          name
-          date
-          onSale
-          price(format: FORMATTED)
-          regularPrice(format: FORMATTED)
-          salePrice(format: FORMATTED)
-          productTags {
-            nodes {
-              name
-              id
-              slug
+    query {
+      products(where: {categoryIn: "онлайн-курс"}, first: 6) {
+        nodes {
+          ... on SimpleProduct {
+            productId: databaseId
+            id
+            slug
+            name
+            date
+            onSale
+            price(format: FORMATTED)
+            regularPrice(format: FORMATTED)
+            salePrice(format: FORMATTED)
+            productTags {
+              nodes {
+                name
+                id
+                slug
+              }
             }
-          }
-          productCategories {
-            nodes {
-              name
-              children {
-                nodes {
-                  name
+            productCategories {
+              nodes {
+                name
+                children {
+                  nodes {
+                    name
+                  }
+                }
+              }
+            }
+            featuredImage {
+              asset : node {
+                altText
+                url : mediaItemUrl
+                metadata : mediaDetails {
+                  width
+                  height
                 }
               }
             }
           }
-          featuredImage {
-            asset : node {
-              altText
-              url : mediaItemUrl
-              metadata : mediaDetails {
-                width
-                height
-              }
-            }
-          }
+        }
+        pageInfo {
+          total
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
         }
       }
-      pageInfo {
-        total
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
+      productCategories(where: {childless: true}) {
+        nodes {
+          name
+          id
+          slug
+        }
       }
     }
-    productCategories(where: {childless: true}) {
-      nodes {
-        name
-        id
-        slug
-      }
-    }
-  }
-`, {})
+  `);
   return data;
 }

@@ -102,7 +102,25 @@ const query = async () => {
             text
             href
           }
-          # about_Video
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          video {
+            asset {
+              url
+              altText
+            }
+          }
         }
         # TextSection 1
         textSection2 {
@@ -115,7 +133,25 @@ const query = async () => {
             text
             href
           }
-          # about_Video
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          video {
+            asset {
+              url
+              altText
+            }
+          }
         }
 
         # Team

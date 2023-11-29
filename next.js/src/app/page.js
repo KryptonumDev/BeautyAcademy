@@ -6,9 +6,9 @@ import Newsletter from "@/components/sections/newsletter";
 import Reviews from "@/components/sections/reviews";
 import Features from "@/components/sections/homepage-features";
 import Advantages from "@/components/sections/homepage-advantages";
-import Partnership from "@/components/sections/homepage-partnership";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import Breadcrumbs from "@/components/organisms/Breadcrumbs";
+import TextSection from "@/components/sections/text-section";
 
 const pathname = '';
 
@@ -18,7 +18,8 @@ const IndexPage = async () => {
     hero_Paragraph,
     hero_Cta,
     hero_Images,
-    hero_Videos,
+    hero_VideoPhone,
+    hero_VideoSquare,
     benefits_Heading,
     benefits_Paragraph,
     benefits_List,
@@ -37,10 +38,7 @@ const IndexPage = async () => {
     reviews_Paragraph,
     reviews_Cta,
     reviews_List,
-    partnership_Heading,
-    partnership_Paragraph,
-    partnership_Cta,
-    partnership_Video,
+    partnership,
   }} = await query();
 
   return (
@@ -53,7 +51,8 @@ const IndexPage = async () => {
         hero_Paragraph,
         hero_Cta,
         hero_Images,
-        hero_Videos,
+        hero_VideoPhone,
+        hero_VideoSquare,
       }} />
       <Benefits data={{
         benefits_Heading,
@@ -81,12 +80,7 @@ const IndexPage = async () => {
         reviews_Cta,
         reviews_List,
       }} />
-      <Partnership data={{
-        partnership_Heading,
-        partnership_Paragraph,
-        partnership_Cta,
-        partnership_Video,
-      }} />
+      <TextSection data={partnership} />
       <Newsletter />
       <LatestBlogEntries />
     </>
@@ -127,7 +121,13 @@ const query = async () => {
             }
           }
         }
-        hero_Videos {
+        hero_VideoPhone {
+          asset {
+            url
+            altText
+          }
+        }
+        hero_VideoSquare {
           asset {
             url
             altText
@@ -238,17 +238,34 @@ const query = async () => {
         }
   
         # Partnership
-        partnership_Heading
-        partnership_Paragraph
-        partnership_Cta {
-          theme
-          href
-          text
-        }
-        partnership_Video {
-          asset {
-            url
-            altText
+        partnership {
+          isReversed
+          heading
+          paragraph
+          standout
+          cta {
+            theme
+            text
+            href
+          }
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          video {
+            asset {
+              url
+              altText
+            }
           }
         }
       }

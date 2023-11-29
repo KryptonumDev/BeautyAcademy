@@ -23,7 +23,7 @@ const AcademyPage = async () => {
     values_List,
     procedures_Heading,
     procedures_List,
-    textSection,
+    about,
     HorizontalShowcase,
     faq,
   } } = await query();
@@ -49,7 +49,7 @@ const AcademyPage = async () => {
         procedures_Heading,
         procedures_List,
       }} />
-      <TextSection data={textSection} />
+      <TextSection data={about} />
       <HorizontalShowcaseComponent data={HorizontalShowcase} />
       <Faq data={faq} />
       <Newsletter />
@@ -122,7 +122,7 @@ const query = async () => {
         }
 
         # About
-        textSection {
+        about {
           isReversed
           heading
           paragraph
@@ -132,7 +132,25 @@ const query = async () => {
             text
             href
           }
-          # about_Video
+          img {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          video {
+            asset {
+              url
+              altText
+            }
+          }
         }
 
         # HorizontalShowcase

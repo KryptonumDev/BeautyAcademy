@@ -14,8 +14,8 @@ const Img = ({
   <NextImage
     src={data?.asset.url || src}
     alt={data?.asset.altText || alt}
-    width={data?.asset.metadata.dimensions?.width || width}
-    height={data?.asset.metadata.dimensions?.height || height}
+    width={data?.asset.metadata?.dimensions?.width || data?.asset.metadata?.width || width}
+    height={data?.asset.metadata?.dimensions?.height || data?.asset.metadata?.height || height}
     blurDataURL={data?.asset.metadata?.lqip || defaultPlaceholder}
     placeholder="blur"
     {...props}
