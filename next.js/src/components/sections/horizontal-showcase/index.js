@@ -52,7 +52,7 @@ const HorizontalShowcase = ({ data: {
             )
           ))}
         </motion.div>
-        <div style={{ height: '200vh' }}></div>
+        <div style={{ height: '300vh' }}></div>
       </div>
     </section>
   );

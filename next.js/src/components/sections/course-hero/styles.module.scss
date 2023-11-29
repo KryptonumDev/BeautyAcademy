@@ -1,0 +1,22 @@
+.wrapper {
+  background-color: var(--background-300);
+  .rating {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: var(--background-500);
+    font-size: 1rem;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 8px clamp(16px, calc(16vw/7.68), 24px);
+    svg {
+      width: clamp(24px, calc(38vw/7.68), 38px);
+      height: clamp(24px, calc(38vw/7.68), 38px);
+    }
+    strong {
+      font-weight: 400;
+      font-size: clamp(calc(24rem/16), calc(28vw/7.68), calc(36rem/16));
+    }
+  }
+}

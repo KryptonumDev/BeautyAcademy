@@ -18,7 +18,8 @@ const IndexPage = async () => {
     hero_Paragraph,
     hero_Cta,
     hero_Images,
-    hero_Videos,
+    hero_VideoPhone,
+    hero_VideoSquare,
     benefits_Heading,
     benefits_Paragraph,
     benefits_List,
@@ -53,7 +54,8 @@ const IndexPage = async () => {
         hero_Paragraph,
         hero_Cta,
         hero_Images,
-        hero_Videos,
+        hero_VideoPhone,
+        hero_VideoSquare,
       }} />
       <Benefits data={{
         benefits_Heading,
@@ -127,7 +129,13 @@ const query = async () => {
             }
           }
         }
-        hero_Videos {
+        hero_VideoPhone {
+          asset {
+            url
+            altText
+          }
+        }
+        hero_VideoSquare {
           asset {
             url
             altText
