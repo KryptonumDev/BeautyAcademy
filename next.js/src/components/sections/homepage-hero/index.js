@@ -28,7 +28,11 @@ const Hero = ({
       </header>
       <div className={styles.assets}>
         {hero_Images.map((img, i) => (
-          <Img data={img} key={i} />
+          <Img
+            data={img}
+            priority={true}
+            key={i}
+          />
         ))}
         <VideoPhoneFrame
           asset={hero_VideoPhone.asset}
