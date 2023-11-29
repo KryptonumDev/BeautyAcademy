@@ -2,8 +2,7 @@ import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 import Img from '@/components/atoms/Img';
-import VideoPhoneFrame from '@/components/organisms/VideoPhoneFrame';
-import VideoFlowerFrame from '@/components/organisms/VideoFlowerFrame';
+import Video from '@/components/organisms/Video';
 
 const Hero = ({
   data: {
@@ -34,13 +33,14 @@ const Hero = ({
             key={i}
           />
         ))}
-        <VideoPhoneFrame
+        <Video
           asset={hero_VideoPhone.asset}
           className={styles.videoPhone}
         />
-        <VideoFlowerFrame
+        <Video
           asset={hero_VideoSquare.asset}
           className={styles.videoSquare}
+          isSquare={true}
         />
       </div>
     </section>

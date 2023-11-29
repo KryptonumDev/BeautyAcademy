@@ -2,7 +2,7 @@ import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 import Img from '@/components/atoms/Img';
-import VideoPhoneFrame from '@/components/organisms/VideoPhoneFrame';
+import VideoPhoneFrame from '@/components/organisms/Video';
 
 const TextSection = ({
   data: {

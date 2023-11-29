@@ -1,32 +1,47 @@
 'use client';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from './styles.module.scss';
+import Image from 'next/image';
+import phoneFrame from '@/public/phone-frame.webp';
+import Button from './Button';
 
-const VideoFlowerFrame = ({ asset: { url, altText }, className}) => {
+const Video = ({
+  asset: { url, altText },
+  className,
+  isSquare=false
+}) => {
+  const [ isPlaying, setIsPlaying ] = useState(false);
   const videoRef = useRef(null);
   const toggleVideo = () => {
     const video = videoRef.current;
     video[video.paused ? 'play' : 'pause']();
+    setIsPlaying(!isPlaying);
   };
-  
+
   return (
     <div
       className={`${styles.wrapper} ${className || ''}`}
+      data-square={isSquare}
     >
       <button
         aria-label='Toggle Video'
         onClick={() => toggleVideo()}
       ></button>
-      <Frame />
+      <Button isPlaying={isPlaying} />
       <video ref={videoRef}>
         <source src={url} />
         <p>{altText}</p>
       </video>
+      {isSquare ? (
+        <Frame />
+      ) : (
+        <Image src={phoneFrame} alt="" />
+      )}
     </div>
   );
 };
 
-export default VideoFlowerFrame;
+export default Video;
 
 const Frame = () => (
   <svg
