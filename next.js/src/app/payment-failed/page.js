@@ -4,6 +4,8 @@ import Newsletter from "@/components/sections/newsletter";
 import Hero from "@/components/sections/payment-status-hero";
 import UpsellCarousel from "@/components/sections/upsell-carousel";
 
+export const dynamic = "force-dynamic"
+
 const pathname = '/payment-successful';
 
 const PaymentFailedPage = async () => {
