@@ -17,7 +17,7 @@ export default function PaymentForm({ input }) {
       elements,
       redirect: 'if_required',
       confirmParams: {
-        return_url: `http://localhost:3000/api/payment/complete-payment`
+        return_url: `https://beautyacademy.expert/api/payment/intent-result-redirector`
       }
     })
 
@@ -26,7 +26,8 @@ export default function PaymentForm({ input }) {
     }
 
     if (paymentIntent?.status === 'succeeded' && typeof window !== 'undefined') {
-      // window.location.href = `https://auto-welt.info/api/complete-payment?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}`
+      window.location.href = `https://beautyacademy.expert/payment-successful`
+      // ?id=${orderNumber}&redirect_status=${paymentIntent.status}&payment_intent=${paymentIntent.id}&payment_intent_client_secret=${clientSecret}
     }
 
     if (paymentIntent?.last_payment_error) {
