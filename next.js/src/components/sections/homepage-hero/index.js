@@ -31,6 +31,7 @@ const Hero = ({
             data={img}
             priority={true}
             key={i}
+            sizes="(max-width: 768px) 160px, 280px"
           />
         ))}
         <Video

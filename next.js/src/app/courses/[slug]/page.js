@@ -4,6 +4,7 @@ import wpFetchData from "@/utils/wpFetchData";
 import Faq from "@/components/sections/faq";
 import UpsellCarousel from "@/components/sections/upsell-carousel";
 import Hero from "@/components/sections/course-hero";
+import Content from "@/components/sections/course-content";
 
 const data = {
   faq: {
@@ -21,6 +22,21 @@ const data = {
   },
   product: {
     rating: 2,
+    author: {
+      name: 'Inna Brinkis',
+      specialization: 'косметолог',
+      img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+      socials: {
+        instagram: 'https://instagram.com',
+        facebook: 'https://facebook.com',
+        telegram: 'https://telegram.org',
+      }
+    },
+    category: 'Педикюр и маникюр',
+    advancement: 2,
+    duration: 'Общая продолжительность курса: 6 часов.',
+    location: 'Онлайн-курс',
+    certificate: 'сертификат об окончании'
   }
 }
 
@@ -64,6 +80,7 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
         }}
         rating={data.product.rating}
       />
+      <Content product={data.product} />
       <Faq data={data.faq} />
       <UpsellCarousel />
     </>

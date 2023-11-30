@@ -201,3 +201,36 @@ export const Social = {
     </svg>
   )
 }
+
+export const AdvancemenetIndicator = ({
+  isFilled = false
+}) => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='25'
+    viewBox='0 0 24 25'
+    fill={isFilled ? 'url(#a)' : 'none'}
+    stroke={isFilled ? "none" : "var(--primary-500)"}
+  >
+    <path
+      d='M18.762 17.06c-1.193 2.477-3.883 4.228-6.712 4.337-2.828.107-5.657-1.4-7.044-3.771-1.22-2.074-1.237-4.645-.3-6.789.434-.99 1.485-.564 1.38.512-.028.35 0 .646.056.916.305 1.32 1.442 2.317 2.912 2.531 1.442.216 2.773-.35 3.467-1.509.61-.996.665-2.236.166-3.34-.138-.296-.305-.592-.444-.86-.11-.19-.194-.378-.305-.567a6.567 6.567 0 01-.69-2.904c.006-1.133 1.344-1.389 2.186-.63l.666.598c.665.593 1.387 1.24 2.025 1.886 1.831 1.832 2.884 3.555 3.218 5.28.278 1.4.084 2.936-.581 4.31z'
+    ></path>
+    <defs>
+      <linearGradient
+        id='a'
+        x1='4.043'
+        x2='20.305'
+        y1='19.908'
+        y2='19.908'
+        gradientUnits='userSpaceOnUse'
+      >
+        <stop stopColor='#F7C479'></stop>
+        <stop offset='0.253' stopColor='#DCA855'></stop>
+        <stop offset='0.582' stopColor='#C79442'></stop>
+        <stop offset='0.764' stopColor='#BC7F1D'></stop>
+        <stop offset='1' stopColor='#BA7403'></stop>
+      </linearGradient>
+    </defs>
+  </svg>
+)
