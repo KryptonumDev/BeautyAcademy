@@ -40,7 +40,6 @@ export default {
       name: 'img',
       type: 'image',
       title: 'Image',
-      validation: Rule => Rule.required(),
     },
     {
       name: 'video',
