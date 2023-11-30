@@ -11,7 +11,7 @@ export async function POST(req) {
       // automatic_payment_methods: {
       //   enabled: true,
       // },
-      payment_method_types: ['blik', 'card', 'p24', 'paypal', 'google_pay', 'apple_pay'],
+      payment_method_types: ['blik', 'card', 'p24', 'paypal', 'klarna'],
     });
 
     return NextResponse.json({

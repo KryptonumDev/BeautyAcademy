@@ -1,47 +1,85 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import styles from "./styles.module.scss"
-import Radio from "@/components/moleculas/radio"
-import { useForm } from "react-hook-form"
-import Button from "@/components/atoms/Button"
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentForm from "@/components/organisms/payment-form";
 
-const methods = [
-  { name: 'card', title: 'Кредитная карта' },
-  { name: 'blik', title: 'BLIK' },
-  { name: 'p24', title: 'Przelewy 24' },
-  { name: 'paypal', title: 'PayPal' },
-  { name: 'DIRECT', title: 'Перевод на карту' },
-]
+export default function Payment({ input }) {
 
-export default function Payment({ nextStep, setInput, input }) {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    mode: "all",
-    defaultValues: {
-      type: methods[0].name
+  const [secretKey, setSecretKey] = useState(null);
+  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+  const paymentOptions = {
+    clientSecret: secretKey,
+    locale: 'ru',
+    // currency: 'rub',
+    fonts: [{
+      family: 'Kapakana',
+      src: 'url(../../../assets/fonts/Oranienbaum-Regular.woff2) format("woff2")',
+      weight: 400,
+    }],
+    appearance: {
+      vaiables: {
+        borderRadius: '0'
+      },
+      variables: {
+        // fontFamily: 'Kapakana'
+      },
+      rules: {
+        '.AccordionItem': {
+          border: '1px solid var(--background-300, #F7EFEC)',
+          backgroundColor: 'transparent',
+          margin: '0px 0px 28px 0px',
+          borderRadius: '0',
+          boxShadow: 'none',
+        },
+        '.AccordionItem--selected': {
+          border: '1px solid var(--background-600, #C9BBB7)',
+          backgroundColor: 'var(--background-300, #F7EFEC)',
+        },
+        // '.Input': {
+        //   backgroundColor: 'transparent',
+        //   border: 'none',
+        //   borderBottom: '0.5px solid var(--primary-700, #192A23)',
+        //   boxShadow: 'none',
+        //   borderRadius: '0',
+        // },
+        // '.p-AccordionButton': {
+        //   fontSize: '20px',
+        //   fontWeight: '400',
+        //   fontFamily: 'var(--kapakana-font)'
+        // },
+      }
     }
-  })
-
-  const onSubmit = (data) => {
-    // const newInput = generateNewInput(data, input)
-    setInput({...input, paymentMethod: data.type})
-    nextStep()
   }
 
+  useEffect(() => {
+    fetch('http://localhost:3000/api/payment/create-intent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ amount: 1000 })
+    })
+      .then(res => res.json())
+      .then(({ clientSecret }) => {
+        setSecretKey(clientSecret)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.wrapper}>
+    <div className={styles.wrapper}>
       <h2>Выберите способ оплаты</h2>
-      <div className={styles.flex}>
-        <div className={styles.grid}>
-          {methods.map(el => (
-            <Radio
-              key={el.name}
-              value={el.name}
-              label={el.title}
-              register={register('type')}
-              errors={errors} />
-          ))}
-        </div>
-        <Button>Оплачиваю</Button>
+      <div className={styles.form}>
+        {secretKey && (
+          <Elements options={paymentOptions} stripe={stripePromise} >
+            <PaymentForm input={input} />
+          </Elements>
+        )}
       </div>
-    </form>
+    </div>
   )
 }

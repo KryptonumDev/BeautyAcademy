@@ -1,58 +1,21 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import styles from "./styles.module.scss"
 import Button from "@/components/atoms/Button";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import PaymentForm from "@/components/organisms/payment-form";
 import { useForm } from "react-hook-form";
 import Checkbox from "@/components/moleculas/Checkbox";
 import Radio from "@/components/moleculas/radio";
 import Input from "@/components/moleculas/Input";
 import Cart from "../checkout-cart";
 
-export default function Summary({ input, setStep }) {
+export default function Summary({ input, setInput, setStep, nextStep }) {
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'all',
     defaultValues: generateDefaults(input)
   })
 
-  const [secretKey, setSecretKey] = useState(null);
-  const [openPayment, setOpenPayment] = useState(false);
-
-  useEffect(() => {
-    fetch('http://localhost:3000/api/payment/create-intent', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ amount: 1000 })
-    })
-      .then(res => res.json())
-      .then(({ clientSecret }) => {
-        setSecretKey(clientSecret)
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }, [])
-
-  const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
-  const onSubmit = () => {
-    setOpenPayment(true)
-  }
-
-  const paymentOptions = {
-    clientSecret: secretKey,
-    locale: 'ru',
-    // currency: 'rub',
-    // fonts: null,
-    layout: {
-      type: 'accordion',
-      defaultCollapsed: false,
-      radios: true,
-      spacedAccordionItems: false,
-    }
+  const onSubmit = (data) => {
+    setInput({ ...input, comment: data.comment })
+    nextStep()
   }
 
   return (
@@ -166,11 +129,6 @@ export default function Summary({ input, setStep }) {
           </div>
         </div>
       </form>
-      {(secretKey && openPayment) && (
-        <Elements options={paymentOptions} stripe={stripePromise} >
-          <PaymentForm />
-        </Elements>
-      )}
     </>
   )
 }

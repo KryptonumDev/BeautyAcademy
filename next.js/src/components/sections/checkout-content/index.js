@@ -28,7 +28,7 @@ export default function Content({ providers }) {
   const register = true
   const delivery = false
 
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(5)
   const [input, setInput] = useState({
     "firmOrder": false,
     "billingDifferentThanShipping": true,
@@ -62,7 +62,7 @@ export default function Content({ providers }) {
     delivery && { id: 2, name: 'Доставка' },
     register && { id: 3, name: 'Авторизация' },
     { id: 4, name: 'Подтверждение заказа' },
-    { id: 5, name: 'Способ оплаты' }
+    { id: 5, name: 'Оплата' }
   ].filter(Boolean)
 
   const nextStep = async () => {
