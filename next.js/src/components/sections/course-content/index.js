@@ -1,4 +1,5 @@
 import Aside from './Aside';
+import Tabs from './Tabs';
 import styles from './styles.module.scss';
 
 const Content = ({
@@ -9,7 +10,8 @@ const Content = ({
     duration,
     location,
     certificate,
-  }
+  },
+  chapters
 }) => {
   return (
     <section className={styles.wrapper}>
@@ -21,6 +23,11 @@ const Content = ({
         location,
         certificate,
       }} />
+      <div className={styles.content}>
+        <Tabs
+          chapters={chapters}
+        />
+      </div>
     </section>
   );
 };

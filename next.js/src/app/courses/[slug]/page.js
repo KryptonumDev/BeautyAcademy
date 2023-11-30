@@ -36,7 +36,93 @@ const data = {
     advancement: 2,
     duration: 'Общая продолжительность курса: 6 часов.',
     location: 'Онлайн-курс',
-    certificate: 'сертификат об окончании'
+    certificate: 'сертификат об окончании',
+    chapters: [
+      {
+        name: "Курс косметологии",
+        duration: '32 минут',
+        lessons: [
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+        ]
+      },
+      {
+        name: "Курс косметологии",
+        duration: '32 минут',
+        lessons: [
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+        ]
+      },
+      {
+        name: "Курс косметологии",
+        duration: '32 минут',
+        lessons: [
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+        ]
+      },
+      {
+        name: "Курс косметологии",
+        duration: '32 минут',
+        lessons: [
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: '/lesson-1'
+          },
+        ]
+      },
+    ]
   }
 }
 
@@ -80,7 +166,10 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
         }}
         rating={data.product.rating}
       />
-      <Content product={data.product} />
+      <Content
+        product={data.product}
+        chapters={data.product.chapters}
+      />
       <Faq data={data.faq} />
       <UpsellCarousel />
     </>
