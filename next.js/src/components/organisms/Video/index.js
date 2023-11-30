@@ -28,7 +28,7 @@ const Video = ({
         onClick={() => toggleVideo()}
       ></button>
       <Button isPlaying={isPlaying} />
-      <video ref={videoRef} playsinline>
+      <video ref={videoRef} playsInline>
         <source src={url} />
         <p>{altText}</p>
       </video>
