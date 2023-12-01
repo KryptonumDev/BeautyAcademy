@@ -122,6 +122,26 @@ const data = {
           },
         ]
       },
+    ],
+    reviews: [
+      {
+        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+        name: "Inna Brinkis",
+        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
+        rating: 5,
+      },
+      {
+        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+        name: "Inna Brinkis",
+        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
+        rating: 5,
+      },
+      {
+        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+        name: "Inna Brinkis",
+        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
+        rating: 5,
+      },
     ]
   }
 }
@@ -169,6 +189,7 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
       <Content
         product={data.product}
         chapters={data.product.chapters}
+        reviews={data.product.reviews}
       />
       <Faq data={data.faq} />
       <UpsellCarousel />

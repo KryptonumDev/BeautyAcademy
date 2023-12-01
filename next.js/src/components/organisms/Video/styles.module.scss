@@ -84,6 +84,8 @@
     }
     svg {
       overflow: visible;
+      width: clamp(48px, calc(54vw/7.68), 68px);
+      height: clamp(48px, calc(54vw/7.68), 68px);
     }
     &::before {
       content: '';
