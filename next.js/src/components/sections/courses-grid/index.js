@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styles from './styles.module.scss'
 import Link from "next/link"
 import Card from "@/components/moleculas/product-card"
@@ -20,10 +20,12 @@ const DropdownIndicator = props => {
 export default function Grid({ slug, products, productCategories }) {
 
   const [newProducts, setNewProducts] = useState(products)
+  const [needConcat, setNeedConcat] = useState(false)
+  const [complexity, setComplexity] = useState('0')
 
   const { request } = useMutation(`
-    query newProducts($endCursor: String) {
-      products(where: {categoryIn: "онлайн-курс"}, first: 6, after: $endCursor) {
+    query newProducts($endCursor: String, $complexity: [String]) {
+      products(where: {tagIn: $complexity, categoryIn: "онлайн-курс"}, first: 6, after: $endCursor) {
         nodes {
           ... on SimpleProduct {
             productId: databaseId
@@ -75,17 +77,27 @@ export default function Grid({ slug, products, productCategories }) {
     }
   `, {
     onCompleted: ({ body }) => {
-      setNewProducts({ nodes: [...newProducts.nodes, ...body.data.products.nodes], pageInfo: body.data.products.pageInfo })
+      let newArr = { nodes: [...body.data.products.nodes], pageInfo: body.data.products.pageInfo }
+      if (needConcat) newArr.nodes = [...newProducts.nodes, ...body.data.products.nodes]
+      setNewProducts(newArr)
+      setNeedConcat(false)
     },
     onError: (error) => {
       console.log(error.message)
+      setNeedConcat(false)
     }
   })
 
   const loadMore = () => {
+    setNeedConcat(true)
     request({ variables: { endCursor: products.pageInfo.endCursor } })
   }
 
+  useEffect(() => {
+    request({ variables: { complexity: complexity === '0' ? null : [complexity] } })
+  }, [complexity])
+
+  debugger
   return (
     <section className={styles.wrapper}>
       <div className={styles.control}>
@@ -104,11 +116,12 @@ export default function Grid({ slug, products, productCategories }) {
             { value: '2', label: 'Средний' },
             { value: '3', label: 'Продвинутый' }
           ]}
-            placeholder="Выберите уровень сложности"
-            classNamePrefix="react-select"
-            className="filter input"
+            className="select"
+            classNamePrefix="select"
+            placeholder=""
             components={{ DropdownIndicator }}
             isSearchable={false}
+            onChange={({ value }) => setComplexity(value)}
           />
         </div>
       </div>
@@ -118,9 +131,9 @@ export default function Grid({ slug, products, productCategories }) {
         ))}
       </div>
       <div className={styles.pagination}>
-        <p>{newProducts?.nodes?.length} из {products.pageInfo.total} курсов</p>
-        <span style={{ '--percent': `${100 / products.pageInfo.total * newProducts?.nodes?.length}%` }} className={`${styles.line}`} />
-        {newProducts?.nodes?.length !== products.pageInfo.total && (
+        <p>{newProducts?.nodes?.length} из {newProducts.pageInfo.total} курсов</p>
+        <span style={{ '--percent': `${100 / newProducts.pageInfo.total * newProducts?.nodes?.length}%` }} className={`${styles.line}`} />
+        {newProducts?.nodes?.length !== newProducts.pageInfo.total && (
           <Button onClick={loadMore}>Cледующие курсы</Button>
         )}
       </div>
