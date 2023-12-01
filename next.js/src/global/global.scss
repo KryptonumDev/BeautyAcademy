@@ -52,8 +52,8 @@
   --success-900: #012415;
 
   --gradient-100: linear-gradient(90deg, #F7C479, #DCA855 26.73%, #C79442 61.32%, #BC7F1D 80.54%, #BA7403);
-  --shadow: 4px 4px 11px 0px rgba(0,0,0,.12);
-  
+  --shadow: 4px 4px 11px 0px rgba(0, 0, 0, .12);
+
   --easing: cubic-bezier(0.65, 0, 0.35, 1);
 
   --link-color: var(--primary-500);
@@ -324,14 +324,17 @@ html.lenis {
 .unorderedList {
   display: grid;
   gap: clamp(8px, calc(12vw/7.68), 16px);
+
   li {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 8px;
+
     svg {
       width: clamp(24px, calc(28vw/7.68), 30px);
       height: clamp(24px, calc(28vw/7.68), 30px);
     }
+
     span {
       margin-top: .15em;
     }
@@ -343,11 +346,13 @@ blockquote {
   border: 1px solid var(--background-600);
   padding: 5px;
   margin-top: 25px;
+
   div {
     padding: clamp(20px, calc(24vw/7.68), 24px) clamp(16px, calc(20vw/7.68), 20px);
     border: 1px solid var(--background-50);
-    background-color: rgba(255,255,255,.40);
+    background-color: rgba(255, 255, 255, .40);
     position: relative;
+
     svg {
       right: clamp(16px, calc(20vw/7.68), 20px);
       top: -5px;
@@ -356,5 +361,48 @@ blockquote {
       width: clamp(36px, calc(48vw/7.68), 48px);
       height: auto;
     }
+  }
+}
+
+html body {
+  .select__control {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: unset;
+    min-height: unset;
+    transition: border-color .4s;
+
+    border-bottom: 0.5px solid var(--primary-700, #192A23) !important;
+  }
+
+  .select__value-container{
+    padding: 8px 8px 16px;
+    margin: 0;
+
+  }
+
+  .select__indicator-separator {
+    display: none;
+  }
+
+  .select__input-container, .select__placeholder {
+    padding: 0;
+    margin: 0;
+  }
+
+  .select__indicator {
+    padding: 0;
+    transition: .3s var(--easing);
+  }
+
+  .select__control--menu-is-open{
+    .select__indicator {
+      transform: rotateX(180deg);
+    }
+  }
+  
+  .select__menu-list, .select__menu {
+    overscroll-behavior: contain;
   }
 }

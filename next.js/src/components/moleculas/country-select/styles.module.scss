@@ -1,0 +1,15 @@
+.wrapper {
+  .label {
+    margin: 0 0 8px 8px;
+  }
+
+  &[aria-invalid="true"] {
+    .label {
+      color: var(--danger-500);
+    }
+
+    div{
+      border-color: var(--danger-500) !important;
+    }
+  }
+}

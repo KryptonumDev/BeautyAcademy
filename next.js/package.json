@@ -27,6 +27,7 @@
     "react-markdown": "^9.0.0",
     "react-responsive": "^9.0.2",
     "react-select": "^5.8.0",
+    "react-select-country-list": "^2.2.3",
     "rehype-raw": "^7.0.0",
     "sass": "^1.69.5",
     "sharp": "^0.33.0",

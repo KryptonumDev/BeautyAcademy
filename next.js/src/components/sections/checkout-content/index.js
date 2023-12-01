@@ -28,7 +28,7 @@ export default function Content({ providers }) {
   const register = true
   const delivery = false
 
-  const [step, setStep] = useState(5)
+  const [step, setStep] = useState(1)
   const [input, setInput] = useState({
     "firmOrder": false,
     "billingDifferentThanShipping": true,

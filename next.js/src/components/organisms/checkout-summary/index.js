@@ -57,6 +57,13 @@ export default function Summary({ input, setInput, setStep, nextStep }) {
                 errors={errors}
               />
               <Input
+                label="Код страны"
+                type="text"
+                readOnly={true}
+                register={register('country')}
+                errors={errors}
+              />
+              <Input
                 label="Адрес"
                 type="text"
                 readOnly={true}
@@ -145,5 +152,6 @@ const generateDefaults = (input) => {
     phone: input?.billing?.phone || '',
     paymentMethod: 'default',
     comment: input?.comment || '',
+    country: input?.billing?.country || '',
   }
 }

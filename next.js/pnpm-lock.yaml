@@ -59,6 +59,9 @@ dependencies:
   react-select:
     specifier: ^5.8.0
     version: 5.8.0(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0)
+  react-select-country-list:
+    specifier: ^2.2.3
+    version: 2.2.3
   rehype-raw:
     specifier: ^7.0.0
     version: 7.0.0
@@ -3331,6 +3334,10 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       shallow-equal: 1.2.1
+    dev: false
+
+  /react-select-country-list@2.2.3:
+    resolution: {integrity: sha512-eRgXL613dVyJiE99yKDYLvSBKDxvIlhkmvO2DVIjdKVyUQq6kBqoMUV/2zuRIAsbRXgBGmKjeL1dxjf7zTfszg==}
     dev: false
 
   /react-select@5.8.0(@types/react@18.2.37)(react-dom@18.2.0)(react@18.2.0):

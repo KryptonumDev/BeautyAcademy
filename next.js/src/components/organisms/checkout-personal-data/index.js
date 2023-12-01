@@ -1,14 +1,15 @@
 'use client'
-import React from "react"
+import React, { useState } from "react"
 import styles from './styles.module.scss'
 import { useForm } from "react-hook-form"
 import Radio from "@/components/moleculas/radio"
 import Input from "@/components/moleculas/Input"
 import { regex } from "@/global/constants"
 import Button from "@/components/atoms/Button"
+import CountrySelect from "@/components/moleculas/country-select"
 
 export default function PersonalData({ input, nextStep, setInput }) {
-  const { register, watch, handleSubmit, formState: { errors } } = useForm({
+  const { control, register, watch, handleSubmit, formState: { errors } } = useForm({
     mode: "all",
     defaultValues: generateDefaults(input)
   })
@@ -75,6 +76,13 @@ export default function PersonalData({ input, nextStep, setInput }) {
           })}
           errors={errors}
         />
+        <CountrySelect
+          label="Страна"
+          name={'country'}
+          rules={{ required: { value: true, message: 'Выберите страну' } }}
+          errors={errors}
+          control={control}
+        />
         <Input
           label="Адрес"
           type="text"
@@ -133,6 +141,7 @@ const generateDefaults = (input) => {
     postcode: input?.billing?.postcode || '',
     city: input?.billing?.city || '',
     phone: input?.billing?.phone || '',
+    country: input?.billing?.country || '',
   }
 }
 
@@ -145,7 +154,7 @@ const generateNewInput = (data, input) => {
       firstName: data.name,
       address1: data.address,
       city: data.city,
-      country: 'PL', //TODO: rework and add switch for country
+      country: data.country,
       postcode: data.postcode,
       email: data.email,
       phone: data.phone,
@@ -155,7 +164,7 @@ const generateNewInput = (data, input) => {
       firstName: data.name,
       address1: data.address,
       city: data.city,
-      country: 'PL', //TODO: rework and add switch for country
+      country: data.country,
       postcode: data.postcode,
       email: data.email,
       phone: data.phone,
