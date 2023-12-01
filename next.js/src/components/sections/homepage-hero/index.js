@@ -37,11 +37,13 @@ const Hero = ({
         <Video
           asset={hero_VideoPhone.asset}
           className={styles.videoPhone}
-        />
+          priority={true}
+          />
         <Video
           asset={hero_VideoSquare.asset}
           className={styles.videoSquare}
           isSquare={true}
+          priority={true}
         />
       </div>
     </section>

@@ -30,7 +30,11 @@ const Benefits = ({
           ))}
         </div>
       </header>
-      <Img data={benefits_Img} className={styles.img} />
+      <Img
+        data={benefits_Img}
+        className={styles.img}
+        sizes="(max-width: 899px) 100vw, 50vw"
+      />
       <Sygnet className={styles.sygnet} />
     </section>
   );
