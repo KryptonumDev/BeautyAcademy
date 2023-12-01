@@ -1,0 +1,89 @@
+.wrapper {
+  position: absolute;
+  inset: 0;
+  background: rgba(251, 247, 246, 0.30);
+  backdrop-filter: blur(3px);
+  z-index: 100;
+
+  svg {
+    position: absolute;
+    transform-origin: center bottom;
+    padding: 8px;
+    box-sizing: content-box;
+
+    &:nth-child(1) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: rotate 6s var(--easing) infinite;
+    }
+
+    &:nth-child(2) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(90deg);
+      animation: rotate 6s var(--easing) infinite forwards -1.5s;
+    }
+
+    &:nth-child(3) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(180deg);
+      animation: rotate 6s var(--easing) infinite forwards -3s;
+    }
+
+    &:nth-child(4) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(270deg);
+      animation: rotate 6s var(--easing) infinite forwards -4.5s;
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+    padding: 8px;
+  }
+
+  12.5% {
+    transform: translate(-50%, -50%) rotate(45deg);
+    padding: 3px;
+  }
+
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg);
+    padding: 8px;
+  }
+
+  37.5% {
+    transform: translate(-50%, -50%) rotate(135deg);
+    padding: 3px;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg);
+    padding: 8px;
+  }
+
+  62.5% {
+    transform: translate(-50%, -50%) rotate(225deg);
+    padding: 3px;
+  }
+
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg);
+    padding: 8px;
+  }
+
+  87.5% {
+    transform: translate(-50%, -50%) rotate(315deg);
+    padding: 3px;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+    padding: 8px;
+  }
+}
