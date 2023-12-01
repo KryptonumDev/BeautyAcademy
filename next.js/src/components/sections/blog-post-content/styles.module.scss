@@ -166,6 +166,7 @@
   }
   > img {
     margin: clamp(28px, calc(36vw/7.68), 36px) 0;
+    box-shadow: var(--shadow);
   }
   > blockquote {
     margin: clamp(28px, calc(36vw/7.68), 36px) 0;
