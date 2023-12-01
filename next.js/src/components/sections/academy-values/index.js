@@ -1,5 +1,6 @@
 import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
+import Item from './Item';
 
 const Values = ({
   data: {
@@ -13,9 +14,9 @@ const Values = ({
       <Markdown.h2>{values_Heading}</Markdown.h2>
       <div className={styles.list}>
         {values_List.map((item, i) => (
-          <div className={styles.item} key={i}>
+          <Item className={styles.item} key={i}>
             <Markdown>{item}</Markdown>
-          </div>
+          </Item>
         ))}
       </div>
     </section>

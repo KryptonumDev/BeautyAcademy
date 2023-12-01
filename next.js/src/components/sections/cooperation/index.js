@@ -26,7 +26,7 @@ const Cooperation = ({
     <section className={styles.wrapper}>
       <Img
         data={cooperation_Img}
-        sizes="(max-width: 599px) 100vw, 33vw"
+        sizes="(max-width: 599px) 100vw, 40vw"
         className={styles.img}
       />
       <div>
