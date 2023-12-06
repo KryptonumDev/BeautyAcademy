@@ -203,8 +203,8 @@ export const Social = {
 }
 
 export const Cross = () => (
-  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.91699 18.0833L14.0003 14M14.0003 14L18.0837 9.91663M14.0003 14L18.0837 18.0833M14.0003 14L9.91699 9.91663" stroke="#C9BBB7" strokeLinecap="round" strokeLinejoin="round" />
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.91699 18.0833L14.0003 14M14.0003 14L18.0837 9.91663M14.0003 14L18.0837 18.0833M14.0003 14L9.91699 9.91663" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 )
 

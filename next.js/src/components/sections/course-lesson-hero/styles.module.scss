@@ -1,0 +1,69 @@
+.wrapper {
+  display: grid;
+  gap: clamp(36px, calc(36vw/7.68), 48px) 28px;
+  @media (min-width: 1200px){
+    grid-template-columns: 2fr 1fr;
+  }
+  .video {
+    aspect-ratio: 16/9;
+    background-color: var(--background-300);
+    margin-bottom: clamp(16px, calc(16vw/7.68), 24px);
+    video {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  h1 {
+    margin-bottom: clamp(16px, calc(24vw/7.68), 36px);
+  }
+  .progress {
+    margin-bottom: clamp(24px, calc(36vw/7.68), 64px);
+    p {
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .bar {
+      background-color: var(--background-500);
+      div {
+        transform-origin: left;
+        height: 4px;
+        background: var(--gradient-100);
+      }
+    }
+  }
+  .nav {
+    display: grid;
+    gap: 24px 16px;
+    justify-content: space-between;
+    @media (min-width: 900px){
+      grid-template-columns: auto auto auto;
+    }
+    @media (max-width: 899px){
+      grid-template-columns: auto auto;
+      button:nth-child(2){
+        order: 2;
+        grid-column: 3/1;
+      }
+    }
+    button[data-variant='secondary']{
+      font-size: clamp(calc(14rem/16), calc(18vw/7.68), calc(20rem/16));
+    }
+  }
+  .lessons {
+    a {
+      display: block;
+      padding: 16px 8px;
+      border-bottom: 1px solid var(--background-500);
+      background-color: var(--background-300);
+      &:hover {
+        background-color: var(--background-400);
+      }
+      &[aria-current='true']{
+        border-bottom: 1px solid;
+        border-image: var(--gradient-100) 1;
+        background-color: var(--background-500);
+      }
+      transition: background-color .3s;
+    }
+  }
+}

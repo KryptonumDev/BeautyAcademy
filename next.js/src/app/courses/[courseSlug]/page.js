@@ -45,38 +45,17 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: '/lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: '/lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
         ]
       },
@@ -87,17 +66,17 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
         ]
       },
@@ -108,17 +87,38 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
+          },
+        ]
+      },
+      {
+        name: "Курс косметологии",
+        duration: '32 минут',
+        lessons: [
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: 'lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: 'lesson-1'
+          },
+          {
+            name: "Основы",
+            duration: "8 минут",
+            href: 'lesson-1'
           },
         ]
       },
@@ -146,7 +146,7 @@ const data = {
   }
 }
 
-const CoursePage = async ({ params: { slug: paramsSlug } }) => {
+const CoursePage = async ({ params: { courseSlug } }) => {
   const {
     productId,
     id,
@@ -160,7 +160,7 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
     productTags,
     productCategories,
     img,
-  } = await getProducts(paramsSlug);
+  } = await getProducts(courseSlug);
 
   return (
     <>
@@ -197,11 +197,11 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
   )
 }
 
-// export async function generateMetadata({ params: { slug: paramsSlug } }) {
+// export async function generateMetadata({ params: { courseSlug } }) {
 //   const { page: [{
 //     seo,
 //     slug: { current: slug }
-//   }] } = await query(paramsSlug);
+//   }] } = await query(courseSlug);
 //   return Seo({
 //     title: seo?.title,
 //     description: seo?.description,
