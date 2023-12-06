@@ -191,7 +191,6 @@ export default {
       type: 'markdown',
       title: 'Paragraph',
       fieldset: 'reviews',
-      validation: Rule => Rule.required(),
     },
     {
       name: 'reviews_Cta',
