@@ -15,9 +15,15 @@
   }
   .assets {
     margin: 24px 0;
+    @media (max-width: 899px) and (min-width: 650px) {
+      margin: 24px calc(clamp(40px, calc(80vw/7.68), 80px) * -.5);
+    }
+    @media (max-width: 649px) {
+      margin: 24px -16px;
+    }
     position: relative;
     z-index: 1;
-    height: clamp(520px, calc(600vw/7.68), 800px);
+    height: clamp(520px, calc(600vw/7.68), 750px);
     .img {
       position: absolute;
       border: 1px solid;
@@ -32,8 +38,8 @@
         left: 0;
         top: 0;
         transform: translateY(-50%);
-        @media (max-width: 899px){
-          transform: translateY(10%);
+        @media (max-width: 999px){
+          transform: translateY(5%);
         }
       }
       &:nth-of-type(2) {
@@ -41,38 +47,60 @@
         left: 5%;
         bottom: 0;
         transform: translateY(25%);
-        @media (max-width: 899px){
+        @media (max-width: 599px){
           left: 0;
           transform: translateY(0);
         }
       }
       &:nth-of-type(3) {
         width: clamp(128px, calc(182vw/7.68), 230px);
-        left: 75%;
-        top: 55%;
-        transform: translate(-50%, -50%);
+        right: 25%;
+        bottom: 55%;
+        transform: translateY(50%);
         z-index: 2;
-        @media (max-width: 899px){
-          left: unset;
+        @media (max-width: 999px){
+          right: 12%;
+          bottom: 40%;
+        }
+        @media (max-width: 599px){
           right: 0;
-          top: 75%;
-          transform: translateY(-50%);
+          bottom: 35%;
+        }
+      }
+      &:nth-of-type(4) {
+        width: 223px;
+        right: 0;
+        bottom: 0;
+        transform: translateY(25%);
+        @media (max-width: 999px){
+          display: none;
         }
       }
     }
     .videoPhone {
       position: absolute;
-      left: 45%;
-      bottom: 50%;
-      transform: translate(-50%, 50%);
-      width: clamp(160px, calc(228vw/7.68), 344px);
+      left: 40%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(148px, calc(214vw/7.68), 334px);
       z-index: 3;
+      @media (max-width: 999px) {
+        left: 45%;
+      }
+      @media (max-width: 599px) {
+        left: 50%;
+        top: 55%;
+      }
     }
     .videoSquare {
       position: absolute;
       right: 0;
       top: 0;
       width: clamp(160px, calc(244vw/7.68), 310px);
+      transform: translateY(-25%);
+      @media (max-width: 999px) {
+        transform: translateY(5%);
+      }
     }
   }
 }
