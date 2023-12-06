@@ -1,18 +1,7 @@
 import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
-
-const formatBytes = bytes => {
-  const KB = bytes / 1024;
-  const MB = KB / 1024;
-  if (MB >= 1) {
-    return MB.toFixed(2) + 'MB';
-  } else if (KB >= 1) {
-    return KB.toFixed(2) + 'KB';
-  } else {
-    return bytes + 'B';
-  }
-}
+import { formatBytes } from '@/utils/functions';
 
 const Hero = ({
   hero_Heading,

@@ -14,7 +14,7 @@ const Hero = ({
     <section className={styles.wrapper}>
       <div>
         <div className={styles.video}>
-
+          
         </div>
         <nav className={styles.nav}>
           <Button variant='secondary' prev>предыдущий урок</Button>
