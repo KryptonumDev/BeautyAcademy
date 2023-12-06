@@ -18,8 +18,8 @@ const ContactPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Contact', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'Контакт', path: pathname },
       ]} />
       <Hero
         hero={{

@@ -47,8 +47,8 @@ const Form = () => {
         label="Имя"
         type="text"
         register={register('name', {
-          required: { value: true, message: `Name is required` },
-          minLength: { value: 2, message: `Name should have at least 2 characters` }
+          required: { value: true, message: `Введите имя` },
+          minLength: { value: 2, message: `Имя должно состоять минимум из 2-х символов` }
         })}
         errors={errors}
       />
@@ -56,8 +56,8 @@ const Form = () => {
         label="Электронный адрес"
         type="text"
         register={register('email', {
-          required: { value: true, message: `Email is required` },
-          pattern: { value: regex.email, message: `Incorrect e-mail address` }
+          required: { value: true, message: `Введите E-mail` },
+          pattern: { value: regex.email, message: `Введите правильный E-mail` }
         })}
         errors={errors}
       />
@@ -73,7 +73,7 @@ const Form = () => {
           >политику конфиденциальности</Link>
         </>}
         register={register('legal', {
-          required: { value: true, message: `Agreement is required` }
+          required: { value: true, message: `Необходимо согласие` }
         })}
         errors={errors}
       />

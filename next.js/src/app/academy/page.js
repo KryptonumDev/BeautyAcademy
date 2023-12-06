@@ -31,8 +31,8 @@ const AcademyPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Academy', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'Академия', path: pathname },
       ]} />
       <Hero data={{
         hero_Heading,

@@ -145,8 +145,8 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Courses', path: '/courses' },
+        { name: 'Главная', path: '/' },
+        { name: 'Курсы', path: '/courses' },
         { name: name, path: `/courses/${slug}` },
       ]} />
       <Hero

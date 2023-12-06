@@ -3,6 +3,7 @@ import styles from "./styles.module.scss"
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "@/components/organisms/payment-form";
+import Loader from "@/components/moleculas/request-loader";
 
 export default function Payment({ input }) {
 
@@ -74,6 +75,7 @@ export default function Payment({ input }) {
     <div className={styles.wrapper}>
       <h2>Выберите способ оплаты</h2>
       <div className={styles.form}>
+        <Loader show={!secretKey}/>
         {secretKey && (
           <Elements options={paymentOptions} stripe={stripePromise} >
             <PaymentForm input={input} />

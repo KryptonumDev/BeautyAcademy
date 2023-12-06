@@ -44,7 +44,7 @@ const IndexPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: pathname },
+        { name: 'Главная', path: pathname },
       ]} visible={false} />
       <Hero data={{
         hero_Heading,

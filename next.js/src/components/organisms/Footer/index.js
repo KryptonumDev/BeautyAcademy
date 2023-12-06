@@ -60,7 +60,7 @@ const Footer = async () => {
             ))}
           </nav>
           <div className={styles.company}>
-            {footer_Company.map(({ name, address, phone }, i) => (
+            {footer_Company?.map(({ name, address, phone }, i) => (
               <div key={i}>
                 <p className={styles.name}>{name}</p>
                 <p>{address}</p>
@@ -71,8 +71,8 @@ const Footer = async () => {
         </div>
         <div className={styles.legal}>
           <div>
-            <Link href='/privacy-policy' className='link'>политика конфиденциальности</Link>
-            <Link href='/terms-and-conditions' className='link'>Печенье</Link>
+            <Link href='/privacy-policy' className='link'>Политика конфиденциальности</Link>
+            <Link href='/terms-and-conditions' className='link'>Регламент магазина</Link>
           </div>
           <p>Ⓒ Дизайн и реализация: <a href="https://kryptonum.eu/pl" className='link' aria-label="Kryptonum"><Kryptonum /></a></p>
         </div>

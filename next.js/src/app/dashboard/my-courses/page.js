@@ -1,9 +1,8 @@
+import Courses from "@/components/sections/dashboard-courses";
 import React from "react"
 
-export default function Courses () {
+export default async function Page() {
   return (
-    <div>
-      ТУТ БУДУТ КУРСЫ
-    </div>
+    <Courses />
   )
 }

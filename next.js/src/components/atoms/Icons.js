@@ -240,3 +240,9 @@ export const AdvancemenetIndicator = ({
     </defs>
   </svg>
 )
+
+export const Trash = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18 5.99998H21M18 5.99998V19C18 20.1046 17.1046 21 16 21H8C6.89543 21 6 20.1046 6 19V5.99998M18 5.99998H6M3 5.99998H6M10 9.49998V17.5M14 9.49998V17.5M8.5 2.99998H15.5" stroke="#53423C" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+)

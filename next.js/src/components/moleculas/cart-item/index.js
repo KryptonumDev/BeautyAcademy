@@ -3,6 +3,7 @@ import styles from './styles.module.scss'
 import Img from "@/components/atoms/Img"
 import { getUpdatedItems } from "@/utils/getUpdatedItems";
 import { v4 } from "uuid";
+import { Trash } from "@/components/atoms/Icons";
 
 export default function CartItem({ updateCart, products, remove, data, index }) {
   const [productCount, setProductCount] = useState(data.quantity);
@@ -79,9 +80,7 @@ export default function CartItem({ updateCart, products, remove, data, index }) 
       <div className={styles['remove']}>
         {remove && (
           <button type="button" className={styles["remove"]} onClick={(e) => { remove(e, data.key, products) }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M18 5.99998H21M18 5.99998V19C18 20.1046 17.1046 21 16 21H8C6.89543 21 6 20.1046 6 19V5.99998M18 5.99998H6M3 5.99998H6M10 9.49998V17.5M14 9.49998V17.5M8.5 2.99998H15.5" stroke="#53423C" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <Trash />
           </button>
         )}
       </div>

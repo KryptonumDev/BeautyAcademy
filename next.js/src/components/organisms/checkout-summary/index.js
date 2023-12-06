@@ -129,7 +129,7 @@ export default function Summary({ input, setInput, setStep, nextStep }) {
           <div className={styles.flex}>
             <Checkbox
               label="Я принимаю правила пользования магазина"
-              register={register('consent', { required: { value: true, message: 'Согласие с правилами магазина обязательно' } })}
+              register={register('consent', { required: { value: true, message: 'Необходимо согласие' } })}
               errors={errors}
             />
             <Button>Оплачиваю</Button>

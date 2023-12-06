@@ -1,0 +1,51 @@
+.wrapper {
+  display: grid;
+  
+  h1 {
+    margin-bottom: 36px;
+  }
+
+  form{
+    margin-top: 64px;
+    margin-bottom: 120px;
+    display: grid;
+    gap: 48px;
+
+    label{
+      max-width: 485px;
+    }
+
+    .flex{
+      max-width: 485px;
+      display: grid;
+      align-items: flex-end;
+      gap: 28px;
+      grid-template-columns: 177fr 280fr;
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+        gap: clamp(36px, calc(48vw/7.68), 64px);
+
+        label {
+          &:first-child {
+            max-width: 150px;
+          }
+        }
+      }
+    }
+
+    .buttons{
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+.button{
+  width: fit-content;
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}

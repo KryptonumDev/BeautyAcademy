@@ -108,7 +108,7 @@ export default function Form({ nextStep, registration, setRegistration }) {
             >privacy policy</Link>
           </>}
           register={register('legal', {
-            required: { value: true, message: `Agreement is required` }
+            required: { value: true, message: `Необходимо согласие` }
           })}
           errors={errors}
         />

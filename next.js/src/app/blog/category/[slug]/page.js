@@ -37,8 +37,8 @@ const BlogCategoryPage = async ({
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Blog', path: '/blog' },
+        { name: 'Главная', path: '/' },
+        { name: 'Блог', path: '/blog' },
         { name: categoryName, path: `/blog/${slug}` },
       ]} />
       <Hero

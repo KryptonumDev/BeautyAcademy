@@ -37,8 +37,8 @@ const CooperationPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Cooperation', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'Сотрудничество', path: pathname },
       ]} />
       <Hero
         hero={{

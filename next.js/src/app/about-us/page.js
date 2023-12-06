@@ -31,8 +31,8 @@ const AboutUsPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'About us', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'О Бренде', path: pathname },
       ]} />
       <Hero data={{
         hero_Heading,

@@ -19,8 +19,8 @@ const TermsAndConditionsPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Terms & Conditions', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'Регламент магазина', path: pathname },
       ]} />
       <Hero {...{
         hero_Heading,

@@ -7,9 +7,7 @@ export default async function Checkout() {
   const { loginClients: providers } = await getData();
 
   return (
-    <>
-      <Content providers={providers} />
-    </>
+    <Content providers={providers} />
   )
 }
 

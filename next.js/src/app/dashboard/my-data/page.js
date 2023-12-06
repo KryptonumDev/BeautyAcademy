@@ -1,9 +1,8 @@
+import Data from "@/components/sections/dashboard-data";
 import React from "react"
 
-export default function Data () {
+export default async function Page() {
   return (
-    <div>
-      ТУТ БУДУТ ДАННЫЕ
-    </div>
+    <Data />
   )
 }

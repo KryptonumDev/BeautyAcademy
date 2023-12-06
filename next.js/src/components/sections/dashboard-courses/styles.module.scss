@@ -1,0 +1,33 @@
+.wrapper {
+
+  >h1 {
+    margin-bottom: 36px;
+  }
+
+  >ul {
+    margin-top: 96px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+
+    >li {
+      border: 1px solid var(--0001, #F7C479);
+      background: var(--background-300, #F7EFEC);
+      padding: 24px 24px 28px 24px;
+
+      display: grid;
+      gap: 24px;
+
+      h3{
+        text-align: center;
+        margin-bottom: 64px;
+      }
+
+      p{
+        text-align: center;
+        color: var(--background-700, #7A6A65);
+        margin-bottom: 12px;
+      }
+    }
+  }
+}

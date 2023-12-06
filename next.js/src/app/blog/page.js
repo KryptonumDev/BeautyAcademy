@@ -31,8 +31,8 @@ const BlogPage = async ({ searchParams: { page = 1 } }) => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Blog', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'Блог', path: pathname },
       ]} />
       <Hero
         data={{

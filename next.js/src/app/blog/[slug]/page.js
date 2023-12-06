@@ -21,8 +21,8 @@ const BlogEntryPage = async ({ params: { slug: paramsSlug } }) => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Blog', path: '/blog' },
+        { name: 'Главная', path: '/' },
+        { name: 'Блог', path: '/blog' },
         { name: name, path: `/blog/${slug}` },
       ]} />
       <Hero {...{

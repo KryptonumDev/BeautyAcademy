@@ -19,8 +19,8 @@ const PrivacyPolicyPage = async () => {
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Homepage', path: '/' },
-        { name: 'Privacy Policy', path: pathname },
+        { name: 'Главная', path: '/' },
+        { name: 'Политика конфидециальности', path: pathname },
       ]} />
       <Hero {...{
         hero_Heading,

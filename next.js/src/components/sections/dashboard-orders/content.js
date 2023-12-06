@@ -1,6 +1,6 @@
-import React from "react"
-import styles from "./styles.module.scss"
 import NoContent from "@/components/organisms/dashboard-no-content"
+import wpFetchData from "@/utils/wpFetchData";
+import styles from "./styles.module.scss"
 
 const statusMap = {
   'COMPLETED': 'Завершен',
@@ -13,14 +13,14 @@ const statusMap = {
   'REFUNDED': 'Возвращен'
 }
 
-export default function Orders({ data }) {
+export default async function Content() {
+  const { customer } = await getData();
+
   return (
-    <section className={styles.wrapper}>
-      <h1>История покупок</h1>
-      <p>Здесь вы найдете все ваши предыдущие заказы.</p>
-      {data.orders.nodes.length > 0 ? (
+    <>
+      {customer.orders.nodes.length > 0 ? (
         <ul>
-          {data.orders.nodes.map((order, index) => {
+          {customer.orders.nodes.map((order, index) => {
             const orderDate = new Date(order.date).toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
             return (
               <li key={index}>
@@ -41,6 +41,27 @@ export default function Orders({ data }) {
       ) : (
         <NoContent text='Покупок не совершено' link={{ url: '/courses', title: 'Академия' }} />
       )}
-    </section>
+    </>
   )
+}
+
+const getData = async () => {
+  const { body: { data } } = await wpFetchData(`
+    query {
+      customer {
+        id
+        orders {
+          nodes {
+            total(format: FORMATTED)
+            status
+            orderKey
+            orderNumber
+            paymentMethod
+            date
+          }
+        }
+      }
+    }
+  `)
+  return data;
 }
