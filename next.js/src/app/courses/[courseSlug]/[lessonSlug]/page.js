@@ -1,10 +1,8 @@
-import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 import wpFetchData from "@/utils/wpFetchData";
-import Faq from "@/components/sections/faq";
-import UpsellCarousel from "@/components/sections/upsell-carousel";
-import Hero from "@/components/sections/course-hero";
-import Content from "@/components/sections/course-content";
+import { notFound } from "next/navigation";
+import Content from "@/components/sections/course-lesson-content";
+import Hero from "@/components/sections/course-lesson-hero";
 
 const data = {
   faq: {
@@ -45,17 +43,17 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-1'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-2'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-3'
           },
         ]
       },
@@ -66,17 +64,17 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-4'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-5'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-6'
           },
         ]
       },
@@ -87,17 +85,17 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-7'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-8'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-9'
           },
         ]
       },
@@ -108,70 +106,78 @@ const data = {
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-10'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-11'
           },
           {
             name: "Основы",
             duration: "8 минут",
-            href: '/lesson-1'
+            href: 'lesson-12'
           },
         ]
+      },
+    ],
+    reviews: [
+      {
+        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+        name: "Inna Brinkis",
+        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
+        rating: 5,
+      },
+      {
+        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+        name: "Inna Brinkis",
+        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
+        rating: 5,
+      },
+      {
+        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
+        name: "Inna Brinkis",
+        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
+        rating: 5,
       },
     ]
   }
 }
 
-const CoursePage = async ({ params: { slug: paramsSlug } }) => {
+const CourseLessonPage = async ({ params: { courseSlug, lessonSlug }}) => {
   const {
-    productId,
-    id,
-    slug,
-    name,
-    date,
-    onSale,
-    price,
-    regularPrice,
-    salePrice,
-    productTags,
-    productCategories,
-    img,
-  } = await getProducts(paramsSlug);
+    // productId,
+    // id,
+    // slug,
+    name: courseName,
+    // date,
+    // onSale,
+    // price,
+    // regularPrice,
+    // salePrice,
+    // productTags,
+    // productCategories,
+    // img,
+  } = await getCourse(courseSlug);
+  const lessonName = 'Профессиональный макияж глаз'
 
   return (
     <>
       <Breadcrumbs data={[
-        { name: 'Главная', path: '/' },
-        { name: 'Курсы', path: '/courses' },
-        { name: name, path: `/courses/${slug}` },
+        { name: 'Homepage', path: '/' },
+        { name: 'Courses', path: '/courses' },
+        { name: courseName, path: `/courses/${courseSlug}` },
+        { name: lessonName, path: `/courses/${courseSlug}/${lessonSlug}` },
       ]} />
-      <Hero
-        {...{
-          productId,
-          id,
-          slug,
-          name,
-          date,
-          onSale,
-          price,
-          regularPrice,
-          salePrice,
-          productTags,
-          productCategories,
-          img,
-        }}
-        rating={data.product.rating}
-      />
+      <Hero {...{
+        name: lessonName,
+        chapterLessons: data.product.chapters[0].lessons,
+        chapterNumber: 1
+      }} />
       <Content
         product={data.product}
         chapters={data.product.chapters}
       />
-      <Faq data={data.faq} />
-      <UpsellCarousel />
     </>
   )
 }
@@ -188,7 +194,7 @@ const CoursePage = async ({ params: { slug: paramsSlug } }) => {
 //   })
 // }
 
-const getProducts = async (slug) => {
+const getCourse = async (slug) => {
   const { body: { data } } = await wpFetchData(/* GraphQL */`
     query ($slug: [String]!) {
       product: products(where: {slugIn: $slug}){
@@ -257,4 +263,4 @@ const getProducts = async (slug) => {
 //   }))
 // }
 
-export default CoursePage;
+export default CourseLessonPage;

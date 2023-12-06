@@ -18,9 +18,15 @@
     position: relative;
     z-index: 1;
     height: clamp(520px, calc(600vw/7.68), 800px);
-    > img {
+    .img {
       position: absolute;
-      box-shadow: var(--shadow);
+      border: 1px solid;
+      border-image: var(--gradient-100) 1;
+      padding: 10px;
+      img {
+        box-shadow: var(--shadow);
+        display: block;
+      }
       &:nth-of-type(1) {
         width: clamp(160px, calc(182vw/7.68), 281px);
         left: 0;

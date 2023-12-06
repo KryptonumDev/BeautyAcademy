@@ -27,21 +27,24 @@ const Hero = ({
       </header>
       <div className={styles.assets}>
         {hero_Images.map((img, i) => (
-          <Img
-            data={img}
-            priority={true}
-            key={i}
-            sizes="(max-width: 768px) 160px, 280px"
-          />
+          <div className={styles.img} key={i}>
+            <Img
+              data={img}
+              priority={true}
+              sizes="(max-width: 768px) 160px, 280px"
+            />
+          </div>
         ))}
         <Video
           asset={hero_VideoPhone.asset}
           className={styles.videoPhone}
-        />
+          priority={true}
+          />
         <Video
           asset={hero_VideoSquare.asset}
           className={styles.videoSquare}
           isSquare={true}
+          priority={true}
         />
       </div>
     </section>

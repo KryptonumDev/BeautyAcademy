@@ -12,7 +12,6 @@ const Content = ({
     certificate,
   },
   chapters,
-  reviews,
 }) => {
   return (
     <section className={styles.wrapper}>
@@ -27,7 +26,6 @@ const Content = ({
       <div className={styles.content}>
         <Tabs
           chapters={chapters}
-          reviews={reviews}
         />
       </div>
     </section>

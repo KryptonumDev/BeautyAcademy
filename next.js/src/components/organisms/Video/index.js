@@ -8,7 +8,8 @@ import Button from './Button';
 const Video = ({
   asset: { url, altText },
   className,
-  isSquare=false
+  isSquare=false,
+  priority=false,
 }) => {
   const [ isPlaying, setIsPlaying ] = useState(false);
   const videoRef = useRef(null);
@@ -35,7 +36,7 @@ const Video = ({
       {isSquare ? (
         <Frame />
       ) : (
-        <Image src={phoneFrame} alt="" />
+        <Image src={phoneFrame} priority={priority} alt="" />
       )}
     </div>
   );

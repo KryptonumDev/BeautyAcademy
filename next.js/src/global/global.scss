@@ -314,6 +314,9 @@ html.lenis {
     }
   }
 }
+.swiper-slide {
+  height: unset !important;
+}
 
 .dashboard-layout {
   display: grid;

@@ -35,7 +35,11 @@ const Slider = ({ list }) => {
       >
         {list.map(({ title, description, img }, i) => (
           <SwiperSlide className={styles.item} key={i}>
-            <Img data={img} className={styles.img} />
+            <Img
+              data={img}
+              className={styles.img}
+              sizes="50vw"
+            />
             <Markdown className={styles.title}>{title}</Markdown>
             <Markdown className={styles.description}>{description}</Markdown>
           </SwiperSlide>

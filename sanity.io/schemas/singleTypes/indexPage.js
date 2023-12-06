@@ -36,7 +36,7 @@ export default {
           type: 'image'
         }
       ],
-      validation: Rule => Rule.min(3).max(3),
+      validation: Rule => Rule.min(4).max(4),
       title: 'Images',
       fieldset: 'hero',
     },
@@ -191,7 +191,6 @@ export default {
       type: 'markdown',
       title: 'Paragraph',
       fieldset: 'reviews',
-      validation: Rule => Rule.required(),
     },
     {
       name: 'reviews_Cta',

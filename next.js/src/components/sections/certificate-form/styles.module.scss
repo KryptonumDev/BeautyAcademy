@@ -1,0 +1,84 @@
+.wrapper {
+  display: grid;
+  gap: clamp(24px, calc(24vw/7.68), 36px) clamp(24px, calc(36vw/7.68), 64px);
+  @media (min-width: 900px){
+    grid-template-columns: 1fr 1fr;
+    img {
+      order: 2;
+    }
+  }
+  h2 {
+    margin-bottom: clamp(28px, calc(36vw/7.68), 64px);
+
+  }
+  form {
+    display: grid;
+    gap: clamp(28px, calc(36vw/7.68), 48px);
+    &:has(.state) > *:not(.state) {
+      visibility: hidden;
+    }
+    position: relative;
+    .state {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      left: 0;
+      top: 0;
+      width: calc(100% + 12px);
+      height: calc(100% + 12px);
+      margin: -6px;
+      background-color: var(--background-300);
+      padding: 16px var(--pageMargin);
+      svg {
+        width: clamp(48px, calc(64vw/7.68), 82px);
+        height: clamp(48px, calc(64vw/7.68), 82px);
+      }
+      h3 {
+        margin: 12px 0 16px;
+      }
+      button {
+        margin-top: 24px;
+      }
+    }
+  }
+  .rating {
+    p {
+      margin-bottom: clamp(8px, calc(8vw/7.68), 12px);
+    }
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      gap: clamp(4px, calc(8vw/7.68), 8px);
+      label {
+        cursor: pointer;
+        input {
+          opacity: 0;
+          position: absolute;
+        }
+        &:has(input:checked) ~ label {
+          svg {
+            fill: none;
+          }
+        }
+      }
+      p {
+        align-self: flex-end;
+        margin-left: 12px;
+        line-height: 1;
+        > span {
+          display: inline-block;
+          height: .9em;
+          font-size: 2.25em;
+          overflow: hidden;
+          vertical-align: bottom;
+          > span {
+            transition: transform .5s var(--easing);
+            display: inline-flex;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}
