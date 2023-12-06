@@ -60,7 +60,7 @@ const Footer = async () => {
             ))}
           </nav>
           <div className={styles.company}>
-            {footer_Company.map(({ name, address, phone }, i) => (
+            {footer_Company?.map(({ name, address, phone }, i) => (
               <div key={i}>
                 <p className={styles.name}>{name}</p>
                 <p>{address}</p>
