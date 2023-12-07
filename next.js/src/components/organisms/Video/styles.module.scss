@@ -21,6 +21,9 @@
     object-fit: cover;
     padding: 1%;
   }
+  &[data-square="false"]{
+    filter: drop-shadow(4px 4px 11px rgba(0, 0, 0, .2));
+  }
   &[data-square="true"]{
     video {
       border-radius: 0;
@@ -65,7 +68,7 @@
   .button {
     position: absolute;
     left: 50%;
-    bottom: 30%;
+    bottom: 35%;
     transform: translate(-50%, 50%);
     transition: transform .3s var(--easing);
     z-index: 2;
