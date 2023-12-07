@@ -15,6 +15,7 @@ const wpFetchData = async (query, variables, revalidate = 0) => {
     const headers = { 'Content-Type': 'application/json' };
 
     const authToken = await (async () => {
+      // if (typeof document === 'undefined') return null
       // TODO: check if auth needed
       let authToken = await read('authToken');
       let refreshToken = await read('refreshToken');
@@ -43,7 +44,10 @@ const wpFetchData = async (query, variables, revalidate = 0) => {
       return newToken
     })()
 
-    let sessionToken = await read('woocommerce-session')
+    let sessionToken = await (async () => {
+      // if (typeof document === 'undefined') return null
+      return await read('woocommerce-session')
+    })()
 
     if (authToken) {
       headers['Authorization'] = `Bearer ${authToken}`;

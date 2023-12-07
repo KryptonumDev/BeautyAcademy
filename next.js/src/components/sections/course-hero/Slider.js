@@ -38,7 +38,7 @@ const Slider = ({ list, rating }) => {
           </SwiperSlide>
         ))}
       </Swiper>
-      {list.length > 0 && (
+      {list.length > 1 && (
         <div className={styles.controls}>
           <button
             aria-label='Go to the previous review'

@@ -14,7 +14,11 @@ export async function create(data) {
 }
 
 export async function read(name) {
-  return cookies().get(name)
+  try {
+    return cookies().get(name)
+  } catch {
+    return null
+  }
 }
 
 export async function getAll() {

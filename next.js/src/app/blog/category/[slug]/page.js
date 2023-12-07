@@ -149,4 +149,20 @@ const query = async (offset = limit, slug) => {
   return data
 }
 
+export async function generateStaticParams() {
+  const { body: { data: { categories } } } = await fetchData(`
+    query {
+      categories: allBlogCategory {
+        slug {
+          current
+        }
+      }
+    }
+  `);
+
+  return categories.map(({ slug }) => ({
+    slug: slug.current
+  }))
+}
+
 export default BlogCategoryPage;

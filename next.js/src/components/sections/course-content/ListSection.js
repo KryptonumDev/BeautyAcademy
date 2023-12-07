@@ -1,26 +1,25 @@
-import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 
 const ListSection = ({
-  heading,
+  title,
   list,
-  paragraph,
-  cta,
+  textUnderList,
+  linkUnderSection,
 }) => {
   return (
     <div className={styles.listSection}>
-      <Markdown.h2 className="h3">{heading}</Markdown.h2>
+      <h2 className="h3">{title}</h2>
       <ul>
         {list.map((item, i) => (
           <li className={styles.item} key={i}>
-            {item}
+            {item.listItemText}
           </li>
         ))}
       </ul>
-      <Markdown className={styles.paragraph}>{paragraph}</Markdown>
-      {cta?.href && (
-        <Button data={cta} className={styles.cta} />
+      <p className={styles.paragraph}>{textUnderList}</p>
+      {linkUnderSection?.url && (
+        <Button className={styles.cta} target={linkUnderSection.target} href={linkUnderSection.url}>{linkUnderSection.title}</Button>
       )}
     </div>
   );

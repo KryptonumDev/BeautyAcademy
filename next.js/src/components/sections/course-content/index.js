@@ -3,6 +3,7 @@ import Tabs from './Tabs';
 import styles from './styles.module.scss';
 
 const Content = ({
+  sections,
   product: {
     author,
     category,
@@ -12,7 +13,6 @@ const Content = ({
     certificate,
   },
   chapters,
-  reviews,
 }) => {
   return (
     <section className={styles.wrapper}>
@@ -26,8 +26,9 @@ const Content = ({
       }} />
       <div className={styles.content}>
         <Tabs
+          sections={sections}
           chapters={chapters}
-          reviews={reviews}
+          // reviews={reviews}
         />
       </div>
     </section>

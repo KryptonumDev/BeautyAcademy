@@ -1,5 +1,5 @@
 import React from "react"
-import styles from "./styles.module.scss"
+// import styles from "./styles.module.scss"
 import NoContent from "@/components/organisms/dashboard-no-content"
 import Img from "@/components/atoms/Img"
 import wpFetchData from "@/utils/wpFetchData";

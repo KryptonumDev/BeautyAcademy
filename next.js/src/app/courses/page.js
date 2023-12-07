@@ -1,10 +1,9 @@
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 import Grid from "@/components/sections/courses-grid";
 import Hero from "@/components/sections/courses-hero";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import fetchData from "@/utils/fetchData";
 import wpFetchData from "@/utils/wpFetchData";
-
-export const dynamic = "force-dynamic"
 
 export default async function Courses() {
   const { page } = await getData();
@@ -12,6 +11,10 @@ export default async function Courses() {
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Главная', path: '/' },
+        { name: 'Курсы', path: '/courses' },
+      ]} />
       <Hero data={page} />
       <Grid products={products} productCategories={productCategories} />
       <LatestBlogEntries />

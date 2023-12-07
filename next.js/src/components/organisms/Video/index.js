@@ -8,10 +8,10 @@ import Button from './Button';
 const Video = ({
   asset: { url, altText },
   className,
-  isSquare=false,
-  priority=false,
+  isSquare = false,
+  priority = false,
 }) => {
-  const [ isPlaying, setIsPlaying ] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
   const toggleVideo = () => {
     const video = videoRef.current;

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss"
 import Loader from "@/components/moleculas/request-loader"
 import Content from "./content"
 
-export default function Orders({ data }) {
+export default function Orders() {
   return (
     <section className={styles.wrapper}>
       <h1>История покупок</h1>

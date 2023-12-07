@@ -202,12 +202,14 @@
 
 .tabs {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  // grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   position: relative;
   margin-bottom: clamp(48px, calc(64vw/7.68), 96px);
   &::before {
     content: '';
-    width: 33.3%;
+    // width: 33.3%;
+    width: 50%;
     height: 2px;
     position: absolute;
     bottom: 0;

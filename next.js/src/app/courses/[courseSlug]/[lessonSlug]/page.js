@@ -247,20 +247,28 @@ const getCourse = async (slug) => {
   return data.product.nodes[0];
 }
 
-// export async function generateStaticParams() {
-//   const { body: { data: { entries } } } = await fetchData(`
-//     query {
-//       entries: allBlogEntry {
-//         slug {
-//           current
-//         }
-//       }
-//     }
-//   `);
+export async function generateStaticParams() {
+  const { body: { data: { lessons } } } = await wpFetchData(`
+    query {
+      lessons(first: 100) {
+        nodes {
+          slug
+          lessonAcf {
+            course {
+              ... on Course {
+                slug
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
 
-//   return entries.map(({ slug: { current: slug } }) => ({
-//     slug
-//   }))
-// }
+  return lessons.nodes.map(({ slug, lessonAcf }) => ({
+    courseSlug: lessonAcf.course.slug,
+    lessonSlug: slug,
+  }))
+}
 
 export default CourseLessonPage;

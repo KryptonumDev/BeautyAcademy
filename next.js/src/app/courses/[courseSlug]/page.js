@@ -147,51 +147,25 @@ const data = {
 }
 
 const CoursePage = async ({ params: { courseSlug } }) => {
-  const {
-    productId,
-    id,
-    slug,
-    name,
-    date,
-    onSale,
-    price,
-    regularPrice,
-    salePrice,
-    productTags,
-    productCategories,
-    img,
-  } = await getProducts(courseSlug);
+  const { product } = await getProducts(courseSlug);
 
   return (
     <>
       <Breadcrumbs data={[
         { name: 'Главная', path: '/' },
         { name: 'Курсы', path: '/courses' },
-        { name: name, path: `/courses/${slug}` },
+        { name: product.name, path: `/courses/${product.slug}` },
       ]} />
       <Hero
-        {...{
-          productId,
-          id,
-          slug,
-          name,
-          date,
-          onSale,
-          price,
-          regularPrice,
-          salePrice,
-          productTags,
-          productCategories,
-          img,
-        }}
+        data={product}
         rating={data.product.rating}
       />
       <Content
         product={data.product}
         chapters={data.product.chapters}
-        reviews={data.product.reviews}
+        sections={product.productAcf.course.courseAcf.about}
       />
-      <Faq data={data.faq} />
+      <Faq data={product.productAcf.course.courseAcf.faq} />
       <UpsellCarousel />
     </>
   )
@@ -210,44 +184,98 @@ const CoursePage = async ({ params: { courseSlug } }) => {
 // }
 
 const getProducts = async (slug) => {
-  const { body: { data } } = await wpFetchData(/* GraphQL */`
-    query ($slug: [String]!) {
-      product: products(where: {slugIn: $slug}){
-        nodes {
-          ... on SimpleProduct {
-            productId: databaseId
-            id
-            slug
-            name
-            date
-            onSale
-            price(format: FORMATTED)
-            regularPrice(format: FORMATTED)
-            salePrice(format: FORMATTED)
-            productTags {
-              nodes {
-                name
-                id
-                slug
-              }
+  try {
+    const { body: { data } } = await wpFetchData(`
+    query ($slug: ID!) {
+      product(id:$slug, idType: SLUG) {
+        ... on SimpleProduct {
+          productId: databaseId
+          id
+          slug
+          name
+          date
+          onSale
+          price(format: FORMATTED)
+          regularPrice(format: FORMATTED)
+          salePrice(format: FORMATTED)
+          productTags {
+            nodes {
+              name
+              id
+              slug
             }
-            productCategories {
-              nodes {
-                name
-                children {
-                  nodes {
-                    name
-                  }
+          }
+          productCategories {
+            nodes {
+              name
+              children {
+                nodes {
+                  name
                 }
               }
             }
-            img: featuredImage {
-              asset: node {
-                altText
-                url: mediaItemUrl
-                metadata: mediaDetails {
-                  width
-                  height
+          }
+          img: featuredImage {
+            asset: node {
+              altText
+              url: mediaItemUrl
+              metadata: mediaDetails {
+                width
+                height
+              }
+            }
+          }
+        }
+        productAcf {
+          course {
+            ... on Course {
+              id
+              courseAcf {
+                faq {
+                  faqTitle
+                  faq {
+                    question
+                    answer
+                  }
+                }
+                about {
+                  ... on Course_Courseacf_About_TextSection {
+                    content
+                    fieldGroupName
+                    video {
+                      title: altText
+                      url: mediaItemUrl
+                    }
+                    isReversed
+                    isColumn
+                    isCentered
+                    image {
+                      altText
+                      url : mediaItemUrl
+                      metadata : mediaDetails {
+                        width
+                        height
+                      }
+                    }
+                    cta {
+                      url
+                      title
+                      target
+                    }
+                  }
+                  ... on Course_Courseacf_About_ListSection {
+                    fieldGroupName
+                    textUnderList
+                    title
+                    list {
+                      listItemText
+                    }
+                    linkUnderSection {
+                      url
+                      title
+                      target
+                    }
+                  }
                 }
               }
             }
@@ -256,26 +284,31 @@ const getProducts = async (slug) => {
       }
     }
   `, {
-    slug
-  });
-  !data.product.nodes[0]?.slug && notFound();
-  return data.product.nodes[0];
+      slug
+    });
+    !data.product?.slug && notFound();
+    return data;
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+
 }
 
-// export async function generateStaticParams() {
-//   const { body: { data: { entries } } } = await fetchData(`
-//     query {
-//       entries: allBlogEntry {
-//         slug {
-//           current
-//         }
-//       }
-//     }
-//   `);
+export async function generateStaticParams() {
+  const { body: { data: { products } } } = await wpFetchData(`
+    query {
+      products(where: {categoryIn: "онлайн-курс"}, first: 100) {
+        nodes {
+          slug
+        }
+      }
+    }
+  `);
 
-//   return entries.map(({ slug: { current: slug } }) => ({
-//     slug
-//   }))
-// }
+  return products.nodes.map(({ slug }) => ({
+    courseSlug: slug
+  }))
+}
 
 export default CoursePage;

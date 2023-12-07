@@ -1,5 +1,5 @@
 'use client'
-import React, { useMemo, useState } from "react"
+import React, { useMemo } from "react"
 import styles from './styles.module.scss'
 import countryList from 'react-select-country-list'
 import Select, { components } from 'react-select'

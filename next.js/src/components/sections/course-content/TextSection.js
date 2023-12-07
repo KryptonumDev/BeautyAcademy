@@ -1,41 +1,39 @@
-import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Img from '@/components/atoms/Img';
 import Button from '@/components/atoms/Button';
 import Video from '@/components/organisms/Video';
 
 const TextSection = ({
-  isColumn=false,
-  isReversed=false,
-  centered=false,
-  heading,
-  paragraph,
-  img,
+  isColumn = false,
+  isReversed = false,
+  centered = false,
+  content,
+  image,
   cta,
   video,
 }) => {
   return (
     <div
       className={styles.textSection}
-      data-column={isColumn}
-      data-reversed={isReversed}
+      data-column={!isColumn}
+      data-reversed={Boolean(isReversed)}
       data-video={Boolean(video)}
-      data-centered={centered}
+      data-centered={Boolean(centered)}
     >
       <div>
-        <Markdown.h2 className="h3">{heading}</Markdown.h2>
-        <Markdown className={styles.paragraph}>{paragraph}</Markdown>
-        {cta?.href && (
-          <Button data={cta} />
+        <div className={styles.paragraph} dangerouslySetInnerHTML={{ __html: content }} />
+        {cta?.url && (
+          <Button target={cta.target} href={cta.url}>{cta.title}</Button>
         )}
       </div>
       {video ? (
-        <Video asset={video.asset} className={styles.video} />
+        <Video asset={video} className={styles.video} />
       ) : (
         <Img
-          src={img}
-          width={1813}
-          height={798}
+          src={image.url}
+          width={image.metadata.width}
+          height={image.metadata.height}
+          alt={image.altText}
           className={styles.img}
         />
       )}

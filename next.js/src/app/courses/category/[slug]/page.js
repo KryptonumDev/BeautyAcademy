@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 import Grid from "@/components/sections/courses-grid";
 import Hero from "@/components/sections/courses-hero";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
@@ -10,6 +11,11 @@ export default async function Courses({ params: { slug } }) {
 
   return (
     <>
+      <Breadcrumbs data={[
+        { name: 'Главная', path: '/' },
+        { name: 'Курсы', path: '/courses' },
+        { name: productCategories?.nodes?.find(el => el.slug === slug).name, path: `/courses/${slug}` }
+      ]} />
       <Hero data={page} />
       <Grid slug={slug} products={products} productCategories={productCategories} />
       <LatestBlogEntries />
@@ -98,4 +104,20 @@ const getProducts = async (slug) => {
   }
 `, { slug: slug }, false)
   return data;
+}
+
+export async function generateStaticParams() {
+  const { body: { data: { categories } } } = await wpFetchData(`
+    query {
+      categories: productCategories(where: {childless: true}) {
+        nodes {
+          slug
+        }
+      }
+    }
+  `);
+
+  return categories.nodes.map(({ slug }) => ({
+    slug: slug
+  }))
 }

@@ -4,20 +4,22 @@ import AddToCart from '@/components/atoms/add-to-cart';
 import Slider from './Slider';
 
 const Hero = ({
-  productId,
-  // id,
-  // slug,
-  // name,
-  // date,
-  // onSale,
-  price,
-  regularPrice,
-  // productTags,
-  // productCategories,
-  img,
+  data: {
+    productId,
+    // id,
+    // slug,
+    // name,
+    // date,
+    // onSale,
+    price,
+    regularPrice,
+    // productTags,
+    // productCategories,
+    img,
+  },
   rating
 }) => {
-  const gallery = [ img, img, img, img ]
+  const gallery = [img]
   return (
     <>
       <section className={`${styles.wrapper} sec-wo-margin`}>
@@ -27,7 +29,7 @@ const Hero = ({
             <Markdown.h3 className={styles.price}>{price}</Markdown.h3>
             {price !== regularPrice && (
               <Markdown components={{ p: 's' }} className={styles.regularPrice}>{regularPrice}</Markdown>
-              )}
+            )}
           </div>
           <AddToCart quantity='1' product={{ productId }}>В корзину</AddToCart>
         </div>
