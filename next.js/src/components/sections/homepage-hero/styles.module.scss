@@ -27,6 +27,7 @@
     .img {
       position: absolute;
       border: 1px solid;
+      box-sizing: content-box;
       border-image: var(--gradient-100) 1;
       padding: 10px;
       img {

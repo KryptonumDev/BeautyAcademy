@@ -39,7 +39,7 @@ const IndexPage = async () => {
     reviews_Cta,
     reviews_List,
     partnership,
-  }} = await query();
+  } } = await query();
 
   return (
     <>
@@ -62,17 +62,17 @@ const IndexPage = async () => {
         benefits_Cta,
         benefits_Img,
       }} />
-      <Advantages data={{
-        advantages_Heading,
-        advantages_Paragraph,
-        advantages_Cta,
-        advantages_List,
-      }} />
       <Features data={{
         features_Heading,
         features_Paragraph,
         features_Cta,
         features_List,
+      }} />
+      <Advantages data={{
+        advantages_Heading,
+        advantages_Paragraph,
+        advantages_Cta,
+        advantages_List,
       }} />
       <Reviews data={{
         reviews_Heading,

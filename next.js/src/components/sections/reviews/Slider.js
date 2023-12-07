@@ -19,6 +19,7 @@ const Slider = ({ list }) => {
       <Swiper
         ref={swiper}
         slidesPerView={1}
+        initialSlide={1}
         breakpoints={{
           0: {
             slidesPerView: 1,
