@@ -8,7 +8,7 @@ const Hero = ({
     productId,
     // id,
     // slug,
-    // name,
+    name,
     // date,
     // onSale,
     price,
@@ -37,6 +37,7 @@ const Hero = ({
       <div className={styles.progress}>
         <div className={styles.indicator}><div style={{ transform: 'scaleX(.2)' }}></div></div>
         <p>20% курса пройдено</p>
+        <h1>{name}</h1>
       </div>
     </>
   );

@@ -1,34 +1,42 @@
+import { useMemo } from 'react';
 import Aside from './Aside';
 import Tabs from './Tabs';
 import styles from './styles.module.scss';
 
 const Content = ({
   sections,
-  product: {
-    author,
-    category,
-    advancement,
-    duration,
-    location,
-    certificate,
+  data: {
+    productCategories,
+    productTags,
+    productAcf: {
+      course: {
+        courseAcf: {
+          mainInformation: {
+            author,
+            courseLength
+          }
+        }
+      }
+    }
   },
   chapters,
+  courseSlug
 }) => {
+  const complicity = useMemo(() => productTags.nodes[0].slug, [productTags])
   return (
     <section className={styles.wrapper}>
       <Aside {...{
         author,
-        category,
-        advancement,
-        duration,
-        location,
-        certificate,
+        productCategories,
+        complicity,
+        courseLength,
       }} />
       <div className={styles.content}>
         <Tabs
           sections={sections}
           chapters={chapters}
-          // reviews={reviews}
+          courseSlug={courseSlug}
+        // reviews={reviews}
         />
       </div>
     </section>

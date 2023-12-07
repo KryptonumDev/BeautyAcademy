@@ -6,146 +6,6 @@ import UpsellCarousel from "@/components/sections/upsell-carousel";
 import Hero from "@/components/sections/course-hero";
 import Content from "@/components/sections/course-content";
 
-const data = {
-  faq: {
-    heading: "Часто задаваемые вопросы",
-    list: [
-      {
-        question: 'Требование предоставления персональных данных',
-        answer: "Чтобы ваши участники могли связаться с вами по этому вопросу, мы можем собирать личные данные, такие как: Правовой основой для такой обработки является ст. 6 сек. 1 лит. f Общего регламента по защите данных, что позволяет нам преследовать наши законные интересы, которые в данном случае являются ответом на ваше сообщение, отправленное нам с использованием контактной информации, указанной на веб-сайте."
-      },
-      {
-        question: 'Требование предоставления персональных данных',
-        answer: "Чтобы ваши участники могли связаться с вами по этому вопросу, мы можем собирать личные данные, такие как: Правовой основой для такой обработки является ст. 6 сек. 1 лит. f Общего регламента по защите данных, что позволяет нам преследовать наши законные интересы, которые в данном случае являются ответом на ваше сообщение, отправленное нам с использованием контактной информации, указанной на веб-сайте."
-      }
-    ]
-  },
-  product: {
-    rating: 2,
-    author: {
-      name: 'Inna Brinkis',
-      specialization: 'косметолог',
-      img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-      socials: {
-        instagram: 'https://instagram.com',
-        facebook: 'https://facebook.com',
-        telegram: 'https://telegram.org',
-      }
-    },
-    category: 'Педикюр и маникюр',
-    advancement: 2,
-    duration: 'Общая продолжительность курса: 6 часов.',
-    location: 'Онлайн-курс',
-    certificate: 'сертификат об окончании',
-    chapters: [
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-        ]
-      },
-    ],
-    reviews: [
-      {
-        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-        name: "Inna Brinkis",
-        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
-        rating: 5,
-      },
-      {
-        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-        name: "Inna Brinkis",
-        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
-        rating: 5,
-      },
-      {
-        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-        name: "Inna Brinkis",
-        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
-        rating: 5,
-      },
-    ]
-  }
-}
-
 const CoursePage = async ({ params: { courseSlug } }) => {
   const { product } = await getProducts(courseSlug);
 
@@ -158,11 +18,12 @@ const CoursePage = async ({ params: { courseSlug } }) => {
       ]} />
       <Hero
         data={product}
-        rating={data.product.rating}
+      // rating={data.product.rating}
       />
       <Content
-        product={data.product}
-        chapters={data.product.chapters}
+        data={product}
+        courseSlug={product.slug}
+        chapters={product.productAcf.course.courseAcf.mainInformation.chapters}
         sections={product.productAcf.course.courseAcf.about}
       />
       <Faq data={product.productAcf.course.courseAcf.faq} />
@@ -208,6 +69,7 @@ const getProducts = async (slug) => {
           productCategories {
             nodes {
               name
+              slug
               children {
                 nodes {
                   name
@@ -231,6 +93,42 @@ const getProducts = async (slug) => {
             ... on Course {
               id
               courseAcf {
+                mainInformation {
+                  courseLength
+                  chapters {
+                    chapterContent {
+                      lesson {
+                        ... on Lesson {
+                          id
+                          slug
+                          title
+                          lessonAcf {
+                            lengthInMinutes
+                          }
+                        }
+                      }
+                    }
+                    chapterName
+                  }
+                  author {
+                    ... on Author {
+                      id
+                      authorAcf {
+                        profession
+                        socialMedia {
+                          telegram
+                          instagram
+                          facebook
+                        }
+                        avatar {
+                          altText
+                          url: mediaItemUrl
+                        }
+                      }
+                      title
+                    }
+                  }
+                }
                 faq {
                   faqTitle
                   faq {

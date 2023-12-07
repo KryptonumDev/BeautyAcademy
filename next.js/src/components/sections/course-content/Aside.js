@@ -1,23 +1,24 @@
 import { AdvancemenetIndicator, Social } from '@/components/atoms/Icons';
 import styles from './styles.module.scss';
 import Img from '@/components/atoms/Img';
+import Link from 'next/link';
 
 const Aside = ({
   author: {
-    name: authorName,
-    specialization: authorSpecialization,
-    img: authorImg,
-    socials: {
-      instagram,
-      facebook,
-      telegram
-    }
+    title: authorName,
+    authorAcf: {
+      profession: authorSpecialization,
+      avatar: authorImg,
+      socialMedia: {
+        instagram,
+        facebook,
+        telegram
+      }
+    },
   },
-  category,
-  advancement,
-  duration,
-  location,
-  certificate,
+  productCategories,
+  complicity,
+  courseLength,
 }) => {
   const socials = [
     {
@@ -35,13 +36,13 @@ const Aside = ({
       icon: <Social.Telegram />,
       url: telegram
     },
-  ]
+  ].filter(el => el.url)
 
   return (
     <aside className={styles.aside}>
       <div className={styles.author}>
         <Img
-          src={authorImg}
+          src={authorImg.url}
           width="144"
           height="144"
           className={styles.img}
@@ -67,29 +68,33 @@ const Aside = ({
         </div>
       </div>
       <div className={styles.info}>
-        <p className={styles.category}>{category}</p>
+        <div className={styles.categories}>
+          {productCategories?.nodes?.filter(el => el.children.nodes.length === 0)?.map(el => (
+            <Link href={`/courses/category/${el.slug}`} className={styles.category} key={el.slug}>{el.name}</Link>
+          ))}
+        </div>
         <div className={styles.advancement}>
           <span>Уровень сложности:</span>
           <div>
-            <AdvancemenetIndicator isFilled={advancement >= 1} />
-            <AdvancemenetIndicator isFilled={advancement >= 2} />
-            <AdvancemenetIndicator isFilled={advancement >= 3} />
+            <AdvancemenetIndicator isFilled={complicity >= 1} />
+            <AdvancemenetIndicator isFilled={complicity >= 2} />
+            <AdvancemenetIndicator isFilled={complicity >= 3} />
           </div>
         </div>
         <p className={styles.duration}>
           <Duration />
-          <span>{duration}</span>
+          <span>{courseLength}</span>
         </p>
         <p className={styles.location}>
           <Location />
-          <span>{location}</span>
+          <span>Онлайн-курс</span>
         </p>
         <p className={styles.certificate}>
           <Certificate />
-          <span>{certificate}</span>
+          <span>сертификат об окончании</span>
         </p>
       </div>
-      
+
     </aside>
   );
 };
