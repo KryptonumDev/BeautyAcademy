@@ -4,179 +4,29 @@ import { notFound } from "next/navigation";
 import Content from "@/components/sections/course-lesson-content";
 import Hero from "@/components/sections/course-lesson-hero";
 
-const data = {
-  faq: {
-    heading: "Часто задаваемые вопросы",
-    list: [
-      {
-        question: 'Требование предоставления персональных данных',
-        answer: "Чтобы ваши участники могли связаться с вами по этому вопросу, мы можем собирать личные данные, такие как: Правовой основой для такой обработки является ст. 6 сек. 1 лит. f Общего регламента по защите данных, что позволяет нам преследовать наши законные интересы, которые в данном случае являются ответом на ваше сообщение, отправленное нам с использованием контактной информации, указанной на веб-сайте."
-      },
-      {
-        question: 'Требование предоставления персональных данных',
-        answer: "Чтобы ваши участники могли связаться с вами по этому вопросу, мы можем собирать личные данные, такие как: Правовой основой для такой обработки является ст. 6 сек. 1 лит. f Общего регламента по защите данных, что позволяет нам преследовать наши законные интересы, которые в данном случае являются ответом на ваше сообщение, отправленное нам с использованием контактной информации, указанной на веб-сайте."
-      }
-    ]
-  },
-  product: {
-    rating: 2,
-    author: {
-      name: 'Inna Brinkis',
-      specialization: 'косметолог',
-      img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-      socials: {
-        instagram: 'https://instagram.com',
-        facebook: 'https://facebook.com',
-        telegram: 'https://telegram.org',
-      }
-    },
-    category: 'Педикюр и маникюр',
-    advancement: 2,
-    duration: 'Общая продолжительность курса: 6 часов.',
-    location: 'Онлайн-курс',
-    certificate: 'сертификат об окончании',
-    chapters: [
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-1'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-2'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-3'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-4'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-5'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-6'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-7'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-8'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-9'
-          },
-        ]
-      },
-      {
-        name: "Курс косметологии",
-        duration: '32 минут',
-        lessons: [
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-10'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-11'
-          },
-          {
-            name: "Основы",
-            duration: "8 минут",
-            href: 'lesson-12'
-          },
-        ]
-      },
-    ],
-    reviews: [
-      {
-        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-        name: "Inna Brinkis",
-        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
-        rating: 5,
-      },
-      {
-        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-        name: "Inna Brinkis",
-        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
-        rating: 5,
-      },
-      {
-        img: 'https://cdn.sanity.io/images/zm0qqcml/production/d851a28f8dbcc732fcfc18b33fec7745bfeaa391-208x208.webp?fit=max&w=1200&h=1200',
-        name: "Inna Brinkis",
-        content: "Курс был сенсационным. Это внесло большой вклад в мой уход за кожей лица. Теперь я знаю, какие ошибки я совершил. Рекомендую всем, кто интересуется косметологией как профессионально, так и лично.",
-        rating: 5,
-      },
-    ]
-  }
-}
-
-const CourseLessonPage = async ({ params: { courseSlug, lessonSlug }}) => {
-  const {
-    // productId,
-    // id,
-    // slug,
-    name: courseName,
-    // date,
-    // onSale,
-    // price,
-    // regularPrice,
-    // salePrice,
-    // productTags,
-    // productCategories,
-    // img,
-  } = await getCourse(courseSlug);
-  const lessonName = 'Профессиональный макияж глаз'
+const CourseLessonPage = async ({ params: { courseSlug, lessonSlug } }) => {
+  const { product, lesson } = await getCourse(courseSlug, lessonSlug)
 
   return (
     <>
       <Breadcrumbs data={[
         { name: 'Homepage', path: '/' },
         { name: 'Courses', path: '/courses' },
-        { name: courseName, path: `/courses/${courseSlug}` },
-        { name: lessonName, path: `/courses/${courseSlug}/${lessonSlug}` },
+        { name: product.name, path: `/courses/${courseSlug}` },
+        { name: lesson.title, path: `/courses/${courseSlug}/${lessonSlug}` },
       ]} />
       <Hero {...{
-        name: lessonName,
-        chapterLessons: data.product.chapters[0].lessons,
-        chapterNumber: 1
+        name: lesson.title,
+        id: lesson.id,
+        courseSlug: courseSlug,
+        lessonSlug: lessonSlug,
+        chapterLessons: product.productAcf.course.courseAcf.mainInformation.chapters,
       }} />
       <Content
-        product={data.product}
-        chapters={data.product.chapters}
+        courseSlug={courseSlug}
+        data={product}
+        chapters={product.productAcf.course.courseAcf.mainInformation.chapters}
+        content={lesson.content}
       />
     </>
   )
@@ -194,45 +44,81 @@ const CourseLessonPage = async ({ params: { courseSlug, lessonSlug }}) => {
 //   })
 // }
 
-const getCourse = async (slug) => {
-  const { body: { data } } = await wpFetchData(/* GraphQL */`
-    query ($slug: [String]!) {
-      product: products(where: {slugIn: $slug}){
-        nodes {
-          ... on SimpleProduct {
-            productId: databaseId
-            id
-            slug
-            name
-            date
-            onSale
-            price(format: FORMATTED)
-            regularPrice(format: FORMATTED)
-            salePrice(format: FORMATTED)
-            productTags {
-              nodes {
-                name
-                id
-                slug
-              }
+const getCourse = async (courseSlug, lessonSlug) => {
+  try {
+    const { body: { data } } = await wpFetchData(`
+    query ($courseSlug: ID!, $lessonSlug: ID!) {
+      lesson(id: $lessonSlug, idType: SLUG) {
+        slug
+        id
+        title
+        content
+      }
+      product(id:$courseSlug, idType: SLUG) {
+        ... on SimpleProduct {
+          productId: databaseId
+          id
+          slug
+          name
+          productTags {
+            nodes {
+              name
+              id
+              slug
             }
-            productCategories {
-              nodes {
-                name
-                children {
-                  nodes {
-                    name
-                  }
+          }
+          productCategories {
+            nodes {
+              name
+              slug
+              children {
+                nodes {
+                  name
                 }
               }
             }
-            img: featuredImage {
-              asset: node {
-                altText
-                url: mediaItemUrl
-                metadata: mediaDetails {
-                  width
-                  height
+          }
+        }
+        productAcf {
+          course {
+            ... on Course {
+              id
+              courseAcf {
+                mainInformation {
+                  courseLength
+                  chapters {
+                    chapterName
+                    chapterContent {
+                      lesson {
+                        ... on Lesson {
+                          id
+                          slug
+                          title
+                          lessonAcf {
+                            lengthInMinutes
+                          }
+                        }
+                      }
+                    }
+                  }
+                  author {
+                    ... on Author {
+                      id
+                      authorAcf {
+                        profession
+                        socialMedia {
+                          telegram
+                          instagram
+                          facebook
+                        }
+                        avatar {
+                          altText
+                          url: mediaItemUrl
+                        }
+                      }
+                      title
+                    }
+                  }
                 }
               }
             }
@@ -241,10 +127,18 @@ const getCourse = async (slug) => {
       }
     }
   `, {
-    slug
-  });
-  !data.product.nodes[0]?.slug && notFound();
-  return data.product.nodes[0];
+      courseSlug,
+      lessonSlug
+    });
+
+    !data.product?.slug && notFound();
+    !data.lesson?.slug && notFound();
+
+    return data;
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
 }
 
 export async function generateStaticParams() {

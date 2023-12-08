@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 import wpFetchData from "@/utils/wpFetchData";
-import Faq from "@/components/sections/faq";
+import Faq from "@/components/sections/faq/html";
 import UpsellCarousel from "@/components/sections/upsell-carousel";
 import Hero from "@/components/sections/course-hero";
 import Content from "@/components/sections/course-content";
@@ -190,7 +190,6 @@ const getProducts = async (slug) => {
     console.error(error);
     notFound();
   }
-
 }
 
 export async function generateStaticParams() {

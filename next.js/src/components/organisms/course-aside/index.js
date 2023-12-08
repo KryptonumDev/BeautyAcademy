@@ -2,6 +2,7 @@ import { AdvancemenetIndicator, Social } from '@/components/atoms/Icons';
 import styles from './styles.module.scss';
 import Img from '@/components/atoms/Img';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 const Aside = ({
   author: {
@@ -17,9 +18,10 @@ const Aside = ({
     },
   },
   productCategories,
-  complicity,
+  productTags,
   courseLength,
 }) => {
+  const complicity = useMemo(() => productTags.nodes[0].slug, [productTags])
   const socials = [
     {
       name: 'Instagram',
@@ -49,7 +51,7 @@ const Aside = ({
           sizes="102px"
         />
         <div>
-          <p className={styles.title}>автор статьи</p>
+          <p className={styles.title}>автор курса</p>
           <p className={styles.name}>{authorName}</p>
           <p className={styles.specialization}>{authorSpecialization}</p>
           {socials.length > 0 && (
@@ -91,7 +93,7 @@ const Aside = ({
         </p>
         <p className={styles.certificate}>
           <Certificate />
-          <span>сертификат об окончании</span>
+          <span>Cертификат об окончании</span>
         </p>
       </div>
 

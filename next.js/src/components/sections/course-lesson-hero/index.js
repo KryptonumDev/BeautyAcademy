@@ -1,20 +1,37 @@
+'use client'
 import Button from '@/components/atoms/Button';
 import styles from './styles.module.scss';
 import Link from 'next/link';
+import { useMemo } from 'react';
 
 // from 0 to 1
-const progress = .75;
+// const progress = .75;
 
 const Hero = ({
-  name,
+  id,
+  courseSlug,
+  lessonSlug,
   chapterLessons,
-  chapterNumber,
 }) => {
+
+  const currentChapter = useMemo(() => {
+    let currChapter = false
+
+    chapterLessons.every((chapter) => {
+      chapter.chapterContent.forEach(({ lesson }) => {
+        if (lesson.id === id) currChapter = chapter
+      })
+      return !currChapter;
+    });
+
+    return currChapter
+  }, [chapterLessons, id])
+
   return (
     <section className={styles.wrapper}>
       <div>
         <div className={styles.video}>
-          
+
         </div>
         <nav className={styles.nav}>
           <Button variant='secondary' prev>предыдущий урок</Button>
@@ -23,19 +40,19 @@ const Hero = ({
         </nav>
       </div>
       <div>
-        <div className={styles.progress}>
+        {/* <div className={styles.progress}>
           <p>Завершенный {progress * 100}%</p>
           <div className={styles.bar}><div style={{ transform: `scaleX(${progress})` }}></div></div>
-        </div>
-        <h1 className="h3">{name}</h1>
+        </div> */}
+        <h1 className="h3">{currentChapter.chapterName}</h1>
         <div className={styles.lessons}>
-          {chapterLessons.map(({ name, href}, i) => (
+          {currentChapter.chapterContent.map((el, i) => (
             <Link
-              href={href}
+              href={`/courses/${courseSlug}/${el.lesson.slug}`}
               key={i}
-              aria-current={i === 0}
+              aria-current={el.lesson.slug === lessonSlug}
             >
-              {chapterNumber}.{i+1} {name}
+              {1}.{i + 1} {el.lesson.title}
             </Link>
           ))}
         </div>

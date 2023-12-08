@@ -1,31 +1,39 @@
-import Aside from './Aside';
+import Aside from '@/components/organisms/course-aside';
 import Tabs from './Tabs';
 import styles from './styles.module.scss';
 
 const Content = ({
-  product: {
-    author,
-    category,
-    advancement,
-    duration,
-    location,
-    certificate,
+  data: {
+    productCategories,
+    productTags,
+    productAcf: {
+      course: {
+        courseAcf: {
+          mainInformation: {
+            author,
+            courseLength
+          }
+        }
+      }
+    }
   },
   chapters,
+  courseSlug,
+  content
 }) => {
   return (
     <section className={styles.wrapper}>
       <Aside {...{
         author,
-        category,
-        advancement,
-        duration,
-        location,
-        certificate,
+        productCategories,
+        productTags,
+        courseLength,
       }} />
       <div className={styles.content}>
         <Tabs
           chapters={chapters}
+          courseSlug={courseSlug}
+          content={content}
         />
       </div>
     </section>

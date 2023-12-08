@@ -4,10 +4,10 @@ import styles from './styles.module.scss';
 import Link from 'next/link';
 
 const tabs = [
-  "О курсе", "Что вы узнаете"
+  "О уроке", "Программа курса"
 ]
 
-const Tabs = ({ chapters }) => {
+const Tabs = ({ chapters, courseSlug, content }) => {
   const [tab, setTab] = useState(0);
   return (
     <>
@@ -23,34 +23,38 @@ const Tabs = ({ chapters }) => {
       <div
         className={styles.about}
         style={{ display: tab !== 0 && 'none' }}
-      >
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni repellendus nisi veniam dolore, libero soluta animi inventore at tenetur tempora distinctio eveniet laboriosam quaerat doloremque nobis voluptatibus facere aliquid suscipit tempore officiis! Id nostrum necessitatibus, nihil rem, a excepturi laborum inventore officia praesentium dolor numquam cumque architecto tempora aut cum suscipit ipsam. Odio deserunt doloremque dolor corrupti autem. Nostrum iusto delectus aperiam, deleniti, libero nemo quos praesentium sequi unde deserunt debitis qui laudantium quibusdam esse ut laborum doloribus voluptatem modi minus. Nostrum sed maiores iste blanditiis repellat, perferendis omnis doloribus quo. Voluptate sed cumque vel incidunt iusto id tempore optio?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni repellendus nisi veniam dolore, libero soluta animi inventore at tenetur tempora distinctio eveniet laboriosam quaerat doloremque nobis voluptatibus facere aliquid suscipit tempore officiis! Id nostrum necessitatibus, nihil rem, a excepturi laborum inventore officia praesentium dolor numquam cumque architecto tempora aut cum suscipit ipsam. Odio deserunt doloremque dolor corrupti autem. Nostrum iusto delectus aperiam, deleniti, libero nemo quos praesentium sequi unde deserunt debitis qui laudantium quibusdam esse ut laborum doloribus voluptatem modi minus. Nostrum sed maiores iste blanditiis repellat, perferendis omnis doloribus quo. Voluptate sed cumque vel incidunt iusto id tempore optio?</p>
-      </div>
+        dangerouslySetInnerHTML={{ __html: content ? content : 'К сожалению тут пока ничего нет :(' }}
+      />
       <div
         className={styles.tableOfContent}
         style={{ display: tab !== 1 && 'none' }}
       >
         <ol>
-          {chapters.map(({ name, duration, lessons }, i) => (
+          {chapters?.map(({ chapterName, chapterContent }, i) => (
             <li key={i}>
               <span className={styles.title}>
-                <span>Глава {i+1} </span>
-                {name}
+                {chapters.length > 1 && <span>Глава {i + 1} </span>}
+                {chapterName}
               </span>
               <span className={styles.flexIcon}>
                 <Clock />
-                {duration}
+                {(() => {
+                  let minutes = 0;
+                  chapterContent.forEach(el => {
+                    minutes += el.lesson.lessonAcf.lengthInMinutes;
+                  });
+                  return `${minutes} минут`
+                })()}
               </span>
-              {lessons && (
+              {chapterContent && (
                 <ol>
-                  {lessons.map(({ name, duration, href }, i) => (
+                  {chapterContent.map(({ lesson }, i) => (
                     <li className={styles.item} key={i}>
-                      <Link href={`${href}`}>
-                        <span className={styles.name}>{name}</span>
+                      <Link href={`/course/${courseSlug}/${lesson.slug}`}>
+                        <span className={styles.name}>{lesson.title}</span>
                         <span className={styles.flexIcon}>
                           <Play />
-                          {duration}
+                          {lesson.lessonAcf.lengthInMinutes} минут
                         </span>
                       </Link>
                     </li>
