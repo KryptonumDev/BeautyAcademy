@@ -22,7 +22,7 @@ export default function Authorization({ nextStep, providers }) {
       <h2>{data.text}</h2>
       <div className={styles.flex}>
         <OAuthMethods providers={providers} />
-        <Form nextStep={nextStep} registration={registration} setRegistration={setRegistration} />
+        <Form type='local' nextStep={nextStep} registration={registration} setRegistration={setRegistration} />
       </div>
     </section>
   )

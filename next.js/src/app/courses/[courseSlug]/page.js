@@ -7,7 +7,8 @@ import Hero from "@/components/sections/course-hero";
 import Content from "@/components/sections/course-content";
 
 const CoursePage = async ({ params: { courseSlug } }) => {
-  const { product } = await getProducts(courseSlug);
+  const { product, viewer } = await getProducts(courseSlug);
+  const isAccepted = viewer?.courses?.nodes?.some(({ id }) => id === product.productAcf.course.id);
 
   return (
     <>
@@ -18,6 +19,7 @@ const CoursePage = async ({ params: { courseSlug } }) => {
       ]} />
       <Hero
         data={product}
+        isAccepted={isAccepted}
       // rating={data.product.rating}
       />
       <Content
@@ -25,6 +27,7 @@ const CoursePage = async ({ params: { courseSlug } }) => {
         courseSlug={product.slug}
         chapters={product.productAcf.course.courseAcf.mainInformation.chapters}
         sections={product.productAcf.course.courseAcf.about}
+        isAccepted={isAccepted}
       />
       <Faq data={product.productAcf.course.courseAcf.faq} />
       <UpsellCarousel />
@@ -48,6 +51,13 @@ const getProducts = async (slug) => {
   try {
     const { body: { data } } = await wpFetchData(`
     query ($slug: ID!) {
+      viewer {
+        courses {
+          nodes {
+            id
+          }
+        }
+      }
       product(id:$slug, idType: SLUG) {
         ... on SimpleProduct {
           productId: databaseId

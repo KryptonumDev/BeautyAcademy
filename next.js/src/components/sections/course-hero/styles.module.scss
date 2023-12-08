@@ -84,7 +84,8 @@
     @media (min-width: 600px) {
       grid-template-columns: auto auto;
 
-      button {
+      button,
+      a {
         order: -1;
       }
     }

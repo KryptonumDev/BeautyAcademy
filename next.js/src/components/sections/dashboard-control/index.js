@@ -5,9 +5,17 @@ import styles from "./styles.module.scss"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { Courses, Downloads, History, MyData } from "@/components/atoms/Icons";
+import { deleteCookie } from "src/app/actions";
 
 export default function DashboardControl() {
   const pathname = usePathname();
+
+  const logOut =  () => {
+    deleteCookie('refreshToken')
+    deleteCookie('woocommerce-session')
+    deleteCookie('sessionToken')
+  }
+
   return (
     <aside className={styles.wrapper}>
       <Link className={`${styles.button} ${pathname === '/dashboard/my-courses' ? styles.active : ''}`} href='/dashboard/my-courses'>
@@ -26,9 +34,9 @@ export default function DashboardControl() {
         <MyData />
         Мои данные
       </Link>
-      <Link className={`${styles.logout} link`} href="/logout">
+      <button onClick={() => { logOut() }} className={`${styles.logout} link`}>
         выйти
-      </Link>
+      </button>
     </aside>
   )
 }

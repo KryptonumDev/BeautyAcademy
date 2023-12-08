@@ -12,6 +12,8 @@ const Hero = ({
   courseSlug,
   lessonSlug,
   chapterLessons,
+  video,
+  name
 }) => {
 
   const currentChapter = useMemo(() => {
@@ -31,7 +33,7 @@ const Hero = ({
     <section className={styles.wrapper}>
       <div>
         <div className={styles.video}>
-
+          <iframe style={{ width: '100%', height: '100%' }} src={video} title={name} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" />
         </div>
         <nav className={styles.nav}>
           <Button variant='secondary' prev>предыдущий урок</Button>

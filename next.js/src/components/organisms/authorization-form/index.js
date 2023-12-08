@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import { useForm } from "react-hook-form";
 import Input from "@/components/moleculas/Input";
@@ -6,11 +6,12 @@ import Checkbox from "@/components/moleculas/Checkbox";
 import { regex } from "@/global/constants";
 import Link from "next/link";
 import Button from "@/components/atoms/Button";
+import Loader from "@/components/moleculas/request-loader";
 // import { useRouter } from "next/navigation";
 
-export default function Form({ nextStep, registration, setRegistration }) {
+export default function Form({ type, nextStep, registration, setRegistration }) {
   // const router = useRouter();
-
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
@@ -18,12 +19,14 @@ export default function Form({ nextStep, registration, setRegistration }) {
   } = useForm({ mode: 'all' })
 
   const onSubmit = (data) => {
+    setLoading(true)
     if (registration) { //SIGN UP
       fetch('/api/auth/register', {
         method: 'POST',
         headers: {
           "content-type": "application/json",
         },
+        redirect: 'follow',
         body: JSON.stringify({
           email: data.email,
           name: data.name,
@@ -34,38 +37,43 @@ export default function Form({ nextStep, registration, setRegistration }) {
         .then(async response => {
           if (response.error) throw new Error(response.error)
           nextStep()
+          setLoading(false)
         })
         .catch(() => {
           // TODO ERROR HANDLING
+          setLoading(false)
         })
-
-      fetch
     } else { // SIGN IN
       fetch('/api/auth/password', {
         method: 'POST',
         headers: {
           "content-type": "application/json",
         },
+        redirect: 'follow',
         body: JSON.stringify({
           username: data.email,
           password: data.password,
-          type: 'local'
+          type: type
         })
       })
         .then(response => response.json())
         .then(async response => {
+
+          if (response.redirect) window.location.href = response.redirect
           if (response.error) throw new Error(response.error)
           nextStep()
+          setLoading(false)
         })
         .catch(() => {
           // TODO ERROR HANDLING
+          setLoading(false)
         })
     }
   }
 
   return (
     <form className={styles.wrapper} onSubmit={handleSubmit(onSubmit)}>
-
+      <Loader show={loading} />
       {registration && (
         <Input
           label="Имя"
@@ -96,16 +104,15 @@ export default function Form({ nextStep, registration, setRegistration }) {
         })}
         errors={errors}
       />
-
       <div className={styles.checkboxes}>
         <Checkbox
           label={<>
-            I agree to the{' '}<Link
+            Я согласен с{' '}<Link
               className='link'
               href="/privacy-policy"
               target="_blank"
               rel="noreferrer"
-            >privacy policy</Link>
+            >политикой конфиденциальности</Link>
           </>}
           register={register('legal', {
             required: { value: true, message: `Необходимо согласие` }

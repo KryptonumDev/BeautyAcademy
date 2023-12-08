@@ -1,6 +1,7 @@
 .wrapper{
   display: grid;
   gap: 36px;
+  position: relative;
 
   >label{
     margin-top: 12px;
@@ -8,5 +9,10 @@
     &:first-child{
       margin-top: 0;
     }
+  }
+
+  .checkboxes{
+    display: grid;
+    gap: 24px;
   }
 }

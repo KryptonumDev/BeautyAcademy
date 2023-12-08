@@ -42,7 +42,7 @@
               content: counter(chapter)"."counter(lesson)" ";
             }
           }
-          a {
+          a,p {
             display: grid;
             grid-template-columns: auto auto;
             gap: 24px;
@@ -55,6 +55,10 @@
                 opacity: .62;
               }
             }
+          }
+          p{
+            opacity: .62;
+            cursor: default;
           }
           &:not(:last-child){
             margin-bottom: clamp(12px, calc(20vw/7.68), 20px)

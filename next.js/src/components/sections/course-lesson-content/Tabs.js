@@ -50,7 +50,7 @@ const Tabs = ({ chapters, courseSlug, content }) => {
                 <ol>
                   {chapterContent.map(({ lesson }, i) => (
                     <li className={styles.item} key={i}>
-                      <Link href={`/course/${courseSlug}/${lesson.slug}`}>
+                      <Link href={`/courses/${courseSlug}/${lesson.slug}`}>
                         <span className={styles.name}>{lesson.title}</span>
                         <span className={styles.flexIcon}>
                           <Play />

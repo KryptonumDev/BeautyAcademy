@@ -21,6 +21,7 @@ const CourseLessonPage = async ({ params: { courseSlug, lessonSlug } }) => {
         courseSlug: courseSlug,
         lessonSlug: lessonSlug,
         chapterLessons: product.productAcf.course.courseAcf.mainInformation.chapters,
+        video: lesson.lessonAcf.video,
       }} />
       <Content
         courseSlug={courseSlug}
@@ -53,6 +54,9 @@ const getCourse = async (courseSlug, lessonSlug) => {
         id
         title
         content
+        lessonAcf {
+          video
+        }
       }
       product(id:$courseSlug, idType: SLUG) {
         ... on SimpleProduct {

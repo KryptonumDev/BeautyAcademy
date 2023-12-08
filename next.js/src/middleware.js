@@ -24,6 +24,28 @@ export async function middleware(request) {
 
     if (body.data.cart.isEmpty)
       return NextResponse.redirect(new URL('/courses', request.url))
-    // return NextResponse.json({ success: false, message: 'Корзина пуста' }, { status: 401 })
+
+  }
+
+  const pattern = /\/courses\/([^/]+)\/([^/]+)(?:\/[^./]+)?$/;
+
+  const match = request.nextUrl.pathname.match(pattern);
+
+
+  if (match && !request.nextUrl.pathname.includes('.')) {
+    const { body } = await wpFetchData(`
+      query GET_USER {
+        viewer {
+          courses {
+            nodes {
+              slug
+            }
+          }
+        }
+      }
+    `)
+    
+    if (!body.data.viewer.courses.nodes.some(({ slug }) => slug === match[1]))
+      return NextResponse.redirect(new URL(`/courses/${match[1]}`, request.url))
   }
 }

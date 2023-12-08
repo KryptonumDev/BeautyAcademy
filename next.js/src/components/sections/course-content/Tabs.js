@@ -11,7 +11,7 @@ const tabs = [
   // "Отзывы"
 ]
 
-const Tabs = ({ courseSlug, sections, chapters }) => {
+const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
   const [tab, setTab] = useState(0);
   return (
     <>
@@ -79,13 +79,23 @@ const Tabs = ({ courseSlug, sections, chapters }) => {
                 <ol>
                   {chapterContent.map(({ lesson }, i) => (
                     <li className={styles.item} key={i}>
-                      <Link href={`/course/${courseSlug}/${lesson.slug}`}>
-                        <span className={styles.name}>{lesson.title}</span>
-                        <span className={styles.flexIcon}>
-                          <Play />
-                          {lesson.lessonAcf.lengthInMinutes} минут
-                        </span>
-                      </Link>
+                      {isAccepted ? (
+                        <Link href={`/courses/${courseSlug}/${lesson.slug}`}>
+                          <span className={styles.name}>{lesson.title}</span>
+                          <span className={styles.flexIcon}>
+                            <Play />
+                            {lesson.lessonAcf.lengthInMinutes} минут
+                          </span>
+                        </Link>
+                      ) : (
+                        <p>
+                          <span className={styles.name}>{lesson.title}</span>
+                          <span className={styles.flexIcon}>
+                            <Play />
+                            {lesson.lessonAcf.lengthInMinutes} минут
+                          </span>
+                        </p>
+                      )}
                     </li>
                   ))}
                 </ol>

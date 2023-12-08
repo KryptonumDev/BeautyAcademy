@@ -26,7 +26,7 @@ export default function Authorization({ providers }) {
       <p>{data.text}</p>
       <div className={styles.flex}>
         <OAuthMethods providers={providers} />
-        <Form registration={registration} setRegistration={setRegistration} />
+        <Form type='global' registration={registration} setRegistration={setRegistration} />
       </div>
     </section>
   )

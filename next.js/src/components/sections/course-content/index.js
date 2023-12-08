@@ -19,7 +19,8 @@ const Content = ({
     }
   },
   chapters,
-  courseSlug
+  courseSlug,
+  isAccepted
 }) => {
   return (
     <section className={styles.wrapper}>
@@ -34,6 +35,7 @@ const Content = ({
           sections={sections}
           chapters={chapters}
           courseSlug={courseSlug}
+          isAccepted={isAccepted}
         // reviews={reviews}
         />
       </div>

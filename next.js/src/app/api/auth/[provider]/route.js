@@ -43,8 +43,7 @@ async function handler(req, { params }) {
 
   try {
     const data = await authenticate(input);
-
-    const setCookie = (response) => {
+    const setCookie = async (response) => {
       response.cookies.set('user', JSON.stringify(data.user), { expires: new Date(data.refreshTokenExpiration * 1000), secure: true, httpOnly: true, sameSite: 'strict' })
       response.cookies.set('woocommerce-session', data.sessionToken)
       response.cookies.set('authToken', data.authToken, { expires: new Date(data.authTokenExpiration * 1000), sameSite: 'strict' })
@@ -54,18 +53,17 @@ async function handler(req, { params }) {
     }
 
     if (type === 'local' && params.provider === 'password') { // login in checkout by password
-
       let response = NextResponse.json({ success: true })
-      return setCookie(response)
-
+      return await setCookie(response)
     } else if (type === 'local') { // login in checkout page by external provider
-
-      let response = NextResponse.redirect('/checkout') // TODO: add prev data to checkout
-      return setCookie(response)
+      let response = NextResponse.redirect('http://localhost:3000/checkout') // TODO: add prev data to checkout
+      return await setCookie(response)
+    } else if (params.provider === 'password') {
+      let response = NextResponse.json({ redirect: '/dashboard' })
+      return await setCookie(response)
     } else { // login in authorize page
-
-      let response = NextResponse.redirect('/dashboard')
-      return setCookie(response)
+      let response = NextResponse.redirect('http://localhost:3000/dashboard')
+      return await setCookie(response)
     }
   } catch (e) {
     console.log(e)

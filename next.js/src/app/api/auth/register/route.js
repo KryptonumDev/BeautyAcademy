@@ -27,7 +27,7 @@ export async function POST(req) {
     // let newCoockie = await create({ name: 'user', value: JSON.stringify(user), age: user.refreshTokenExpiration })
 
 
-    // return NextResponse.redirect('/dashboard', {
+    // return NextResponse.redirect('http://localhost:3000/dashboard', {
     //   headers: {
     //     'Set-Cookie': newCoockie
     //   }
