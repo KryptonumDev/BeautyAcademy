@@ -10,9 +10,9 @@ export default async function Content() {
   return (
     <>
       {/* TODO: types - courses/videos */}
-      {data.customer.courses.nodes.length > 0 ? (
+      {data.customer?.courses?.nodes?.length > 0 ? (
         <ul>
-          {data.customer.courses.nodes.map((course, index) => {
+          {data.customer?.courses?.nodes?.map((course, index) => {
             return (
               <li key={index}>
                 {course.featuredImage && (
