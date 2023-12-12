@@ -9,7 +9,7 @@ export default function Data() {
     <section className={styles.wrapper}>
       <div>
         <h1>Мои данные</h1>
-        <p>Здесь вы найдете и измените свои данные.</p>
+        <p className={styles.text}>Здесь вы найдете и измените свои данные.</p>
       </div>
       <Suspense fallback={<Loader show={true} />}>
         <Content />

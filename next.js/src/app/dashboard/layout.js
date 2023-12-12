@@ -1,11 +1,26 @@
+import Breadcrumbs from "@/components/organisms/Breadcrumbs"
 import DashboardControl from "@/components/sections/dashboard-control"
+import Seo from "@/global/Seo"
 import React from "react"
 
 export default function Account({ children }) {
   return (
-    <div className="dashboard-layout">
-      <DashboardControl/>
-      {children}
-    </div>
+    <>
+      <Breadcrumbs data={[
+        { name: 'Главная', path: '/' },
+        { name: 'Личный кабинет', path: '/dashboard/my-courses' },
+      ]} />
+      <div className="dashboard-layout">
+        <DashboardControl />
+        {children}
+      </div>
+    </>
   )
+}
+
+export async function generateMetadata() {
+
+  return Seo({
+    title: 'Личный кабинет',
+  })
 }

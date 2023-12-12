@@ -1,21 +1,31 @@
 .wrapper {
   display: grid;
-  
+
   h1 {
-    margin-bottom: 36px;
+    margin-bottom: clamp(20px, calc(28vw/7.68), 36px);
+
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
   }
 
-  form{
+  .text {
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
+  }
+
+  form {
     margin-top: 64px;
     margin-bottom: 120px;
     display: grid;
     gap: 48px;
 
-    label{
+    label {
       max-width: 485px;
     }
 
-    .flex{
+    .flex {
       max-width: 485px;
       display: grid;
       align-items: flex-end;
@@ -34,7 +44,7 @@
       }
     }
 
-    .buttons{
+    .buttons {
       display: flex;
       gap: 28px;
       flex-wrap: wrap;
@@ -42,7 +52,7 @@
   }
 }
 
-.button{
+.button {
   width: fit-content;
   margin-left: auto;
   display: flex;

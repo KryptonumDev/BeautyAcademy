@@ -3,6 +3,7 @@ import React from "react"
 import NoContent from "@/components/organisms/dashboard-no-content"
 import Img from "@/components/atoms/Img"
 import wpFetchData from "@/utils/wpFetchData";
+import Link from "next/link";
 
 export default async function Content() {
   const data = await getData();
@@ -15,6 +16,7 @@ export default async function Content() {
           {data.customer?.courses?.nodes?.map((course, index) => {
             return (
               <li key={index}>
+                <Link href={`/courses/${course.slug}`} />
                 {course.featuredImage && (
                   <Img src={course.featuredImage.asset.url} width={course.featuredImage.asset.metadata.width} height={course.featuredImage.asset.metadata.height} alt={course.featuredImage.asset.altText} />
                 )}
@@ -28,10 +30,12 @@ export default async function Content() {
               </li>
             )
           })}
+          {/* TODO: load more and limit */}
         </ul>
       ) : (
         <NoContent text='У вас пока нет курсов' link={{ url: '/courses', title: 'Академия' }} />
       )}
+      {/* TODO: add slider with products */}
     </>
   )
 }

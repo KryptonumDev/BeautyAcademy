@@ -56,47 +56,32 @@ export default function Contentfull({ customer }) {
         <Button>Сохранить</Button>
       </form>
       <form onSubmit={handleSubmit(changeBilling)} className={styles.form}>
-        <div className={styles.buttons}>
-          <Radio
-            value='person'
-            label="Физическое лицо"
-            register={register('type')}
-            errors={errors} />
-          <Radio
-            value='firm'
-            label="Юридическое лицо"
-            register={register('type')}
-            errors={errors} />
-        </div>
-        {watch('type') === 'firm' ? (
-          <>
-            <Input
-              label="Идентификатор налогоплатильщика (если есть)"
-              type="text"
-              register={register('nip')}
-              errors={errors}
-            />
-            <Input
-              label="Название фирмы"
-              type="text"
-              register={register('firm', {
-                required: { value: true, message: `Введите название компании` },
-                minLength: { value: 2, message: `Название компании должно состоять минимум из 2-х символов` }
-              })}
-              errors={errors}
-            />
-          </>
-        ) : (
+        <>
           <Input
-            label="Имя и фамилия"
+            label="Идентификатор налогоплатильщика (если есть)"
             type="text"
-            register={register('name', {
-              required: { value: true, message: `Введите имя` },
-              minLength: { value: 2, message: `Имя должно состоять минимум из 2-х символов` }
+            register={register('nip')}
+            errors={errors}
+          />
+          <Input
+            label="Название фирмы"
+            type="text"
+            register={register('firm', {
+              required: { value: true, message: `Введите название компании` },
+              minLength: { value: 2, message: `Название компании должно состоять минимум из 2-х символов` }
             })}
             errors={errors}
           />
-        )}
+        </>
+        <Input
+          label="Имя и фамилия"
+          type="text"
+          register={register('name', {
+            required: { value: true, message: `Введите имя` },
+            minLength: { value: 2, message: `Имя должно состоять минимум из 2-х символов` }
+          })}
+          errors={errors}
+        />
         <CountrySelect
           label="Страна"
           name={'country'}
@@ -143,12 +128,12 @@ export default function Contentfull({ customer }) {
         </div>
         <Button>Сохранить</Button>
       </form>
-      <div className={styles.button}>
+      {/* <div className={styles.button}> TODO: add remove account functionality
         <Trash />
         <button className={`link ${styles.remove}`}>
           Удалить аккаунт
         </button>
-      </div>
+      </div> */}
     </>
   )
 }

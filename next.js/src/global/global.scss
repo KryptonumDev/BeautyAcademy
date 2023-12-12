@@ -322,6 +322,14 @@ html.lenis {
   display: grid;
   grid-template-columns: 382fr 795fr;
   gap: 28px;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: 282fr 795fr;
+  }
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .unorderedList {

@@ -1,7 +1,11 @@
 .wrapper {
 
   >h1 {
-    margin-bottom: 36px;
+    margin-bottom: clamp(36px, calc(48vw/7.68), 48px);
+    
+    @media (max-width: 1024px) {
+      text-align: center;
+    }
   }
 
   >ul {
@@ -10,20 +14,32 @@
     grid-template-columns: 1fr 1fr;
     gap: 28px;
 
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+
     >li {
       border: 1px solid var(--0001, #F7C479);
       background: var(--background-300, #F7EFEC);
-      padding: 24px 24px 28px 24px;
+      padding: clamp(16px, calc(20vw/7.68), 24px) clamp(16px, calc(20vw/7.68), 24px) clamp(20px, calc(24vw/7.68), 28px) clamp(16px, calc(20vw/7.68), 24px);
 
       display: grid;
       gap: 24px;
+      position: relative;
 
-      h3{
+      a {
+        position: absolute;
+        inset: 0;
+        display: block;
+        z-index: 2;
+      }
+
+      h3 {
         text-align: center;
         margin-bottom: 64px;
       }
 
-      p{
+      p {
         text-align: center;
         color: var(--background-700, #7A6A65);
         margin-bottom: 12px;

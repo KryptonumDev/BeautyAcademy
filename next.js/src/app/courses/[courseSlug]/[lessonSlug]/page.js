@@ -3,6 +3,7 @@ import wpFetchData from "@/utils/wpFetchData";
 import { notFound } from "next/navigation";
 import Content from "@/components/sections/course-lesson-content";
 import Hero from "@/components/sections/course-lesson-hero";
+import Seo from "@/global/Seo";
 
 const CourseLessonPage = async ({ params: { courseSlug, lessonSlug } }) => {
   const { product, lesson } = await getCourse(courseSlug, lessonSlug)
@@ -33,17 +34,39 @@ const CourseLessonPage = async ({ params: { courseSlug, lessonSlug } }) => {
   )
 }
 
-// export async function generateMetadata({ params: { slug: paramsSlug } }) {
-//   const { page: [{
-//     seo,
-//     slug: { current: slug }
-//   }] } = await query(paramsSlug);
-//   return Seo({
-//     title: seo?.title,
-//     description: seo?.description,
-//     path: `/courses/${slug}`,
-//   })
-// }
+
+export async function generateMetadata({ params: { courseSlug, lessonSlug } }) {
+  const { lesson } = await getSeo(lessonSlug);
+
+  return Seo({
+    title: lesson?.seo?.title,
+    description: lesson?.seo?.description,
+    path: `/courses/${courseSlug}/${lessonSlug}`,
+  })
+}
+
+const getSeo = async (slug) => {
+  try {
+    const { body: { data } } = await wpFetchData(`
+    query ($slug: ID!) {
+      lesson(id:$slug, idType: SLUG) {
+        slug
+        seo {
+          metaDesc
+          title
+        }
+      }
+    }
+    `, {
+      slug
+    })
+    !data.lesson?.slug && notFound();
+    return data;
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+}
 
 const getCourse = async (courseSlug, lessonSlug) => {
   try {

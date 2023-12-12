@@ -15,6 +15,9 @@ const Hero = ({
   rating
 }) => {
   const gallery = [img]
+
+  const progress = 100;
+
   return (
     <>
       <section className={`${styles.wrapper} sec-wo-margin`}>
@@ -32,10 +35,10 @@ const Hero = ({
         )}
       </section>
       <div className={styles.progress}>
-        <div className={styles.indicator}><div style={{ transform: 'scaleX(1)' }}></div></div>
-        {isAccepted && (
-          <p>20% курса пройдено</p>
-        )}
+        <div className={styles.indicator}><div style={{ transform: `scaleX(${progress/100})` }}></div></div>
+        {/* {isAccepted && ( TODO: add progress bar
+          <p>{progress}% курса пройдено</p>
+        )} */}
         <h1>{name}</h1>
       </div>
     </>

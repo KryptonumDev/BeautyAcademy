@@ -5,6 +5,7 @@ import Faq from "@/components/sections/faq/html";
 import UpsellCarousel from "@/components/sections/upsell-carousel";
 import Hero from "@/components/sections/course-hero";
 import Content from "@/components/sections/course-content";
+import Seo from "@/global/Seo";
 
 const CoursePage = async ({ params: { courseSlug } }) => {
   const { product, viewer } = await getProducts(courseSlug);
@@ -35,17 +36,38 @@ const CoursePage = async ({ params: { courseSlug } }) => {
   )
 }
 
-// export async function generateMetadata({ params: { courseSlug } }) {
-//   const { page: [{
-//     seo,
-//     slug: { current: slug }
-//   }] } = await query(courseSlug);
-//   return Seo({
-//     title: seo?.title,
-//     description: seo?.description,
-//     path: `/courses/${slug}`,
-//   })
-// }
+export async function generateMetadata({ params: { courseSlug } }) {
+  const { product } = await getSeo(courseSlug);
+
+  return Seo({
+    title: product?.seo?.title,
+    description: product?.seo?.description,
+    path: `/courses/${courseSlug}`,
+  })
+}
+
+const getSeo = async (slug) => {
+  try {
+    const { body: { data } } = await wpFetchData(`
+    query ($slug: ID!) {
+      product(id:$slug, idType: SLUG) {
+        slug
+        seo {
+          metaDesc
+          title
+        }
+      }
+    }
+    `, {
+      slug
+    })
+    !data.product?.slug && notFound();
+    return data;
+  } catch (error) {
+    console.error(error);
+    notFound();
+  }
+}
 
 const getProducts = async (slug) => {
   try {
