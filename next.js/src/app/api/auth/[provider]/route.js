@@ -37,15 +37,24 @@ async function getProviderInput(provider, searchParams, username, password) {
 }
 
 async function handler(req, { params }) {
-  const { type, username, password } = await req.json()
+  let type, username, password
+
+  if (req.method !== 'GET') {
+    const props = await req.json()
+    type = props.type
+    username = props.username
+    password = props.password
+  }
+
   const { searchParams } = new URL(req.url)
+
   const input = await getProviderInput(params.provider, searchParams, username, password);
 
   try {
     const data = await authenticate(input);
+
     const setCookie = async (response) => {
       response.cookies.set('user', JSON.stringify(data.user), { expires: new Date(data.refreshTokenExpiration * 1000), secure: true, httpOnly: true, sameSite: 'strict' })
-      response.cookies.set('woocommerce-session', data.sessionToken)
       response.cookies.set('authToken', data.authToken, { expires: new Date(data.authTokenExpiration * 1000), sameSite: 'strict' })
       response.cookies.set('refreshToken', data.refreshToken, { expires: new Date(data.refreshTokenExpiration * 1000), secure: true, httpOnly: true, sameSite: 'strict' })
 
@@ -59,14 +68,15 @@ async function handler(req, { params }) {
       let response = NextResponse.redirect('http://localhost:3000/checkout') // TODO: add prev data to checkout
       return await setCookie(response)
     } else if (params.provider === 'password') {
-      let response = NextResponse.json({ redirect: '/dashboard' })
+      let response = NextResponse.json({ redirect: '/dashboard/my-courses' })
       return await setCookie(response)
     } else { // login in authorize page
-      let response = NextResponse.redirect('http://localhost:3000/dashboard')
+      let response = NextResponse.redirect('http://localhost:3000/dashboard/my-courses')
       return await setCookie(response)
     }
   } catch (e) {
-    console.log(e)
+    // console.log(e)
+    return NextResponse.json({ error: e.message })
     //TODO: add error handling
   }
 }

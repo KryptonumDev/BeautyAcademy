@@ -1,7 +1,4 @@
-import wpFetchData from "@/utils/wpFetchData";
-import { v4 } from "uuid";
-
-export async function authenticate(variables) {
+export async function authenticate(input) {
   const query = `
     mutation Login($input: LoginInput!) {
       login(input: $input) {
@@ -17,17 +14,25 @@ export async function authenticate(variables) {
       }
     }
   `;
-  // replace fetchAPI with whatever you're using to connect to WPGraphQL.
-  const res = await wpFetchData(query, {
-    input: {
-      clientMutationId: v4(),
-      ...variables,
-    }
-  });
+
+  const res = await fetch('https://wp.beautyacademy.expert/graphql', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      query,
+      variables: {input: input}
+    }),
+    next: {
+      revalidate: 0,
+    },
+  }).then((res) => res.json());
+
 
   if (res?.errors) {
     throw new Error(res.errors[0].message);
   }
 
-  return res?.body?.data?.login;
+  return res?.data?.login;
 }

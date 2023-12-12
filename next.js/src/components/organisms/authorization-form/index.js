@@ -7,10 +7,8 @@ import { regex } from "@/global/constants";
 import Link from "next/link";
 import Button from "@/components/atoms/Button";
 import Loader from "@/components/moleculas/request-loader";
-// import { useRouter } from "next/navigation";
 
 export default function Form({ type, nextStep, registration, setRegistration }) {
-  // const router = useRouter();
   const [loading, setLoading] = useState(false)
   const {
     register,
@@ -31,10 +29,12 @@ export default function Form({ type, nextStep, registration, setRegistration }) 
           email: data.email,
           name: data.name,
           password: data.password,
+          type: type
         })
       })
         .then(response => response.json())
         .then(async response => {
+          if (response.redirect) window.location.href = response.redirect
           if (response.error) throw new Error(response.error)
           nextStep()
           setLoading(false)
@@ -129,8 +129,8 @@ export default function Form({ type, nextStep, registration, setRegistration }) 
       </div>
       <Button type="submit">{registration ? 'Зарегистрироваться' : 'Войти'}</Button>
       {registration
-        ? <p>У вас уже есть аккаунт? <button type="button" onClick={() => { setRegistration(!registration) }}>Авторизоваться</button></p>
-        : <p>У вас еще нет учетной записи? <button type="button" onClick={() => { setRegistration(!registration) }}>Регистрация</button></p>
+        ? <p>У вас уже есть аккаунт? <button className="link" type="button" onClick={() => { setRegistration(!registration) }}>Авторизоваться</button></p>
+        : <p>У вас еще нет учетной записи? <button className="link" type="button" onClick={() => { setRegistration(!registration) }}>Регистрация</button></p>
       }
     </form>
   )

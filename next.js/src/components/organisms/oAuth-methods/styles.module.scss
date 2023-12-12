@@ -12,5 +12,20 @@
 
     border: 1px solid var(--background-400, #F4E9E6);
     background: var(--background-300, #F7EFEC);
+
+    transition: border-color .3s var(--easing), background-color .3s var(--easing), box-shadow .3s var(--easing);
+
+    svg path{
+      transition: stroke .3s var(--easing);
+    }
+    &:hover{
+      border: 1px solid var(--background-800);
+      background-color: var(--background-400);
+      box-shadow: 4px 4px 11px 0px rgba(0, 0, 0, .12);
+
+      svg path{
+        stroke: var(--background-800);
+      }
+    }
   }
 }

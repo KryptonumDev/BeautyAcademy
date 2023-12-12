@@ -16,7 +16,8 @@
         padding: 16px 20px;
         border: 1px solid var(--background-500);
         background-color: var(--background-300);
-        &[aria-current="page"]{
+        transition: border-color .3s var(--easing), background-color .3s var(--easing), box-shadow .3s var(--easing);
+        &[aria-current="page"], &:hover{
           border: 1px solid var(--background-800);
           background-color: var(--background-400);
           box-shadow: 4px 4px 11px 0px rgba(0, 0, 0, .12);
