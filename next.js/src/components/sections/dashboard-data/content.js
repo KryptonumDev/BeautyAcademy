@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form"
 import { regex } from "@/global/constants"
 import Button from "@/components/atoms/Button"
 import CountrySelect from "@/components/moleculas/country-select"
-import { Trash } from "@/components/atoms/Icons"
-import Radio from "@/components/moleculas/radio"
+// import { Trash } from "@/components/atoms/Icons"
+// import Radio from "@/components/moleculas/radio"
 import styles from "./styles.module.scss"
 
 export default function Contentfull({ customer }) {
-  const { control, register, watch, handleSubmit, formState: { errors } } = useForm({
+  const { control, register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: {
       // type: customer?.type,
       name: customer.billing.firstName,
@@ -25,6 +25,7 @@ export default function Contentfull({ customer }) {
 
   const changeData = (data) => {
     console.log(data)
+    // TODO: add change data functionality
   }
 
   const changeBilling = () => {

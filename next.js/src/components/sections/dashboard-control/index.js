@@ -4,7 +4,9 @@ import React from "react"
 import styles from "./styles.module.scss"
 import Link from "next/link"
 import { usePathname } from "next/navigation";
-import { Courses, Downloads, History, MyData } from "@/components/atoms/Icons";
+import { Courses,
+  //  Downloads, 
+   History, MyData } from "@/components/atoms/Icons";
 import { deleteCookie } from "src/app/actions";
 
 export default function DashboardControl() {
