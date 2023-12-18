@@ -91,6 +91,30 @@
     display: flex;
     align-items: center;
     gap: clamp(16px, calc(16vw/4.00), 24px);
+
+    button{
+      position: relative;
+
+      .hearth{
+        position: absolute;
+        left: -45%;
+        bottom: -35%;
+
+        span{
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          color: var(--Background-50, #FFF);
+          font-family: Oranienbaum;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 400;
+          letter-spacing: 0.84px;
+          padding-left: 2px;
+        }
+      }
+    }
   }
 
   .mobileNavToggle {

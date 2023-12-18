@@ -5,7 +5,7 @@ import BlogEntries from "@/components/sections/blog-entries";
 import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 
 const pathname = '/blog';
-export const limit = 2;
+export const limit = 6;
 
 const BlogPage = async ({ searchParams: { page = 1 } }) => {
   const pageNumber = Number(page) > 1 ? Number(page) : 1;

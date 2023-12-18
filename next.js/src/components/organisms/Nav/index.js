@@ -1,16 +1,18 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './styles.module.scss';
 import { Logo } from '@/components/atoms/Icons';
 import { usePathname } from 'next/navigation';
 import { links } from 'src/app/layout';
 import Cart from '../cart';
+import { AppContext } from 'src/context/app-context';
 
 const Nav = () => {
   const pathname = usePathname();
   const [navOpened, setNavOpened] = useState(false);
   const [cartOpened, setCartOpened] = useState(false);
+  const [cart, setCart] = useContext(AppContext)
 
   useEffect(() => {
     document.addEventListener('keydown', handleEscapeKey);
@@ -55,6 +57,14 @@ const Nav = () => {
             </Link>
             <button onClick={() => { setCartOpened(!cartOpened) }} aria-label='Basket'>
               <Icon.Basket />
+              {cart?.contents?.itemCount > 0 && (
+                <div className={styles.hearth}>
+                  <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21.7975 6.08301C19.5501 6.08301 18.138 7.20153 17.331 8.18439C16.9509 8.64733 15.9248 8.64725 15.5448 8.18428C14.7379 7.20145 13.3259 6.08301 11.0781 6.08301C7.07052 6.08301 4.65625 9.90376 4.65625 13.0525C4.65625 17.1764 11.8516 22.9899 14.996 25.3336C15.8556 25.9743 17.02 25.9744 17.8797 25.3338C21.0243 22.9906 28.2193 17.1785 28.2193 13.0534C28.2193 9.90376 25.8069 6.08301 21.7975 6.08301Z" fill="#2B483C" />
+                  </svg>
+                  <span>{cart?.contents?.itemCount}</span>
+                </div>
+              )}
             </button>
           </div>
           <button
@@ -65,7 +75,7 @@ const Nav = () => {
             <span></span>
             <span></span>
           </button>
-          <Cart className={styles.cart} setCartOpened={setCartOpened} />
+          <Cart cart={cart} setCart={setCart} className={styles.cart} setCartOpened={setCartOpened} />
         </div>
         <div
           className={styles.overlay}

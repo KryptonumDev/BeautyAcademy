@@ -103,13 +103,15 @@ export default function Grid({ slug, products, productCategories }) {
     <section className={styles.wrapper}>
       <Loader show={loading} />
       <div className={styles.control}>
-        <div className={styles.categories}>
-          {productCategories?.nodes?.map((category, index) => (
-            <Link key={index} className={`${styles.button} ${slug === category.slug ? styles.active : ''}`} href={slug === category.slug ? '/courses' : `/courses/category/${category.slug}`}>
-              {category.name}
-            </Link>
-          ))}
-        </div>
+        {productCategories?.nodes?.length > 1 && (
+          <div className={styles.categories}>
+            {productCategories?.nodes?.map((category, index) => (
+              <Link key={index} className={`${styles.button} ${slug === category.slug ? styles.active : ''}`} href={slug === category.slug ? '/courses' : `/courses/category/${category.slug}`}>
+                {category.name}
+              </Link>
+            ))}
+          </div>
+        )}
         <div className={styles.complexity}>
           <span>Уровень сложности</span>
           <Select options={[

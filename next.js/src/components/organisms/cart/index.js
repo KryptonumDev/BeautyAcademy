@@ -1,7 +1,6 @@
 import React from "react"
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss'
-import { AppContext } from 'src/context/app-context';
 import { GET_CART } from 'src/queries/get-cart';
 import { UPDATE_CART } from 'src/mutations/update-cart';
 import { useQuery } from 'src/hooks/use-query';
@@ -17,10 +16,10 @@ import { AnimatePresence } from 'framer-motion';
 import { Cross, Sygn } from '@/components/atoms/Icons';
 import { APPLY_COUPON } from "src/mutations/apply-coupon";
 import { REMOVE_COUPON } from "src/mutations/remove-coupon";
+import Loader from "@/components/moleculas/request-loader";
 
-export default function Cart({ className, setCartOpened }) {
-  const [cart, setCart] = useContext(AppContext)
-  const [, setLoading] = useState(false)
+export default function Cart({ cart, setCart, className, setCartOpened }) {
+  const [loading, setLoading] = useState(false)
   const [showDiscount, setShowDiscount] = useState(false)
   const [couponValue, setCouponValue] = useState('')
 
@@ -129,6 +128,7 @@ export default function Cart({ className, setCartOpened }) {
 
   return (
     <div className={`${className} ${styles.cart} ${cart?.contents?.nodes?.length > 0 ? styles.containsCart : styles.emptyCart}`}>
+      <Loader show={loading} />
       <div className={styles.header}>
         <h3>Корзина</h3>
         <Button close={true} variant='secondary' onClick={() => { setCartOpened(false) }}>Закрыть</Button>
@@ -137,7 +137,7 @@ export default function Cart({ className, setCartOpened }) {
         <>
           <div data-lenis-prevent className={styles.items}>
             {cart?.contents?.nodes.map((el, index) => (
-              <CartItem updateCart={updateCart} key={index} index={index} products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
+              <CartItem setLoading={setLoading} updateCart={updateCart} key={index} index={index} products={cart?.contents?.nodes} remove={handleRemoveProductClick} data={el} />
             ))}
           </div>
           <div className={styles.footer}>

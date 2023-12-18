@@ -5,11 +5,10 @@ import { getUpdatedItems } from "@/utils/getUpdatedItems";
 import { v4 } from "uuid";
 import { Trash } from "@/components/atoms/Icons";
 
-export default function CartItem({ updateCart, products, remove, data, index }) {
+export default function CartItem({ setLoading, updateCart, products, remove, data, index }) {
   const [productCount, setProductCount] = useState(data.quantity);
 
   const handleQtyChange = (event, cartKey, count) => {
-
     if (typeof window !== 'undefined') {
       event.stopPropagation();
 
@@ -23,7 +22,7 @@ export default function CartItem({ updateCart, products, remove, data, index }) 
 
       if (products.length) {
         const updatedItems = getUpdatedItems(products, newQty, cartKey);
-
+        setLoading(true)
         updateCart({
           variables: {
             input: {
