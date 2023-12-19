@@ -209,6 +209,13 @@
     justify-content: center;
     width: 52px;
     height: 52px;
+    transition: background-color .5s;
+    &:hover {
+      border-image: var(--gradient-100) 1;
+    }
+    &:active {
+      background-color: var(--background-400);
+    }
   }
   button {
     padding: 0 12px;
