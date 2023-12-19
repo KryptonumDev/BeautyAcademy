@@ -32,7 +32,7 @@ const TextSection = ({
       {img ? (
         <Img data={img} className={styles.img} />
       ) : (
-        <VideoPhoneFrame asset={video.asset} />
+        <VideoPhoneFrame asset={video.asset} className={styles.video} />
       )}
     </section>
   );
