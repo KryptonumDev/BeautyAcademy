@@ -16,6 +16,12 @@
       top: 0;
       background: linear-gradient(var(--background-200), rgba(255,255,255,0));
     }
+    .list {
+      height: 100%;
+      top: 0px;
+      position: absolute;
+      width: 100%;
+    }
     .item {
       position: absolute;
       width: 90%;
