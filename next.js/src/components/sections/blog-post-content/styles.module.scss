@@ -29,6 +29,8 @@
     box-shadow: var(--shadow);
     &[data-open] {
       margin-bottom: 48px;
+      position: sticky;
+      top: 123px;
     }
     &[data-close] {
       position: fixed;
