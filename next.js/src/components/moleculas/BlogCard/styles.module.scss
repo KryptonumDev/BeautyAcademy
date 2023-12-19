@@ -1,5 +1,10 @@
 .wrapper {
   border: 1px solid var(--background-600);
+  transition: background-color .5s var(--easing);
+  &:hover,
+  &:has(.link:focus-visible) {
+    background: var(--background-300);
+  }
   position: relative;
   .link {
     position: absolute;
