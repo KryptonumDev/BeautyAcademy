@@ -90,12 +90,24 @@
   .actions {
     display: flex;
     align-items: center;
-    gap: clamp(16px, calc(16vw/4.00), 24px);
+    margin: calc(clamp(8px, calc(8vw/4.00), 12px) * -1);
+    button, a {
+      transition: opacity .4s;
+      display: block;
+      padding: 0 clamp(8px, calc(8vw/4.00), 12px);
+    }
+    &:hover {
+      button, a {
+        opacity: .62;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
 
-    button{
+    button {
       position: relative;
-
-      .hearth{
+      .hearth {
         position: absolute;
         left: -45%;
         bottom: -35%;
