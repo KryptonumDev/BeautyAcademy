@@ -198,7 +198,14 @@ h3,
 .link {
   position: relative;
   text-wrap: nowrap;
-
+  &[target='_blank']::after {
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjguMTggNy43NiA5LjQ5IDkuNDkiPjxwYXRoIHN0cm9rZT0iY3VycmVudENvbG9yIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGQ9Im04LjY3NyAxNi43NDMgOC40ODUtOC40ODZtMCAwSDkuNTJtNy42NDIgMHY3LjM5MyI+PC9wYXRoPjwvc3ZnPg==");
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-left: 8px;
+    transition: transform .5s var(--easing);
+  }
   &::before {
     content: '';
     width: 100%;
@@ -209,28 +216,28 @@ h3,
     background-color: var(--link-color);
     transition: transform .4s;
   }
-
-  &:hover::before {
-    animation: link .8s;
+  &:hover {
+    &::before {
+      animation: link .8s;
+    }
+    &::after {
+      transform: translate(3px, -3px);  
+    }
   }
 
   @keyframes link {
-
     0%,
     100% {
       transform: scaleX(1);
     }
-
     50% {
       transform: scaleX(0);
       transform-origin: right;
     }
-
     0%,
     50% {
       transform-origin: right;
     }
-
     51%,
     100% {
       transform-origin: left;

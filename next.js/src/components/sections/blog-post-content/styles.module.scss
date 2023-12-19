@@ -135,7 +135,18 @@
       margin-top: clamp(28px, calc(36vw/7.68), 48px);
       list-style-type: none;
       li {
+        &:has(a:hover) + li a {
+          border-image: var(--gradient-100) 1;
+        }
         a {
+          &:hover {
+            border-image: var(--gradient-100) 1;
+          }
+          &:not(:hover){
+            > svg {
+              stroke: currentColor;
+            }
+          }
           display: grid;
           align-items: center;
           grid-template-columns: 1fr auto;
