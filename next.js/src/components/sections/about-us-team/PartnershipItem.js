@@ -26,6 +26,7 @@ const PartnershipItem = ({ title, img, ...props }) => {
       item.addEventListener('mousemove', handleMouseMove);
       return () => item.removeEventListener('mousemove', handleMouseMove);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

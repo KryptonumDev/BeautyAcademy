@@ -112,7 +112,7 @@ const TableOfContent = ({
             )}
           </div>
         </div>
-        <ul>
+        <ul data-lenis-prevent>
           {data.map(({ text, slug, subheadings }, index) => (
             <li key={index}>
               <Link href={`#${slug}`} onClick={() => setOpen(false)}>
@@ -144,17 +144,33 @@ export default TableOfContent;
 const Indicator = () => (
   <svg
     xmlns='http://www.w3.org/2000/svg'
-    width='32'
-    height='33'
+    width='40'
+    height='40'
     fill='none'
-    viewBox='0 0 32 33'
+    stroke='url(#a)'
+    viewBox='0 0 41 40'
   >
     <path
-      stroke='#53423C'
       strokeLinecap='round'
       strokeLinejoin='round'
-      d='M10.344 21.907l11.314-11.314m0 0h-10.19m10.19 0v9.857'
+      d='M13.684 27.071L27.826 12.93m0 0H15.088m12.738 0v12.32'
     ></path>
+    <defs>
+      <linearGradient
+        id='a'
+        x1='8.489'
+        x2='21.7'
+        y1='19.528'
+        y2='32.739'
+        gradientUnits='userSpaceOnUse'
+      >
+        <stop stopColor='#F7C479'></stop>
+        <stop offset='0.253' stopColor='#DCA855'></stop>
+        <stop offset='0.582' stopColor='#C79442'></stop>
+        <stop offset='0.764' stopColor='#BC7F1D'></stop>
+        <stop offset='1' stopColor='#BA7403'></stop>
+      </linearGradient>
+    </defs>
   </svg>
 )
 
