@@ -30,7 +30,6 @@ export default function AddToCart({ children, quantity, product }) {
       setLoading(false)
     },
     onError: (error) => {
-      debugger
       setLoading(false)
       console.log(error.message)
       if (error.message.includes('wp.beautyacademy.expert')) {

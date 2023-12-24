@@ -44,8 +44,9 @@ export async function middleware(request) {
         }
       }
     `)
-    
-    if (!body.data.viewer.courses.nodes.some(({ slug }) => slug === match[1]))
+
+    if (match[1] !== 'category' && !body.data.viewer?.courses?.nodes?.some(({ slug }) => slug === match[1])) {
       return NextResponse.redirect(new URL(`/courses/${match[1]}`, request.url))
+    }
   }
 }

@@ -59,7 +59,7 @@ const getSeo = async (slug) => {
     }
     `, {
       slug
-    })
+    }, 3600)
     !data.lesson?.slug && notFound();
     return data;
   } catch (error) {
@@ -156,7 +156,7 @@ const getCourse = async (courseSlug, lessonSlug) => {
   `, {
       courseSlug,
       lessonSlug
-    });
+    }, 3600);
 
     !data.product?.slug && notFound();
     !data.lesson?.slug && notFound();
@@ -184,7 +184,7 @@ export async function generateStaticParams() {
         }
       }
     }
-  `);
+  `, {}, 3600);
 
   return lessons.nodes.map(({ slug, lessonAcf }) => ({
     courseSlug: lessonAcf.course.slug,

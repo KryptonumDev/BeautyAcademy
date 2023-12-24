@@ -42,7 +42,7 @@ const Nav = () => {
                 <li key={i}>
                   <Link
                     href={href}
-                    aria-current={pathname === href ? 'page' : false}
+                    aria-current={pathname.includes(href) ? 'page' : false}
                     onClick={() => setNavOpened(false)}
                   >
                     {name}

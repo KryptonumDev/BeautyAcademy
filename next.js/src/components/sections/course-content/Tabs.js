@@ -72,7 +72,11 @@ const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
                   chapterContent.forEach(el => {
                     minutes += el.lesson.lessonAcf.lengthInMinutes;
                   });
-                  return `${minutes} минут`
+                  return `${minutes} ${minutes === 1
+                    ? 'минута'
+                    : [2, 3, 4].includes(minutes)
+                      ? 'минуты'
+                      : 'минут'}`
                 })()}
               </span>
               {chapterContent && (
@@ -84,7 +88,11 @@ const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
                           <span className={styles.name}>{lesson.title}</span>
                           <span className={styles.flexIcon}>
                             <Play />
-                            {lesson.lessonAcf.lengthInMinutes} минут
+                            {lesson.lessonAcf.lengthInMinutes} {lesson.lessonAcf.lengthInMinutes === 1
+                              ? 'минута'
+                              : [2, 3, 4].includes(lesson.lessonAcf.lengthInMinutes)
+                                ? 'минуты'
+                                : 'минут'}
                           </span>
                         </Link>
                       ) : (
@@ -92,7 +100,11 @@ const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
                           <span className={styles.name}>{lesson.title}</span>
                           <span className={styles.flexIcon}>
                             <Play />
-                            {lesson.lessonAcf.lengthInMinutes} минут
+                            {lesson.lessonAcf.lengthInMinutes} {lesson.lessonAcf.lengthInMinutes === 1
+                              ? 'минута'
+                              : [2, 3, 4].includes(lesson.lessonAcf.lengthInMinutes)
+                                ? 'минуты'
+                                : 'минут'}
                           </span>
                         </p>
                       )}

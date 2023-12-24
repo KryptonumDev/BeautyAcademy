@@ -60,7 +60,7 @@ const getSeo = async (slug) => {
     }
     `, {
       slug
-    })
+    }, 3600)
     !data.product?.slug && notFound();
     return data;
   } catch (error) {
@@ -215,7 +215,7 @@ const getProducts = async (slug) => {
     }
   `, {
       slug
-    });
+    }, 3600);
     !data.product?.slug && notFound();
     return data;
   } catch (error) {
@@ -233,7 +233,7 @@ export async function generateStaticParams() {
         }
       }
     }
-  `);
+  `, {}, 3600);
 
   return products.nodes.map(({ slug }) => ({
     courseSlug: slug

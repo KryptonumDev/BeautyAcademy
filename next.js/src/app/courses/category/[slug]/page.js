@@ -102,7 +102,7 @@ const getProducts = async (slug) => {
       }
     }
   }
-`, { slug: slug }, false)
+`, { slug: slug }, 3600)
   return data;
 }
 
@@ -115,7 +115,7 @@ export async function generateStaticParams() {
         }
       }
     }
-  `);
+  `, {}, 3600);
 
   return categories.nodes.map(({ slug }) => ({
     slug: slug

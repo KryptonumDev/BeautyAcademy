@@ -59,7 +59,7 @@ const getProducts = async () => {
         }
       }
     }
-  `)
+  `, {}, 3600)
   return data;
 }
 
