@@ -10,6 +10,8 @@ const Video = ({
   className,
   isSquare = false,
   priority = false,
+  muted = false,
+  infinite = false,
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef(null);
@@ -29,7 +31,7 @@ const Video = ({
         onClick={() => toggleVideo()}
       ></button>
       <Button isPlaying={isPlaying} />
-      <video ref={videoRef} playsInline>
+      <video loop={infinite} muted={muted} ref={videoRef} playsInline>
         <source src={url} />
         <p>{altText}</p>
       </video>

@@ -45,6 +45,8 @@ const Hero = ({
           className={styles.videoSquare}
           isSquare={true}
           priority={true}
+          muted={true}
+          infinite={true}
         />
       </div>
     </section>

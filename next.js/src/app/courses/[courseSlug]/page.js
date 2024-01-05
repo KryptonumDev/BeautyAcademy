@@ -31,7 +31,7 @@ const CoursePage = async ({ params: { courseSlug } }) => {
         isAccepted={isAccepted}
       />
       <Faq data={product.productAcf.course.courseAcf.faq} />
-      <UpsellCarousel />
+      <UpsellCarousel slug={courseSlug} />
     </>
   )
 }

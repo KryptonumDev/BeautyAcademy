@@ -23,7 +23,7 @@ const Tabs = ({ chapters, courseSlug, content }) => {
       <div
         className={styles.about}
         style={{ display: tab !== 0 && 'none' }}
-        dangerouslySetInnerHTML={{ __html: content ? content : 'К сожалению тут пока ничего нет :(' }}
+        dangerouslySetInnerHTML={{ __html: content ? content : 'К сожалению тут пока ничего нет' }}
       />
       <div
         className={styles.tableOfContent}

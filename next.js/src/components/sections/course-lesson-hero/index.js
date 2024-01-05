@@ -1,44 +1,123 @@
-'use client'
-import Button from '@/components/atoms/Button';
-import styles from './styles.module.scss';
-import Link from 'next/link';
-import { useMemo } from 'react';
+"use client";
+import Button from "@/components/atoms/Button";
+import styles from "./styles.module.scss";
+import Link from "next/link";
+import { useMemo } from "react";
 
 // from 0 to 1
 // const progress = .75;
 
-const Hero = ({
-  id,
-  courseSlug,
-  lessonSlug,
-  chapterLessons,
-  video,
-  name
-}) => {
-
+const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
   const currentChapter = useMemo(() => {
-    let currChapter = false
+    let currChapter = false;
 
     chapterLessons.every((chapter) => {
       chapter.chapterContent.forEach(({ lesson }) => {
-        if (lesson.id === id) currChapter = chapter
-      })
+        if (lesson.id === id) currChapter = chapter;
+      });
       return !currChapter;
     });
 
-    return currChapter
-  }, [chapterLessons, id])
+    return currChapter;
+  }, [chapterLessons, id]);
+
+  const currChapterIndex = useMemo(() => {
+    let currIndex = false;
+
+    chapterLessons.every((chapter, i) => {
+      if (chapter.chapterName === currentChapter.chapterName) currIndex = i;
+      return !currIndex;
+    });
+
+    return currIndex;
+  }, [chapterLessons, currentChapter]);
+
+  const currentLessonIndex = useMemo(() => {
+    let currIndex = false;
+
+    currentChapter.chapterContent.every(({ lesson }, i) => {
+      if (lesson.id === id) currIndex = i;
+      return !currIndex;
+    });
+
+    return currIndex;
+  }, [currentChapter, id]);
 
   return (
     <section className={styles.wrapper}>
       <div>
         <div className={styles.video}>
-          <iframe style={{ width: '100%', height: '100%' }} src={video} title={name} frameborder="0" allow="autoplay; fullscreen; picture-in-picture" />
+          <iframe
+            style={{ width: "100%", height: "100%" }}
+            src={video}
+            title={name}
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+          />
         </div>
         <nav className={styles.nav}>
-          <Button variant='secondary' prev>предыдущий урок</Button>
-          <Button>Отметить как завершенное</Button>
-          <Button variant='secondary' next>следующий урок</Button>
+          {currentLessonIndex === 0 ? (
+            <>
+              {currChapterIndex === 0 ? (
+                <div />
+              ) : (
+                <Button
+                  href={`/courses/${courseSlug}/${
+                    chapterLessons[currChapterIndex - 1].chapterContent[
+                      chapterLessons[currChapterIndex - 1].chapterContent
+                        .length - 1
+                    ].lesson.slug
+                  }`}
+                  variant="secondary"
+                  prev
+                >
+                  предыдущий раздел
+                </Button>
+              )}
+            </>
+          ) : (
+            <Button
+              href={`/courses/${courseSlug}/${
+                currentChapter.chapterContent[currentLessonIndex - 1].lesson
+                  .slug
+              }`}
+              variant="secondary"
+              prev
+            >
+              предыдущий урок
+            </Button>
+          )}
+          {/* <Button>Отметить как завершенное</Button> */}
+          <div />
+          {currentChapter.chapterContent.length > currentLessonIndex + 1 ? (
+            <Button
+              href={`/courses/${courseSlug}/${
+                currentChapter.chapterContent[currentLessonIndex + 1].lesson
+                  .slug
+              }`}
+              variant="secondary"
+              next
+            >
+              следующий урок
+            </Button>
+          ) : (
+            <>
+              {currChapterIndex === chapterLessons.length - 1 ? (
+                <div />
+              ) : (
+                <Button
+                  href={`/courses/${courseSlug}/${
+                    chapterLessons[currChapterIndex + 1].chapterContent[0]
+                      .lesson.slug
+                  }`}
+                  variant="secondary"
+                  next
+                >
+                  следующий раздел
+                </Button>
+              )}
+            </>
+          )}
         </nav>
       </div>
       <div>
@@ -54,7 +133,7 @@ const Hero = ({
               key={i}
               aria-current={el.lesson.slug === lessonSlug}
             >
-              {1}.{i + 1} {el.lesson.title}
+              {currChapterIndex+1}.{i + 1} {el.lesson.title}
             </Link>
           ))}
         </div>

@@ -16,7 +16,7 @@
 //       <main>
 //         <Breadcrumbs data={[
 //           { name: 'Homepage', path: '/' },
-//           { name: 'Courses', path: '/courses' },
+//           { name: 'Курсы', path: '/courses' },
 //           { name: name, path: `/courses/${slug}` },
 //           { name: 'Certificate', path: `/courses/${slug}/certificate` },
 //         ]} />

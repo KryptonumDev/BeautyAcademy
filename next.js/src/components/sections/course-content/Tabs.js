@@ -53,6 +53,7 @@ const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
               return null
           }
         })}
+        {sections?.length === 0 && <p>К сожалению тут пока ничего нет</p>}
       </div>
       <div
         className={styles.tableOfContent}

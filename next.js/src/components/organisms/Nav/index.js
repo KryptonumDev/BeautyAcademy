@@ -31,6 +31,7 @@ const Nav = () => {
   return (
     <>
       <a href="#main" className={styles.skipToMainContent}>Перейти к основному содержанию</a>
+      <div className={styles.placeholder}/>
       <header className={styles.wrapper} aria-expanded={navOpened} aria-controls={cartOpened}>
         <div className="max-width">
           <Link href='/' className={styles.logo} aria-label="Homepage">

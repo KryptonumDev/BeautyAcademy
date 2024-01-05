@@ -1,5 +1,14 @@
-.wrapper {
+.placeholder{
   position: sticky;
+  top: 0;
+  height: 109px;
+  z-index: -1;
+}
+
+.wrapper {
+  position: fixed;
+  left: 0;
+  right: 0;
   top: 0;
   z-index: 9;
   background-color: var(--background-200);
@@ -94,7 +103,7 @@
     button, a {
       transition: opacity .4s;
       display: block;
-      padding: 0 clamp(8px, calc(8vw/4.00), 12px);
+      margin: 0 clamp(8px, calc(8vw/4.00), 12px);
     }
     &:hover {
       button, a {

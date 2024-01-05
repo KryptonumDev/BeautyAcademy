@@ -2,11 +2,22 @@ import wpFetchData from '@/utils/wpFetchData';
 import styles from './styles.module.scss';
 import Slider from './Slider';
 
-const UpsellCarousel = async () => {
-  const { products: { nodes }} = await getProducts();
+const UpsellCarousel = async ({ slug }) => {
+  const { products: { nodes } } = await getProducts();
+
+  const list = (() => {
+    if (!nodes) return [];
+    if (!slug) return nodes;
+
+
+    return nodes.filter(({ slug: productSlug }) => productSlug !== slug)
+  })();
+
+  if (!list.length) return null;
+
   return (
     <section className={styles.wrapper}>
-      <Slider list={nodes}>
+      <Slider list={list}>
         <h2>Вас может заинтересовать:</h2>
       </Slider>
     </section>

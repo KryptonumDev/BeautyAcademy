@@ -63,6 +63,6 @@ const getData = async () => {
         }
       }
     }
-  `, {}, 0)
+  `, {}, 300)
   return data;
 }

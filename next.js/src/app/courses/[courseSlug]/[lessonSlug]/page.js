@@ -12,7 +12,7 @@ const CourseLessonPage = async ({ params: { courseSlug, lessonSlug } }) => {
     <>
       <Breadcrumbs data={[
         { name: 'Homepage', path: '/' },
-        { name: 'Courses', path: '/courses' },
+        { name: 'Курсы', path: '/courses' },
         { name: product.name, path: `/courses/${courseSlug}` },
         { name: lesson.title, path: `/courses/${courseSlug}/${lessonSlug}` },
       ]} />

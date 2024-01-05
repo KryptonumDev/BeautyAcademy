@@ -104,44 +104,6 @@ export default {
       validation: Rule => Rule.required(),
     },
     {
-      name: 'advantages_Heading',
-      type: 'markdown',
-      title: 'Heading',
-      fieldset: 'advantages',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'advantages_Paragraph',
-      type: 'markdown',
-      title: 'Paragraph',
-      fieldset: 'advantages',
-      validation: Rule => Rule.required(),
-    },
-    {
-      name: 'advantages_Cta',
-      type: 'array',
-      of: [
-        {
-          type: 'cta'
-        }
-      ],
-      title: 'CTAs',
-      fieldset: 'advantages',
-      validation: Rule => Rule.min(1).max(2),
-    },
-    {
-      name: 'advantages_List',
-      type: 'array',
-      of: [
-        {
-          type: 'list_titleDescriptionAndImage'
-        }
-      ],
-      title: 'List',
-      fieldset: 'advantages',
-      validation: Rule => Rule.min(2),
-    },
-    {
       name: 'features_Heading',
       type: 'markdown',
       title: 'Heading',
@@ -178,6 +140,44 @@ export default {
       title: 'List',
       fieldset: 'features',
       validation: Rule => Rule.min(1).max(3),
+    },
+    {
+      name: 'advantages_Heading',
+      type: 'markdown',
+      title: 'Heading',
+      fieldset: 'advantages',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'advantages_Paragraph',
+      type: 'markdown',
+      title: 'Paragraph',
+      fieldset: 'advantages',
+      validation: Rule => Rule.required(),
+    },
+    {
+      name: 'advantages_Cta',
+      type: 'array',
+      of: [
+        {
+          type: 'cta'
+        }
+      ],
+      title: 'CTAs',
+      fieldset: 'advantages',
+      validation: Rule => Rule.min(1).max(2),
+    },
+    {
+      name: 'advantages_List',
+      type: 'array',
+      of: [
+        {
+          type: 'list_titleDescriptionAndImage'
+        }
+      ],
+      title: 'List',
+      fieldset: 'advantages',
+      validation: Rule => Rule.min(2),
     },
     {
       name: 'reviews_Heading',
@@ -247,13 +247,13 @@ export default {
       options: { collapsible: true, collapsed: true }
     },
     {
-      name: 'advantages',
-      title: 'Advantages',
+      name: 'features',
+      title: 'Features',
       options: { collapsible: true, collapsed: true }
     },
     {
-      name: 'features',
-      title: 'Features',
+      name: 'advantages',
+      title: 'Advantages',
       options: { collapsible: true, collapsed: true }
     },
     {

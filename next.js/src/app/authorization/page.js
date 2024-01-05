@@ -22,6 +22,6 @@ const getData = async () => {
           authorizationUrl
       }
     }
-  `)
+  `, {}, 300)
   return data;
 }

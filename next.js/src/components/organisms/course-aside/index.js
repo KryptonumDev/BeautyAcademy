@@ -91,10 +91,10 @@ const Aside = ({
           <Location />
           <span>Онлайн-курс</span>
         </p>
-        <p className={styles.certificate}>
+        {/* <p className={styles.certificate}>
           <Certificate />
           <span>Cертификат об окончании</span>
-        </p>
+        </p> */}
       </div>
 
     </aside>
