@@ -3,6 +3,8 @@ import DashboardControl from "@/components/sections/dashboard-control"
 import Seo from "@/global/Seo"
 import React from "react"
 
+export const dynamic = "force-dynamic"
+
 export default function Account({ children }) {
   return (
     <>
