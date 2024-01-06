@@ -20,7 +20,6 @@ const Slider = ({ list }) => {
         ref={swiper}
         slidesPerView={1}
         initialSlide={list.length / 2}
-        autoHeight={true}
         breakpoints={{
           0: {
             slidesPerView: 1,
