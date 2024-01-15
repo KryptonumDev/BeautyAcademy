@@ -15,14 +15,21 @@ const Oranienbaum = localFont({
       style: 'normal',
     },
   ],
+  display: 'swap',
   fallback: ['serif']
 })
 
 const Kapakana = localFont({
-  src: '../assets/fonts/Kapakana.woff2',
+  src: [
+    {
+      path: '../assets/fonts/Kapakana.woff2',
+      weight: '400',
+      style: 'normal',
+    }
+  ],
   display: 'swap',
+  fallback: ["serif"],
   variable: '--kapakana-font',
-  fallback: ["sans-serif"]
 })
 
 export const viewport = {
