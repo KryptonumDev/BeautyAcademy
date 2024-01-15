@@ -11,6 +11,7 @@ export default async function Content() {
 }
 
 const getData = async () => {
+  try{
   const { body: { data } } = await wpFetchData(`
     query {
       customer {
@@ -27,4 +28,7 @@ const getData = async () => {
     }
   `, {}, 300)
   return data;
+} catch (error) {
+  console.log(error);
+}
 }

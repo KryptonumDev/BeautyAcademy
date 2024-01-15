@@ -63,7 +63,7 @@ export default {
     },
     {
       type: 'QuickContact',
-    },
+    },  
     {
       type: 'HighlightedList',
     },

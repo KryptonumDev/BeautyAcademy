@@ -5,11 +5,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import PaymentForm from "@/components/organisms/payment-form";
 import Loader from "@/components/moleculas/request-loader";
 
-export default function Payment({ input }) {
-
+export default function Payment({ input, cart }) {
   const [secretKey, setSecretKey] = useState(null);
   const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
+  debugger
   const paymentOptions = {
     clientSecret: secretKey,
     locale: 'ru',
@@ -20,10 +19,8 @@ export default function Payment({ input }) {
       weight: 400,
     }],
     appearance: {
-      vaiables: {
-        borderRadius: '0'
-      },
       variables: {
+        borderRadius: '0'
         // fontFamily: 'Kapakana'
       },
       rules: {
@@ -60,7 +57,7 @@ export default function Payment({ input }) {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ amount: 1000 })
+      body: JSON.stringify({ amount: cart.amount * 100 })
     })
       .then(res => res.json())
       .then(({ clientSecret }) => {

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import styles from './styles.module.scss'
 import Steps from "@/components/organisms/checkout-steps"
 import PersonalData from "@/components/organisms/checkout-personal-data/index.js"
@@ -7,6 +7,7 @@ import Authorization from "../../organisms/checkout-authorization"
 import { read } from "src/app/actions"
 import Payment from "../../organisms/checkout-payment"
 import Summary from "../../organisms/checkout-summary"
+import { AppContext } from "src/context/app-context"
 
 const stepNames = {
   1: 'Ваши данные',
@@ -28,6 +29,7 @@ export default function Content({ providers }) {
   const register = true
   const delivery = false
 
+  const [cart, setCart] = useContext(AppContext)
   const [step, setStep] = useState(1)
   const [input, setInput] = useState({
     "firmOrder": false,
@@ -80,7 +82,7 @@ export default function Content({ providers }) {
     <section className={styles.wrapper}>
       <h1>{stepNames[step]}</h1>
       <Steps steps={steps} step={step} />
-      {stepContent({ nextStep, setStep, input, setInput, providers })[step]}
+      {stepContent({ nextStep, setStep, input, setInput, providers, cart, setCart })[step]}
     </section>
   )
 }

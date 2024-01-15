@@ -7,7 +7,7 @@ import Radio from "@/components/moleculas/radio";
 import Input from "@/components/moleculas/Input";
 import Cart from "../checkout-cart";
 
-export default function Summary({ input, setInput, setStep, nextStep }) {
+export default function Summary({ input, setInput, setStep, nextStep, cart, setCart }) {
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'all',
     defaultValues: generateDefaults(input)
@@ -21,13 +21,13 @@ export default function Summary({ input, setInput, setStep, nextStep }) {
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} >
-        <Cart />
+        <Cart cart={cart} setCart={setCart}/>
         <div className={styles.summary}>
           <div className={styles.part}>
             <h2 className={styles.title}>Вы покупаете как</h2>
             <Radio
               value='default'
-              label={input.firmOrder ? "Физическое лицо" : 'Юридическое лицо'}
+              label={input.firmOrder ? 'Юридическое лицо' : "Физическое лицо"}
               register={register('type')}
               errors={errors} />
             <div className={styles.partData}>

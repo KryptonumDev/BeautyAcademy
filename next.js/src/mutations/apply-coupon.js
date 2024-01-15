@@ -80,6 +80,7 @@ export const APPLY_COUPON = `
             }
             quantity
             total
+            amount: total(format: RAW)
             subtotal
             subtotalTax
           }
@@ -94,6 +95,7 @@ export const APPLY_COUPON = `
         shippingTax
         shippingTotal
         total
+        amount: total(format: RAW)
         totalTax
         feeTax
         feeTotal

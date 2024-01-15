@@ -79,6 +79,7 @@ query GET_CART {
         }
         quantity
         total
+        amount: total(format: RAW)
         subtotal
         subtotalTax
       }
@@ -93,6 +94,7 @@ query GET_CART {
     shippingTax
     shippingTotal
     total
+    amount: total(format: RAW)
     totalTax
     feeTax
     feeTotal

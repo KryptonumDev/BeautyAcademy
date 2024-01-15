@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const stripe = require("stripe")(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
   const { amount, currency = 'usd' } = await req.json()
@@ -15,8 +15,8 @@ export async function POST(req) {
         // 'blik', PLN
         'card', 
         // 'p24', EUR / PLN
-        'paypal', 
-        'klarna'
+        // 'paypal', not work
+        // 'klarna' EUR / PLN
       ],
     });
 

@@ -7,7 +7,7 @@ import wpFetchData from "@/utils/wpFetchData";
 
 export default async function Courses() {
   const { page } = await getData();
-  const { products, productCategories } = await getProducts();
+  const { products, productCategories, customer } = await getProducts();
 
   return (
     <>
@@ -16,7 +16,7 @@ export default async function Courses() {
         { name: 'Курсы', path: '/courses' },
       ]} />
       <Hero data={page} />
-      <Grid products={products} productCategories={productCategories} />
+      <Grid customer={customer} products={products} productCategories={productCategories} />
       <LatestBlogEntries />
     </>
   )
@@ -44,6 +44,15 @@ const getData = async () => {
 const getProducts = async () => {
   const { body: { data } } = await wpFetchData(`
     query {
+      customer: viewer {
+        courses {
+          nodes {
+            id
+            slug
+            title
+          }
+        }
+      }
       products(where: {categoryIn: "онлайн-курс"}, first: 6) {
         nodes {
           ... on SimpleProduct {
@@ -56,6 +65,13 @@ const getProducts = async () => {
             price(format: FORMATTED)
             regularPrice(format: FORMATTED)
             salePrice(format: FORMATTED)
+            productAcf {
+              course {
+                ... on Course {
+                  id
+                }
+              }
+            }
             productTags {
               nodes {
                 name

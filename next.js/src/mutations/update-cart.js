@@ -86,6 +86,7 @@ mutation UPDATE_CART($input: UpdateItemQuantitiesInput!) {
           }
           quantity
           total
+          amount: total(format: RAW)
           subtotal
           subtotalTax
         }
@@ -100,6 +101,7 @@ mutation UPDATE_CART($input: UpdateItemQuantitiesInput!) {
       shippingTax
       shippingTotal
       total
+      amount: total(format: RAW)
       totalTax
       feeTax
       feeTotal

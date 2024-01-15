@@ -46,22 +46,27 @@ export default async function Content() {
 }
 
 const getData = async () => {
-  const { body: { data } } = await wpFetchData(`
-    query {
-      customer {
-        id
-        orders {
-          nodes {
-            total(format: FORMATTED)
-            status
-            orderKey
-            orderNumber
-            paymentMethod
-            date
+  try {
+    const { body: { data } } = await wpFetchData(`
+      query {
+        customer {
+          id
+          orders {
+            nodes {
+              total
+              amount: total(format: RAW)
+              status
+              orderKey
+              orderNumber
+              paymentMethod
+              date
+            }
           }
         }
       }
-    }
-  `, {}, 300)
+    `, {}, 300)
   return data;
+  } catch (error) {
+    console.log(error);
+  }
 }

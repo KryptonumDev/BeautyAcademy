@@ -3,6 +3,7 @@ export const ADD_TO_CART = `
     addToCart(input: $input) {
       cartItem {
         total
+        amount: total(format: RAW)
       }
       cart {
         contents {
@@ -78,6 +79,7 @@ export const ADD_TO_CART = `
             }
             quantity
             total
+            amount: total(format: RAW)
             subtotal
             subtotalTax
           }
@@ -92,6 +94,7 @@ export const ADD_TO_CART = `
         shippingTax
         shippingTotal
         total
+        amount: total(format: RAW)
         totalTax
         feeTax
         feeTotal

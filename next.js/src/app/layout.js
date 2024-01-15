@@ -56,8 +56,6 @@ export const links = [
   },
 ]
 
-// export const runtime = 'edge'
-
 export default function RootLayout({ children }) {
   return (
     <html lang={locale}>

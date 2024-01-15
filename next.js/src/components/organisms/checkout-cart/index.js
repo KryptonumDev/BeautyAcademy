@@ -1,7 +1,6 @@
 import React from "react"
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import styles from './styles.module.scss'
-import { AppContext } from 'src/context/app-context';
 import { GET_CART } from 'src/queries/get-cart';
 import { UPDATE_CART } from 'src/mutations/update-cart';
 import { useQuery } from 'src/hooks/use-query';
@@ -17,8 +16,7 @@ import { Cross } from '@/components/atoms/Icons';
 import { APPLY_COUPON } from "src/mutations/apply-coupon";
 import { REMOVE_COUPON } from "src/mutations/remove-coupon";
 
-export default function Cart() {
-  const [cart, setCart] = useContext(AppContext)
+export default function Cart({cart, setCart}) {
   const [, setLoading] = useState(false)
   const [showDiscount, setShowDiscount] = useState(false)
   const [couponValue, setCouponValue] = useState('')

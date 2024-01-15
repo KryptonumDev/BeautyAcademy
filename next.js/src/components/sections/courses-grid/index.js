@@ -18,7 +18,7 @@ const DropdownIndicator = props => {
   )
 }
 
-export default function Grid({ slug, products, productCategories }) {
+export default function Grid({ slug, products, productCategories, customer }) {
 
   const [newProducts, setNewProducts] = useState(products)
   const [complexity, setComplexity] = useState(null)
@@ -131,7 +131,7 @@ export default function Grid({ slug, products, productCategories }) {
       </div>
       <div className={styles.grid}>
         {newProducts?.nodes?.map((product, index) => (
-          <Card data={product} key={index} />
+          <Card  data={product} key={index} alreadyBought={!!customer?.courses?.nodes?.find(e => e.id === product.productAcf.course.id) } />
         ))}
       </div>
       <div className={styles.pagination}>

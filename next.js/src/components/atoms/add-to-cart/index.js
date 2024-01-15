@@ -7,7 +7,7 @@ import Button from "../Button";
 import { useMutation } from "src/hooks/use-mutation";
 import { ADD_TO_CART } from "src/mutations/add-to-cart";
 
-export default function AddToCart({ children, quantity, product }) {
+export default function AddToCart({ alreadyBought, children, quantity, product }) {
 
   const productQryInput = {
     clientMutationId: v4(),
@@ -51,7 +51,7 @@ export default function AddToCart({ children, quantity, product }) {
         </Button>
       ) : (
         <Button
-          disabled={loading}
+          disabled={loading || alreadyBought}
           onClick={handleAddToCartClick}
           style={{ position: "relative", zIndex: 3 }}
         >
