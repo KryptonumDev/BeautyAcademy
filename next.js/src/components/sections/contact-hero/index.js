@@ -1,41 +1,55 @@
-import Markdown from '@/components/atoms/Markdown';
-import styles from './styles.module.scss';
-import Img from '@/components/atoms/Img';
-import Form from './Form';
-import { Social } from '@/components/atoms/Icons';
-import fetchData from '@/utils/fetchData';
+import Markdown from "@/components/atoms/Markdown";
+import styles from "./styles.module.scss";
+import Img from "@/components/atoms/Img";
+import Form from "./Form";
+import { Social } from "@/components/atoms/Icons";
+import fetchData from "@/utils/fetchData";
 
 const Hero = async ({
-  hero: {
-    hero_Heading,
-    hero_Paragraph,
-    hero_People,
+  hero: { hero_Heading, hero_Paragraph, hero_People },
+  form: {
+    success_Heading,
+    success_Paragraph,
+    error_Heading,
+    error_Paragraph,
+    heading,
   },
   form
 }) => {
-  const { socials: {
-    instagram,
-    facebook,
-    telegram
-  }} = await query();
-  
+  const {
+    socials: { instagram, facebook, telegram },
+  } = await query();
+
   const socials = [
     {
-      name: 'Instagram',
+      name: "Instagram",
       icon: <Social.Instagram />,
-      url: instagram
+      url: instagram,
     },
     {
-      name: 'Facebook',
+      name: "Facebook",
       icon: <Social.Facebook />,
-      url: facebook
+      url: facebook,
     },
     {
-      name: 'Telegram',
+      name: "Telegram",
       icon: <Social.Telegram />,
-      url: telegram
+      url: telegram,
     },
-  ]
+  ];
+  const successHeading = <Markdown.h3>{success_Heading}</Markdown.h3>;
+  const successParagraph = (
+    <Markdown className={styles.paragraph}>{success_Paragraph}</Markdown>
+  );
+
+  const errorHeading = <Markdown.h3>{error_Heading}</Markdown.h3>;
+  const errorParagraph = (
+    <Markdown className={error_Paragraph}>{error_Paragraph}</Markdown>
+  );
+
+  const formHeading = heading && (
+    <Markdown.h2 className="h3">{heading}</Markdown.h2>
+  );
 
   return (
     <section className={styles.wrapper}>
@@ -54,24 +68,39 @@ const Hero = async ({
           ))}
         </div>
         <ul className={styles.socials}>
-          {socials.map(({ url, icon, name }, i) => (
-            url && (
-              <li key={i}>
-                <a href={url} target="_blank" rel="noopener" aria-label={name}>
-                  {icon}
-                </a>
-              </li>
-            )
-          ))}
+          {socials.map(
+            ({ url, icon, name }, i) =>
+              url && (
+                <li key={i}>
+                  <a
+                    href={url}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label={name}
+                  >
+                    {icon}
+                  </a>
+                </li>
+              )
+          )}
         </ul>
       </header>
-      <Form data={form} />
+      <Form
+        successHeading={successHeading}
+        successParagraph={successParagraph}
+        errorHeading={errorHeading}
+        errorParagraph={errorParagraph}
+        data={form}
+        formHeading={formHeading}
+      />
     </section>
   );
 };
 
 const query = async () => {
-  const { body: { data } } = await fetchData(`
+  const {
+    body: { data },
+  } = await fetchData(`
     query {
       socials: Global(id: "global") {
         instagram
@@ -79,8 +108,8 @@ const query = async () => {
         telegram
       }
     }
-  `)
+  `);
   return data;
-}
+};
 
 export default Hero;

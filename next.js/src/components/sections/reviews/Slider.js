@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, EffectCoverflow } from "swiper/modules";
 import styles from "./styles.module.scss";
-import Markdown from "@/components/atoms/Markdown";
 import Img from "@/components/atoms/Img";
 import "swiper/css";
 
@@ -50,7 +49,7 @@ const Slider = ({ list }) => {
           <SwiperSlide className={styles.item} key={i}>
             <Img data={img} className={styles.img} />
             <p className={styles.name}>{name}</p>
-            <Markdown className={styles.content}>{content}</Markdown>
+            {content}
             {rating && (
               <div className={styles.rating}>
                 <Heart />

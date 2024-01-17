@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Link from 'next/link';
-import Markdown from '@/components/atoms/Markdown';
 import styles from './styles.module.scss';
 import Button from '@/components/atoms/Button';
 import Checkbox from '@/components/moleculas/Checkbox';
@@ -107,8 +106,8 @@ const Form = () => {
       {status.success !== undefined && (
         <div className={styles.state} aria-invalid={!status.success}>
           {status.success ? <FormSuccess /> : <FormError />}
-          <Markdown.h3>{status.success ? "Ваше сообщение было отправлено успешно" : "Отправка сообщения не удалась"}</Markdown.h3>
-          <Markdown className={styles.paragraph}>{status.success ? "Мы ответим на него как можно быстрее" : "Проверьте подключение к сети и введенные вами данные."}</Markdown>
+          <h3>{status.success ? "Ваше сообщение было отправлено успешно" : "Отправка сообщения не удалась"}</h3>
+          <p className={styles.paragraph}>{status.success ? "Мы ответим на него как можно быстрее" : "Проверьте подключение к сети и введенные вами данные."}</p>
           {!status.success && (
             <Button
               type="button"

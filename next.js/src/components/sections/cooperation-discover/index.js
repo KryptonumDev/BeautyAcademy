@@ -1,52 +1,17 @@
-'use client'
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useMediaQuery } from 'react-responsive';
-import styles from './styles.module.scss';
-import Markdown from '@/components/atoms/Markdown';
-import Img from '@/components/atoms/Img';
+import Content from "./content";
+import Markdown from "@/components/atoms/Markdown";
 
 const Discover = ({
-  data: {
-    discover_Heading,
-    discover_Paragraph,
-    discover_List,
-  }
+  data: { discover_Heading, discover_Paragraph, discover_List },
 }) => {
-  const wrapper = useRef();
-  const { scrollYProgress } = useScroll({
-    target: wrapper,
-    offset: ['start end', 'end start']
-  })
-  const odd = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const even = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const heading = <Markdown.h2>{discover_Heading}</Markdown.h2>;
+  const text = <Markdown>{discover_Paragraph}</Markdown>;
+  const list = discover_List.map(({ title, img }, i) => {
+    const markdownTitle = <Markdown className="h3">{title}</Markdown>;
+    return { markdownTitle, img };
+  });
 
-  const isDesktop = useMediaQuery({ query: '(min-width: 900px)' });
-
-  return (
-    <section className={styles.wrapper}>
-      <header>
-        <Markdown.h2>{discover_Heading}</Markdown.h2>
-        <Markdown>{discover_Paragraph}</Markdown>
-      </header>
-      <div className={`${styles.list} sec-wo-margin`} ref={wrapper}>
-        {discover_List.map(({ title, img }, i) => (
-          <motion.div
-            className={styles.item}
-            key={i}
-            style={{ transform: 'none' }}
-            {...isDesktop && { style: { y: i % 2 === 0 ? odd : even } }}
-          >
-            <Img
-              data={img}
-              sizes="(max-width: 449px) 100vw, (max-width: 899px) 66.6vw, 33vw"
-            />
-            <Markdown className='h3'>{title}</Markdown>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  );
+  return <Content text={text} heading={heading} list={list}></Content>;
 };
 
 export default Discover;

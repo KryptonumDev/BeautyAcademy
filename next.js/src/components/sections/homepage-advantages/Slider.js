@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
 import styles from './styles.module.scss';
-import Markdown from '@/components/atoms/Markdown';
 import Img from '@/components/atoms/Img';
 import 'swiper/css';
 
@@ -33,15 +32,15 @@ const Slider = ({ list }) => {
         onSlideChange={({ activeIndex }) => setActiveIndex(activeIndex)}
         onReachEnd={() => setActiveIndex(list.length-1)}
       >
-        {list.map(({ title, description, img }, i) => (
+        {list.map(({ title, text, img }, i) => (
           <SwiperSlide className={styles.item} key={i}>
             <Img
               data={img}
               className={styles.img}
               sizes="50vw"
             />
-            <Markdown className={styles.title}>{title}</Markdown>
-            <Markdown className={styles.description}>{description}</Markdown>
+            {title}
+            {text}
           </SwiperSlide>
         ))}
       </Swiper>
