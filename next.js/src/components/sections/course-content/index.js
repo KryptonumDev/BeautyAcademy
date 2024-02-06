@@ -1,42 +1,34 @@
-import Aside from '@/components/organisms/course-aside';
-import Tabs from './Tabs';
-import styles from './styles.module.scss';
+import Aside from "@/components/organisms/course-aside";
+import Tabs from "./Tabs";
+import styles from "./styles.module.scss";
 
 const Content = ({
   sections,
-  data: {
-    productCategories,
-    productTags,
-    productAcf: {
-      course: {
-        courseAcf: {
-          mainInformation: {
-            author,
-            courseLength
-          }
-        }
-      }
-    }
-  },
+  category,
+  complexity,
+  author,
+  courseLength,
   chapters,
   courseSlug,
-  isAccepted
+  isAccepted,
 }) => {
   return (
     <section className={styles.wrapper}>
-      <Aside {...{
-        author,
-        productCategories,
-        productTags,
-        courseLength,
-      }} />
+      <Aside
+        {...{
+          author,
+          category,
+          complexity,
+          courseLength,
+        }}
+      />
       <div className={styles.content}>
         <Tabs
           sections={sections}
           chapters={chapters}
           courseSlug={courseSlug}
           isAccepted={isAccepted}
-        // reviews={reviews}
+          // reviews={reviews}
         />
       </div>
     </section>

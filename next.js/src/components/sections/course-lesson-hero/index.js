@@ -10,10 +10,10 @@ import { useMemo } from "react";
 const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
   const currentChapter = useMemo(() => {
     let currChapter = false;
-
+    debugger;
     chapterLessons.every((chapter) => {
-      chapter.chapterContent.forEach(({ lesson }) => {
-        if (lesson.id === id) currChapter = chapter;
+      chapter.lessons.forEach((lesson) => {
+        if (lesson._id === id) currChapter = chapter;
       });
       return !currChapter;
     });
@@ -35,8 +35,8 @@ const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
   const currentLessonIndex = useMemo(() => {
     let currIndex = false;
 
-    currentChapter.chapterContent.every(({ lesson }, i) => {
-      if (lesson.id === id) currIndex = i;
+    currentChapter.lessons.every((lesson, i) => {
+      if (lesson._id === id) currIndex = i;
       return !currIndex;
     });
 
@@ -63,10 +63,9 @@ const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
               ) : (
                 <Button
                   href={`/courses/${courseSlug}/${
-                    chapterLessons[currChapterIndex - 1].chapterContent[
-                      chapterLessons[currChapterIndex - 1].chapterContent
-                        .length - 1
-                    ].lesson.slug
+                    chapterLessons[currChapterIndex - 1].lessons[
+                      chapterLessons[currChapterIndex - 1].lessons.length - 1
+                    ].slug.current
                   }`}
                   variant="secondary"
                   prev
@@ -78,8 +77,7 @@ const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
           ) : (
             <Button
               href={`/courses/${courseSlug}/${
-                currentChapter.chapterContent[currentLessonIndex - 1].lesson
-                  .slug
+                currentChapter.lessons[currentLessonIndex - 1].slug.current
               }`}
               variant="secondary"
               prev
@@ -89,11 +87,10 @@ const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
           )}
           {/* <Button>Отметить как завершенное</Button> */}
           <div />
-          {currentChapter.chapterContent.length > currentLessonIndex + 1 ? (
+          {currentChapter.lessons.length > currentLessonIndex + 1 ? (
             <Button
               href={`/courses/${courseSlug}/${
-                currentChapter.chapterContent[currentLessonIndex + 1].lesson
-                  .slug
+                currentChapter.lessons[currentLessonIndex + 1].slug.current
               }`}
               variant="secondary"
               next
@@ -107,8 +104,8 @@ const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
               ) : (
                 <Button
                   href={`/courses/${courseSlug}/${
-                    chapterLessons[currChapterIndex + 1].chapterContent[0]
-                      .lesson.slug
+                    chapterLessons[currChapterIndex + 1].chapterContent[0].slug
+                      .current
                   }`}
                   variant="secondary"
                   next
@@ -127,13 +124,13 @@ const Hero = ({ id, courseSlug, lessonSlug, chapterLessons, video, name }) => {
         </div> */}
         <h1 className="h3">{currentChapter.chapterName}</h1>
         <div className={styles.lessons}>
-          {currentChapter.chapterContent.map((el, i) => (
+          {currentChapter.lessons.map((el, i) => (
             <Link
-              href={`/courses/${courseSlug}/${el.lesson.slug}`}
+              href={`/courses/${courseSlug}/${el.slug.current}`}
               key={i}
-              aria-current={el.lesson.slug === lessonSlug}
+              aria-current={el.slug.current === lessonSlug}
             >
-              {currChapterIndex+1}.{i + 1} {el.lesson.title}
+              {currChapterIndex + 1}.{i + 1} {el.name}
             </Link>
           ))}
         </div>

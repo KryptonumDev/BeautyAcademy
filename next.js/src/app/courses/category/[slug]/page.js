@@ -3,29 +3,103 @@ import Grid from "@/components/sections/courses-grid";
 import Hero from "@/components/sections/courses-hero";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
 import fetchData from "@/utils/fetchData";
-import wpFetchData from "@/utils/wpFetchData";
 
 export default async function Courses({ params: { slug } }) {
-  const { page } = await getData();
-  const { products, productCategories } = await getProducts(slug);
+  const { page, allCourse, categories } = await getData(slug);
 
   return (
     <>
-      <Breadcrumbs data={[
-        { name: 'Главная', path: '/' },
-        { name: 'Курсы', path: '/courses' },
-        { name: productCategories?.nodes?.find(el => el.slug === slug).name, path: `/courses/${slug}` }
-      ]} />
+      <Breadcrumbs
+        data={[
+          { name: "Главная", path: "/" },
+          { name: "Курсы", path: "/courses" },
+          {
+            name: productCategories?.nodes?.find((el) => el.slug === slug).name,
+            path: `/courses/${slug}`,
+          },
+        ]}
+      />
       <Hero data={page} />
-      <Grid slug={slug} products={products} productCategories={productCategories} />
+      <Grid
+        slug={slug}
+        customer={null} // TODO: customer
+        products={allCourse}
+        productCategories={categories}
+      />
       <LatestBlogEntries />
     </>
-  )
+  );
+}
+
+export async function generateMetadata() {
+  // const { page: { seo } } = await query();
+  return Seo({
+    title: "TODO: seo",
+    description: "",
+    path: "",
+  });
+}
+
+export async function generateStaticParams() {
+  const {
+    body: {
+      data: { categories },
+    },
+  } = await fetchData(`
+    query {
+      categories: allCourseCategory {
+        slug{
+          current
+        }
+      }
+    }
+  `);
+
+  return categories.map(({ slug }) => ({
+    slug: slug.current,
+  }));
 }
 
 const getData = async () => {
-  const { body: { data } } = await fetchData(`
-    query {
+  const {
+    body: { data },
+  } = await fetchData(
+    `
+    query($slug: String!) {
+      allCourse(limit: 6, where:{category: {slug: {current:{in: [$slug]}}}}){
+        name
+        price
+        discount
+        complexity
+        slug{
+          current
+        }
+        image{
+          asset{
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
+              }
+            }
+          }
+        }
+        category {
+          name
+          slug{
+            current
+          }
+        }
+      }
+      categories: allCourseCategory {
+        name
+        slug {
+          current
+        }
+      }
       page: CoursesPage(id: "coursesPage"){
         # Hero
         hero_Paragraph
@@ -38,86 +112,8 @@ const getData = async () => {
         }
       }
     }
-  `)
+  `,
+    { slug: slug }
+  );
   return data;
-}
-
-const getProducts = async (slug) => {
-  const { body: { data } } = await wpFetchData(`
-  query Category ($slug: String!) {
-    products(where: {categoryIn: ["онлайн-курс", $slug]}, first: 6) {
-      nodes {
-        ... on SimpleProduct {
-          productId: databaseId
-          id
-          slug
-          name
-          date
-          onSale
-          price(format: FORMATTED)
-          regularPrice(format: FORMATTED)
-          salePrice(format: FORMATTED)
-          productTags {
-            nodes {
-              name
-              id
-              slug
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              children {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-          featuredImage {
-            asset : node {
-              altText
-              url : mediaItemUrl
-              metadata : mediaDetails {
-                width
-                height
-              }
-            }
-          }
-        }
-      }
-      pageInfo {
-        total
-        endCursor
-        hasNextPage
-        hasPreviousPage
-        startCursor
-      }
-    }
-    productCategories(where: {childless: true}) {
-      nodes {
-        name
-        id
-        slug
-      }
-    }
-  }
-`, { slug: slug }, 3600)
-  return data;
-}
-
-export async function generateStaticParams() {
-  const { body: { data: { categories } } } = await wpFetchData(`
-    query {
-      categories: productCategories(where: {childless: true}) {
-        nodes {
-          slug
-        }
-      }
-    }
-  `, {}, 3600);
-
-  return categories.nodes.map(({ slug }) => ({
-    slug: slug
-  }))
-}
+};

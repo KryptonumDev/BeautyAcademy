@@ -33,12 +33,18 @@ import blogEntry from './collectionTypes/blogEntry'
 import blogCategory from './collectionTypes/blogCategory'
 import testimonials from './collectionTypes/testimonials'
 import author from './collectionTypes/author'
+import courseEntry from './collectionTypes/courseEntry'
+import lessonEntry from './collectionTypes/lessonEntry'
+import courseCategory from './collectionTypes/courseCategory'
 
 export const collectionTypes = [
   testimonials,
+  author,
   blogEntry,
   blogCategory,
-  author,
+  courseEntry,
+  lessonEntry,
+  courseCategory,
 ]
 
 // Componenets
@@ -56,6 +62,7 @@ import TextAndImageColumn from './components/TextAndImageColumn'
 import QuickContact from './components/QuickContact'
 import HighlightedList from './components/HighlightedList'
 import { PrivacyPolicyContent } from './singleTypes/PrivacyPolicyPage'
+import ChapterList from './components/chapterList'
 
 export const components = [
   global_Seo,
@@ -78,6 +85,7 @@ export const components = [
   HighlightedList,
   PrivacyPolicyContent,
   team_List,
+  ChapterList
 ]
 
 export const schemaTypes = [

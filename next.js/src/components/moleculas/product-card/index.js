@@ -6,24 +6,36 @@ import Img from "@/components/atoms/Img";
 import { AdvancemenetIndicator } from "@/components/atoms/Icons";
 
 export default function Card({ data, alreadyBought }) {
-  debugger;
-  const complicity = useMemo(() => data.productTags.nodes[0].slug, [data]);
-  const types = useMemo(
-    () =>
-      data.productCategories.nodes.filter((el) => el.children.nodes.length > 0),
-    [data]
-  );
-  const isNew = useMemo(() => {
-    const date = new Date(data.date);
-    const now = new Date();
-    return now - date < 1000 * 60 * 60 * 24 * 14;
-  }, [data]);
-  const { name, slug, price, onSale, featuredImage, regularPrice } = data;
+  // const complicity = useMemo(() => data.productTags.nodes[0].slug, [data]);
+  // const types = useMemo(
+  //   () =>
+  //     data.productCategories.nodes.filter((el) => el.children.nodes.length > 0),
+  //   [data]
+  // );
+  // const isNew = useMemo(() => {
+  //   const date = new Date(data.date);
+  //   const now = new Date();
+  //   return now - date < 1000 * 60 * 60 * 24 * 14;
+  // }, [data]);
+
+  const {
+    name,
+    slug,
+    image,
+    price,
+    complexity,
+    discount,
+  } = data;
+  const onSale = discount !== null;
+
+  // const complicity = null;
+  const types = [];
+  const isNew = false;
 
   return (
     <div className={styles.item}>
       <Link
-        href={`/courses/${slug}`}
+        href={`/courses/${slug.current}`}
         className={styles.link}
         aria-label={name}
       />
@@ -38,13 +50,7 @@ export default function Card({ data, alreadyBought }) {
           )}
         </div>
       )}
-      <Img
-        src={featuredImage.asset.url}
-        alt={featuredImage.asset.altText}
-        height={featuredImage.asset.metadata.height}
-        width={featuredImage.asset.metadata.width}
-        className={styles.img}
-      />
+      <Img data={image} className={styles.img} />
       <div className={styles.content}>
         <div className={styles.types}>
           {types.map((el) => (
@@ -55,19 +61,19 @@ export default function Card({ data, alreadyBought }) {
         <div className={styles.advancement}>
           <span>Уровень сложности:</span>
           <div>
-            <AdvancemenetIndicator isFilled={complicity >= 1} />
-            <AdvancemenetIndicator isFilled={complicity >= 2} />
-            <AdvancemenetIndicator isFilled={complicity >= 3} />
+            <AdvancemenetIndicator isFilled={complexity >= 1} />
+            <AdvancemenetIndicator isFilled={complexity >= 2} />
+            <AdvancemenetIndicator isFilled={complexity >= 3} />
           </div>
         </div>
         <p
           className={styles.price}
-          dangerouslySetInnerHTML={{ __html: price }}
+          dangerouslySetInnerHTML={{ __html: '$ ' + (discount || price) }}
         />
-        {price !== regularPrice && (
+        {onSale && (
           <p
             className={styles.smallPrice}
-            dangerouslySetInnerHTML={{ __html: regularPrice }}
+            dangerouslySetInnerHTML={{ __html: '$ ' + price }}
           />
         )}
       </div>

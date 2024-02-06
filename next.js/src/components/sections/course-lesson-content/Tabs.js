@@ -30,7 +30,7 @@ const Tabs = ({ chapters, courseSlug, content }) => {
         style={{ display: tab !== 1 && 'none' }}
       >
         <ol>
-          {chapters?.map(({ chapterName, chapterContent }, i) => (
+          {chapters?.map(({ chapterName, lessons }, i) => (
             <li key={i}>
               <span className={styles.title}>
                 {chapters.length > 1 && <span>Глава {i + 1} </span>}
@@ -40,21 +40,21 @@ const Tabs = ({ chapters, courseSlug, content }) => {
                 <Clock />
                 {(() => {
                   let minutes = 0;
-                  chapterContent.forEach(el => {
-                    minutes += el.lesson.lessonAcf.lengthInMinutes;
+                  lessons.forEach(el => {
+                    minutes += el.lengthInMinutes;
                   });
                   return `${minutes} минут`
                 })()}
               </span>
-              {chapterContent && (
+              {lessons && (
                 <ol>
-                  {chapterContent.map(({ lesson }, i) => (
+                  {lessons.map(( lesson , i) => (
                     <li className={styles.item} key={i}>
-                      <Link href={`/courses/${courseSlug}/${lesson.slug}`}>
-                        <span className={styles.name}>{lesson.title}</span>
+                      <Link href={`/courses/${courseSlug}/${lesson.slug.current}`}>
+                        <span className={styles.name}>{lesson.name}</span>
                         <span className={styles.flexIcon}>
                           <Play />
-                          {lesson.lessonAcf.lengthInMinutes} минут
+                          {lesson.lengthInMinutes} минут
                         </span>
                       </Link>
                     </li>

@@ -1,27 +1,11 @@
-import Authorization from "@/components/sections/authorization"
-import React from "react"
-import wpFetchData from "@/utils/wpFetchData"
+import Authorization from "@/components/sections/authorization";
 
-export const dynamic = "force-dynamic"
-
-export default async function AuthorizationProcess() {
-  const { loginClients: providers } = await getData();
-
+export default function Login() {
   return (
-    <div>
-      <Authorization providers={providers} />
-    </div>
-  )
-}
-
-const getData = async () => {
-  const { body: { data } } = await wpFetchData(`
-    query getData {
-      loginClients {
-          provider
-          authorizationUrl
-      }
-    }
-  `, {}, 300)
-  return data;
+    <>
+      <Authorization
+      // providers={providers}
+      />
+    </>
+  );
 }

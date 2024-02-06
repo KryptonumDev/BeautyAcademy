@@ -1,20 +1,18 @@
-import styles from './styles.module.scss';
-import Markdown from '@/components/atoms/Markdown';
-import AddToCart from '@/components/atoms/add-to-cart';
-import Slider from './Slider';
+import styles from "./styles.module.scss";
+import Markdown from "@/components/atoms/Markdown";
+import AddToCart from "@/components/atoms/add-to-cart";
+import Slider from "./Slider";
 
 const Hero = ({
-  data: {
-    productId,
-    name,
-    price,
-    regularPrice,
-    img,
-  },
+  productId,
+  name,
+  price,
+  discount,
+  image,
   isAccepted,
-  rating
+  rating,
 }) => {
-  const gallery = [img]
+  const gallery = [image];
 
   const progress = 100;
 
@@ -25,17 +23,28 @@ const Hero = ({
         {!isAccepted && (
           <div className={styles.info}>
             <div>
-              <Markdown.h3 className={styles.price}>{price}</Markdown.h3>
-              {price !== regularPrice && (
-                <Markdown components={{ p: 's' }} className={styles.regularPrice}>{regularPrice}</Markdown>
+              <Markdown.h3 className={styles.price}>
+                {discount || price}
+              </Markdown.h3>
+              {discount && (
+                <Markdown
+                  components={{ p: "s" }}
+                  className={styles.regularPrice}
+                >
+                  {price}
+                </Markdown>
               )}
             </div>
-            <AddToCart quantity='1' product={{ productId }}>В корзину</AddToCart>
+            <AddToCart quantity="1" product={{ productId }}>
+              В корзину
+            </AddToCart>
           </div>
         )}
       </section>
       <div className={styles.progress}>
-        <div className={styles.indicator}><div style={{ transform: `scaleX(${progress/100})` }}></div></div>
+        <div className={styles.indicator}>
+          <div style={{ transform: `scaleX(${progress / 100})` }}></div>
+        </div>
         {/* {isAccepted && ( TODO: add progress bar
           <p>{progress}% курса пройдено</p>
         )} */}

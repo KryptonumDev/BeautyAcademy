@@ -7,73 +7,36 @@ import { regex } from "@/global/constants";
 import Link from "next/link";
 import Button from "@/components/atoms/Button";
 import Loader from "@/components/moleculas/request-loader";
+import { useRouter } from "next/navigation";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-export default function Form({
-  type,
-  nextStep,
-  registration,
-  setRegistration,
-}) {
+export default function Form({ registration, setRegistration }) {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const supabase = createClientComponentClient();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({ mode: "all" });
 
-  const onSubmit = (data) => {
+  const onSubmit = async ({email, password}) => {
     setLoading(true);
     if (registration) {
-      //SIGN UP
-      fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
+      let res = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${location.origin}/api/auth/callback`,
         },
-        redirect: "follow",
-        body: JSON.stringify({
-          email: data.email,
-          name: data.name,
-          password: data.password,
-          type: type,
-        }),
-      })
-        .then((response) => response.json())
-        .then(async (response) => {
-          if (response.redirect) window.location.href = response.redirect;
-          if (response.error) throw new Error(response.error);
-          nextStep();
-          setLoading(false);
-        })
-        .catch(() => {
-          // TODO ERROR HANDLING
-          setLoading(false);
-        });
+      });
+      router.refresh();
     } else {
-      // SIGN IN
-      fetch("/api/auth/password", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        redirect: "follow",
-        body: JSON.stringify({
-          username: data.email,
-          password: data.password,
-          type: type,
-        }),
-      })
-        .then((response) => response.json())
-        .then(async (response) => {
-          if (response.redirect) window.location.href = response.redirect;
-          if (response.error) throw new Error(response.error);
-          nextStep();
-          setLoading(false);
-        })
-        .catch(() => {
-          // TODO ERROR HANDLING
-          setLoading(false);
-        });
+      let res = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+      router.refresh();
     }
   };
 

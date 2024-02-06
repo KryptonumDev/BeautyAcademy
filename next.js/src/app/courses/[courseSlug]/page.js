@@ -1,243 +1,184 @@
 import { notFound } from "next/navigation";
 import Breadcrumbs from "@/components/organisms/Breadcrumbs";
-import wpFetchData from "@/utils/wpFetchData";
-import Faq from "@/components/sections/faq/html";
+// import Faq from "@/components/sections/faq/html";
 import UpsellCarousel from "@/components/sections/upsell-carousel";
 import Hero from "@/components/sections/course-hero";
 import Content from "@/components/sections/course-content";
 import Seo from "@/global/Seo";
+import fetchData from "@/utils/fetchData";
 
 const CoursePage = async ({ params: { courseSlug } }) => {
-  const { product, viewer } = await getProducts(courseSlug);
-  const isAccepted = viewer?.courses?.nodes?.some(({ id }) => id === product.productAcf.course.id);
+  const isAccepted = true; // TODO: add isAccepted
+
+  const {
+    page: [
+      {
+        name,
+        complexity,
+        _createdAt,
+        price,
+        discount,
+        _id,
+        image,
+        category,
+        slug: { current: slug },
+        author,
+        chapters,
+        courseLength
+      },
+    ],
+  } = await query(courseSlug);
 
   return (
     <>
-      <Breadcrumbs data={[
-        { name: 'Главная', path: '/' },
-        { name: 'Курсы', path: '/courses' },
-        { name: product.name, path: `/courses/${product.slug}` },
-      ]} />
+      <Breadcrumbs
+        data={[
+          { name: "Главная", path: "/" },
+          { name: "Курсы", path: "/courses" },
+          { name: name, path: `/courses/${slug}` },
+        ]}
+      />
       <Hero
-        data={product}
+        productId={_id}
+        name={name}
+        price={price}
+        discount={discount}
+        image={image}
         isAccepted={isAccepted}
-      // rating={data.product.rating}
+        rating={5} // TODO: add rating
       />
       <Content
-        data={product}
-        courseSlug={product.slug}
-        chapters={product.productAcf.course.courseAcf.mainInformation.chapters}
-        sections={product.productAcf.course.courseAcf.about}
+        complexity={complexity}
+        author={author}
+        category={category}
+        courseLength={courseLength}
+        courseSlug={slug}
+        chapters={chapters}
+        // sections={product.productAcf.course.courseAcf.about}
         isAccepted={isAccepted}
       />
-      <Faq data={product.productAcf.course.courseAcf.faq} />
-      <UpsellCarousel slug={courseSlug} />
+      {/* <Faq data={product.productAcf.course.courseAcf.faq} /> */}
+      <UpsellCarousel slug={slug} />
     </>
-  )
-}
+  );
+};
 
 export async function generateMetadata({ params: { courseSlug } }) {
-  const { product } = await getSeo(courseSlug);
+  const {
+    page: [
+      {
+        seo,
+      },
+    ],
+  } = await query(courseSlug);
 
   return Seo({
-    title: product?.seo?.title,
-    description: product?.seo?.description,
+    title: seo?.title,
+    description: seo?.description,
     path: `/courses/${courseSlug}`,
-  })
-}
-
-const getSeo = async (slug) => {
-  try {
-    const { body: { data } } = await wpFetchData(`
-    query ($slug: ID!) {
-      product(id:$slug, idType: SLUG) {
-        slug
-        seo {
-          metaDesc
-          title
-        }
-      }
-    }
-    `, {
-      slug
-    }, 3600)
-    !data.product?.slug && notFound();
-    return data;
-  } catch (error) {
-    console.error(error);
-    notFound();
-  }
-}
-
-const getProducts = async (slug) => {
-  try {
-    const { body: { data } } = await wpFetchData(`
-    query ($slug: ID!) {
-      viewer {
-        courses {
-          nodes {
-            id
-          }
-        }
-      }
-      product(id:$slug, idType: SLUG) {
-        ... on SimpleProduct {
-          productId: databaseId
-          id
-          slug
-          name
-          date
-          onSale
-          price(format: FORMATTED)
-          regularPrice(format: FORMATTED)
-          salePrice(format: FORMATTED)
-          productTags {
-            nodes {
-              name
-              id
-              slug
-            }
-          }
-          productCategories {
-            nodes {
-              name
-              slug
-              children {
-                nodes {
-                  name
-                }
-              }
-            }
-          }
-          img: featuredImage {
-            asset: node {
-              altText
-              url: mediaItemUrl
-              metadata: mediaDetails {
-                width
-                height
-              }
-            }
-          }
-        }
-        productAcf {
-          course {
-            ... on Course {
-              id
-              courseAcf {
-                mainInformation {
-                  courseLength
-                  chapters {
-                    chapterContent {
-                      lesson {
-                        ... on Lesson {
-                          id
-                          slug
-                          title
-                          lessonAcf {
-                            lengthInMinutes
-                          }
-                        }
-                      }
-                    }
-                    chapterName
-                  }
-                  author {
-                    ... on Author {
-                      id
-                      authorAcf {
-                        profession
-                        socialMedia {
-                          telegram
-                          instagram
-                          facebook
-                        }
-                        avatar {
-                          altText
-                          url: mediaItemUrl
-                        }
-                      }
-                      title
-                    }
-                  }
-                }
-                faq {
-                  faqTitle
-                  faq {
-                    question
-                    answer
-                  }
-                }
-                about {
-                  ... on Course_Courseacf_About_TextSection {
-                    content
-                    fieldGroupName
-                    video {
-                      title: altText
-                      url: mediaItemUrl
-                    }
-                    isReversed
-                    isColumn
-                    isCentered
-                    image {
-                      altText
-                      url : mediaItemUrl
-                      metadata : mediaDetails {
-                        width
-                        height
-                      }
-                    }
-                    cta {
-                      url
-                      title
-                      target
-                    }
-                  }
-                  ... on Course_Courseacf_About_ListSection {
-                    fieldGroupName
-                    textUnderList
-                    title
-                    list {
-                      listItemText
-                    }
-                    linkUnderSection {
-                      url
-                      title
-                      target
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `, {
-      slug
-    }, 3600);
-    !data.product?.slug && notFound();
-    return data;
-  } catch (error) {
-    console.error(error);
-    notFound();
-  }
+  });
 }
 
 export async function generateStaticParams() {
-  const { body: { data: { products } } } = await wpFetchData(`
+  const {
+    body: {
+      data: { entries },
+    },
+  } = await fetchData(`
     query {
-      products(where: {categoryIn: "онлайн-курс"}, first: 100) {
-        nodes {
-          slug
+      entries: allCourse {
+        slug {
+          current
         }
       }
     }
-  `, {}, 3600);
+  `);
 
-  return products.nodes.map(({ slug }) => ({
-    courseSlug: slug
-  }))
+  return entries.map(({ slug: { current: slug } }) => ({
+    slug,
+  }));
 }
+
+const query = async (courseSlug) => {
+  const {
+    body: { data },
+  } = await fetchData(
+    /* GraphQL */ `
+      query ($slug: String!) {
+        page: allCourse(where: { slug: { current: { eq: $slug } } }) {
+          name
+          slug {
+            current
+          }
+          _id
+          _createdAt
+          price
+          discount
+          complexity
+          courseLength
+          chapters{
+            chapterName
+            lessons{
+              name
+              lengthInMinutes
+              slug{
+                current
+              }
+            }
+          }
+          author{
+            name
+            facebook
+            instagram
+            telegram
+            specialization
+            img{
+              asset {
+                altText
+                url
+                metadata {
+                  lqip
+                  dimensions {
+                    width
+                    height
+                  }
+                }
+              }
+            }
+          }
+          image {
+            asset {
+              altText
+              url
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+          category {
+            name
+            slug{
+              current
+            }
+          }
+          seo {
+            title
+            description
+          }
+        }
+      }
+    `,
+    {
+      slug: courseSlug,
+    }
+  );
+
+  !data.page[0]?.slug.current && notFound();
+  return data;
+};
 
 export default CoursePage;

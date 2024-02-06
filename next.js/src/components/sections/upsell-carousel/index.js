@@ -1,16 +1,15 @@
-import wpFetchData from '@/utils/wpFetchData';
-import styles from './styles.module.scss';
-import Slider from './Slider';
+import styles from "./styles.module.scss";
+import Slider from "./Slider";
+import fetchData from "@/utils/fetchData";
 
 const UpsellCarousel = async ({ slug }) => {
-  const { products: { nodes } } = await getProducts();
+  const courses = await query();
 
   const list = (() => {
-    if (!nodes) return [];
-    if (!slug) return nodes;
+    if (!courses) return [];
+    if (!slug) return courses;
 
-
-    return nodes.filter(({ slug: productSlug }) => productSlug !== slug)
+    return courses.filter(({ slug: { current } }) => current !== slug);
   })();
 
   if (!list.length) return null;
@@ -24,54 +23,41 @@ const UpsellCarousel = async ({ slug }) => {
   );
 };
 
-const getProducts = async () => {
-  const { body: { data } } = await wpFetchData(`
+const query = async () => {
+  const {
+    body: { data },
+  } = await fetchData(/* GraphQL */ `
     query {
-      products(where: {categoryIn: "онлайн-курс"}, first: 6) {
-        nodes {
-          ... on SimpleProduct {
-            productId: databaseId
-            id
-            slug
-            name
-            date
-            onSale
-            price(format: FORMATTED)
-            regularPrice(format: FORMATTED)
-            salePrice(format: FORMATTED)
-            productTags {
-              nodes {
-                name
-                id
-                slug
-              }
-            }
-            productCategories {
-              nodes {
-                name
-                children {
-                  nodes {
-                    name
-                  }
-                }
-              }
-            }
-            featuredImage {
-              asset: node {
-                altText
-                url: mediaItemUrl
-                metadata: mediaDetails {
-                  width
-                  height
-                }
+      courses: allCourse(limit: 6) {
+        name
+        slug {
+          current
+        }
+        price
+        discount
+        image {
+          asset {
+            altText
+            url
+            metadata {
+              lqip
+              dimensions {
+                width
+                height
               }
             }
           }
         }
+        category {
+          name
+          slug {
+            current
+          }
+        }
       }
     }
-  `, {}, 3600)
-  return data;
-}
+  `);
 
+  return data.courses;
+};
 export default UpsellCarousel;

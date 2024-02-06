@@ -1,15 +1,15 @@
-'use client';
-import { useState } from 'react';
-import styles from './styles.module.scss';
-import TextSection from './TextSection';
-import ListSection from './ListSection';
-import Link from 'next/link';
+"use client";
+import { useState } from "react";
+import styles from "./styles.module.scss";
+import TextSection from "./TextSection";
+import ListSection from "./ListSection";
+import Link from "next/link";
 
 const tabs = [
   "О курсе",
   "Программа курса",
   // "Отзывы"
-]
+];
 
 const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
   const [tab, setTab] = useState(0);
@@ -17,50 +17,49 @@ const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
     <>
       <div className={styles.tabs}>
         {tabs.map((tabName, i) => (
-          <button
-            aria-current={i === tab}
-            onClick={() => setTab(i)}
-            key={i}
-          >{tabName}</button>
+          <button aria-current={i === tab} onClick={() => setTab(i)} key={i}>
+            {tabName}
+          </button>
         ))}
       </div>
-      <div
-        className={styles.about}
-        style={{ display: tab !== 0 && 'none' }}
-      >
+      <div className={styles.about} style={{ display: tab !== 0 && "none" }}>
         {sections?.map((el, i) => {
           switch (el.fieldGroupName) {
             case "Course_Courseacf_About_TextSection":
-              return <TextSection
-                key={i}
-                isColumn={el.isColumn}
-                isReversed={el.isReversed}
-                centered={el.isCentered}
-                video={el.video}
-                image={el.image}
-                content={el.content}
-                cta={el.cta}
-              />
+              return (
+                <TextSection
+                  key={i}
+                  isColumn={el.isColumn}
+                  isReversed={el.isReversed}
+                  centered={el.isCentered}
+                  video={el.video}
+                  image={el.image}
+                  content={el.content}
+                  cta={el.cta}
+                />
+              );
             case "Course_Courseacf_About_ListSection":
-              return <ListSection
-                key={i}
-                title={el.title}
-                list={el.list}
-                textUnderList={el.textUnderList}
-                linkUnderSection={el.linkUnderSection}
-              />
+              return (
+                <ListSection
+                  key={i}
+                  title={el.title}
+                  list={el.list}
+                  textUnderList={el.textUnderList}
+                  linkUnderSection={el.linkUnderSection}
+                />
+              );
             default:
-              return null
+              return null;
           }
         })}
         {sections?.length === 0 && <p>К сожалению тут пока ничего нет</p>}
       </div>
       <div
         className={styles.tableOfContent}
-        style={{ display: tab !== 1 && 'none' }}
+        style={{ display: tab !== 1 && "none" }}
       >
         <ol>
-          {chapters?.map(({ chapterName, chapterContent }, i) => (
+          {chapters?.map(({ chapterName, lessons }, i) => (
             <li key={i}>
               <span className={styles.title}>
                 {chapters.length > 1 && <span>Глава {i + 1} </span>}
@@ -70,42 +69,48 @@ const Tabs = ({ courseSlug, sections, chapters, isAccepted }) => {
                 <Clock />
                 {(() => {
                   let minutes = 0;
-                  chapterContent.forEach(el => {
-                    minutes += el.lesson.lessonAcf.lengthInMinutes;
+                  lessons.forEach((el) => {
+                    minutes += el.lengthInMinutes;
                   });
-                  return `${minutes} ${minutes === 1
-                    ? 'минута'
-                    : [2, 3, 4].includes(minutes)
-                      ? 'минуты'
-                      : 'минут'}`
+                  return `${minutes} ${
+                    minutes === 1
+                      ? "минута"
+                      : [2, 3, 4].includes(minutes)
+                      ? "минуты"
+                      : "минут"
+                  }`;
                 })()}
               </span>
-              {chapterContent && (
+              {lessons && (
                 <ol>
-                  {chapterContent.map(({ lesson }, i) => (
+                  {lessons?.map((lesson, i) => (
                     <li className={styles.item} key={i}>
                       {isAccepted ? (
-                        <Link href={`/courses/${courseSlug}/${lesson.slug}`}>
-                          <span className={styles.name}>{lesson.title}</span>
+                        <Link
+                          href={`/courses/${courseSlug}/${lesson.slug.current}`}
+                        >
+                          <span className={styles.name}>{lesson.name}</span>
                           <span className={styles.flexIcon}>
                             <Play />
-                            {lesson.lessonAcf.lengthInMinutes} {lesson.lessonAcf.lengthInMinutes === 1
-                              ? 'минута'
-                              : [2, 3, 4].includes(lesson.lessonAcf.lengthInMinutes)
-                                ? 'минуты'
-                                : 'минут'}
+                            {lesson.lengthInMinutes}{" "}
+                            {lesson.lengthInMinutes === 1
+                              ? "минута"
+                              : [2, 3, 4].includes(lesson.lengthInMinutes)
+                              ? "минуты"
+                              : "минут"}
                           </span>
                         </Link>
                       ) : (
                         <p>
-                          <span className={styles.name}>{lesson.title}</span>
+                          <span className={styles.name}>{lesson.name}</span>
                           <span className={styles.flexIcon}>
                             <Play />
-                            {lesson.lessonAcf.lengthInMinutes} {lesson.lessonAcf.lengthInMinutes === 1
-                              ? 'минута'
-                              : [2, 3, 4].includes(lesson.lessonAcf.lengthInMinutes)
-                                ? 'минуты'
-                                : 'минут'}
+                            {lesson.lengthInMinutes}{" "}
+                            {lesson.lengthInMinutes === 1
+                              ? "минута"
+                              : [2, 3, 4].includes(lesson.lengthInMinutes)
+                              ? "минуты"
+                              : "минут"}
                           </span>
                         </p>
                       )}
@@ -148,43 +153,43 @@ export default Tabs;
 
 const Play = () => (
   <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='25'
-    height='25'
-    fill='none'
-    viewBox='0 0 25 25'
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="25"
+    fill="none"
+    viewBox="0 0 25 25"
   >
     <path
-      stroke='#C9BBB7'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M21.563 12.293a9.5 9.5 0 11-19 0 9.5 9.5 0 0119 0z'
+      stroke="#C9BBB7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M21.563 12.293a9.5 9.5 0 11-19 0 9.5 9.5 0 0119 0z"
     ></path>
     <path
-      stroke='#C9BBB7'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M16.831 11.464a1 1 0 010 1.659l-6.21 4.183a1 1 0 01-1.559-.83V8.111a1 1 0 011.56-.83l6.21 4.183z'
+      stroke="#C9BBB7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M16.831 11.464a1 1 0 010 1.659l-6.21 4.183a1 1 0 01-1.559-.83V8.111a1 1 0 011.56-.83l6.21 4.183z"
     ></path>
   </svg>
-)
+);
 
 const Clock = () => (
   <svg
-    xmlns='http://www.w3.org/2000/svg'
-    width='25'
-    height='25'
-    fill='none'
-    viewBox='0 0 25 25'
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="25"
+    fill="none"
+    viewBox="0 0 25 25"
   >
     <path
-      stroke='#2B483C'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-      d='M12.063 6.293v5a1 1 0 001 1h5m-6 9.5a9.5 9.5 0 110-19 9.5 9.5 0 010 19z'
+      stroke="#2B483C"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12.063 6.293v5a1 1 0 001 1h5m-6 9.5a9.5 9.5 0 110-19 9.5 9.5 0 010 19z"
     ></path>
   </svg>
-)
+);
 
 // const Heart = () => (
 //   <svg xmlns="http://www.w3.org/2000/svg" width="39" height="39" viewBox='0 0 39 39' fill="none">

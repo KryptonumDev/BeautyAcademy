@@ -1,12 +1,14 @@
-import React from "react"
+import React from "react";
 // import styles from "./styles.module.scss"
-import NoContent from "@/components/organisms/dashboard-no-content"
-import Img from "@/components/atoms/Img"
-import wpFetchData from "@/utils/wpFetchData";
+import NoContent from "@/components/organisms/dashboard-no-content";
+import Img from "@/components/atoms/Img";
 import Link from "next/link";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 export default async function Content() {
   const data = await getData();
+  console.log(data);
 
   return (
     <>
@@ -18,7 +20,12 @@ export default async function Content() {
               <li key={index}>
                 <Link href={`/courses/${course.slug}`} />
                 {course.featuredImage && (
-                  <Img src={course.featuredImage.asset.url} width={course.featuredImage.asset.metadata.width} height={course.featuredImage.asset.metadata.height} alt={course.featuredImage.asset.altText} />
+                  <Img
+                    src={course.featuredImage.asset.url}
+                    width={course.featuredImage.asset.metadata.width}
+                    height={course.featuredImage.asset.metadata.height}
+                    alt={course.featuredImage.asset.altText}
+                  />
                 )}
                 <div>
                   <div>
@@ -28,45 +35,40 @@ export default async function Content() {
                   {/* TODO: progressbar */}
                 </div>
               </li>
-            )
+            );
           })}
           {/* TODO: load more and limit */}
         </ul>
       ) : (
-        <NoContent text='У вас пока нет курсов' link={{ url: '/courses', title: 'Академия' }} />
+        <NoContent
+          text="У вас пока нет курсов"
+          link={{ url: "/courses", title: "Академия" }}
+        />
       )}
       {/* TODO: add slider with products */}
     </>
-  )
+  );
 }
 
 const getData = async () => {
-  try {
-  const { body: { data } } = await wpFetchData(`
-    query {
-      customer: viewer {
-        courses {
-          nodes {
-            id
-            slug
-            title
-            featuredImage {
-              asset : node {
-                altText
-                url : mediaItemUrl
-                metadata : mediaDetails {
-                  width
-                  height
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `, {}, 300)
+  const supabase = createServerActionClient({ cookies });
+  const {
+    data: {
+      user: { id },
+    },
+  } = await supabase.auth.getUser();
+
+  const { data } = await supabase
+    .from("profiles")
+    .select(
+      `
+        id, 
+        enrolled_courses (
+          course_id
+        )
+      `
+    )
+    .eq("id", id);
+
   return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
+};
