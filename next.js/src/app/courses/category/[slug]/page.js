@@ -2,6 +2,7 @@ import Breadcrumbs from "@/components/organisms/Breadcrumbs";
 import Grid from "@/components/sections/courses-grid";
 import Hero from "@/components/sections/courses-hero";
 import LatestBlogEntries from "@/components/sections/latest-blog-entries";
+import Seo from "@/global/Seo";
 import fetchData from "@/utils/fetchData";
 
 export default async function Courses({ params: { slug } }) {
@@ -14,7 +15,7 @@ export default async function Courses({ params: { slug } }) {
           { name: "Главная", path: "/" },
           { name: "Курсы", path: "/courses" },
           {
-            name: productCategories?.nodes?.find((el) => el.slug === slug).name,
+            name: categories?.find((el) => el.slug.current === slug).name,
             path: `/courses/${slug}`,
           },
         ]}
@@ -60,7 +61,7 @@ export async function generateStaticParams() {
   }));
 }
 
-const getData = async () => {
+const getData = async (slug) => {
   const {
     body: { data },
   } = await fetchData(

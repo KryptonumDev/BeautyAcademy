@@ -5,32 +5,25 @@ import Img from "@/components/atoms/Img";
 import Link from "next/link";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import fetchData from "@/utils/fetchData";
 
 export default async function Content() {
-  const data = await getData();
-  console.log(data);
+  const courses = await getData();
 
   return (
     <>
       {/* TODO: types - courses/videos */}
-      {data.customer?.courses?.nodes?.length > 0 ? (
+      {courses?.length > 0 ? (
         <ul>
-          {data.customer?.courses?.nodes?.map((course, index) => {
+          {courses.map((course, index) => {
             return (
               <li key={index}>
-                <Link href={`/courses/${course.slug}`} />
-                {course.featuredImage && (
-                  <Img
-                    src={course.featuredImage.asset.url}
-                    width={course.featuredImage.asset.metadata.width}
-                    height={course.featuredImage.asset.metadata.height}
-                    alt={course.featuredImage.asset.altText}
-                  />
-                )}
+                <Link href={`/courses/${course.slug.current}`} />
+                {course.image && <Img data={course.image} />}
                 <div>
                   <div>
                     <p>онлайн курс</p>
-                    <h3>{course.title}</h3>
+                    <h3>{course.name}</h3>
                   </div>
                   {/* TODO: progressbar */}
                 </div>
@@ -68,7 +61,43 @@ const getData = async () => {
         )
       `
     )
-    .eq("id", id);
+    .eq("id", id)
+    .single();
 
-  return data;
+  // TODO: handle course id's that are not found
+
+  const {
+    body: {
+      data: { courses },
+    },
+  } = await fetchData(
+    `
+      query($id: [ID!]) {
+        courses: allCourse(where: {_id: {in: $id}}) {
+          name
+          slug{
+            current
+          }
+          image {
+            asset {
+              url
+              altText
+              metadata {
+                lqip
+                dimensions {
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    {
+      id: data.enrolled_courses.map((course) => course.course_id),
+    }
+  );
+
+  return courses;
 };

@@ -4,14 +4,12 @@ import styles from "./styles.module.scss";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
 import Input from "@/components/moleculas/Input";
 import Button from "@/components/atoms/Button";
 import { regex } from "@/global/constants";
 
 const PasswordChangeForm = () => {
   const [fetching, setFetching] = useState(false);
-  const router = useRouter();
   const supabase = createClientComponentClient();
 
   const {

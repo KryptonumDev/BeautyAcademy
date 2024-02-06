@@ -72,7 +72,7 @@ export async function generateStaticParams() {
   `);
 
   return entries.map(({ slug: { current: slug } }) => ({
-    slug,
+    lessonSlug: slug,
   }));
 }
 
