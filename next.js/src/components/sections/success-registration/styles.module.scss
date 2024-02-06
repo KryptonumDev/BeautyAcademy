@@ -1,0 +1,13 @@
+.wrapper{
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h1{
+    margin-bottom: clamp(20px, calc(28vw/7.68), 36px);
+  }
+
+  a{
+    margin-top: 48px;
+  }
+}

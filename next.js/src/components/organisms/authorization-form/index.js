@@ -20,23 +20,43 @@ export default function Form({ registration, setRegistration }) {
     formState: { errors },
   } = useForm({ mode: "all" });
 
-  const onSubmit = async ({email, password}) => {
+  const onSubmit = async ({ email, password }) => {
     setLoading(true);
     if (registration) {
-      let res = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: `${location.origin}/api/auth/callback`,
-        },
-      });
-      router.refresh();
+      await supabase.auth
+        .signUp({
+          email: data.email,
+          password: data.password,
+          options: {
+            emailRedirectTo: `${location.origin}/api/auth/callback`,
+          },
+        })
+        .then((res) => {
+          if (res.error) throw res.error;
+          // TODO: add redirect to register confirmation page
+        })
+        .catch((error) => {
+          console.error(error); // TODO: Add error handling
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     } else {
-      let res = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      router.refresh();
+      await supabase.auth
+        .signInWithPassword({
+          email: email,
+          password: password,
+        })
+        .then((res) => {
+          if (res.error) throw res.error;
+          router.refresh();
+        })
+        .catch((error) => {
+          console.error(error); // TODO: Add error handling
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
   };
 
@@ -82,36 +102,42 @@ export default function Form({ registration, setRegistration }) {
         })}
         errors={errors}
       />
-      <div className={styles.checkboxes}>
-        {registration && (
-          <>
-            <Checkbox
-              label={
-                <>
-                  Я согласен с{" "}
-                  <Link
-                    className="link"
-                    href="/privacy-policy"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    политикой конфиденциальности
-                  </Link>
-                </>
-              }
-              register={register("legal", {
-                required: { value: true, message: `Необходимо согласие` },
-              })}
-              errors={errors}
-            />
-            <Checkbox
-              label={<> Я хочу подписаться на рассылку новостей </>}
-              register={register("newsletter")}
-              errors={errors}
-            />
-          </>
-        )}
-      </div>
+      {registration && (
+        <div className={styles.checkboxes}>
+          <Checkbox
+            label={
+              <>
+                Я согласен с{" "}
+                <Link
+                  className="link"
+                  href="/privacy-policy"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  политикой конфиденциальности
+                </Link>
+              </>
+            }
+            register={register("legal", {
+              required: { value: true, message: `Необходимо согласие` },
+            })}
+            errors={errors}
+          />
+          <Checkbox
+            label={<> Я хочу подписаться на рассылку новостей </>}
+            register={register("newsletter")}
+            errors={errors}
+          />
+        </div>
+      )}
+      {!registration && (
+        <Link
+          href="/authorization/reset-password"
+          className={`${styles.reset} link`}
+        >
+          Забыли пароль?
+        </Link>
+      )}
       <Button type="submit">
         {registration ? "Зарегистрироваться" : "Войти"}
       </Button>
