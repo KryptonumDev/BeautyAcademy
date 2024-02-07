@@ -1,3 +1,4 @@
+'use server'
 const fetchData = async (query, variables) => {
   try {
     const response = await fetch(process.env.GRAPHQL_ENDPOINT, {

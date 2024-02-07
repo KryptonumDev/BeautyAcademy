@@ -31,10 +31,10 @@ export default async function Courses() {
 export async function generateMetadata() {
   // const { page: { seo } } = await query();
   return Seo({
-    title: 'TODO: seo',
-    description: '',
-    path: '',
-  })
+    title: "TODO: seo",
+    description: "",
+    path: "",
+  });
 }
 
 const getData = async () => {
@@ -47,6 +47,7 @@ const getData = async () => {
         price
         discount
         complexity
+        _id
         slug{
           current
         }

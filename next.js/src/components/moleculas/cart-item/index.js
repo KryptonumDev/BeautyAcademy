@@ -1,88 +1,78 @@
-import React, { useState } from "react"
-import styles from './styles.module.scss'
-import Img from "@/components/atoms/Img"
-import { getUpdatedItems } from "@/utils/getUpdatedItems";
-import { v4 } from "uuid";
+import React from "react";
+import styles from "./styles.module.scss";
+import Img from "@/components/atoms/Img";
 import { Trash } from "@/components/atoms/Icons";
 
-export default function CartItem({ setLoading, updateCart, products, remove, data, index }) {
-  const [productCount, setProductCount] = useState(data.quantity);
-
-  const handleQtyChange = (event, cartKey, count) => {
-    if (typeof window !== 'undefined') {
-      event.stopPropagation();
-
-      const newQty = (event.target.value) ? parseInt(event.target.value) : count;
-
-      if (count < 1) {
-        return;
-      }
-
-      setProductCount(newQty);
-
-      if (products.length) {
-        const updatedItems = getUpdatedItems(products, newQty, cartKey);
-        setLoading(true)
-        updateCart({
-          variables: {
-            input: {
-              clientMutationId: v4(),
-              items: updatedItems
-            }
-          },
-        });
-      }
-    }
-  };
+export default function CartItem({ data, removeItem, updateItemQuantity, index }) {
+  if (!data) return null; // TODO: skeleton
 
   return (
     <div className={styles.wrapper}>
-      <Img
-        className={styles['image']}
-        height={data.product.node.asset.metadata.height}
-        width={data.product.node.asset.metadata.width}
-        src={data.product.node.asset.url}
-        alt={data.product.node.asset.altText}
-      />
-      <div className={styles['title']}>
+      <Img className={styles["image"]} data={data.image} />
+      <div className={styles["title"]}>
         <div>
-          <p title={data.product.node.name}>{data.product.node.name}</p>
+          <p title={data.name}>{data.name}</p>
           {/* category */}
         </div>
       </div>
-      <div className={`${styles['quantity']} ${!index ? styles['row'] : ''}`}>
-        {!index && (
-          <span>Количество</span>
-        )}
-        <div className={styles['calculator']}>
-          <button type="button" className={styles['minus']} onClick={(event) => { handleQtyChange(event, data.key, productCount - 1) }}>-</button>
+      <div
+        className={`${styles["quantity"]} ${!index ? styles["row"] : ""}`}
+      >
+        {!index && <span>Количество</span>}
+        <div className={styles["calculator"]}>
+          <button
+            type="button"
+            className={styles["minus"]}
+            onClick={() => {
+              updateItemQuantity(data._id, Number(data.quantity) - 1);
+            }}
+          >
+            -
+          </button>
           <input
             readOnly={true}
-            value={productCount}
+            value={data.quantity}
             min="1"
-            onChange={(event) => handleQtyChange(event, data.key)}
+            onChange={(event) => updateItemQuantity(data._id, event.target.value)}
           />
-          <button type="button" className={styles['plus']} onClick={(event) => { handleQtyChange(event, data.key, productCount + 1) }}>+</button>
+          <button
+            type="button"
+            className={styles["plus"]}
+            onClick={() => {
+              updateItemQuantity(data._id, Number(data.quantity) + 1);
+            }}
+          >
+            +
+          </button>
         </div>
       </div>
-      <div className={`${styles['price']} ${!index ? styles['row'] : ''}`}>
-        {!index && (
-          <span>Цена</span>
-        )}
+      <div className={`${styles["price"]} ${!index ? styles["row"] : ""}`}>
+        {!index && <span>Цена</span>}
         <div>
-          <p dangerouslySetInnerHTML={{ __html: data.product.node.price }} />
-          {data.product.node.regularPrice !== data.product.node.price && (
-            <p className={styles["old-price"]} dangerouslySetInnerHTML={{ __html: data.product.node.regularPrice }} />
+          <p
+            dangerouslySetInnerHTML={{ __html: data.discount || data.price }}
+          />
+          {data.discount && (
+            <p
+              className={styles["old-price"]}
+              dangerouslySetInnerHTML={{
+                __html: data.price,
+              }}
+            />
           )}
         </div>
       </div>
-      <div className={styles['remove']}>
-        {remove && (
-          <button type="button" className={styles["remove"]} onClick={(e) => { remove(e, data.key, products) }}>
-            <Trash />
-          </button>
-        )}
+      <div className={styles["remove"]}>
+        <button
+          type="button"
+          className={styles["remove"]}
+          onClick={() => {
+            removeItem(data._id);
+          }}
+        >
+          <Trash />
+        </button>
       </div>
     </div>
-  )
+  );
 }

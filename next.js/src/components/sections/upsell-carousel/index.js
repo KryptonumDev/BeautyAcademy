@@ -30,6 +30,7 @@ const query = async () => {
     query {
       courses: allCourse(limit: 6) {
         name
+        _id
         slug {
           current
         }

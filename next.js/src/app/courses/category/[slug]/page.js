@@ -72,6 +72,7 @@ const getData = async (slug) => {
         price
         discount
         complexity
+        _id
         slug{
           current
         }
